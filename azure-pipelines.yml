@@ -1,0 +1,157 @@
+trigger:
+- none
+
+pool:
+  vmImage: windows-latest
+
+# Set the BuildNumber = Format 1.0.yyyyMMdd.r
+name: '1.0.$(Date:yyyyMMdd).$(rev:r)'
+
+variables:
+  SolutionNameMain: 'ROMTS-GSRST'
+  SolutionNameFlows: 'ROMTS-GSRST.Flows'
+  RuleSetId: '0ad12346-e108-40b8-a956-9a8f95ea18c9'
+
+steps:
+- checkout: self
+  persistCredentials: true
+  clean: true
+
+- task: PowerPlatformToolInstaller@0
+  displayName: 'Install Power Platform Build Tools'
+  inputs:
+    DefaultVersion: true
+
+# --- Solution Checker (MAIN) ---
+- task: PowerPlatformChecker@0
+  displayName: 'Run Solution Checker (Main)'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    SolutionName: '$(SolutionNameMain)'
+    RuleSet: '$(RuleSetId)'
+    SaveResults: true
+    OutputPath: '$(Build.ArtifactStagingDirectory)\SolutionChecker\Main'
+    ErrorLevel: 'Informational'
+    ErrorThreshold: 6000
+  condition: always()
+  continueOnError: true
+
+# --- Solution Checker (FLOWS) ---
+- task: PowerPlatformChecker@0
+  displayName: 'Run Solution Checker (Flows)'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    SolutionName: '$(SolutionNameFlows)'
+    RuleSet: '$(RuleSetId)'
+    SaveResults: true
+    OutputPath: '$(Build.ArtifactStagingDirectory)\SolutionChecker\Flows'
+    ErrorLevel: 'Informational'
+    ErrorThreshold: 6000
+  condition: always()
+  continueOnError: true
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Solution Checker Results'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)\SolutionChecker'
+    artifact: 'SolutionCheckerResults'
+    publishLocation: 'pipeline'
+  condition: always()
+
+# --- Versioning ---
+- task: PowerPlatformSetSolutionVersion@0
+  displayName: 'Update Solution Version (Main)'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    SolutionName: '$(SolutionNameMain)'
+    SolutionVersionNumber: '$(Build.BuildNumber)'
+
+- task: PowerPlatformSetSolutionVersion@0
+  displayName: 'Update Solution Version (Flows)'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    SolutionName: '$(SolutionNameFlows)'
+    SolutionVersionNumber: '$(Build.BuildNumber)'
+
+- task: PowerPlatformPublishCustomizations@0
+  displayName: 'Publish All Customizations (Dev)'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+
+# --- Export (same toolchain you already use) ---
+- task: MSCRMToolInstaller@12
+  inputs:
+    nugetFeed: 'official'
+    psFeed: 'official'
+
+- task: MSCRMExportSolution@12
+  displayName: 'Export Unmanaged (Main)'
+  inputs:
+    crmConnectionString: '$(ConnectionStringDev)'
+    solutionName: '$(SolutionNameMain)'
+    exportManaged: false
+    exportUnmanaged: true
+    outputPath: '$(Build.ArtifactStagingDirectory)'
+    crmConnectionTimeout: '1960'
+    useAsyncMode: true
+    asyncWaitTimeout: '1900'
+
+- task: MSCRMExportSolution@12
+  displayName: 'Export Unmanaged (Flows)'
+  inputs:
+    crmConnectionString: '$(ConnectionStringDev)'
+    solutionName: '$(SolutionNameFlows)'
+    exportManaged: false
+    exportUnmanaged: true
+    outputPath: '$(Build.ArtifactStagingDirectory)'
+    crmConnectionTimeout: '1960'
+    useAsyncMode: true
+    asyncWaitTimeout: '1900'
+
+# --- Publish zips for Release to consume ---
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Artifacts'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
+
+# --- Unpack both ---
+- task: PowerPlatformUnpackSolution@0
+  displayName: 'Unpack Unmanaged (Main)'
+  inputs:
+    SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip'
+    SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionNameMain)'
+
+- task: PowerPlatformUnpackSolution@0
+  displayName: 'Unpack Unmanaged (Flows)'
+  inputs:
+    SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip'
+    SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionNameFlows)'
+
+# --- Commit + push (fixed) ---
+- task: PowerShell@2
+  displayName: 'Commit Unpacked Solutions to Source Control'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git config user.email "nepasrepondre-noreply@tc.gc.ca"
+      git config user.name "tc-buildbot"
+      git checkout main
+      git add --all
+
+      $status = git status --porcelain
+      if ([string]::IsNullOrWhiteSpace($status)) {
+        Write-Host "No changes to commit."
+        exit 0
+      }
+
+      $msg = "Update MAIN+FLOWS - $(Build.BuildNumber)"
+      git commit -m "$msg"
+
+      git -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" push origin main
