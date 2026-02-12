@@ -7,8 +7,8 @@ pool:
 name: '1.0.$(Date:yyyyMMdd).$(rev:r)'
 
 variables:
-  SolutionNameMain: 'ROMTS-GSRST'
-  SolutionNameFlows: 'ROMTS-GSRST.Flows'
+  SolutionNameMain: 'romts_gsrst'
+  SolutionNameFlows: 'romts_gsrst_flows'
   RuleSetId: '0ad12346-e108-40b8-a956-9a8f95ea18c9'
   PPServiceConnection: 'ROMTS-GSRST DEV'
 
