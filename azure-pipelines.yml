@@ -4,130 +4,123 @@ trigger:
 pool:
   vmImage: windows-latest
 
-# Set the BuildNumber = Format 1.0.yyyyMMdd.r
 name: '1.0.$(Date:yyyyMMdd).$(rev:r)'
 
 variables:
   SolutionNameMain: 'ROMTS-GSRST'
   SolutionNameFlows: 'ROMTS-GSRST.Flows'
   RuleSetId: '0ad12346-e108-40b8-a956-9a8f95ea18c9'
+  PPServiceConnection: 'ROMTS-GSRST DEV'
 
 steps:
 - checkout: self
   persistCredentials: true
   clean: true
+  fetchDepth: 0
 
-- task: PowerPlatformToolInstaller@0
-  displayName: 'Install Power Platform Build Tools'
+# --- PP Build Tools v2 installer ---
+- task: microsoft-IsvExpTools.PowerPlatform-BuildTools.tool-installer.PowerPlatformToolInstaller@2
+  displayName: 'Power Platform Tool Installer (v2)'
   inputs:
-    DefaultVersion: true
+    AddToolsToPath: true
 
-# Ensure output folders exist so publishing results never errors on missing path
+# Fail fast if the service connection/auth is broken
+- task: microsoft-IsvExpTools.PowerPlatform-BuildTools.whoami.PowerPlatformWhoAmi@2
+  displayName: 'Power Platform WhoAmI (verify connection)'
+  inputs:
+    authenticationType: PowerPlatformSPN
+    PowerPlatformSPN: '$(PPServiceConnection)'
+
+# Ensure checker output folders exist
 - powershell: |
     New-Item -ItemType Directory -Force -Path "$(Build.ArtifactStagingDirectory)\SolutionChecker\Main" | Out-Null
     New-Item -ItemType Directory -Force -Path "$(Build.ArtifactStagingDirectory)\SolutionChecker\Flows" | Out-Null
   displayName: 'Create Solution Checker output folders'
 
-# --- Versioning (do NOT block the rest of the pipeline if PP-BT v0 crashes) ---
-- task: PowerPlatformSetSolutionVersion@0
+# --- Versioning (v2) ---
+# Keep these NON-blocking, but don't run them if WhoAmI failed.
+- task: microsoft-IsvExpTools.PowerPlatform-BuildTools.set-solution-version.PowerPlatformSetSolutionVersion@2
   displayName: 'Update Solution Version (Main)'
+  condition: succeeded()
   continueOnError: true
   inputs:
-    authenticationType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    authenticationType: PowerPlatformSPN
+    PowerPlatformSPN: '$(PPServiceConnection)'
     SolutionName: '$(SolutionNameMain)'
     SolutionVersionNumber: '$(Build.BuildNumber)'
 
-- task: PowerPlatformSetSolutionVersion@0
+- task: microsoft-IsvExpTools.PowerPlatform-BuildTools.set-solution-version.PowerPlatformSetSolutionVersion@2
   displayName: 'Update Solution Version (Flows)'
+  condition: succeeded()
   continueOnError: true
   inputs:
-    authenticationType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    authenticationType: PowerPlatformSPN
+    PowerPlatformSPN: '$(PPServiceConnection)'
     SolutionName: '$(SolutionNameFlows)'
     SolutionVersionNumber: '$(Build.BuildNumber)'
 
-- task: PowerPlatformPublishCustomizations@0
+# --- Publish customizations (v2) ---
+- task: microsoft-IsvExpTools.PowerPlatform-BuildTools.publish-customizations.PowerPlatformPublishCustomizations@2
   displayName: 'Publish All Customizations (Dev)'
+  condition: succeeded()
   continueOnError: true
+  retryCountOnTaskFailure: 3
   inputs:
-    authenticationType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    authenticationType: PowerPlatformSPN
+    PowerPlatformSPN: '$(PPServiceConnection)'
 
-# --- Export (force export even if versioning/publish customizations had issues) ---
-- task: MSCRMToolInstaller@12
-  displayName: 'Install MSCRM Tools'
-  condition: always()
-  inputs:
-    nugetFeed: 'official'
-    psFeed: 'official'
-
-- task: MSCRMExportSolution@12
+# --- Export unmanaged (v2) ---
+- task: microsoft-IsvExpTools.PowerPlatform-BuildTools.export-solution.PowerPlatformExportSolution@2
   displayName: 'Export Unmanaged (Main)'
-  condition: always()
+  condition: succeeded()
+  retryCountOnTaskFailure: 3
   inputs:
-    crmConnectionString: '$(ConnectionStringDev)'
-    solutionName: '$(SolutionNameMain)'
-    exportManaged: false
-    exportUnmanaged: true
-    outputPath: '$(Build.ArtifactStagingDirectory)'
-    crmConnectionTimeout: '1960'
-    useAsyncMode: true
-    asyncWaitTimeout: '1900'
+    authenticationType: PowerPlatformSPN
+    PowerPlatformSPN: '$(PPServiceConnection)'
+    SolutionName: '$(SolutionNameMain)'
+    SolutionOutputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip'
+    Managed: false
+    MaxAsyncWaitTime: 120
 
-- task: MSCRMExportSolution@12
+- task: microsoft-IsvExpTools.PowerPlatform-BuildTools.export-solution.PowerPlatformExportSolution@2
   displayName: 'Export Unmanaged (Flows)'
-  condition: always()
+  condition: succeeded()
+  retryCountOnTaskFailure: 3
   inputs:
-    crmConnectionString: '$(ConnectionStringDev)'
-    solutionName: '$(SolutionNameFlows)'
-    exportManaged: false
-    exportUnmanaged: true
-    outputPath: '$(Build.ArtifactStagingDirectory)'
-    crmConnectionTimeout: '1960'
-    useAsyncMode: true
-    asyncWaitTimeout: '1900'
+    authenticationType: PowerPlatformSPN
+    PowerPlatformSPN: '$(PPServiceConnection)'
+    SolutionName: '$(SolutionNameFlows)'
+    SolutionOutputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip'
+    Managed: false
+    MaxAsyncWaitTime: 120
 
-# --- Sanity check (always show what's in staging) ---
-- powershell: |
-    Write-Host "Artifact staging dir: $(Build.ArtifactStagingDirectory)"
-    Get-ChildItem "$(Build.ArtifactStagingDirectory)" | Format-Table -AutoSize
-    Write-Host "ZIPs:"
-    Get-ChildItem "$(Build.ArtifactStagingDirectory)" -Filter *.zip -ErrorAction SilentlyContinue | Format-Table -AutoSize
-  displayName: 'List staging contents'
-  condition: always()
-
-# --- Detect whether exported zips exist (set variables for later conditions) ---
+# --- Verify ZIPs exist (this gates unpack/checker) ---
 - powershell: |
     $main = "$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip"
     $flows = "$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip"
 
-    if (Test-Path $main) {
-      Write-Host "Found MAIN zip: $main"
-      Write-Host "##vso[task.setvariable variable=MainZipExists]true"
-    } else {
-      Write-Host "Missing MAIN zip: $main"
-      Write-Host "##vso[task.setvariable variable=MainZipExists]false"
-    }
+    $missing = @()
+    if (-not (Test-Path $main)) { $missing += $main }
+    if (-not (Test-Path $flows)) { $missing += $flows }
 
-    if (Test-Path $flows) {
-      Write-Host "Found FLOWS zip: $flows"
-      Write-Host "##vso[task.setvariable variable=FlowsZipExists]true"
-    } else {
-      Write-Host "Missing FLOWS zip: $flows"
-      Write-Host "##vso[task.setvariable variable=FlowsZipExists]false"
-    }
-  displayName: 'Detect exported zip presence'
-  condition: always()
+    Write-Host "Staging directory:"
+    Get-ChildItem "$(Build.ArtifactStagingDirectory)" | Format-Table -AutoSize
 
-# --- Solution Checker (only if the expected zip exists) ---
-- task: PowerPlatformChecker@0
+    if ($missing.Count -gt 0) {
+      Write-Error ("Missing expected solution ZIP(s):`n" + ($missing -join "`n"))
+    } else {
+      Write-Host "Both ZIPs are present."
+    }
+  displayName: 'Verify exported ZIPs exist'
+  condition: succeeded()
+
+# --- Checker (v2) on exported zips ---
+- task: microsoft-IsvExpTools.PowerPlatform-BuildTools.checker.PowerPlatformChecker@2
   displayName: 'Run Solution Checker (Main)'
-  condition: and(always(), eq(variables['MainZipExists'], 'true'))
+  condition: succeeded()
   continueOnError: true
   inputs:
-    authenticationType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    PowerPlatformSPN: '$(PPServiceConnection)'
     FilesToAnalyze: '$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip'
     RuleSet: '$(RuleSetId)'
     SaveResults: true
@@ -135,13 +128,12 @@ steps:
     ErrorLevel: 'Informational'
     ErrorThreshold: 6000
 
-- task: PowerPlatformChecker@0
+- task: microsoft-IsvExpTools.PowerPlatform-BuildTools.checker.PowerPlatformChecker@2
   displayName: 'Run Solution Checker (Flows)'
-  condition: and(always(), eq(variables['FlowsZipExists'], 'true'))
+  condition: succeeded()
   continueOnError: true
   inputs:
-    authenticationType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    PowerPlatformSPN: '$(PPServiceConnection)'
     FilesToAnalyze: '$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip'
     RuleSet: '$(RuleSetId)'
     SaveResults: true
@@ -157,41 +149,45 @@ steps:
     artifact: 'SolutionCheckerResults'
     publishLocation: 'pipeline'
 
-# --- Publish zips for Release to consume ---
+# --- Publish exported zips as artifact for Release ---
 - task: PublishPipelineArtifact@1
-  displayName: 'Publish Artifacts'
+  displayName: 'Publish Artifacts (drop)'
   condition: always()
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: 'drop'
     publishLocation: 'pipeline'
 
-# --- Unpack both (only if zip exists) ---
-- task: PowerPlatformUnpackSolution@0
+# --- Unpack both (v2) ---
+- task: microsoft-IsvExpTools.PowerPlatform-BuildTools.unpack-solution.PowerPlatformUnpackSolution@2
   displayName: 'Unpack Unmanaged (Main)'
-  condition: and(always(), eq(variables['MainZipExists'], 'true'))
+  condition: succeeded()
   inputs:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip'
     SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionNameMain)'
+    SolutionType: 'Unmanaged'
 
-- task: PowerPlatformUnpackSolution@0
+- task: microsoft-IsvExpTools.PowerPlatform-BuildTools.unpack-solution.PowerPlatformUnpackSolution@2
   displayName: 'Unpack Unmanaged (Flows)'
-  condition: and(always(), eq(variables['FlowsZipExists'], 'true'))
+  condition: succeeded()
   inputs:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip'
     SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionNameFlows)'
+    SolutionType: 'Unmanaged'
 
-# --- Commit + push ---
+# --- Commit + push back to main ---
+# IMPORTANT: bearer token requires "Allow scripts to access OAuth token" enabled.
 - task: PowerShell@2
   displayName: 'Commit Unpacked Solutions to Source Control'
-  condition: always()
+  condition: succeeded()
   inputs:
     targetType: 'inline'
     script: |
       git config user.email "nepasrepondre-noreply@tc.gc.ca"
       git config user.name "tc-buildbot"
 
-      git checkout main
+      git fetch origin main
+      git checkout -B main origin/main
 
       git add --all
 
@@ -201,7 +197,7 @@ steps:
         exit 0
       }
 
-      $msg = "Update MAIN+FLOWS - $(Build.BuildNumber)"
+      $msg = "chore: sync MAIN+FLOWS $(Build.BuildNumber)"
       git commit -m "$msg"
 
-      git -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" push origin main
+      git -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" push origin HEAD:main
