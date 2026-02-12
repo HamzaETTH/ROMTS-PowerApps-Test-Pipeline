@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{57c03fa0-4a6f-ed11-81ac-0022483d5ee0}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" preview="1" icon="1">
+        <row name="result" id="ts_securityincidentid">
+          <cell name="ts_name" width="150" />
+          <cell name="ts_tcomsid" width="100" />
+          <cell name="ts_tcomsofficer" width="100" />
+          <cell name="ts_mode" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_securityincidenttype" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_targetelement" width="100" />
+          <cell name="ts_reportingcompany" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_stakeholder" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_incidentdatetimeadjust" width="155" />
+          <cell name="ts_reporteddatetimeadjust" width="162" />
+          <cell name="statecode" width="75" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_region" width="100" />
+          <cell name="ts_site" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="ts_securityincident">
+          <attribute name="ts_name" />
+          <attribute name="ts_site" />
+          <attribute name="ts_stakeholder" />
+          <order attribute="ts_name" descending="true" />
+          <filter type="and">
+            <condition attribute="ts_mode" operator="in">
+              <value>717750001</value>
+              <value>717750000</value>
+            </condition>
+          </filter>
+          <attribute name="ts_tcomsofficer" />
+          <attribute name="ts_tcomsid" />
+          <attribute name="ts_mode" />
+          <attribute name="ts_securityincidenttype" />
+          <attribute name="ts_targetelement" />
+          <attribute name="statecode" />
+          <attribute name="ts_region" />
+          <attribute name="ts_reportingcompany" />
+          <attribute name="ts_securityincidentid" />
+          <attribute name="ts_incidentdatetimeadjust" />
+          <attribute name="ts_reporteddatetimeadjust" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20221124.3</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Security Incidents - ISSO" languagecode="1033" />
+      <LocalizedName description="Incidents de sûreté (ISSO)" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

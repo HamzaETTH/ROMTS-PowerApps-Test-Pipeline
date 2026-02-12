@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{755fb6bc-1126-435e-bbd7-1cc791902745}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_suggestedinspectionid">
+          <cell name="ts_operation" width="100" />
+          <cell name="ts_stakeholder" width="107" />
+          <cell name="ts_operationtype" width="128" />
+          <cell name="ts_site" width="100" />
+          <cell name="a_5ad8e0e0832cee11bdf40022483d7716.msdyn_city" width="100" disableSorting="1" />
+          <cell name="ts_activitytype" width="118" />
+          <cell name="ts_riskthreshold" width="126" />
+          <cell name="ts_inspector" width="133" />
+          <cell name="ts_estimatedduration" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_estimatedtraveltime" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_q1" width="50" />
+          <cell name="ts_q2" width="50" />
+          <cell name="ts_q3" width="50" />
+          <cell name="ts_q4" width="50" />
+          <cell name="ts_estimatedcost" width="100" />
+          <cell name="ts_trip" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_notes" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_suggestedinspection">
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_q1" />
+          <attribute name="ts_q3" />
+          <attribute name="ts_q2" />
+          <attribute name="ts_q4" />
+          <attribute name="ts_riskthreshold" />
+          <attribute name="ts_stakeholder" />
+          <attribute name="ts_operationtype" />
+          <attribute name="ts_site" />
+          <attribute name="ts_activitytype" />
+          <attribute name="ts_inspector" />
+          <attribute name="ts_estimatedduration" />
+          <attribute name="ts_operation" />
+          <attribute name="ts_estimatedcost" />
+          <attribute name="ts_estimatedtraveltime" />
+          <attribute name="ts_trip" />
+          <link-entity alias="a_5ad8e0e0832cee11bdf40022483d7716" name="msdyn_functionallocation" from="msdyn_functionallocationid" to="ts_site" link-type="outer" visible="false">
+            <attribute name="msdyn_city" />
+          </link-entity>
+          <attribute name="ts_suggestedinspectionid" />
+          <attribute name="ts_notes" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Suggested Inspections" languagecode="1033" />
+      <LocalizedName description="Active Suggested Inspections" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{00000000-0000-0000-00aa-000010001028}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="121" />
+          <cell name="ticketnumber" width="104" />
+          <cell name="statuscode" width="112" />
+          <cell name="customerid" width="150" />
+          <cell name="msdyn_functionallocation" width="224" />
+          <cell name="ovs_region" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="incident">
+          <attribute name="incidentid" />
+          <attribute name="ticketnumber" />
+          <attribute name="title" />
+          <attribute name="customerid" />
+          <attribute name="statuscode" />
+          <order attribute="title" descending="false" />
+          <filter>
+            <condition attribute="ownerid" operator="eq-userid" />
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="msdyn_functionallocation" />
+          <attribute name="ovs_region" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Active Cases" languagecode="1033" />
+      <LocalizedName description="Mes cas actifs" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

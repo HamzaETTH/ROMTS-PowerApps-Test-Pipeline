@@ -1,0 +1,361 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365groups_2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_1ROMTSGSRSTFlowsOffice365Groups"
+        },
+        "api": {
+          "name": "shared_office365groups"
+        }
+      },
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "CurrentEnvironmentURL (ts_CurrentEnvironmentURL)": {
+          "defaultValue": "https://romts-gsrst-dev-tcd365.crm3.dynamics.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ts_CurrentEnvironmentURL"
+          }
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "ad913093-4b8b-4dab-927c-52185538112d"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ts_userregistration",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/runas": 3
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "gUPN": {
+          "runAfter": {
+            "gUserInROM": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "50d7ae5b-28c1-4426-aca6-4e2b1eafb294"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "gUPN",
+                "type": "string",
+                "value": "@triggerOutputs()?['body/ts_name']"
+              }
+            ]
+          }
+        },
+        "ScopeSetGroup": {
+          "actions": {
+            "Add_member_to_group": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "57cfb5f3-2b44-49c0-9421-f3d863b310f3"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_office365groups_2",
+                  "operationId": "AddMemberToGroup",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365groups"
+                },
+                "parameters": {
+                  "groupId": "f93ecba1-953a-4d3d-93c9-4bf87feca45f",
+                  "userUpn": "@variables('gUPN')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "gBasicRoleIdofBU": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9595f5f0-95cd-48c2-8b91-754688825e4c"
+          },
+          "type": "Scope"
+        },
+        "gTemp": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "0e315741-a6be-40cf-b169-18404e4a5d51"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "gTemp",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "UserInGroup": {
+          "runAfter": {
+            "ScopeSetGroup": [
+              "Failed",
+              "TimedOut",
+              "Skipped"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c3d91233-095d-42ef-ad6b-a1ad97ad4090"
+          },
+          "type": "SetVariable",
+          "inputs": {
+            "name": "gUserInGroup",
+            "value": "@true"
+          },
+          "description": "notify team after this action"
+        },
+        "gUserInGroup": {
+          "runAfter": {
+            "gTemp": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5b7f044e-c22f-4290-88e5-d01aa16e0735"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "gUserInGroup",
+                "type": "boolean",
+                "value": "@false"
+              }
+            ]
+          }
+        },
+        "gBasicRoleIdofBU": {
+          "runAfter": {
+            "GetBuRole": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "24e00864-5f4e-4980-b249-89764b1f42ac"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "gBasicRoleId",
+                "type": "string",
+                "value": "@{parameters('CurrentEnvironmentURL (ts_CurrentEnvironmentURL)')}roles(@{first(outputs('GetBuRole')?['body/value'])?['roleid']})"
+              }
+            ]
+          },
+          "description": "this is the role id for Basic role  in ROM -5efd1869-d0cf-49a6-9f0a-8037be869898 - BU=PPP"
+        },
+        "gUserId": {
+          "runAfter": {
+            "gUPN": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5bcc6a95-6ea4-4609-8da2-37986d7e3952"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "gUserId",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "NewUser": {
+          "runAfter": {
+            "ScopeSetGroup": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "107c546b-16f6-4715-b626-8cd8911ba8f4"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "CreateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "item/msdyn_botprovider": 192350002,
+              "item/msdyn_isexpertenabledforswarm": true,
+              "item/firstname": "@triggerOutputs()?['body/ts_firstname']",
+              "item/invitestatuscode": 4,
+              "item/lastname": "@triggerOutputs()?['body/ts_lastname']",
+              "item/systemmanagedusertype": 0,
+              "item/businessunitid@odata.bind": "businessunits(@{triggerOutputs()?['body/_ts_businessunit_value']})",
+              "item/internalemailaddress": "@variables('gUPN')",
+              "item/domainname": "@variables('gUPN')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "gUserInROM": {
+          "runAfter": {
+            "gUserInGroup": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5dd364ea-281b-4e3f-ad4f-cdaf3f4093ff"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "gUserInROM",
+                "type": "boolean",
+                "value": "@false"
+              }
+            ]
+          }
+        },
+        "UserInROM": {
+          "runAfter": {
+            "NewUser": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "746f6b7e-1ad7-4be6-adb0-ef9cbb1913e2"
+          },
+          "type": "SetVariable",
+          "inputs": {
+            "name": "gUserInROM",
+            "value": "@true"
+          },
+          "description": "notify team after this action"
+        },
+        "AssignRole": {
+          "runAfter": {
+            "NewUser": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6cc11e39-9605-4356-a9d5-f07e380fa966"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "AssociateEntities",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@outputs('NewUser')?['body/systemuserid']",
+              "associationEntityRelationship": "systemuserroles_association",
+              "item/@odata.id": "@variables('gBasicRoleId')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "AssignRole_2": {
+          "runAfter": {
+            "UserInROM": [
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6cc11e39-9605-4356-a9d5-f07e380fa966"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "AssociateEntities",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "5e1a2855-d07c-ed11-81ad-0022483c5061",
+              "associationEntityRelationship": "systemuserroles_association",
+              "item/@odata.id": "@variables('gBasicRoleId')"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Test with Danvi's Id"
+        },
+        "GetBuRole": {
+          "runAfter": {
+            "gUserId": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f7f84c45-cd47-4855-bf33-cda3aa1d3b58"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "roles",
+              "$select": "name,roleid",
+              "$filter": "_businessunitid_value eq '@{triggerOutputs()?['body/_ts_businessunit_value']}' and name eq 'Basic User'",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

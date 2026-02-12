@@ -1,0 +1,579 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_modified_-_Operation_Activity_Risk_Scores": {
+          "metadata": {
+            "operationMetadataId": "41f89016-9fed-4ca7-ac1a-bbaa6d244fb5"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "ts_operationactivityriskscores",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_riskscoretrigger"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "This flow runs when ts_riskscoretrigger is updated in the flow [Operation Activity Risk Scores] Check for updated Risk Score"
+        }
+      },
+      "actions": {
+        "Initialize_variable_-_Risk_Score": {
+          "runAfter": {
+            "Condition_-_Uses_Prescribed_Frequency_Override": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1d686ba7-a908-470a-b4d0-7b51d9d1b569"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Risk Score",
+                "type": "float",
+                "value": "@triggerOutputs()?['body/ts_calculatedriskscore']"
+              }
+            ]
+          }
+        },
+        "List_rows_-_Risk_Ratings": {
+          "runAfter": {
+            "Initialize_variable_-_Max_Score": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a7799954-5914-4673-aec0-7dc27293e34c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_riskratings",
+              "fetchXml": "<fetch xmlns:generator='MarkMpn.SQL4CDS'>\n                  <entity name='ts_riskrating'>\n                    <attribute name='ts_riskratingid' />\n                    <attribute name='ts_name' />\n                    <link-entity name='ts_riskrange' to='ts_riskrange' from='ts_riskrangeid' alias='ts_riskRange' link-type='inner'>\n                      <attribute name='ts_minscore' />\n                      <attribute name='ts_maxscore' />\n                    </link-entity>\n                  </entity>\n                </fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Get all the available Risk Ratings"
+        },
+        "Apply_to_each_Risk_Ratings": {
+          "foreach": "@outputs('List_rows_-_Risk_Ratings')?['body/value']",
+          "actions": {
+            "Set_variable_-_Min_Score": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "34eea9d3-c2d5-4b36-b0a6-3a66cb07acde"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Min Score",
+                "value": "@items('Apply_to_each_Risk_Ratings')?['ts_riskRange.ts_minscore']"
+              }
+            },
+            "Set_variable_-_Max_Score": {
+              "runAfter": {
+                "Set_variable_-_Min_Score": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "67931549-caec-41e0-b232-f2c6d5487ab7"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Max Score",
+                "value": "@items('Apply_to_each_Risk_Ratings')?['ts_riskRange.ts_maxscore']"
+              }
+            },
+            "Condition_-_if_the_rounded_risk_score_is_within_the_range": {
+              "actions": {
+                "Set_variable_-_found_Matching_Risk_Rating_ID": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "538df160-4103-411b-8276-ad34122b2e02"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Matching Risk Rating ID",
+                    "value": "@{items('Apply_to_each_Risk_Ratings')?['ts_riskratingid']}"
+                  }
+                },
+                "Update_a_row_-_Operation_Activity_Risk_Scores_Risk_Rating": {
+                  "runAfter": {
+                    "Set_variable_-_found_Matching_Risk_Rating_ID": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "f4c235f8-48ff-4db3-acfd-a8118051df62"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateOnlyRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_operationactivityriskscoreses",
+                      "recordId": "@triggerOutputs()?['body/ts_operationactivityriskscoresid']",
+                      "item/ts_RiskFrequency@odata.bind": "@if(empty(variables('Risk Frequency')),null,concat('/ts_riskfrequencies(', variables('Risk Frequency'), ')'))\r\n",
+                      "item/ts_RiskRating@odata.bind": "/ts_riskratings(@{variables('Matching Risk Rating ID')})",
+                      "item/ts_riskscorestored": "@triggerOutputs()?['body/ts_calculatedriskscore']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Set_variable_-_Max_Score": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "and": [
+                  {
+                    "lessOrEquals": [
+                      "@variables('Min Score')",
+                      "@variables('Risk Score')"
+                    ]
+                  },
+                  {
+                    "greaterOrEquals": [
+                      "@variables('Max Score')",
+                      "@variables('Risk Score')"
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "06d7c6b3-17ef-4d99-9983-678e1a10cf1a"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "List_rows_-_Risk_Ratings": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f5ca8ed2-3154-4fab-828b-b0a35e2b0b13"
+          },
+          "type": "Foreach",
+          "description": "Get the Min and Max score from each Risk Rating, and check if the Operation Activity Risk Score.Calculated Risk Score value falls within a Min and Max score.  If it does, then set the Risk Rating of the Operation Activity Risk Score."
+        },
+        "Initialize_variable_-_Min_Score": {
+          "runAfter": {
+            "Initialize_variable_-_Matching_Risk_Rating_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3a76a8b9-2a90-45cf-9275-bb17749d6a3a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Min Score",
+                "type": "float",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Max_Score": {
+          "runAfter": {
+            "Initialize_variable_-_Min_Score": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1d3db91a-451d-405b-9b21-387de8c51087"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Max Score",
+                "type": "float",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Matching_Risk_Rating_ID": {
+          "runAfter": {
+            "Initialize_variable_-_Risk_Score": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "036a3817-10cb-4d6a-adee-3b2d68d47edc"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Matching Risk Rating ID",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Uses_Prescribed_Frequency_Override": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "5030346a-fcaf-4aac-83e0-c25fae085e71"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Uses Prescribed Frequency Override",
+                "type": "boolean",
+                "value": "@triggerOutputs()?['body/ts_usesprescribedfrequencyoverride']"
+              }
+            ]
+          }
+        },
+        "Condition_-_Uses_Prescribed_Frequency_Override": {
+          "actions": {
+            "List_rows_-_Prescribed_Frequency_Overrides": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "5ce0ee38-4f85-433f-80a0-eadce3a1b86b"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_prescribedfrequencyoverrides",
+                  "fetchXml": "<fetch xmlns:generator=\"MarkMpn.SQL4CDS\">\n  <entity name=\"ts_prescribedfrequencyoverride\">\n    <attribute name=\"ts_riskfrequency\" />\n    <attribute name=\"ts_prescribedfrequencyclass2\" />\n    <attribute name=\"ts_prescribedfrequencyclass3\" />\n    <filter>\n      <condition attribute=\"ts_activitytype\" operator=\"eq\" value=\"@{variables('Activity Type Risk ID')}\" />\n      <condition attribute=\"ts_fiscalyear\" operator=\"eq\" value=\"@{variables('Fiscal Year')}\" />\n    </filter>\n  </entity>\n</fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "description": "Retrieve all the Risk Frequencies related to the Activity Type"
+            },
+            "Apply_to_each": {
+              "foreach": "@outputs('List_rows_-_Prescribed_Frequency_Overrides')?['body/value']",
+              "actions": {
+                "Condition_-_Class_1": {
+                  "actions": {
+                    "Set_variable_-_Risk_Frequency_Class_1": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "16226502-0cd5-4916-bc69-f228df9d00d2"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "Risk Frequency",
+                        "value": "@{items('Apply_to_each')?['_ts_riskfrequency_value']}"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "expression": {
+                    "equals": [
+                      "@variables('Site Risk Class')",
+                      "1"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "027f4bef-4b7e-4381-aca9-2752aee63ed1"
+                  },
+                  "type": "If"
+                },
+                "Condition_-_Class_2": {
+                  "actions": {
+                    "Set_variable_-_Risk_Frequency_Class_2": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "6126b085-c6c7-4220-859f-04aee9eec7ab"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "Risk Frequency",
+                        "value": "@{items('Apply_to_each')?['_ts_prescribedfrequencyclass2_value']}"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Condition_-_Class_1": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": {
+                    "equals": [
+                      "@variables('Site Risk Class')",
+                      "2"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "fd0b4a38-e913-4c76-b812-954f1e88050a"
+                  },
+                  "type": "If"
+                },
+                "Condition_-_Class_3": {
+                  "actions": {
+                    "Set_variable_-_Risk_Frequency_Class_3": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "9fd867e8-7dc8-4d6f-a727-1ae8507737b4"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "Risk Frequency",
+                        "value": "@{items('Apply_to_each')?['_ts_prescribedfrequencyclass3_value']}"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Condition_-_Class_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": {
+                    "equals": [
+                      "@variables('Site Risk Class')",
+                      "3"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "381f4dbc-31a7-44ec-b1e6-52da5e5ac35c"
+                  },
+                  "type": "If"
+                },
+                "Condition_-_Risk_Frequency_is_not_null": {
+                  "actions": {
+                    "Update_a_row_-_Operation_Activity_Risk_Scores": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "5a70bd27-1828-4d5f-96ad-f9a1cebaebaa"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "UpdateOnlyRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ts_operationactivityriskscoreses",
+                          "recordId": "@triggerOutputs()?['body/ts_operationactivityriskscoresid']",
+                          "item/ts_PrescribedFrequencyOverride@odata.bind": "/ts_prescribedfrequencyoverrides(@{variables('Prescribed Frequency Override ID')})",
+                          "item/ts_RiskFrequency@odata.bind": "@concat('/ts_riskfrequencies(',string(variables('Risk Frequency')),')')"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Set_variable": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": {
+                    "not": {
+                      "equals": [
+                        "@variables('Risk Frequency')",
+                        ""
+                      ]
+                    }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "8ded93f4-8534-4e6b-bb1d-4783fe18b27d"
+                  },
+                  "type": "If",
+                  "description": "If we have a Risk Frequency, then update the Operation Activity Risk Scores"
+                },
+                "Set_variable": {
+                  "runAfter": {
+                    "Condition_-_Class_3": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "a321b011-7ad2-462b-966e-d8aca4095879"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Prescribed Frequency Override ID",
+                    "value": "@{items('Apply_to_each')?['ts_prescribedfrequencyoverrideid']}"
+                  }
+                }
+              },
+              "runAfter": {
+                "List_rows_-_Prescribed_Frequency_Overrides": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5d6898eb-c7df-47fa-8d30-ca285445ccf8"
+              },
+              "type": "Foreach",
+              "description": "Now select the Risk Frequency depending on what the Class the Operation Activity Risk Score is."
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_Risk_Frequency": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@variables('Uses Prescribed Frequency Override')",
+              "@true"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a2d1d62d-0e50-4b9c-85e9-eeb20b33d4c8"
+          },
+          "type": "If",
+          "description": "If we are using a Prescribed Frequency Override then get the ID of the Risk Frequency to use."
+        },
+        "Initialize_variable_-_Activity_Type_Risk_ID": {
+          "runAfter": {
+            "Initialize_variable_-_Uses_Prescribed_Frequency_Override": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "90f9e83c-d76b-4072-9850-c27e25239571"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Activity Type Risk ID",
+                "type": "string",
+                "value": "@{triggerOutputs()?['body/ts_activitytyperiskid']}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Site_Risk_Class": {
+          "runAfter": {
+            "Initialize_variable_-_Prescribed_Frequency_Override_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "76e31196-7c57-4466-a8d1-c3d80dd2b5d0"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Site Risk Class",
+                "type": "string",
+                "value": "@{triggerOutputs()?['body/ts_siteriskclass']}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Fiscal_Year": {
+          "runAfter": {
+            "Initialize_variable_-_Site_Risk_Class": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0b8abaa6-15ae-4353-9cd3-5effbe7c6e51"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Fiscal Year",
+                "type": "string",
+                "value": "@{triggerOutputs()?['body/_ts_fiscalyear_value']}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Risk_Frequency": {
+          "runAfter": {
+            "Initialize_variable_-_Fiscal_Year": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ebfa7d99-8789-49b9-ad7d-7293c738c153"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Risk Frequency",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Prescribed_Frequency_Override_ID": {
+          "runAfter": {
+            "Initialize_variable_-_Activity_Type_Risk_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "66180c1d-2e73-414b-9f8b-e771cc01c471"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Prescribed Frequency Override ID",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

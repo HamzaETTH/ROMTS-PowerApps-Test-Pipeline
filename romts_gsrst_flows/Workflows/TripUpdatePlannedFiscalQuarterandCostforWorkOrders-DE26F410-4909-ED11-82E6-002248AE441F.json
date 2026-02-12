@@ -1,0 +1,221 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "db4c1477-4757-4e43-83f0-db15f829684b"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "ts_trip",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_plannedfiscalquarter,ts_plannedcost",
+              "subscriptionRequest/runas": 3
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "f1104d83-b9df-4fbb-8528-99ec15601246"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_tripinspections",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"ts_tripinspection\">\n    <filter type=\"and\">\n      <condition attribute=\"ts_trip\" operator=\"eq\"  value=\"@{triggerOutputs()?['body/ts_tripid']}\" />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows')?['body/value']",
+          "actions": {
+            "Get_a_row_by_ID": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "2f3483bb-7840-458c-9e7b-56dd2c2f58e4"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "msdyn_workorders",
+                  "recordId": "@items('Apply_to_each')?['_ts_inspection_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Condition": {
+              "actions": {
+                "Update_a_row": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "b17eabe8-1ea5-4161-81c1-a7f90b0ec060"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorders",
+                      "recordId": "@items('Apply_to_each')?['_ts_inspection_value']",
+                      "item/ts_plannedcost": "@div(variables('PlannedCost'), variables('RecordCount'))",
+                      "item/ovs_FiscalQuarter@odata.bind": "/tc_tcfiscalquarters(@{triggerOutputs()?['body/_ts_plannedfiscalquarter_value']})"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_a_row_by_ID": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Update_a_row_without_planned_quarter": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "b17eabe8-1ea5-4161-81c1-a7f90b0ec060"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps_1",
+                        "operationId": "UpdateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "msdyn_workorders",
+                        "recordId": "@items('Apply_to_each')?['_ts_inspection_value']",
+                        "item/ts_plannedcost": "@div(variables('PlannedCost'), variables('RecordCount'))"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@outputs('Get_a_row_by_ID')?['body/_ovs_fiscalquarter_value']",
+                  "@null"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "11f53485-94f1-4499-b6c5-4676ccdfb1f0"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_Planned_Cost": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5fbc7020-27c0-4f68-909e-71456cc90bc7"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable_Record_Count": {
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a9a22ddb-38e5-406f-99dc-4e22083b39f6"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "RecordCount",
+                "type": "integer",
+                "value": "@length(outputs('List_rows')?['body/value'])"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_Planned_Cost": {
+          "runAfter": {
+            "Initialize_variable_Record_Count": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e8bc33db-cbe7-41fe-893a-a3319ee272de"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "PlannedCost",
+                "type": "float",
+                "value": "@triggerOutputs()?['body/ts_plannedcost']"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,123 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_Work_Order_Access_Team_is_created": {
+          "metadata": {
+            "operationMetadataId": "73447556-63ec-4190-bcfa-bde2f24f786f"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "team",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filterexpression": "_teamtemplateid_value eq bddf1d45-706d-ec11-8f8e-0022483da5aa"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_related_Work_Order": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "69ddb7aa-c04c-4416-8550-b27801b1a70f"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "msdyn_workorders",
+              "recordId": "@triggerOutputs()?['body/_regardingobjectid_value']",
+              "$select": "_msdyn_primaryincidenttype_value"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Update_a_row": {
+          "runAfter": {
+            "Get_Incident_Type_Business_Unit_(from_WO)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8a33a33e-5f74-4b4e-948e-286fdba396a8"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "UpdateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "teams",
+              "recordId": "@triggerOutputs()?['body/teamid']",
+              "item/businessunitid@odata.bind": "/businessunits/@{outputs('Get_Incident_Type_Business_Unit_(from_WO)')?['body/_owningbusinessunit_value']}"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Incident_Type_Business_Unit_(from_WO)": {
+          "runAfter": {
+            "Get_related_Work_Order": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0de7bfdc-533c-477b-b02f-d8225b04bde6"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "msdyn_incidenttypes",
+              "recordId": "@outputs('Get_related_Work_Order')?['body/_msdyn_primaryincidenttype_value']",
+              "$select": "_owningbusinessunit_value"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

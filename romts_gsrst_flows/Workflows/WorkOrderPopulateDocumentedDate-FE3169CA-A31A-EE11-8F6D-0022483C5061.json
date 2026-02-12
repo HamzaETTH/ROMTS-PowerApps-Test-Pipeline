@@ -1,0 +1,115 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "9939583f-389d-41c1-8bc1-d462c02368c5"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "msdyn_workorder",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "msdyn_systemstatus"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition": {
+          "actions": {
+            "Condition_2": {
+              "actions": {
+                "Update_a_row": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "6140d2bc-481f-4c29-953e-f9fda29de2cb"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorders",
+                      "recordId": "@triggerOutputs()?['body/msdyn_workorderid']",
+                      "item/ts_documenteddate": "@utcNow()"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "equals": [
+                  "@triggerOutputs()?['body/ts_documenteddate']",
+                  "@null"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "8b874bb1-bb58-4ef6-830c-4134601b0aa7"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {},
+          "expression": {
+            "or": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/msdyn_systemstatus']",
+                  690970004
+                ]
+              },
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/msdyn_systemstatus']",
+                  741130000
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "36bc0049-4193-4b98-b2fd-6d817d869f3f"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

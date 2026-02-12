@@ -1,0 +1,246 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedsharepointonline_8d22a"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "09660654-d51f-4c29-a8fc-a8fbee7c907a"
+          },
+          "type": "Request",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ParseJSON_Content": {
+                  "type": "any",
+                  "x-ms-powerflows-param-ispartial": false
+                }
+              },
+              "required": [
+                "ParseJSON_Content"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Apply_to_each_attachment": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f02f2e48-0eea-4a11-8b47-9b4cddd2ca72"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "hasreturned": "True",
+              "haserror": "@variables('hasError')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hasreturned": {
+                  "title": "hasReturned",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "haserror": {
+                  "title": "hasError",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Parse_JSON": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "0c45fd45-8069-4797-b0bd-b6877b7d79a5"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerBody()['ParseJSON_Content']",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "base64": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "Name",
+                  "base64",
+                  "tags"
+                ]
+              }
+            }
+          }
+        },
+        "Apply_to_each_attachment": {
+          "foreach": "@body('Parse_JSON')",
+          "actions": {
+            "Try_Creating_Files": {
+              "actions": {
+                "Create_file": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "b9cca522-3355-4f24-aa61-77e99eafa464"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline",
+                      "operationId": "CreateFile",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "https://034gc.sharepoint.com/sites/Dynamics365Development",
+                      "folderPath": "/Test Document Library",
+                      "name": "@items('Apply_to_each_attachment')['Name']",
+                      "body": "@base64ToBinary(items('Apply_to_each_attachment')['base64'])"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  },
+                  "runtimeConfiguration": {
+                    "contentTransfer": {
+                      "transferMode": "Chunked"
+                    }
+                  }
+                },
+                "Update_file_properties": {
+                  "runAfter": {
+                    "Create_file": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "344cbc3f-6169-4831-804e-6d96eaac2826"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline",
+                      "operationId": "PatchFileItem",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "https://034gc.sharepoint.com/sites/Dynamics365Development",
+                      "table": "04a32f00-a0b7-42b2-8a0d-269b7160bfef",
+                      "id": "@outputs('Create_file')?['body/ItemId']",
+                      "item/RecordTag": "@items('Apply_to_each_attachment')['tags']"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  }
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ff46d931-29b0-4f3e-8d38-6f27e82aa0da"
+              },
+              "type": "Scope"
+            },
+            "Catch": {
+              "actions": {
+                "Set_hasError": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "3efe9f88-bc0b-4411-bb93-5e12f2b7c23f"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "hasError",
+                    "value": "True"
+                  }
+                }
+              },
+              "runAfter": {
+                "Try_Creating_Files": [
+                  "Failed"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "bd4b07fb-aef8-40a4-939a-01e49a729984"
+              },
+              "type": "Scope"
+            }
+          },
+          "runAfter": {
+            "Initialize_hasError": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6b37e734-c03f-4d0a-8387-dca1d17bdb5e"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_hasError": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "87f4d400-37b5-48d2-8e30-2cb317f24800"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "hasError",
+                "type": "string",
+                "value": "False"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

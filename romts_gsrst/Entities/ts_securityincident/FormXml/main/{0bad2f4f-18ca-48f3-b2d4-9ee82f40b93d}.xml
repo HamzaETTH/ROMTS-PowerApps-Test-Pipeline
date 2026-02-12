@@ -1,0 +1,1585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{0bad2f4f-18ca-48f3-b2d4-9ee82f40b93d}</formid>
+    <IntroducedVersion>1.0.20221108.1</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
+      <tabs>
+        <tab verticallayout="true" id="{99b37896-4f52-4179-8296-3cc0e6722411}" IsUserDefined="1" name="{99b37896-4f52-4179-8296-3cc0e6722411}" locklevel="0" expanded="true" showlabel="true">
+          <labels>
+            <label description="Summary" languagecode="1033" />
+            <label description="Résumé" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section showlabel="true" showbar="false" IsUserDefined="0" id="{b367a628-326f-4595-a30d-c42898223e7b}" name="{b367a628-326f-4595-a30d-c42898223e7b}" columns="1" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="What" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{17b07d04-2717-4aab-ab1b-e8e527ad3512}" showlabel="true" locklevel="0" visible="true">
+                        <labels>
+                          <label description="Security Incident ID" languagecode="1033" />
+                          <label description="Numéro d'incident de sûreté" languagecode="1036" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" uniqueid="{959ae0de-08cd-bea1-350d-59446b9a7e9e}" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b9a5ac66-72ab-c3dd-b55a-ea8e879dd596}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="TCOMs ID" languagecode="1033" />
+                          <label description="Numéro de SGOTC" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomsid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomsid" disabled="true" uniqueid="{672bc49b-9d47-74e9-3e1e-9b99bee959b9}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{54585848-1958-40eb-8269-0115804d8247}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="TCOMs Officer" languagecode="1033" />
+                          <label description="Officier de SGOTC" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomsofficer" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomsofficer" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{67531447-1882-440c-167e-71c894a72090}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Program" languagecode="1033" />
+                          <label description="Programme" languagecode="1036" />
+                        </labels>
+                        <control id="ts_mode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_mode" disabled="false" uniqueid="{caa065c1-623c-9988-3725-30adc40aa203}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{934b9a64-3881-9c37-4d73-3b112b2e5363}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Security Incident Type" languagecode="1033" />
+                          <label description="Type d'incident" languagecode="1036" />
+                        </labels>
+                        <control id="ts_securityincidenttype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_securityincidenttype" disabled="false" uniqueid="{846ade07-149c-0952-91d9-684e8a28a7d3}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{B8D91BB4-6776-ED11-81AC-0022483D5EE0}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <AvailableViewIds>{E5B1A404-F239-46AA-9FA9-78E2D80FF4C3}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{00e3e3b9-b659-ec91-2cda-506825195eb2}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Sub category" languagecode="1033" />
+                          <label description="Sous catégorie" languagecode="1036" />
+                        </labels>
+                        <control id="ts_subcategory" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subcategory" disabled="false" uniqueid="{4b7ad8ae-0d52-5b05-9065-bc5413136807}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{A12F27C5-5EA8-45D4-9E30-9968832C153A}</DefaultViewId>
+                            <FilterRelationshipName>ts_ts_securityincidenttype_ts_securityincide</FilterRelationshipName>
+                            <DependentAttributeName>ts_securityincident.ts_securityincidenttype</DependentAttributeName>
+                            <DependentAttributeType>ts_securityincidenttype</DependentAttributeType>
+                            <AllowFilterOff>true</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e49aa318-640e-d578-0d0a-2d29e6452bce}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Tampering Subcategory" languagecode="1033" />
+                          <label description="Sous-catégorie d’alteration" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tamperingsubcategory" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_tamperingsubcategory" disabled="false" uniqueid="{28b5c082-42cc-4d50-0aa8-851d9c971435}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{28a689db-e8c9-b3eb-61a4-25b7914272b6}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Target Element" languagecode="1033" />
+                          <label description="Élément cible" languagecode="1036" />
+                        </labels>
+                        <control id="ts_targetelement" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_targetelement" disabled="false" uniqueid="{8677080c-b83e-39a5-b951-bab16d2d5a35}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{00EC830F-00AF-426A-B910-5E3671DC8279}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <DependentAttributeType>ts_securityincidenttype</DependentAttributeType>
+                            <FilterRelationshipName>ts_targetelement_ts_securityincidenttype_ts_securityincidenttype</FilterRelationshipName>
+                            <DependentAttributeName>ts_securityincident.ts_securityincidenttype</DependentAttributeName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fa427cff-1ba2-4772-85a8-dd595e5d7e8b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Active Duty TSI" languagecode="1033" />
+                          <label description="Inspecteur en service actif" languagecode="1036" />
+                        </labels>
+                        <control id="ts_activedutytsi" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_activedutytsi" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e781bb81-a9c8-0027-977c-6024b7eb2a77}" showlabel="true" locklevel="1" visible="false">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                          <label description="Statut" languagecode="1036" />
+                        </labels>
+                        <control id="statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" uniqueid="{a7085589-3340-7b72-e81e-a61a07a347a5}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="{99b37896-4f52-4179-8296-3cc0e6722411}_section_5" showlabel="true" showbar="false" locklevel="0" id="{3916da87-8756-8085-5180-d8d40b77c358}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Who" languagecode="1033" />
+                    <label description="Quitté la messagerie vocale" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{d4d82132-673a-6ad8-658e-d25d4bca090c}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Reporting Organization" languagecode="1033" />
+                          <label description="Organisme rapporteur" languagecode="1036" />
+                        </labels>
+                        <control id="ts_organization" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_organization" disabled="false" uniqueid="{e6009865-7d61-164b-66ed-004527c48881}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b968c52b-681c-265d-231a-431ce8323de3}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Reporting Company" languagecode="1033" />
+                          <label description="Société déclarante" languagecode="1036" />
+                        </labels>
+                        <control id="ts_reportingcompany" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_reportingcompany" disabled="false" uniqueid="{844dc8c2-c48b-e5b2-c94b-a23932382007}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2dc0ea5a-4991-4275-913d-77ace7690374}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Reporting Company Name" languagecode="1033" />
+                          <label description="Nom de l'entreprise déclarante" languagecode="1036" />
+                        </labels>
+                        <control id="ts_reportingcompany_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_reportingcompany_name" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b849228c-9f43-4f09-92b1-686cbb9a801c}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
+                        </labels>
+                        <control id="ts_contact" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_contact" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a5b386c4-5f21-4797-989a-4976a5df96ac}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Email" languagecode="1033" />
+                          <label description="E-mail" languagecode="1036" />
+                        </labels>
+                        <control id="ts_email" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_email" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{64857045-a1ab-45b4-b538-6e078f8be4d0}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Phone" languagecode="1033" />
+                          <label description="Téléphone" languagecode="1036" />
+                        </labels>
+                        <control id="ts_phone" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_phone" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{357589a6-a3a2-4d98-3441-ab68ae222d79}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Involved Stakeholder" languagecode="1033" />
+                          <label description="Société Déclarante Impliquée" languagecode="1036" />
+                        </labels>
+                        <control id="ts_stakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_stakeholder" disabled="false" uniqueid="{9d272b12-9605-21c3-8d90-8843d2135b92}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{8965DC8D-460A-EB11-A813-000D3AF3A7A7}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <AvailableViewIds>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{54583dd0-bcd0-4882-8805-a17769e5d5a2}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Operation Type" languagecode="1033" />
+                          <label description="Type d'opération" languagecode="1036" />
+                        </labels>
+                        <control id="ts_operationtype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operationtype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b21dbaab-67d7-4679-93a8-1f73a1e4fa46}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Stakeholder Name" languagecode="1033" />
+                          <label description="Nom de l’intervenant" languagecode="1036" />
+                        </labels>
+                        <control id="ts_stakeholder_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_stakeholder_name" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ca899a5a-9182-1235-4669-d250d5be1726}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Other Company" languagecode="1033" />
+                          <label description="Autre société" languagecode="1036" />
+                        </labels>
+                        <control id="ts_othercompany" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_othercompany" disabled="false" uniqueid="{c8a555d6-a7d6-775e-ccad-c8dba1edc4ec}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{576a145e-ba89-20ab-9809-b19e1b486cc6}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Status of Railway Owner" languagecode="1033" />
+                          <label description="État du propriétaire du chemin de fer" languagecode="1036" />
+                        </labels>
+                        <control id="ts_statusofrailwayowner" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_statusofrailwayowner" disabled="false" uniqueid="{3a44e460-d913-a6c1-edee-c1a062ed6d70}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{65ec150a-6065-38c7-037c-5990255099d4}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Owner of the Railway Line/Track" languagecode="1033" />
+                          <label description="Propriétaire du chemin de fer" languagecode="1036" />
+                        </labels>
+                        <control id="ts_owneroftherailwaylinetrack" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_owneroftherailwaylinetrack" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="{When_section" showlabel="true" showbar="false" locklevel="0" id="{a7e60d1e-3262-66cd-cd18-6c8d7926a147}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="When" languagecode="1033" />
+                    <label description="Quand" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{2e6ded2e-5ccb-e89b-c4d3-693e46091660}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Incident Date / Time (UTC)" languagecode="1033" />
+                          <label description="Heure de l'incident (UTC)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_incidentdatetime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_incidentdatetime" disabled="false" uniqueid="{c809b900-a8ba-b476-936e-71d9ee08e899}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{34a9e5c3-da49-6285-bdbb-3701aab2c243}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Reported Date / Time (UTC)" languagecode="1033" />
+                          <label description="Heure signalée (UTC)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_reporteddatetime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_reporteddatetime" disabled="false" uniqueid="{270da99d-78ba-4644-41e6-ee7b9b877607}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{85aa002d-bdea-23b5-7840-a09088a13e82}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Time zone" languagecode="1033" />
+                          <label description="fuseau horaire" languagecode="1036" />
+                        </labels>
+                        <control id="ts_timezone" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_timezone" disabled="false" uniqueid="{39bd6496-2cd5-e239-9ac5-b24dcac45643}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{77947be9-7193-49a4-d73c-db854e8938c6}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Time taken for Stakeholder to Report" languagecode="1033" />
+                          <label description="Différence de temps" languagecode="1036" />
+                        </labels>
+                        <control id="ts_timetakenforstakeholdertoreport" classid="{AA987274-CE4E-4271-A803-66164311A958}" datafieldname="ts_timetakenforstakeholdertoreport" disabled="false" uniqueid="{6b7a1790-0ebc-3532-3e78-0e2995c49097}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{21f2a623-f511-4bc9-a766-42ccc6b1affa}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Duty Inspector" languagecode="1033" />
+                        </labels>
+                        <control id="ts_dutyinspector" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_dutyinspector" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section id="{9e204dd6-dfc4-4006-a5dd-534958d73344}" name="{99b37896-4f52-4179-8296-3cc0e6722411}_column_2_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Where" languagecode="1033" />
+                    <label description="Où" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{69565654-7cc5-29b4-4211-a70505841629}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Region" languagecode="1033" />
+                          <label description="Région" languagecode="1036" />
+                        </labels>
+                        <control id="ts_region" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_region" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{448433de-1861-b1e6-d043-ce4b8e4c09da}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Province" languagecode="1033" />
+                          <label description="Province" languagecode="1036" />
+                        </labels>
+                        <control id="ts_province" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_province" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{dccb5ea7-6363-4ae1-6e91-014724230ea3}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Location Type" languagecode="1033" />
+                          <label description="Type de lieu" languagecode="1036" />
+                        </labels>
+                        <control id="ts_locationtype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_locationtype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{acac483a-0c3d-7312-2934-1c1b2a85911b}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Location" languagecode="1033" />
+                          <label description="Lieu" languagecode="1036" />
+                        </labels>
+                        <control id="new_location" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="new_location" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{802bae13-e05a-167c-4945-3a637ee2283b}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Subdivision" languagecode="1033" />
+                          <label description="Subdivision" languagecode="1036" />
+                        </labels>
+                        <control id="ts_subdivision" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_subdivision" disabled="true" uniqueid="{17162dde-2cea-a888-9c22-149b310435bb}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b5b41ddd-d13b-8617-4277-117776c6794b}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Mile Marker" languagecode="1033" />
+                          <label description="Borne milliaire" languagecode="1036" />
+                        </labels>
+                        <control id="ts_milemarker" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_milemarker" disabled="true" uniqueid="{055677b4-d158-d7b5-1d92-587b96073a10}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{705dcec2-9145-7a25-7712-475129974eb5}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Marker Post" languagecode="1033" />
+                          <label description="Marqueur de mile" languagecode="1036" />
+                        </labels>
+                        <control id="ts_markerpost" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_markerpost" disabled="true" uniqueid="{d4b79644-ea24-136e-bd86-8bb296c1932d}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0cda03ab-14c4-3724-0d3b-49c93578028a}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Latitude" languagecode="1033" />
+                          <label description="Latitude" languagecode="1036" />
+                        </labels>
+                        <control id="ts_latitude" classid="{0D2C745A-E5A8-4c8f-BA63-C6D3BB604660}" datafieldname="ts_latitude" disabled="true" uniqueid="{be303dcd-7939-99db-8cb9-749a6173e506}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{47b4573a-73ba-47eb-4852-90c4ecdcae03}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Longitude" languagecode="1033" />
+                          <label description="Longitude" languagecode="1036" />
+                        </labels>
+                        <control id="ts_longitude" classid="{0D2C745A-E5A8-4c8f-BA63-C6D3BB604660}" datafieldname="ts_longitude" disabled="true" uniqueid="{b4dea366-4baa-0a5a-7338-b0d832a126d7}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{820ae70b-e390-e376-d9c1-08824c0be743}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Location Context" languagecode="1033" />
+                          <label description="Contexte de lieu" languagecode="1036" />
+                        </labels>
+                        <control id="ts_locationcontext" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_locationcontext" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c82cb255-ac08-6e98-cba5-42ee3d33477e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Station Name" languagecode="1033" />
+                          <label description="Nom de gare" languagecode="1036" />
+                        </labels>
+                        <control id="ts_yardorstationname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_yardorstationname" disabled="true" uniqueid="{3a7565c1-4a72-d640-4a87-d138b17b9a24}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0d774d49-63ab-2c17-2b54-ad3785007072}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Site" languagecode="1033" />
+                          <label description="Site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="false" uniqueid="{033db540-a33c-c932-ebb2-39b869ee75ee}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{28134a96-7a3a-3ebc-0629-75bc98aa3724}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Site Type" languagecode="1033" />
+                          <label description="Type de site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_sitetype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_sitetype" disabled="true" uniqueid="{ed2a32e5-59a4-7769-e032-a6c6a876b408}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{34A3B92A-A67A-4D39-BC77-3ABDE3AEE365}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a3739b75-5caa-b65e-1853-caa5ab404d4d}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Subsite" languagecode="1033" />
+                          <label description="Sous-site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_subsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsite" disabled="false" uniqueid="{16394938-a03b-83c9-0dc6-87c45e4d770e}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4b879a19-d23b-106a-2ea4-931902cb1a0e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Subsite Type" languagecode="1033" />
+                          <label description="Type de sous-site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_subsitetype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsitetype" disabled="true" uniqueid="{00b0754d-4049-258e-86bc-589e4ad226d9}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{34A3B92A-A67A-4D39-BC77-3ABDE3AEE365}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5bcba082-7e51-3960-4c52-6a50975e6b77}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="In Flight?" languagecode="1033" />
+                          <label description="En vol ?" languagecode="1036" />
+                        </labels>
+                        <control id="ts_inflight" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_inflight" disabled="false" uniqueid="{9be47a9a-ed81-872c-c1ad-1c333222a262}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9354ea57-367f-49af-8323-2b3dae27335d}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Air Carrier" languagecode="1033" />
+                          <label description="Transporteur aérien" languagecode="1036" />
+                        </labels>
+                        <control id="ts_aircarrier" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_aircarrier" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2d70e9c5-f69b-4df9-8e31-44a771dd5ffe}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Flight Number" languagecode="1033" />
+                          <label description="Numéro de vol" languagecode="1036" />
+                        </labels>
+                        <control id="ts_flightnumber" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_flightnumber" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c257ba58-6a3d-291d-111d-1b1617297708}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Departure Aerodrome" languagecode="1033" />
+                          <label description="Aérodrome de départ" languagecode="1036" />
+                        </labels>
+                        <control id="ts_origin" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_origin" disabled="false" uniqueid="{11c68284-da5e-b3db-7964-15574ec98b27}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{bbc291a3-2122-66a9-169e-6335639d1264}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Arrival Aerodrome" languagecode="1033" />
+                          <label description="Aérodrome d'arrivée" languagecode="1036" />
+                        </labels>
+                        <control id="ts_destination" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_destination" disabled="false" uniqueid="{3cbbe695-94d5-2db7-bd9d-4c2e80d97025}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{16b5a46d-80d0-42f7-b193-e4a66000efd8}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Diversion Aerodrome" languagecode="1033" />
+                          <label description="Aérodrome de déroutement" languagecode="1036" />
+                        </labels>
+                        <control id="ts_diversionaerodrome" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_diversionaerodrome" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e6e2dc82-7ae6-2229-bb5e-5501a442b6ad}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Estimated Time of Arrival" languagecode="1033" />
+                          <label description="Heure d'arrivée estimée" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimatedarrivaltime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_estimatedarrivaltime" disabled="false" uniqueid="{c0cd3d06-0a08-8577-82a3-409691780b35}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="{99b37896-4f52-4179-8296-3cc0e6722411}_section_4" id="231d444d-303f-499f-946d-d723f4e194c8" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Other" languagecode="1033" />
+                    <label description="Autre" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{05b1503e-0419-442b-8dab-30936e29d75e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Delays to Operation" languagecode="1033" />
+                          <label description="Retard aux opérations" languagecode="1036" />
+                        </labels>
+                        <control id="ts_delaystooperation" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_delaystooperation" disabled="false" uniqueid="{a02da160-5b8b-3485-3352-50da2bb1d997}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3264d118-ba0a-493e-9abd-992c70921b6c}" locklevel="0" colspan="1" rowspan="1" showlabel="true" visible="false">
+                        <labels>
+                          <label description="Delay Duration" languagecode="1033" />
+                          <label description="Durée des délais" languagecode="1036" />
+                        </labels>
+                        <control id="ts_delayduration" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_delayduration" disabled="false" uniqueid="{19b664e8-9899-8368-ad37-703cb1e0b487}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{86c23ddc-ae85-4c1a-b645-54833915d4e3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Public or Private Crossing" languagecode="1033" />
+                          <label description="Passage public/ privé" languagecode="1036" />
+                        </labels>
+                        <control id="ts_publicorprivatecrossing" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_publicorprivatecrossing" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e9dd2c2c-5828-4b1e-aa48-0d3bcb15ff1b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Rural or Urban" languagecode="1033" />
+                          <label description="Rural/Urbain" languagecode="1036" />
+                        </labels>
+                        <control id="ts_ruralorurban" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_ruralorurban" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b3d5ec69-1bc2-4e8a-baad-3b680e4f8faf}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Injuries" languagecode="1033" />
+                          <label description="Blessures" languagecode="1036" />
+                        </labels>
+                        <control id="ts_injuries" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_injuries" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{037b3902-037a-7c21-2431-c7d5ce55653d}" showlabel="true" locklevel="0" visible="false" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Police Response?" languagecode="1033" />
+                          <label description="Réponse policière ?" languagecode="1036" />
+                        </labels>
+                        <control id="ts_policeresponse" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_policeresponse" disabled="false" uniqueid="{d2a1d4d8-45c4-dd84-39e4-d2e627508381}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e0e1148b-fc96-4555-a19f-696ade929524}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Arrests" languagecode="1033" />
+                          <label description="Arrestations" languagecode="1036" />
+                        </labels>
+                        <control id="ts_arrests" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_arrests" disabled="false" uniqueid="{ca600060-47ab-9c90-4525-06ba52e9816e}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b59a0881-a81f-4661-b5a5-4e79cc39c72b}" locklevel="0" colspan="1" rowspan="5" visible="false">
+                        <labels>
+                          <label description="Arrests Details" languagecode="1033" />
+                          <label description="Détails sur l'/(es) arrestation(s)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_arrestsdetails" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_arrestsdetails" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{8b02d7ac-6dd8-4774-a6b4-df28e7ff1f1e}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Bridge Closure" languagecode="1033" />
+                          <label description="Fermeture de pont" languagecode="1036" />
+                        </labels>
+                        <control id="ts_bridgeclosure" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_bridgeclosure" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{30d1565a-3591-423b-938a-bab577aaae51}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Damages to IBT property" languagecode="1033" />
+                          <label description="Dommage aux biens des PTI" languagecode="1036" />
+                        </labels>
+                        <control id="ts_damagestoibtproperty" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_damagestoibtproperty" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b6eda2ca-cfaa-485c-8121-1d4ecd147efb}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Additional Details of the Police Response" languagecode="1033" />
+                          <label description="Renseignements supplémentaires sur l’intervention policière" languagecode="1036" />
+                        </labels>
+                        <control id="ts_additionaldetails" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_additionaldetails" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{83c151a4-cac9-6391-a6d0-ec85338e0c47}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Category" languagecode="1033" />
+                          <label description="TCOMs Category English" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomscategoryenglish" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomscategoryenglish" disabled="true" uniqueid="{9b680b8b-d436-24b0-ac36-a8da135a9e58}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{84678dd8-488b-4e08-d330-7e641b5162b0}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Catégorie" languagecode="1033" />
+                          <label description="Catégorie" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomscategoryfrench" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomscategoryfrench" disabled="true" uniqueid="{bd4dbb61-6779-a15e-eb28-c142420e7996}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b2092334-9d57-ba9a-0844-28c11256945d}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Sub-category" languagecode="1033" />
+                          <label description="Sub-category" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomssubcategoryenglish" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomssubcategoryenglish" disabled="true" uniqueid="{68c6743e-02c4-3a5e-e923-368a87572ea7}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c9b70e1c-53dc-4903-ddc9-2ce8e5eb5467}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Sous-catégorie" languagecode="1033" />
+                          <label description="Sous-catégorie" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomssubcategoryfrench" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomssubcategoryfrench" disabled="true" uniqueid="{b232b0e8-2b31-8825-09b8-451aed8120ae}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0d8d2cc4-546c-167a-d736-6242aa7b1469}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Interaction" languagecode="1033" />
+                          <label description="TCOMs Interaction English" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomsinteractionenglish" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomsinteractionenglish" disabled="true" uniqueid="{c933cebb-21e9-873e-6159-b29a6dcb52b2}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{543a4147-6044-be22-99de-e178cde0627d}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Interaction" languagecode="1033" />
+                          <label description="Interaction" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomsinteractionfrench" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomsinteractionfrench" disabled="true" uniqueid="{ddb8a143-0224-d3bb-c430-807d7c3c5b6c}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e2327d8d-ac7a-ac51-a395-c5b15c6a0067}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Further Action Required?" languagecode="1033" />
+                          <label description="Action supplémentaire requise ?" languagecode="1036" />
+                        </labels>
+                        <control id="ts_furtheractionrequired" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="ts_furtheractionrequired" disabled="true" uniqueid="{6e28b4d1-db95-bb4d-3490-1a616aee9ac6}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8c871d08-a323-7a3a-a3d0-2d0ab46cb593}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Severity" languagecode="1033" />
+                          <label description="TCOMS Severity English" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomsseverityenglish" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomsseverityenglish" disabled="true" uniqueid="{573ce877-04b0-cd01-d15d-c5b280161e08}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6b851dbd-407d-4e87-828c-4ab6d9c11b77}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Sévérité" languagecode="1033" />
+                          <label description="Sévérité" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomsseverityfrench" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomsseverityfrench" disabled="true" uniqueid="{348a9a1a-07c2-ccb9-32b2-01ece229d767}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3c7936bb-497d-9513-6cd9-dd4525b54abb}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Event Name" languagecode="1033" />
+                          <label description="Nom de l'événement" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomseventname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomseventname" disabled="true" uniqueid="{a17b4e85-47b5-de9b-907a-0782510a8ed5}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{75b0e792-27a1-8663-7236-55a3b18a6051}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Event Follow-up" languagecode="1033" />
+                          <label description="TCOMs Event Follow-up English" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomseventfollowupenglish" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomseventfollowupenglish" disabled="true" uniqueid="{9a8bd849-a56d-8778-b6ad-212ddbe3b149}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{183064cc-b9ba-b735-1416-651b12c64ec0}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Suivi de l'événement" languagecode="1033" />
+                          <label description="Suivi de l'événement" languagecode="1036" />
+                        </labels>
+                        <control id="ts_tcomseventfollowupfrench" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_tcomseventfollowupfrench" disabled="true" uniqueid="{c42d97c5-ed18-ed29-28d1-2a2a61c507aa}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0142240b-451e-0173-1e66-a844d2c12304}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Status Rationale" languagecode="1033" />
+                          <label description="Justification du statut" languagecode="1036" />
+                        </labels>
+                        <control id="ts_statusrationale" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_statusrationale" disabled="true" uniqueid="{52eb0bd0-29ad-7816-3d58-dd1e81e7c981}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="IncidentDetails" showlabel="true" showbar="false" locklevel="0" id="{c415c0c5-7a26-1282-edee-0bd01361a521}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" height="auto">
+                  <labels>
+                    <label description="Incident Details" languagecode="1033" />
+                    <label description="Détails de l'incident" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{4754ca01-70f7-42c2-b807-77925f303296}" locklevel="0" colspan="1" rowspan="1" visible="false" showlabel="false" availableforphone="false">
+                        <labels>
+                          <label description="Incident Details Attachment" languagecode="1033" />
+                        </labels>
+                        <control id="ts_incidentdetailsattachment" classid="{0A7FF475-B016-4687-9CE5-042BFDBD6519}" datafieldname="ts_incidentdetailsattachment" disabled="false" uniqueid="{ea7ac443-73e2-18e9-c64a-157903b456b1}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4e9d3933-a8dc-9d6e-6295-3eec4e009e05}" showlabel="false" colspan="1" auto="true" rowspan="6">
+                        <labels>
+                          <label description="SecurityIncidentDetailsDisplay" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_SecurityIncidentDetailsDisplay" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/SecurityIncidentDetailsDisplay.html</Url>
+                            <PassParameters>true</PassParameters>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <WebResourceId>{61B1F848-32F0-ED11-8848-000D3AF36BAC}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="f434e93e-8a61-47e0-8f98-1d4449fc21e9" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Interactions" languagecode="1033" />
+            <label description="Interactions" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="30%">
+              <sections>
+                <section name="tab_2_section_1" showlabel="false" showbar="false" locklevel="0" id="{a5da9c62-d4ed-a086-1d1b-c3504532204c}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="TIMELINE" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{788040a2-6b60-8318-74b4-3bdbdb17077e}" showlabel="true" rowspan="1" auto="false" colspan="1" locklevel="0">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-c143-495e-a496-c962e5b4488e}" uniqueid="{367cc305-8c60-609b-1b35-86236e3a3077}" disabled="false">
+                          <parameters>
+                            <UClientUniqueName>Timeline</UClientUniqueName>
+                            <UClientModules>Activities,Notes,Posts</UClientModules>
+                            <UClientDefaultModuleForCreateExperience>Notes</UClientDefaultModuleForCreateExperience>
+                            <UClientShowFilterPane>true</UClientShowFilterPane>
+                            <UClientExpandFilterPane>false</UClientExpandFilterPane>
+                            <UClientOrderBy>descending</UClientOrderBy>
+                            <UClientRecordPerPage>10</UClientRecordPerPage>
+                            <UClientEnableWhatsNewFilter>false</UClientEnableWhatsNewFilter>
+                            <UClientSortActivitiesByValue>modifiedon</UClientSortActivitiesByValue>
+                            <UClientDisplayActivityHeaderUsing>defaultformat</UClientDisplayActivityHeaderUsing>
+                            <UClientCreateActivityUsing>quickcreateform</UClientCreateActivityUsing>
+                            <UClientDisplayActivityUsing>cardform</UClientDisplayActivityUsing>
+                            <UClientActivityCardMap>appointment:4201:,campaignactivity:4402:,campaignresponse:4401:,incidentresolution:4206:,email:4202:,fax:4204:,letter:4207:,opportunityclose:4208:,phonecall:4210:,task:4212:,msdyn_bookingalert:10256:,msdyn_ocliveworkitem:10944:,msfp_alert:10235:,msfp_surveyinvite:10245:,msfp_surveyresponse:10247:,ts_enforcementaction:10882:,ts_interview:10853:,msdyn_ocsession:10961:,chat:10769:,ts_incidentnotification:11085:,ts_incidentupdate:11086:,</UClientActivityCardMap>
+                            <DefaultTabId>ActivitiesTab</DefaultTabId>
+                            <OrderByActivityWall>descending</OrderByActivityWall>
+                            <SortActivityWall>modifiedon</SortActivityWall>
+                            <EmailConversationView>true</EmailConversationView>
+                            <ShowArticleTab>false</ShowArticleTab>
+                            <SelectDefaultLanguage>00000000-0000-0000-0000-000000000000</SelectDefaultLanguage>
+                            <UClientActivities>appointment,email,phonecall,task,ts_interview,ts_incidentnotification,ts_incidentupdate</UClientActivities>
+                            <UClientActivitiesConfigurationJSON>{"campaignactivity":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"incidentresolution":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"opportunityclose":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"orderclose":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"quoteclose":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"recurringappointmentmaster":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"socialactivity":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msdyn_bookingalert":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msdyn_ocliveworkitem":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msdyn_ocsession":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_alert":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_surveyinvite":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_surveyresponse":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"ts_enforcementaction":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"ts_incidentnotification":{"showTopDate":true,"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"ts_incidentupdate":{"showTopDate":true,"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"}}</UClientActivitiesConfigurationJSON>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="tab_2_section_4" id="0b461f67-435b-438b-ae6c-2c3dbfb4eaff" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Contacts" languagecode="1033" />
+                    <label description="Coordonnées" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{b0515b5a-5f03-480e-9ba2-f99c468ab2ca}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{cbab8342-7ae8-4113-824b-2ce362b87310}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="Contacts" languagecode="1033" />
+                          <label description="Coordonnées" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>contact</TargetEntityType>
+                            <ViewId>{129A42C8-1501-ED11-82E6-002248AE429C}</ViewId>
+                            <ViewIds>{1D31951F-F9D4-EB11-BACC-000D3A0C9D04},{129A42C8-1501-ED11-82E6-002248AE429C}</ViewIds>
+                            <RelationshipName>ts_Contact_ts_securityincident_ts_securityin</RelationshipName>
+                            <VisualizationId>{E365462F-1DB9-46A8-928D-BEAB1A7A2375}</VisualizationId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_3" id="{2d7d647d-804e-adac-8e23-7281c595294b}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Work Orders" languagecode="1033" />
+            <label description="Ordres de travail" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_3_section_1" showlabel="false" showbar="false" locklevel="0" id="{7ccb2082-42be-95ae-71b0-144c290ed5ce}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{3270d6bd-d353-eba9-04ee-d36c3b839218}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="Work Orders" languagecode="1033" />
+                          <label description="Ordres de travail" languagecode="1036" />
+                        </labels>
+                        <control id="grid_workorder" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_ts_securityincident_msdyn_workorder_SecurityIncident</RelationshipName>
+                            <TargetEntityType>msdyn_workorder</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F},{C34014A1-C706-ED11-82E6-002248AE429C}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId>{8E746648-1A4E-E111-93B3-000C2959F9B8}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_recordlog" id="e49ddd1f-8db2-46cc-857b-14677590e387" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Record Log" languagecode="1033" />
+            <label description="Journal d'enregistrement" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_recordlog_section_1" id="5fccba5c-fb84-4fef-82cb-707b8d3613c5" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="11" labelwidth="115">
+                  <labels>
+                    <label description="Record Log" languagecode="1033" />
+                    <label description="Journal d'enregistrement" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell showlabel="false" locklevel="0" id="{636b211e-43b3-4aca-8db1-8118d4084a67}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{a6bdd071-befb-4b0b-be26-9f3bde52c0aa}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2eb93087-cb3b-4704-b0b0-338b42219f66}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Created By" languagecode="1033" />
+                          <label description="Créé par" languagecode="1036" />
+                        </labels>
+                        <control id="createdby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdby" disabled="false" />
+                      </cell>
+                      <cell id="{ba23004f-c91b-4d40-8c42-5ec862accf1c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Created On" languagecode="1033" />
+                          <label description="Créé le" languagecode="1036" />
+                        </labels>
+                        <control id="createdon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="createdon" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{963f3c47-556a-4af4-ac92-1847fb3e779f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Modified By" languagecode="1033" />
+                          <label description="Modifié par" languagecode="1036" />
+                        </labels>
+                        <control id="modifiedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="modifiedby" disabled="false" />
+                      </cell>
+                      <cell id="{d923053b-e312-4dcb-805e-7d77b778b91e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Modified On" languagecode="1033" />
+                          <label description="Modifié le" languagecode="1036" />
+                        </labels>
+                        <control id="modifiedon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="modifiedon" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8cb2030d-fb7e-448d-9f8e-f6403e5bd7c0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Closed By" languagecode="1033" />
+                          <label description="Fermé par" languagecode="1036" />
+                        </labels>
+                        <control id="ts_closedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_closedby" disabled="true" />
+                      </cell>
+                      <cell id="{1140ed7f-0fb8-4ca2-9951-8325dbfae517}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Closed On" languagecode="1033" />
+                          <label description="Fermé le" languagecode="1036" />
+                        </labels>
+                        <control id="ts_closedon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_closedon" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_time_tracking" id="fa7a9454-c1be-4ded-8ed8-cd459f72397f" IsUserDefined="0" locklevel="0" showlabel="true" visible="true">
+          <labels>
+            <label description="Time Tracking" languagecode="1033" />
+            <label description="Suivi du temps" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_5_section_1" id="e9895f32-b81f-4258-a4da-31fba35996b1" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="11" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{8ff8a569-edd6-4841-b2c9-14b02730c2eb}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="SI Time" languagecode="1033" />
+                          <label description="Temps lié à l'incident" languagecode="1036" />
+                        </labels>
+                        <control id="ts_securityincidenttime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_securityincidenttime" disabled="false" />
+                      </cell>
+                      <cell id="{13d30323-d3c0-8494-38c8-0cc87c7be27d}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Quarter of Time" languagecode="1033" />
+                          <label description="Quarter of SI Time" languagecode="1036" />
+                        </labels>
+                        <control id="ts_quarterofsitime" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarterofsitime" disabled="false" uniqueid="{85b9acb4-4538-83d3-d797-84557bb66b36}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6973c6a9-e202-442e-8320-fb10d3497244}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="SI Travel Time" languagecode="1033" />
+                          <label description="Temps de voyagement de l'incident" languagecode="1036" />
+                        </labels>
+                        <control id="ts_traveltime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_traveltime" disabled="false" />
+                      </cell>
+                      <cell id="{6b753ec0-6005-7d19-21ca-711c353ba6e4}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Quarter of Travel Time" languagecode="1033" />
+                          <label description="Quarter of SI Travel Time" languagecode="1036" />
+                        </labels>
+                        <control id="ts_quarterofsitraveltime" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarterofsitraveltime" disabled="false" uniqueid="{25bbb9e2-9b0e-c716-49d9-b30c0b5bcde2}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0a2000c3-02cb-4cb9-8bc3-ded075a46dca}" locklevel="0" colspan="2" rowspan="4" showlabel="true">
+                        <labels>
+                          <label description="Comments" languagecode="1033" />
+                          <label description="Commentaires" languagecode="1036" />
+                        </labels>
+                        <control id="ts_comments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_comments" disabled="false" uniqueid="{0082bed3-d197-d5a8-e660-70cb426427be}" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{692ab86a-e5db-4f14-a1c8-d51b402cc010}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Overtime" languagecode="1033" />
+                          <label description="Heures supplémentaires" languagecode="1036" />
+                        </labels>
+                        <control id="ts_overtime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_overtime" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{fb2d2679-f668-4130-a995-3460b7c0c2a7}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="security_incident_document_tab" id="{c8e3dde5-cd7e-c8a5-828b-895c17e79832}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Documents" languagecode="1033" />
+            <label description="Documents" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="67%">
+              <sections>
+                <section name="tab_4_section_1" showlabel="false" showbar="false" locklevel="0" id="{d787a0ba-a8ec-6205-2061-9c2e28e79d6c}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell rowspan="1" id="{11c6af8f-2d6a-4ab3-b44a-9a422b529637}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b865d914-e485-4e62-10a8-a06918006e14}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="Files (Security Incident)" languagecode="1033" />
+                          <label description="Fichiers  " languagecode="1036" />
+                        </labels>
+                        <control id="grid_doc" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{68872715-2e55-c8ae-50b0-ddeb3736394e}">
+                          <parameters>
+                            <ViewId>{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_ts_securityincident_ts_file_SecurityIncident</RelationshipName>
+                            <TargetEntityType>ts_file</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{3407E68C-3F63-EC11-8F8E-000D3A847292},{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section name="security_incident_document_section" showlabel="false" showbar="false" locklevel="0" id="{0921278a-12b0-bc91-3004-d41d6c5d5939}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="ROM Document Centre" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{52b68d5c-9406-38c6-c304-c6163ac71632}" showlabel="false" locklevel="0" availableforphone="false">
+                        <labels>
+                          <label description="Canvas App" languagecode="1033" />
+                          <label description="Canvas App" languagecode="1036" />
+                        </labels>
+                        <control id="ts_canvasapp" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_canvasapp" disabled="false" uniqueid="{be9ab2bc-e86a-297d-3735-b5db765858c8}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_ts_securityincidentadditionaldetails" id="15bbb858-3e59-4e1f-b77a-f1be8082ac43" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Additional Details" languagecode="1033" />
+            <label description="Détails supplémentaires" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_7_section_1" id="c8597e4d-a390-4e75-bbc2-1d7c0ec759b8" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{82f62da5-2005-42bf-92d4-6fa0c8068215}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{0014889e-75a2-408f-a32e-e2485f07ed54}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1728329247105" languagecode="1033" />
+                          <label description="Coordonnées" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_ts_securityincidentadditionaldetails" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>false</EnableChartPicker>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <TargetEntityType>ts_securityincidentadditionaldetails</TargetEntityType>
+                            <ViewId>{5FAE66AC-F1C7-4D5F-A26D-F4D59332F1A8}</ViewId>
+                            <ViewIds>{5FAE66AC-F1C7-4D5F-A26D-F4D59332F1A8}</ViewIds>
+                            <RelationshipName>ts_securityincidentadditionaldetails_SecurityIncident_ts_securityincident</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions>
+        <controlDescription forControl="{19b664e8-9899-8368-ad37-703cb1e0b487}">
+          <customControl id="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}">
+            <parameters>
+              <datafieldname>ts_delayduration</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="ts_Pickers.DuractionPicker">
+            <parameters>
+              <duration>ts_delayduration</duration>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="ts_Pickers.DuractionPicker">
+            <parameters>
+              <duration>ts_delayduration</duration>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="ts_Pickers.DuractionPicker">
+            <parameters>
+              <duration>ts_delayduration</duration>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{9be47a9a-ed81-872c-c1ad-1c333222a262}">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_inflight</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_inflight</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_inflight</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_inflight</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{d2a1d4d8-45c4-dd84-39e4-d2e627508381}">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_policeresponse</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_policeresponse</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_policeresponse</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_policeresponse</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{be9ab2bc-e86a-297d-3735-b5db765858c8}">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}">
+            <parameters>
+              <datafieldname>ts_canvasapp</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>ts_canvasapp</record>
+              <entityName static="true" type="SingleLine.Text">Security Incident</entityName>
+              <appName static="true" type="SingleLine.Text">ts_romdocumentcentresecurityincidents_d0d2e</appName>
+              <appId static="true" type="SingleLine.Text">4e4af44c-b09c-4f2e-b042-2e678dcd6fdd</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>ts_canvasapp</record>
+              <entityName static="true" type="SingleLine.Text">Security Incident</entityName>
+              <appName static="true" type="SingleLine.Text">ts_romdocumentcentresecurityincidents_d0d2e</appName>
+              <appId static="true" type="SingleLine.Text">4e4af44c-b09c-4f2e-b042-2e678dcd6fdd</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>ts_canvasapp</record>
+              <entityName static="true" type="SingleLine.Text">Security Incident</entityName>
+              <appName static="true" type="SingleLine.Text">ts_romdocumentcentresecurityincidents_d0d2e</appName>
+              <appId static="true" type="SingleLine.Text">4e4af44c-b09c-4f2e-b042-2e678dcd6fdd</appId>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <header id="{f100c587-b57e-461b-bae8-ce269944b7d6}" celllabelposition="Top" columns="1111" labelwidth="280" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{c070d07e-5502-aba6-4c4c-b71a76cbec56}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{6e200ede-c2ed-81a6-7e05-2130ee9e7eed}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{90dbce6b-4e6c-1e7b-85a5-3381808c66e0}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Record Status" languagecode="1033" />
+                <label description="État du dossier" languagecode="1036" />
+              </labels>
+              <control id="header_ts_recordstatus" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_recordstatus" disabled="false" />
+            </cell>
+            <cell id="{9d58180e-91b3-db12-176c-9e4c53a67aad}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" uniqueid="{38a16d61-6411-c96e-eb48-a289672217e9}">
+                <parameters>
+                  <AutoResolve>true</AutoResolve>
+                  <DisableMru>false</DisableMru>
+                </parameters>
+              </control>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{33afc53b-68a7-4a88-8ba4-4e1c7dfa0267}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{acce7b94-1456-496c-9cd3-05a58de5ff56}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{c35df727-5775-4593-a61c-f962bd83c4b7}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{723c841b-3308-440f-bc5d-42cc4b151611}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <formLibraries>
+        <Library name="ts_/js/Common.js" libraryUniqueId="{eba227db-0744-bc45-1d9d-855c622e3be7}" />
+        <Library name="ts_/js/SecurityIncident.js" libraryUniqueId="{06894a4b-8214-4243-ba45-7dd83d8037fa}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.onLoad" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{4c10d204-7c4d-49b8-bb00-c227a349aa27}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="openLookupModalDialogSecurityIncidentForm" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{ebaac45c-4364-18a2-e2e2-53a9170132c4}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{875794cd-f3be-4f60-bb4a-d9802a942571}" enabled="true" parameters="&quot;security_incident_document_tab&quot;, &quot;security_incident_document_section&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_arrests">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.arrestsOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{d14d82bb-8ae1-473d-81f8-c388bfcf4bb3}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_delaystooperation">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.delaysToOperationOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{7ba0060b-e7b2-48c4-9d43-aec3cbe42e2f}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_statusofrailwayowner">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.StatusOfRailwayOwnerOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{382e66c9-a8b1-103a-45c9-901109d48aae}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_mode">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.modeOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{f6382938-331b-4d29-ab46-d8d4b3d27e6b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_securityincidenttype">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.securityIncidentTypeOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{7e26a075-148c-7b46-2164-cabdc24da4a9}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_inflight">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.inFlightOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{ad7d022b-17b6-49ac-9237-bb31728df14e}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_policeresponse">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.policeResponseOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{5b33cc07-f02a-4beb-a772-2af8108682bc}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_reportingcompany">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.reportingCompanyOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{4bc92d84-28b0-4a20-bf89-cb656b98d930}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_stakeholder">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.stakeholderCompanyOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{de5671f2-2543-4c45-8835-85951d9d1aed}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_site">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.siteOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{671cd820-1233-515a-2664-91075ba04e32}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_subsite">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.subSiteOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{8761975c-a68d-ea1d-ea11-84d1ce4994c7}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

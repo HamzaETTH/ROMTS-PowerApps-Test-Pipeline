@@ -1,0 +1,284 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added_-_Prescribed_Frequency_Override": {
+          "metadata": {
+            "operationMetadataId": "ca54a2b2-2968-4484-968c-d2eea312f29f"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ts_prescribedfrequencyoverride",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "When a new Prescribed Frequency Override is added, update the related Entity Risk Records."
+        }
+      },
+      "actions": {
+        "Initialize_variable_-_Prescribed_Frequency_Override_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "0bd33ea1-1e41-4c82-a258-61b66bde45c3"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Prescribed Frequency Override ID",
+                "type": "string",
+                "value": "@{triggerOutputs()?['body/ts_prescribedfrequencyoverrideid']}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Fiscal_Year": {
+          "runAfter": {
+            "Initialize_variable_-_Prescribed_Frequency_Override_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d45ffc21-4857-45da-a69c-960d7359dc61"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Fiscal Year",
+                "type": "string",
+                "value": "@{triggerOutputs()?['body/_ts_fiscalyear_value']}"
+              }
+            ]
+          }
+        },
+        "List_rows_-_Entity_Risks": {
+          "runAfter": {
+            "Initialize_variable_-_Entity_Risk_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b8bf8e56-b67c-4568-ba0d-4bc75034afd0"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_entityrisks",
+              "fetchXml": "<fetch xmlns:generator='MarkMpn.SQL4CDS'>\n  <entity name='ts_entityrisk'>\n    <attribute name='ts_entityriskid' />\n    <link-entity name='ts_prescribedfrequencyoverride' to='ts_entityid' from='ts_activitytype' alias='ts_prescribedfrequencyoverride' link-type='inner'>\n      <filter>\n        <condition attribute='ts_fiscalyear' operator='eq' value='@{variables('Fiscal Year')}' />\n        <condition attribute='ts_prescribedfrequencyoverrideid' operator='eq' value='@{variables('Prescribed Frequency Override ID')}' />\n      </filter>\n    </link-entity>\n    <filter>\n      <condition attribute='ts_fiscalyear' operator='eq' value='@{variables('Fiscal Year')}' />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Retrieve the Entity Risks that are related to the Activity Type and Fiscal Year that are in the Prescribed Frequency Override record."
+        },
+        "Apply_to_each_-_Entity_Risk": {
+          "foreach": "@outputs('List_rows_-_Entity_Risks')?['body/value']",
+          "actions": {
+            "Update_a_row_-_Entity_Risk": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "853f4f2b-fcd6-40e7-ad83-0bc0f5568999"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_entityrisks",
+                  "recordId": "@items('Apply_to_each_-_Entity_Risk')?['ts_entityriskid']",
+                  "item/ts_PrescribedFrequencyOverride@odata.bind": "/ts_prescribedfrequencyoverrides(@{variables('Prescribed Frequency Override ID')})"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "description": "Set the Prescribed Frequency Override lookup in Entity Risk"
+            },
+            "List_rows_-_Operation_Activity_Risk_Scores": {
+              "runAfter": {
+                "Set_variable_-_Entity_Risk_ID": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ff947bd9-f96a-4c05-97aa-013d85492837"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_operationactivityriskscoreses",
+                  "$select": "ts_operationactivityriskscoresid",
+                  "$filter": "_ts_activitytypeentityrisk_value eq @{variables('Entity Risk ID')}"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "description": "Get the related Operation Activity Risk Scores",
+              "runtimeConfiguration": {
+                "paginationPolicy": {
+                  "minimumItemCount": 100000
+                }
+              }
+            },
+            "Set_variable_-_Entity_Risk_ID": {
+              "runAfter": {
+                "Update_a_row_-_Entity_Risk": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "76ec2375-673d-48f4-b553-5f6187ea16b6"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Entity Risk ID",
+                "value": "@{items('Apply_to_each_-_Entity_Risk')?['ts_entityriskid']}"
+              }
+            },
+            "Apply_to_each": {
+              "foreach": "@outputs('List_rows_-_Operation_Activity_Risk_Scores')?['body/value']",
+              "actions": {
+                "Set_variable_-_Operation_Activity_Risk_Score_ID": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "d61ca87c-31d8-4ffe-b986-bb26273ebdc2"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Operation Activity Risk Score ID",
+                    "value": "@{items('Apply_to_each')?['ts_operationactivityriskscoresid']}"
+                  }
+                },
+                "Update_a_row": {
+                  "runAfter": {
+                    "Set_variable_-_Operation_Activity_Risk_Score_ID": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "5bb3e6a8-5827-4906-951f-f5af18fa2ea1"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateOnlyRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_operationactivityriskscoreses",
+                      "recordId": "@variables('Operation Activity Risk Score ID')",
+                      "item/ts_riskscoretrigger": -1
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "description": "For each Operation Activity Risk Score set the trigger so that it will trigger [Operation Activity Risk Scores] Update Risk Rating to update the Risk Frequency"
+                }
+              },
+              "runAfter": {
+                "List_rows_-_Operation_Activity_Risk_Scores": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e10bb4d8-7191-4676-b5d5-71fb4bc2b18f"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "List_rows_-_Entity_Risks": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "21eec513-e4df-468b-9db4-da5f3d81387b"
+          },
+          "type": "Foreach",
+          "description": "Go through each related Entity Risk"
+        },
+        "Initialize_variable_-_Operation_Activity_Risk_Score_ID": {
+          "runAfter": {
+            "Initialize_variable_-_Fiscal_Year": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d7ee01e7-bb49-4fdf-8878-949e42f40045"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Operation Activity Risk Score ID",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Entity_Risk_ID": {
+          "runAfter": {
+            "Initialize_variable_-_Operation_Activity_Risk_Score_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ecb3374a-2847-4d0c-a6c3-8a6dfc49e2ac"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Entity Risk ID",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,1050 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+
+    <!-- Package used for the table - Tabulator -->
+    <!-- http://tabulator.info/ -->
+
+</head>
+<body onload="loadTable()">
+    <div id="warningMessage" class="container-fluid">
+        <div class="row" style="margin-left: 5px;margin-top: 10px">
+        </div>
+    </div>
+    <div id="mainTable" class="container-fluid">
+        <strong style="margin-top:10px;margin-left:5px">
+            <label id="numberOfFilesSelected">Number of files selected:</label>
+        </strong>
+        <strong style="margin-top:10px;margin-left:5px">
+            <label id="RowCounterLabel">0</label>
+        </strong>
+        <button id="selectAll" class="btn btn-default" style="margin-left: 20px; margin-top:10px">Select All</button>
+        <button id="deselectAll" class="btn btn-default" style="margin-left: 10px; margin-top:10px">Deselect All</button>
+        <div class="row" style="margin-top: 10px; margin-left: 10px; margin-right: 10px">
+            <div id="example-table"></div>
+        </div>
+        <div class="row" style="margin-left: 5px;margin-top: 10px">
+            <button id="uploadFiles" class="btn btn-default" onclick="UploadAttachments()">Attach File(s)</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        let allFiles = [];
+        let selectedEncodedFiles = [];
+        let table = null;
+
+        let tableAlertMessage = "Attaching Files";
+        let filesSelectedHeading = "Number of files selected:";
+        let selectAllButtonText = "Select All";
+        let deselectAllButtonText = "Deselect All";
+        let fileNameColumnHeader = "File Name";
+        let fileNameColumnHeaderWidth = 750;
+        let attachFileColumnHeader = "Attach File";
+        let attachFileButtonText = "Attach File(s)";
+        const USER_LANG_FR = 1036;
+        let userLocalLanguage = "";
+        let unableToGetFilesError = "Unable to get files";
+        const protectedBSensitivityLevel = 717750001;
+        let unableToAttachProdBFile = "Unable to attach a Protected B file";
+        let warningMessage = "Retrieving files from SharePoint, please wait";
+        let recordOwner = "";
+
+        function setLanguage() {
+
+            // find out if the users language setting is set to French
+            var currentLanguage = parent.Xrm.Page.context.getUserLcid();
+
+            if (currentLanguage == USER_LANG_FR) {
+                tableAlertMessage = "Joindre des fichiers";
+                filesSelectedHeading = "Nombre de fichiers sélectionnés:";
+                selectAllButtonText = "Sélectionner tout";
+                deselectAllButtonText = "Déselectionner tout";
+                fileNameColumnHeader = "Nom du fichier";
+                fileNameColumnHeaderWidth = 710;
+                attachFileColumnHeader = "Joindre un fichier";
+                attachFileButtonText = "Joindre des fichier(s)";
+                userLocalLanguage = "fr-fr";
+                unableToGetFilesError = "Impossible d'obtenir les fichiers";
+                unableToAttachProdBFile = "Impossible de joindre un fichier protégé B";
+                warningMessage = "Récupération des fichiers de SharePoint, veuillez patienter";
+            }
+
+            // set the button text
+            document.getElementById('selectAll').innerHTML = selectAllButtonText;
+            document.getElementById('deselectAll').innerHTML = deselectAllButtonText;
+            document.getElementById('uploadFiles').innerHTML = attachFileButtonText;
+
+            // set the number of files selected header
+            document.getElementById('numberOfFilesSelected').innerHTML = filesSelectedHeading;
+
+            // set the warning message
+            document.getElementById('warningMessage').innerHTML = '<strong>' + warningMessage + '</strong>';
+        }
+
+        function loadTable() {
+
+            setLanguage();
+
+            // initially disable the Attach Files button
+            document.getElementById("uploadFiles").disabled = true;
+
+            // initially hide the warning message
+            var warningMessage = document.getElementById("warningMessage");
+            warningMessage.style.display = "none";
+
+            // Find out what entity the email belongs to
+            {
+                // get the ID of the selected email
+                var queryString = window.location.search;
+                var urlParams = new URLSearchParams(queryString);
+                var emailId = urlParams.get('data');
+
+                var emailFetchXML = `
+                                                        <fetch>
+                                                          <entity name="email">
+                                                            <attribute name="regardingobjectid" />
+                                                            <filter>
+                                                              <condition attribute="activityid" operator="eq" value="${emailId}" />
+                                                            </filter>
+                                                          </entity>
+                                                        </fetch>
+                                                    `;
+
+                var encodedEmailFetchXml = encodeURIComponent(emailFetchXML);
+                var emailRegardingObjectId = "";
+                var emailTableName = "";
+
+                parent.Xrm.WebApi.retrieveMultipleRecords("email", "?fetchXml=" + encodedEmailFetchXml).then(
+
+                    function success(result) {
+                        emailRegardingObjectId = result.entities[0]._regardingobjectid_value;
+
+                        result.entities.forEach(function (entity) {
+                            emailTableName = entity["_regardingobjectid_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
+
+                            if (emailRegardingObjectId.length != 0 && emailTableName.length != 0) {
+                                var recordId = emailRegardingObjectId;
+                                var recordTableName = emailTableName;
+
+                                // get the record Owner
+                                var recordOwnerFetchXML = getFetchXmlForRecordOwner(recordTableName, recordId);
+                                var encodedRecordOwnerFetchXML = encodeURIComponent(recordOwnerFetchXML);
+
+                                parent.Xrm.WebApi.retrieveMultipleRecords(recordTableName, "?fetchXml=" + encodedRecordOwnerFetchXML).then(
+                                    function success(result) {
+                                        recordOwner = result.entities[0].recordOwner;
+
+                                        if (recordOwner.includes("Aviation Security")) {
+                                            recordOwner = "Aviation Security";
+                                        } else if (recordOwner.includes("Intermodal Surface Security Oversight")) {
+                                            recordOwner = "Intermodal Surface Security Oversight";
+                                        }
+                                    });
+                            }
+
+                            //// only want this working in the DEV environment right now
+                            //{
+                            //    if (parent.Xrm.Utility.getGlobalContext().getClientUrl() != "https://romts-gsrst-tcd365.crm3.dynamics.com") {
+
+                            //        // show the warning message
+                            //        warningMessage.style.display = "block";
+                            //        var mainTableDisplay = document.getElementById("mainTable");
+                            //        mainTableDisplay.style.display = "none";
+
+                            //        if (emailRegardingObjectId.length != 0 && emailTableName.length != 0) {
+                            //            var recordId = emailRegardingObjectId;
+                            //            var recordTableName = emailTableName;
+
+                            //            // get the record Owner
+                            //            var recordOwnerFetchXML = getFetchXmlForRecordOwner(recordTableName, recordId);
+                            //            var encodedRecordOwnerFetchXML = encodeURIComponent(recordOwnerFetchXML);
+
+                            //            parent.Xrm.WebApi.retrieveMultipleRecords(recordTableName, "?fetchXml=" + encodedRecordOwnerFetchXML).then(
+                            //                function success(result) {
+                            //                    recordOwner = result.entities[0].recordOwner;
+
+                            //                    if (recordOwner.includes("Aviation Security")) {
+                            //                        recordOwner = "Aviation Security";
+                            //                    } else if (recordOwner.includes("Intermodal Surface Security Oversight")) {
+                            //                        recordOwner = "Intermodal Surface Security Oversight";
+                            //                    }
+
+                            //                    // create the ts_sharepointfilerequest record to get the list of SharePoint files available
+                            //                    var newSharePointFileRequest = {};
+                            //                    newSharePointFileRequest.ts_recordid = recordId;
+                            //                    newSharePointFileRequest.ts_recordowner = recordOwner;
+
+                            //                            parent.Xrm.WebApi.createRecord("ts_sharepointfilerequest", newSharePointFileRequest).then(
+                            //                                function success(result) {
+                            //                                    newSharePointFileRequest.ts_sharepointfilerequestid = result.id;
+
+                            //                                    // now get the ts_response from that newly created record
+                            //                                    var fetchXml = `<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                            //                                        <entity name='ts_sharepointfilerequest'>
+                            //                                            <attribute name='ts_processed' />
+                            //                                            <attribute name='ts_response' />
+                            //                                            <filter type='and'>
+                            //                                                <condition attribute='ts_sharepointfilerequestid' operator='eq' value='${newSharePointFileRequest.ts_sharepointfilerequestid}'/>
+                            //                                            </filter>
+                            //                                        </entity>
+                            //                                    </fetch>`;
+
+                            //                                    var encodedFetchXml = encodeURIComponent(fetchXml);
+
+                            //                                    var intervalId = setInterval(function () {
+                            //                                        parent.Xrm.WebApi.retrieveMultipleRecords("ts_sharepointfilerequest", "?fetchXml=" + encodedFetchXml).then(
+                            //                                            function success(results) {
+                            //                                                if (results.entities.length > 0) {
+                            //                                                    var result = results.entities[0];
+                            //                                                    if (result.ts_processed === true) {
+                            //                                                        newSharePointFileRequest.ts_response = result.ts_response;
+                            //                                                        clearInterval(intervalId); // Stop the loop when ts_processed is true
+
+                            //                                                        // Populate the table
+                            //                                                        allFiles = [];
+                            //                                                        allFiles = JSON.parse(newSharePointFileRequest.ts_response);
+
+                            //                                                        setupTable(allFiles);
+
+                            //                                                        // hide the warning message
+                            //                                                        warningMessage.style.display = "none";
+                            //                                                        mainTableDisplay.style.display = "block";
+
+                            //                                                        // delete the record since we don't need it anymore
+                            //                                                        parent.Xrm.WebApi.deleteRecord("ts_sharepointfilerequest", newSharePointFileRequest.ts_sharepointfilerequestid).then(
+                            //                                                            function success() {
+                            //                                                                console.log("ts_sharepointfilerequest deleted successfully.");
+                            //                                                            },
+                            //                                                            function error(err) {
+                            //                                                                console.log("Error deleting ts_sharepointfilerequest: " + err.message);
+                            //                                                            }
+                            //                                                        );
+                            //                                                    }
+                            //                                                }
+                            //                                            },
+                            //                                            function (error) {
+                            //                                                console.log(`Error retrieving the ts_sharepointfilerequest ` + error.message);
+                            //                                            }
+                            //                                        );
+                            //                                    }, 500); // Run every x seconds
+
+                            //                                },
+                            //                                function (error) {
+                            //                                    console.log(`Error creating the ts_sharepointfilerequest ` + error.message);
+                            //                                }
+                            //                            );
+                            //                        },
+                            //                        function (error) {
+                            //                            console.log(`Error retrieving who the owner of ${recordTableName}: ` + error.message);
+                            //                        }
+                            //            );
+                            //        }
+                            //    }
+                            //}
+
+                            //   if (parent.Xrm.Utility.getGlobalContext().getClientUrl() === "https://romts-gsrst-tcd365.crm3.dynamics.com") {
+                            if (emailRegardingObjectId.length != 0 && emailTableName.length != 0) {
+                                var fileColumnFilter = { columnName: "", manyToManyName: "", manyToManyColumnName: "" };
+
+                                // determine what column to filter the file column by
+                                {
+                                    const fileColumns = [
+                                        {
+                                            tableName: "incident",
+                                            columnName: "ts_incident",
+                                            manyToManyName: "ts_files_incidents",
+                                            manyToManyColumnName: "incidentid"
+                                        },
+                                        {
+                                            tableName: "ts_exemption",
+                                            columnName: "ts_exemption",
+                                            manyToManyName: "none",
+                                            manyToManyColumnName: "none"
+                                        },
+                                        {
+                                            tableName: "ovs_finding",
+                                            columnName: "ts_finding",
+                                            manyToManyName: "none",
+                                            manyToManyColumnName: "none"
+                                        },
+                                        {
+                                            tableName: "ovs_operation",
+                                            columnName: "ts_ovs_operation",
+                                            manyToManyName: "ts_files_ovs_operations",
+                                            manyToManyColumnName: "ovs_operationid"
+                                        },
+                                        {
+                                            tableName: "ts_securityincident",
+                                            columnName: "ts_securityincident",
+                                            manyToManyName: "none",
+                                            manyToManyColumnName: "none"
+                                        },
+                                        {
+                                            tableName: "msdyn_functionallocation",
+                                            columnName: "ts_site",
+                                            manyToManyName: "ts_files_msdyn_functionallocations",
+                                            manyToManyColumnName: "msdyn_functionallocationid"
+                                        },
+                                        {
+                                            tableName: "account",
+                                            columnName: "ts_stakeholder",
+                                            manyToManyName: "ts_files_accounts",
+                                            manyToManyColumnName: "accountid"
+                                        },
+                                        {
+                                            tableName: "msdyn_workorder",
+                                            columnName: "ts_msdyn_workorder",
+                                            manyToManyName: "ts_files_msdyn_workorders",
+                                            manyToManyColumnName: "msdyn_workorderid"
+                                        },
+                                        {
+                                            tableName: "msdyn_workorderservicetask",
+                                            columnName: "ts_workorderservicetask",
+                                            manyToManyName: "ts_files_msdyn_workorderservicetasks",
+                                            manyToManyColumnName: "msdyn_workorderservicetaskid"
+                                        },
+                                        {
+                                            tableName: "ts_action",
+                                            columnName: "ts_action",
+                                            manyToManyName: "ts_files_accounts",
+                                            manyToManyColumnName: "ts_actionid"
+                                        },
+                                        {
+                                            tableName: "ts_trip",
+                                            columnName: "ts_trip",
+                                            manyToManyName: "ts_ts_file_ts_trip",
+                                            manyToManyColumnName: "ts_tripid"
+                                        }
+                                    ];
+
+                                    // find out what table and column we need to set in the file table
+                                    for (let i = 0; i < fileColumns.length; i++) {
+                                        if (fileColumns[i].tableName === emailTableName) {
+                                            fileColumnFilter.columnName = fileColumns[i].columnName;
+                                            fileColumnFilter.manyToManyName = fileColumns[i].manyToManyName;
+                                            fileColumnFilter.manyToManyColumnName = fileColumns[i].manyToManyColumnName;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                if (fileColumnFilter.columnName.length != 0 && emailRegardingObjectId.length != 0) {
+
+                                    var fileFetchXML = `
+                                                                            <fetch>
+                                                                              <entity name='ts_file'>
+                                                                                <attribute name='ts_fileid' />
+                                                                                <attribute name='ts_file' />
+                                                                                <attribute name='ts_sensitivitylevel' />
+                                                                                <filter>
+                                                                                  <condition attribute="${fileColumnFilter.columnName}" operator="eq" value="${emailRegardingObjectId}" />
+                                                                                </filter>
+                                                                                <order attribute='ts_file' />
+                                                                              </entity>
+                                                                            </fetch>
+                                                                            `;
+
+                                    //  Do the regular lookup query
+                                    var encodedFileFetchXml = encodeURIComponent(fileFetchXML);
+
+                                    // retrieve all the files that are in the file entity
+                                    parent.Xrm.WebApi.retrieveMultipleRecords("ts_file", "?fetchXml=" + encodedFileFetchXml).then(
+                                        function success(result) {
+
+                                            // retrieve all the files that are in the document centre
+                                            for (var i = 0; i < result.entities.length; i++) {
+
+                                                // create the file object
+                                                var myFile = {
+                                                    id: result.entities[i].ts_fileid,
+                                                    fileName: result.entities[i].ts_file,
+                                                    sensitivityLevel: result.entities[i].ts_sensitivitylevel,
+                                                    encodedFileData: ""
+                                                };
+
+                                                allFiles.push(myFile);
+                                            }
+
+                                            // check if we need to use a many-to-many query
+                                            if (fileColumnFilter.manyToManyName != "none") {
+
+                                                fileFetchXML = `
+                                                                                        <fetch>
+                                                                                            <entity name='${fileColumnFilter.manyToManyName}'>
+                                                                                                <attribute name='ts_fileid' alias="fileId"/>
+                                                                                                <link-entity name='ts_file' to='ts_fileid' from='ts_fileid' alias='ts_file' link-type='inner'>
+                                                                                                  <attribute name='ts_file' alias="fileName"/>
+                                                                                                  <attribute name='ts_sensitivitylevel' alias="sensitivityLevel"/>
+                                                                                                </link-entity>
+                                                                                                <filter>
+                                                                                                  <condition attribute='${fileColumnFilter.manyToManyColumnName}' operator='eq' value='${emailRegardingObjectId}' />
+                                                                                                </filter>
+                                                                                            </entity>
+                                                                                        </fetch>
+                                                                                    `;
+
+                                                //  Do the regular lookup query
+                                                encodedFileFetchXml = encodeURIComponent(fileFetchXML);
+
+                                                parent.Xrm.WebApi.retrieveMultipleRecords(fileColumnFilter.manyToManyName, "?fetchXml=" + encodedFileFetchXml).then(
+                                                    function success(result) {
+
+                                                        // retrieve all the files that are in the document centre
+                                                        for (var i = 0; i < result.entities.length; i++) {
+
+                                                            // create the file object
+                                                            var myFile = {
+                                                                id: result.entities[i].fileId,
+                                                                fileName: result.entities[i].fileName,
+                                                                sensitivityLevel: result.entities[i].sensitivityLevel,
+                                                                encodedFileData: ""
+                                                            };
+
+                                                            allFiles.push(myFile);
+                                                        }
+
+                                                        setupTable(allFiles);
+                                                    },
+                                                    function (error) {
+                                                        // handle error conditions
+                                                        alert(unableToGetFilesError);
+                                                        console.log("Error retrieving many-to-many files: " + error.message);
+                                                        window.close();
+                                                    }
+                                                );
+                                            }
+                                            else {
+                                                setupTable(allFiles);
+                                            }
+                                        },
+                                        function (error) {
+                                            // handle error conditions
+                                            alert(unableToGetFilesError);
+                                            console.log("Error retrieving files: " + error.message);
+                                            window.close();
+                                        }
+                                    );
+                                }
+                            }
+                            //  }
+                        });
+                    },
+                    function (error) {
+                        // handle error conditions
+                        console.log("Error retrieving what entity the email belongs to: " + error.message);
+                        window.close();
+                    }
+                );
+            }
+        }
+
+
+        function setupTable(allTableFiles = []) {
+
+            allTableFiles.sort(function (a, b) {
+                var nameA = a.fileName.toUpperCase(); // ignore upper and lowercase
+                var nameB = b.fileName.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+
+                // names must be equal
+                return 0;
+            });
+
+            //define the table data
+            table = new Tabulator("#example-table", {
+                data: allTableFiles,
+                layout: "fitColumns",
+                pagination: "local",
+                paginationSize: 10,
+                locale: userLocalLanguage,
+                langs: {
+                    "fr-fr": { //French language definition
+                        "columns": {
+                            "id": "ID",
+                            "fileName": fileNameColumnHeader,
+                            "attachFile": attachFileColumnHeader,
+                        },
+                        "pagination": {
+                            "first": "Premier",
+                            "last": "Dernier",
+                            "prev": "Précédent",
+                            "next": "Suivant",
+                        },
+                    },
+                },
+                initialSort: [
+                    { column: "fileName", dir: "asc" },
+                ],
+                columns: [
+                    { title: "ID", field: "id", sorter: "string", width: 200, editor: true, visible: false },
+                    { title: fileNameColumnHeader, field: "fileName", sorter: "string", width: fileNameColumnHeaderWidth, headerFilter: "input" },
+                    { title: attachFileColumnHeader, field: "attachFile", formatter: "rowSelection", hozAlign: "center", vertAlign: "center", headerSort: false },
+                ],
+            });
+
+            //keep track of how many files have been selected
+            table.on("rowSelectionChanged", async function (data, rows) {
+
+                document.getElementById('RowCounterLabel').innerHTML = data.length;
+
+                var rowIsSelected = data.length > 0 ? true : false;
+
+                var protectedBFileFound = false;
+
+                // Check if any of the selected items is a Protected B document
+                {
+                    if (rowIsSelected) {
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            if (data[i].sensitivityLevel == protectedBSensitivityLevel) {
+
+                                var selectedRowGuid = data[i].id;
+
+                                // deselect the selected file
+                                table.deselectRow(selectedRowGuid);
+
+                                protectedBFileFound = true;
+                            }
+
+                            // for handling SharePoint Files with Protected B
+                            if (parent.Xrm.Utility.getGlobalContext().getClientUrl() != "https://romts-gsrst-tcd365.crm3.dynamics.com") {
+                                if (data[i].sensitivityLevel == "PROTECTED B") {
+
+                                    var selectedRowGuid = data[i].id;
+
+                                    // deselect the selected file
+                                    table.deselectRow(selectedRowGuid);
+
+                                    protectedBFileFound = true;
+                                }
+                            }
+                        }
+
+                        if (protectedBFileFound) {
+
+                            // show the message to the user for a brief moment
+                            // we do it this way incase the user uses the Select All button
+                            table.alert(unableToAttachProdBFile);
+
+                            await delay(2);
+
+                            table.clearAlert();
+                        }
+                    }
+                }
+
+                // Enable or disable the upload button
+                {
+                    if (rowIsSelected) {
+                        document.getElementById("uploadFiles").disabled = false;
+                    } else {
+                        document.getElementById("uploadFiles").disabled = true;
+                    }
+                }
+
+            });
+
+            //select all records
+            document.getElementById("selectAll").addEventListener("click", function () {
+                table.selectRow();
+            });
+
+            //deselect all records
+            document.getElementById("deselectAll").addEventListener("click", function () {
+                table.deselectRow();
+            });
+        }
+
+        async function UploadAttachments() {
+
+            // show the alert
+            table.alert(tableAlertMessage);
+
+            // disable the button
+            document.getElementById("uploadFiles").disabled = true;
+
+            // have a delay so the message actually shows
+            await delay(1);
+
+            // get the ID of the selected email
+            var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString);
+            var emailID = urlParams.get('data');
+
+            var turnOffDocumentCentre = await getEnvironmentVariableByName("ts_TurnoffDocumentCentre");
+
+            // go through each selected file and upload it as an attachment to the email
+            {
+                var selectedFiles = table.getSelectedData();
+
+                //var fileIds = selectedFiles.map(f => f.id);
+
+                var fileIds = selectedFiles.map(f => ({
+                    id: f.id,
+                    name: f.name
+                }));
+
+                var data = {
+                    emailId: emailID,
+                    fileIds: fileIds
+                };
+
+                if (turnOffDocumentCentre) {
+                    emailUploadAttachments(data);
+                }
+
+                if (!turnOffDocumentCentre) {
+
+                    // call the API and get the encoding for each file
+                    for (var i = 0; i < selectedFiles.length; i++) {
+
+                        var fileID = selectedFiles[i].id;
+                        var getRequest = new XMLHttpRequest();
+
+                        getRequest.open("GET", parent.Xrm.Page.context.getClientUrl() + "/api/data/v9.0/ts_files(" + fileID + ")/ts_attachment/", false);
+                        getRequest.setRequestHeader("OData-MaxVersion", "4.0");
+                        getRequest.setRequestHeader("OData-Version", "4.0");
+
+                        getRequest.onreadystatechange = function () {
+
+                            if (this.readyState === 4) {
+                                getRequest.onreadystatechange = null;
+
+                                if (this.status === 200) {
+                                    var result = JSON.parse(this.response);
+                                    selectedFiles[i].encodedFileData = result.value;
+
+                                    console.log("Success getting the encoding for tsfileid " + fileID + " Message: " + this.statusText);
+                                }
+                                else {
+                                    // display an error message to the console
+                                    console.log("Error getting the encoding for tsfileid " + fileID + " Reason: " + this.statusText);
+                                }
+                            }
+                        };
+
+                        getRequest.send();
+                    }
+                }
+
+                if (turnOffDocumentCentre) {
+
+                    // call the API and get the encoding for each SharePoint file
+                    for (var i = 0; i < selectedFiles.length; i++) {
+                        {
+                            // create the ts_sharepointemailfileupload record to get the downloaded file from SharePoint
+                            var newSharePointEmailFileUpload = {};
+                            newSharePointEmailFileUpload.ts_sharepointfileidentifier = selectedFiles[i].id;
+                            newSharePointEmailFileUpload.ts_name = selectedFiles[i].fileName;
+                            newSharePointEmailFileUpload.ts_recordowner = recordOwner;
+
+                            try {
+                                var myresult = await parent.Xrm.WebApi.createRecord("ts_sharepointemailfileupload", newSharePointEmailFileUpload);
+                                newSharePointEmailFileUpload.ts_sharepointemailfileuploadid = myresult.id;
+
+                                // get the ts_downloadedsharepointfile from that newly created record
+                                newSharePointEmailFileUpload = await WaitForSharePointEmailFileUpload(newSharePointEmailFileUpload);
+
+                                // get the encoded data from the SharePoint File that was downloaded to SharePoint Email File Upload
+                                selectedFiles[i].encodedFileData = await DownloadSharePointFileToSharePointEmailFileUpload(newSharePointEmailFileUpload);
+
+                                // delete the ts_sharepointemailfileupload file since we don't need it anymore
+                                await DeleteSharePointFileToSharePointEmailFileUpload(newSharePointEmailFileUpload.ts_sharepointemailfileuploadid);
+
+                            } catch (error) {
+                                console.log(`Error creating the ts_sharepointemailfileupload record:` + error.message);
+                            }
+                        }
+                    }
+                }
+
+                //upload each file to the Attachment (activitymimeattachments) entity
+                for (var i = 0; i < selectedFiles.length; i++) {
+
+                    var activityType = "email"
+                    var attachment = {};
+
+                    attachment["objectid_activitypointer@odata.bind"] = "/activitypointers(" + emailID + ")";
+                    attachment.body = selectedFiles[i].encodedFileData
+                    attachment.filename = selectedFiles[i].fileName;
+                    attachment.objecttypecode = activityType;
+
+                    var postRequest = new XMLHttpRequest();
+                    postRequest.open("POST", parent.Xrm.Page.context.getClientUrl() + "/api/data/v9.0/activitymimeattachments", false);
+                    postRequest.setRequestHeader("OData-MaxVersion", "4.0");
+                    postRequest.setRequestHeader("OData-Version", "4.0");
+                    postRequest.setRequestHeader("Accept", "application/json");
+                    postRequest.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+
+                    postRequest.onreadystatechange = function () {
+                        if (this.readyState === 4) {
+                            postRequest.onreadystatechange = null;
+                            if (this.status === 204) {
+                                console.log("Success uploading the attachment FileName: " + selectedFiles[i].fileName + " Message: " + this.statusText);
+                            } else {
+                                // display an error message to the console
+                                console.log("Error uploading the attachment FileName: " + selectedFiles[i].fileName + " Reason: " + this.statusText);
+                            }
+                        }
+                    };
+                    postRequest.send(JSON.stringify(attachment));
+                }
+            }
+
+            // close the alert
+            table.clearAlert();
+
+            window.close();
+        }
+
+        async function WaitForSharePointEmailFileUpload(newSharePointEmailFileUpload) {
+            while (true) {
+                try {
+                    // now get the ts_processed and ts_downloadedsharepointfile from that newly created record
+                    var fetchXml = `<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                                                                                                <entity name='ts_sharepointemailfileupload'>
+                                                                                                    <attribute name='ts_processed' />
+                                                                                                    <attribute name='ts_downloadedsharepointfile' />
+                                                                                                    <filter type='and'>
+                                                                                                        <condition attribute='ts_sharepointemailfileuploadid' operator='eq' value='${newSharePointEmailFileUpload.ts_sharepointemailfileuploadid}'/>
+                                                                                                    </filter>
+                                                                                                </entity>
+                                                                                            </fetch>`;
+
+                    var encodedFetchXml = encodeURIComponent(fetchXml);
+
+                    var result = await parent.Xrm.WebApi.retrieveMultipleRecords("ts_sharepointemailfileupload", "?fetchXml=" + encodedFetchXml);
+                    if (result.entities.length > 0 && result.entities[0].ts_processed === true) {
+                        newSharePointEmailFileUpload.ts_downloadedsharepointfile = result.entities[0].ts_downloadedsharepointfile;
+                        return newSharePointEmailFileUpload;
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 500)); // wait for x second before next check
+                } catch (error) {
+                    console.error(error.message);
+                    throw error;
+                }
+            }
+        }
+
+        async function DownloadSharePointFileToSharePointEmailFileUpload(newSharePointEmailFileUpload) {
+            return new Promise((resolve, reject) => {
+                var getRequest = new XMLHttpRequest();
+
+                getRequest.open("GET", parent.Xrm.Page.context.getClientUrl() + "/api/data/v9.0/ts_sharepointemailfileuploads(" + newSharePointEmailFileUpload.ts_sharepointemailfileuploadid + ")/ts_downloadedsharepointfile/", true);
+                getRequest.setRequestHeader("OData-MaxVersion", "4.0");
+                getRequest.setRequestHeader("OData-Version", "4.0");
+
+                getRequest.onload = function () {
+                    if (this.status === 200) {
+                        var result = JSON.parse(this.response);
+
+                        // retrieve the encoded file data
+                        resolve(result.value);
+                    }
+                    else {
+                        // display an error message to the console
+                        console.log("Error getting the encoding for ts_downloadedsharepointfile " + newSharePointEmailFileUpload.ts_sharepointemailfileuploadid + " Reason: " + this.statusText);
+                        reject(this.statusText);
+                    }
+                };
+
+                getRequest.send();
+            }).catch(error => {
+                console.log(error);
+            });
+        }
+
+        async function DeleteSharePointFileToSharePointEmailFileUpload(ts_sharepointemailfileuploadid) {
+
+            //delete the record since we don't need it anymore
+            parent.Xrm.WebApi.deleteRecord("ts_sharepointemailfileupload", ts_sharepointemailfileuploadid).then(
+                function success() {
+                    console.log("ts_sharepointemailfileupload deleted successfully.");
+                },
+                function error(err) {
+                    console.log("Error deleting ts_sharepointemailfileupload: " + err.message);
+                }
+            );
+        }
+
+        function delay(n) {
+            return new Promise(function (resolve) {
+                setTimeout(resolve, n * 1000);
+            });
+        }
+
+        // FetchXml to use for each table
+        function getFetchXmlForRecordOwner(tableName, recordTagId) {
+            switch (tableName) {
+                case "incident":
+                    return `
+                                                    <fetch xmlns:generator='MarkMpn.SQL4CDS' distinct='true'>
+                                                      <entity name='incident'>
+                                                        <attribute name='title' alias='recordName' />
+                                                        <filter>
+                                                          <condition attribute='incidentid' operator='eq' value="${recordTagId}" />
+                                                        </filter>
+                                                        <link-entity name='msdyn_workorder' from='msdyn_servicerequest' to='incidentid' alias='workorder'>
+                                                          <link-entity name='ovs_operationtype' from='ovs_operationtypeid' to='ovs_operationtypeid' alias='operationtype'>
+                                                            <link-entity name='team' from='teamid' to='ownerid' alias='teamrelationship'>
+                                                              <attribute name='name' alias='recordOwner' />
+                                                            </link-entity>
+                                                          </link-entity>
+                                                        </link-entity>
+                                                      </entity>
+                                                    </fetch>
+                                                `;
+                case "msdyn_workorder":
+                    return `
+                                                    <fetch xmlns:generator='MarkMpn.SQL4CDS'>
+                                                      <entity name='msdyn_workorder'>
+                                                        <attribute name='msdyn_name' alias='recordName' />
+                                                        <link-entity name='ovs_operationtype' to='ovs_operationtypeid' from='ovs_operationtypeid' alias='ovs_operationtype' link-type='inner'>
+                                                          <link-entity name='team' to='owningteam' from='teamid' alias='team' link-type='inner'>
+                                                            <attribute name='name' alias='recordOwner' />
+                                                          </link-entity>
+                                                        </link-entity>
+                                                        <filter>
+                                                          <condition attribute='msdyn_workorderid' operator='eq' value="${recordTagId}" />
+                                                        </filter>
+                                                      </entity>
+                                                    </fetch>
+                                                `;
+                case "msdyn_workorderservicetask":
+                    return `
+                                                    <fetch xmlns:generator='MarkMpn.SQL4CDS'>
+                                                      <entity name='msdyn_workorderservicetask'>
+                                                        <attribute name='msdyn_name' alias='recordName' />
+                                                        <link-entity name='msdyn_workorder' to='msdyn_workorder' from='msdyn_workorderid' alias='msdyn_workorder' link-type='inner'>
+                                                          <link-entity name='ovs_operationtype' to='ovs_operationtypeid' from='ovs_operationtypeid' alias='ovs_operationtype' link-type='inner'>
+                                                            <link-entity name='team' to='owningteam' from='teamid' alias='team' link-type='inner'>
+                                                              <attribute name='name' alias='recordOwner' />
+                                                            </link-entity>
+                                                          </link-entity>
+                                                        </link-entity>
+                                                        <filter>
+                                                          <condition attribute='msdyn_workorderservicetaskid' operator='eq' value="${recordTagId}" />
+                                                        </filter>
+                                                      </entity>
+                                                    </fetch>
+                                                `;
+                case "account":
+                    return `
+                                                    <fetch xmlns:generator='MarkMpn.SQL4CDS'>
+                                                      <entity name='account'>
+                                                        <attribute name='name' alias='recordName' />
+                                                        <link-entity name='team' to='owningteam' from='teamid' alias='team' link-type='inner'>
+                                                          <attribute name='name' alias='recordOwner' />
+                                                        </link-entity>
+                                                        <filter>
+                                                          <condition attribute='accountid' operator='eq' value="${recordTagId}" />
+                                                        </filter>
+                                                      </entity>
+                                                    </fetch>
+                                                `;
+                case "ovs_operation":
+                    return `
+                                                    <fetch xmlns:generator='MarkMpn.SQL4CDS'>
+                                                      <entity name='ovs_operation'>
+                                                        <attribute name='ovs_name' alias='recordName' />
+                                                        <link-entity name='team' to='owningteam' from='teamid' alias='team' link-type='inner'>
+                                                          <attribute name='name' alias='recordOwner' />
+                                                        </link-entity>
+                                                        <filter>
+                                                          <condition attribute='ovs_operationid' operator='eq' value="${recordTagId}" />
+                                                        </filter>
+                                                      </entity>
+                                                    </fetch>
+                                                `;
+                case "msdyn_functionallocation":
+                    return `
+                                                    <fetch xmlns:generator='MarkMpn.SQL4CDS'>
+                                                      <entity name='msdyn_functionallocation'>
+                                                        <attribute name='msdyn_name' alias='recordName' />
+                                                        <attribute name='ts_functionallocationnameenglish' alias='siteNameEnglish' />
+                                                        <link-entity name='team' to='owningteam' from='teamid' alias='team' link-type='inner'>
+                                                          <attribute name='name' alias='recordOwner' />
+                                                        </link-entity>
+                                                        <filter>
+                                                          <condition attribute='msdyn_functionallocationid' operator='eq' value="${recordTagId}" />
+                                                        </filter>
+                                                      </entity>
+                                                    </fetch>
+                                                `;
+                case "ts_securityincident":
+                    return `
+                                                    <fetch xmlns:generator='MarkMpn.SQL4CDS'>
+                                                      <entity name='ts_securityincident'>
+                                                        <attribute name='ts_name' alias='recordName' />
+                                                        <attribute name='ts_mode' alias='recordOwner' />
+                                                        <filter>
+                                                          <condition attribute='ts_securityincidentid' operator='eq' value="${recordTagId}" />
+                                                        </filter>
+                                                      </entity>
+                                                    </fetch>
+                                                `;
+                case "ts_exemption":
+                    return `
+                                                    <fetch xmlns:generator='MarkMpn.SQL4CDS'>
+                                                      <entity name='ts_exemption'>
+                                                        <attribute name='ts_name' alias='recordName' />
+                                                        <attribute name='ts_program' alias='recordOwner' />
+                                                        <filter>
+                                                          <condition attribute='ts_exemptionid' operator='eq' value="${recordTagId}" />
+                                                        </filter>
+                                                      </entity>
+                                                    </fetch>
+                                                `;
+
+                case "ts_action":
+                    return `
+                                                    <fetch xmlns:generator="MarkMpn.SQL4CDS">
+                                                      <entity name="ts_action">
+                                                        <attribute name="ts_name" alias="recordName" />
+                                                        <attribute name="ts_actionid" />
+                                                        <link-entity name="incident" to="ts_case" from="incidentid" alias="incident" link-type="inner">
+                                                          <attribute name="incidentid" />
+                                                          <link-entity name="msdyn_workorder" to="incidentid" from="msdyn_servicerequest" alias="msdyn_workorder" link-type="inner">
+                                                            <attribute name="msdyn_workorderid" />
+                                                            <link-entity name="ovs_operationtype" to="ovs_operationtypeid" from="ovs_operationtypeid" alias="ovs_operationtype" link-type="inner">
+                                                              <attribute name="ovs_operationtypeid" />
+                                                              <link-entity name="team" to="owningteam" from="teamid" alias="team" link-type="inner">
+                                                                <attribute name="name" alias="recordOwner" />
+                                                                <attribute name="teamid" />
+                                                                <order attribute="teamid" />
+                                                              </link-entity>
+                                                              <order attribute="ovs_operationtypeid" />
+                                                            </link-entity>
+                                                            <order attribute="msdyn_workorderid" />
+                                                          </link-entity>
+                                                          <order attribute="incidentid" />
+                                                        </link-entity>
+                                                        <filter>
+                                                          <condition attribute="ts_actionid" operator="eq" value="${recordTagId}" />
+                                                        </filter>
+                                                        <order attribute="ts_actionid" />
+                                                      </entity>
+                                                    </fetch>
+                                                `;
+                case "ts_trip":
+                    return `
+                                                  <fetch xmlns:generator='MarkMpn.SQL4CDS'>
+                                                    <entity name='ts_trip'>
+                                                        <attribute name='ts_name' alias='recordName' />
+                                                        <filter>
+                                                            <condition attribute='ts_tripid' operator='eq' value='${recordTagId}' />
+                                                        </filter>
+                                                        <link-entity name='businessunit' from='businessunitid' to='owningbusinessunit' link-type='inner' alias='bu'>
+                                                            <attribute name='name' alias='recordOwner' />
+                                                        </link-entity>
+                                                    </entity>
+                                                  </fetch>
+                                                `;
+                // Add more cases for other entity types as needed
+            }
+        }
+
+
+        async function runEmailUploadAttachmentsFlow(flowURL, data) {
+            if (!flowURL) {
+                console.log('Flow Key or Flow URL is null');
+                return false;
+            }
+
+            try {
+                const response = await fetch(flowURL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                    , body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const result = await response.status;
+                    console.log('Success:', result);
+                    table.clearAlert();
+                    document.getElementById("uploadFiles").disabled = false;
+                    return true;
+                } else {
+                    console.error('Error:', response.statusText);
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                return false;
+            }
+        }
+
+        async function emailUploadAttachments(jsonContent) {
+            let flowKey = null;
+            let flowURL = null;
+            let result = null;
+
+            // Wait for securityToken and flowURL to be retrieved
+            flowKey = await getEnvironmentVariableByName("ts_SharePointFlowKey");
+            flowURL = await getEnvironmentVariableByName("ts_URLEmailUploadAttachments");
+
+            if (!flowKey || !flowURL) {
+                console.log('Flow Key or Flow URL is null');
+                return false;
+            }
+
+            result = await runEmailUploadAttachmentsFlow(flowURL, jsonContent);
+
+        }
+
+        async function getEnvironmentVariableByName(variableName) {
+            let variableValue = "";
+
+            const fetchXML = `
+                                                                                                    <fetch>
+                                                                                                        <entity name="environmentvariablevalue">
+                                                                                                            <attribute name="value" />
+                                                                                                            <link-entity name="environmentvariabledefinition" to="environmentvariabledefinitionid" from="environmentvariabledefinitionid" alias="environmentvariabledefinition" link-type="inner">
+                                                                                                                <filter>
+                                                                                                                    <condition attribute="schemaname" operator="eq" value="${variableName}" />
+                                                                                                                </filter>
+                                                                                                            </link-entity>
+                                                                                                        </entity>
+                                                                                                    </fetch>
+                                                                                                `;
+
+            const encodedFetchXml = encodeURIComponent(fetchXML);
+
+            while (true) {
+                try {
+                    const result = await parent.Xrm.WebApi.retrieveMultipleRecords("environmentvariablevalue", "?fetchXml=" + encodedFetchXml);
+                    if (result.entities.length > 0) {
+                        variableValue = result.entities[0].value;
+                        return variableValue;
+                    } else {
+                        console.log(`Environment variable ${variableName} not found.`);
+                        return variableValue;
+                    }
+                } catch (error) {
+                    console.error("Error retrieving environment variable: " + error.message);
+                    throw error;
+                }
+
+                await new Promise(resolve => setTimeout(resolve, 500)); // wait for 500ms before next check
+            }
+        }
+
+    </script>
+</body>
+</html>

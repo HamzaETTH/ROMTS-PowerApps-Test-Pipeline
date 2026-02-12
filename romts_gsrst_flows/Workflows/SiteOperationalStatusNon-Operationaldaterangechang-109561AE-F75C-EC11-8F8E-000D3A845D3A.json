@@ -1,0 +1,151 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "52b48cc6-9406-4712-8a5c-5226119c6261"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "msdyn_functionallocation",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_statusenddate,ts_statusstartdate"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "If_start_Date_is_not_null": {
+          "actions": {
+            "If_End_Date_is_null": {
+              "actions": {
+                "Add_a_new_row_3": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "d3d2f5fa-dcfd-4011-abf2-66ac37c653f0"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "CreateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "posts",
+                      "item/source": 1,
+                      "item/largetext": " ",
+                      "item/text": "Status effective date range set for Non-Operational on @{triggerOutputs()?['body/ts_statusstartdate']} with no end date  with a description of \"@{triggerOutputs()?['body/ts_description']}\"",
+                      "item/type": 3,
+                      "item/regardingobjectid_msdyn_functionallocation@odata.bind": "/msdyn_functionallocations/@{triggerOutputs()?['body/msdyn_functionallocationid']}"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Add_a_new_row_4": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "2adf771a-b21e-456d-89c4-fac67b9cb500"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "CreateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "posts",
+                        "item/source": 1,
+                        "item/largetext": "Status effective date range set for Non-Operational on @{triggerOutputs()?['body/ts_statusstartdate']} to @{triggerOutputs()?['body/ts_statusenddate']} with a description of \"@{triggerOutputs()?['body/ts_description']}\"",
+                        "item/text": " ",
+                        "item/type": 3,
+                        "item/regardingobjectid_msdyn_functionallocation@odata.bind": "/msdyn_functionallocations/@{triggerOutputs()?['body/msdyn_functionallocationid']}"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@triggerOutputs()?['body/ts_statusenddate']",
+                  "@null"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "3485b679-bf78-4efd-82cf-ab3468d8d556"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {},
+          "else": {
+            "actions": {
+              "Terminate": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "2ee93251-313d-4a1c-b914-1a1bdf09badf"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Cancelled"
+                }
+              }
+            }
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@triggerOutputs()?['body/ts_statusstartdate']",
+                "@null"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "1243ebf1-12f6-4008-9578-a88bc2336a6f"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

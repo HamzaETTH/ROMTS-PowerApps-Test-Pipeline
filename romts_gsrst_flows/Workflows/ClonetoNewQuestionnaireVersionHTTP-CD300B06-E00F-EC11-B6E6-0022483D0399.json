@@ -1,0 +1,157 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "e4ee0635-bbfb-420e-945c-202d1718592a"
+          },
+          "type": "Request",
+          "kind": "Http",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            },
+            "triggerAuthenticationType": "All"
+          }
+        }
+      },
+      "actions": {
+        "Get_Questionnaire_Version_by_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "dfddb232-261d-4bcd-9b3b-2185d66e08fe"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_questionnaireversions",
+              "recordId": "@triggerBody()?['id']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_versions_of_Parent_Questionnaire": {
+          "runAfter": {
+            "Get_Parent_Questionnaire_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "573b7d4d-85c7-4acb-9db3-cefa9ae441a2"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_questionnaireversions",
+              "$filter": "_ts_ovs_questionnaire_value eq '@{outputs('Get_Parent_Questionnaire_by_ID')?['body/ovs_questionnaireid']}'"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Parent_Questionnaire_by_ID": {
+          "runAfter": {
+            "Get_Questionnaire_Version_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "101cb75c-29f7-4f65-9180-5eb644537927"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ovs_questionnaires",
+              "recordId": "@outputs('Get_Questionnaire_Version_by_ID')?['body/_ts_ovs_questionnaire_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_next_version_number": {
+          "runAfter": {
+            "List_versions_of_Parent_Questionnaire": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "06d6cde5-3da5-4da2-afdf-c6840df71599"
+          },
+          "type": "Compose",
+          "inputs": "@add(length(outputs('List_versions_of_Parent_Questionnaire')?['body/value']), 1)"
+        },
+        "Add_a_new_row": {
+          "runAfter": {
+            "Get_next_version_number": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "441822b3-7f4f-4c8c-add9-129c2551bcd7"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "CreateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_questionnaireversions",
+              "item/ts_name": "@{outputs('Get_Parent_Questionnaire_by_ID')?['body/ovs_name']}- Version @{outputs('Get_next_version_number')}",
+              "item/ts_ovs_questionnaire@odata.bind": "/ovs_questionnaires(@{outputs('Get_Parent_Questionnaire_by_ID')?['body/ovs_questionnaireid']})",
+              "item/ts_questionnairedefinition": "@outputs('Get_Questionnaire_Version_by_ID')?['body/ts_questionnairedefinition']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

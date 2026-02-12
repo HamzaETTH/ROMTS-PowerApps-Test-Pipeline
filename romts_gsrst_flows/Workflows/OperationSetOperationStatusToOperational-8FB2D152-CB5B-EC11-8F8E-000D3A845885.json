@@ -1,0 +1,130 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Recurrence": {
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "timeZone": "Eastern Standard Time",
+            "startTime": "2021-12-12T00:00:00Z",
+            "schedule": {
+              "hours": [
+                "0"
+              ],
+              "minutes": [
+                1
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "27c8308a-2787-4211-84f4-6d095bb0a19f"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "cd1a2623-af82-49a5-a70f-63ed94d1ff95"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ovs_operations",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"ovs_operation\">\n    <attribute name=\"ts_operationalstatus\" />\n    <attribute name=\"ts_statusenddate\" />\n    <filter type=\"and\">\n      <condition attribute=\"ts_operationalstatus\" operator=\"eq\" value=\"717750001\" uitype=\"ovs_operationtype\" />\n      <condition attribute=\"ts_statusenddate\" operator=\"on-or-before\" value=\"@{utcNow()}\" />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows')?['body/value']",
+          "actions": {
+            "Convert_time_zone": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d8ad56de-9b01-4ca6-a560-5d876157ecc9"
+              },
+              "type": "Expression",
+              "kind": "ConvertTimeZone",
+              "inputs": {
+                "baseTime": "@{string(null)}",
+                "sourceTimeZone": "Atlantic Standard Time",
+                "destinationTimeZone": "Atlantic Standard Time"
+              }
+            },
+            "Update_a_row": {
+              "runAfter": {
+                "Convert_time_zone": [
+                  "Succeeded",
+                  "Failed"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "91c09336-abb9-4123-bb2c-2cf8b5725bb5"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ovs_operations",
+                  "recordId": "@items('Apply_to_each')?['ovs_operationid']",
+                  "item/ts_operationalstatus": 717750000,
+                  "item/ts_description": "@null",
+                  "item/ts_statusenddate": "@body('Convert_time_zone')",
+                  "item/ts_statusstartdate": "@body('Convert_time_zone')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c8ba604b-232a-49a6-bdc4-e231622527c0"
+          },
+          "type": "Foreach"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

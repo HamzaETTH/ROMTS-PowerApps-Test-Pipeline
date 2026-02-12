@@ -1,0 +1,146 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "afb468cc-1aed-4f60-9edf-4e58ed520df6"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "msdyn_functionallocation",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_sitestatus"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "IF_Status_is_Non-Operational": {
+          "actions": {
+            "Add_a_post": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "c121506f-8616-411b-920a-acf9636a4623"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "posts",
+                  "item/source": 1,
+                  "item/largetext": "The status has been updated to Non-Operational",
+                  "item/text": " ",
+                  "item/type": 3,
+                  "item/regardingobjectid_msdyn_functionallocation@odata.bind": "/msdyn_functionallocations/@{triggerOutputs()?['body/msdyn_functionallocationid']}"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "else": {
+            "actions": {
+              "Add_a_post_": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "cb2829e0-2ec9-4e4a-96c4-96824c5751ad"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps",
+                    "operationId": "CreateRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "posts",
+                    "item/source": 1,
+                    "item/largetext": "The status has been updated to Operational",
+                    "item/text": " ",
+                    "item/type": 3,
+                    "item/regardingobjectid_msdyn_functionallocation@odata.bind": "/msdyn_functionallocations/@{triggerOutputs()?['body/msdyn_functionallocationid']}"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              },
+              "Update_a_row": {
+                "runAfter": {
+                  "Add_a_post_": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "4d4e296c-150e-48c3-ab2f-556d886cb5ef"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps",
+                    "operationId": "UpdateRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "msdyn_functionallocations",
+                    "recordId": "@triggerOutputs()?['body/msdyn_functionallocationid']",
+                    "item/ts_description": "@null",
+                    "item/ts_statusenddate": "@null",
+                    "item/ts_statusstartdate": "@null"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/ts_sitestatus']",
+              717750001
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e8b3bfe2-3cd6-4740-abb3-1a87f1a112ce"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

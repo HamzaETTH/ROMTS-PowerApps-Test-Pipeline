@@ -1,0 +1,141 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "b00f5de8-8580-4085-88ce-b3c5eee2badd"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "msdyn_workorder",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition_Check_if_Account_Team_is_null": {
+          "actions": {
+            "Get_Operation_by_ID": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "af35dd89-d871-4e82-8dcd-9588e4e21430"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ovs_operations",
+                  "recordId": "@triggerOutputs()?['body/_ovs_operationid_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Condition_Check_if_Operation_Accountable_Team_has_value": {
+              "actions": {
+                "Update_a_row": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "5f4e6daf-fbd9-4586-8e31-2fa68be2265e"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorders",
+                      "recordId": "@triggerOutputs()?['body/msdyn_workorderid']",
+                      "item/ts_AccountableTeam@odata.bind": "/teams(@{outputs('Get_Operation_by_ID')?['body/_ts_opiteam_value']})"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_Operation_by_ID": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "not": {
+                  "equals": [
+                    "@outputs('Get_Operation_by_ID')?['body/_ts_opiteam_value']",
+                    "@null"
+                  ]
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "f77f2f27-2274-4875-9ccf-91712459ed91"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {},
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/_ts_accountableteam_value']",
+                  "@null"
+                ]
+              },
+              {
+                "not": {
+                  "equals": [
+                    "@triggerOutputs()?['body/_ovs_operationid_value@Microsoft.Dynamics.CRM.lookuplogicalname']",
+                    "@null"
+                  ]
+                }
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "676fe5d0-3251-41eb-b3aa-a593b3e91c83"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

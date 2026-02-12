@@ -1,0 +1,121 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "6c80eb2b-efd9-4f5f-b259-364c8699daf1"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ts_planinspectionsupportregion",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_suggestedinspection,ts_region,ts_hours"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_a_row_by_ID_from_Suggested_Inspection": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "29333074-4288-4ca2-84d2-6a6b9f3d8eec"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_suggestedinspections",
+              "recordId": "@triggerOutputs()?['body/_ts_suggestedinspection_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_a_row_by_ID_from_Plan": {
+          "runAfter": {
+            "Get_a_row_by_ID_from_Suggested_Inspection": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5c5f659b-af40-4956-ae07-bb9f0733491b"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_plans",
+              "recordId": "@body('Get_a_row_by_ID_from_Suggested_Inspection')?['_ts_plan_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Update_a_row": {
+          "runAfter": {
+            "Get_a_row_by_ID_from_Plan": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c42c7384-b324-471e-a4db-4e821d6ae53d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "UpdateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_planinspectionsupportregions",
+              "recordId": "@triggerOutputs()?['body/ts_planinspectionsupportregionid']",
+              "item/ts_fiscalyear@odata.bind": "/tc_tcfiscalyears(@{outputs('Get_a_row_by_ID_from_Plan')?['body/_ts_fiscalyear_value']})"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

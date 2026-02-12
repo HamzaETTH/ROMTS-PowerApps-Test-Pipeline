@@ -1,0 +1,179 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_Team_Planning_Data_Status_is_Updated": {
+          "metadata": {
+            "operationMetadataId": "65e6ed18-710e-441b-8db1-73afe3ea4105"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "ts_teamplanningdata",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Plan_Status_is_In_Progress": {
+          "actions": {
+            "Get_Related_Planning_Data": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ba9de7a4-c199-40de-a856-f37409c0a518"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_planningdatas",
+                  "$filter": "_ts_teamplanningdata_value eq @{triggerOutputs()?['body/ts_teamplanningdataid']}"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each": {
+              "foreach": "@outputs('Get_Related_Planning_Data')?['body/value']",
+              "actions": {
+                "Update_a_row": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "bb047685-d507-4a95-82b2-6ce5e1244673"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_planningdatas",
+                      "recordId": "@items('Apply_to_each')?['ts_planningdataid']",
+                      "item/ts_keephidden": false
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_Related_Planning_Data": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "49843e7a-26ae-4310-bdff-408731b0c76d"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {},
+          "else": {
+            "actions": {
+              "Get_Related_Planning_Data_2": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "ba9de7a4-c199-40de-a856-f37409c0a518"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps_1",
+                    "operationId": "ListRecords",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "ts_planningdatas",
+                    "$filter": "_ts_teamplanningdata_value eq @{triggerOutputs()?['body/ts_teamplanningdataid']} and ts_operationactivityisoperational eq 0"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              },
+              "Apply_to_each_2": {
+                "foreach": "@outputs('Get_Related_Planning_Data_2')?['body/value']",
+                "actions": {
+                  "Update_a_row_2": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "ea6c15b2-ab92-45e1-94fc-717a54435ce6"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps_1",
+                        "operationId": "UpdateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "ts_planningdatas",
+                        "recordId": "@items('Apply_to_each_2')?['ts_planningdataid']",
+                        "item/ts_keephidden": true
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                },
+                "runAfter": {
+                  "Get_Related_Planning_Data_2": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "17016aca-00db-4b97-8a11-87a58f128382"
+                },
+                "type": "Foreach"
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/ts_planstatus']",
+              741130000
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bd32cfef-e9b2-4fdd-a890-03ff6d5c3847"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

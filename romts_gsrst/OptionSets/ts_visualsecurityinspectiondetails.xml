@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="ts_visualsecurityinspectiondetails" localizedName="VSI Details" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>1.0.20220429.1</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <ExternalTypeName></ExternalTypeName>
+  <displaynames>
+    <displayname description="VSI Details" languagecode="1033" />
+    <displayname description="Détails VSI" languagecode="1036" />
+  </displaynames>
+  <Descriptions>
+    <Description description="" languagecode="1033" />
+  </Descriptions>
+  <options>
+    <option value="717750000" ExternalValue="" Color="" IsHidden="0">
+      <labels>
+        <label description="The VSI was overseen in person" languagecode="1033" />
+        <label description="L'IVS a été supervisé en personne" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750001" ExternalValue="" Color="" IsHidden="0">
+      <labels>
+        <label description="TSI talked with on-site personnel about the security inspection / reviewed the security inspection procedures with on-site personnel" languagecode="1033" />
+        <label description="L'IST a parlé avec le personnel sur place de l'inspection de sûreté / examiné les procédures d'inspection de sûreté avec le personnel sur place" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750003" ExternalValue="" Color="" IsHidden="0">
+      <labels>
+        <label description="The VSI did not occur" languagecode="1033" />
+        <label description="L'IVS n'a pas eu lieu" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+  </options>
+</optionset>

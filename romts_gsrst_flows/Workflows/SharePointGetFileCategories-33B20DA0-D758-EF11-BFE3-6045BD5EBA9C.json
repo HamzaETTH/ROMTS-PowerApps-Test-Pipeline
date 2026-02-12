@@ -1,0 +1,413 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsSharePoint"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedsharepointonline_ef0dc"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "SharePoint Flow Key (ts_SharePointFlowKey)": {
+          "defaultValue": "6u4qTO,e|[)-rY2n\\jk#Fas:,{35~d",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ts_SharePointFlowKey",
+            "description": "This key is used by the SharePointAttachFilePopUp.html web resource to connect to the Power Automate Flows that use HTTPS"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "dd7d5246-aafc-44fb-b6aa-3de3ef49a92f"
+          },
+          "type": "Request",
+          "kind": "Http",
+          "inputs": {
+            "method": "GET",
+            "triggerAuthenticationType": "All"
+          }
+        }
+      },
+      "actions": {
+        "Parse_JSON": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "a9884432-12e3-4386-9508-0e3b777bf2fa"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerOutputs()['headers']",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Content-Type": {
+                  "type": "string"
+                },
+                "FlowKey": {
+                  "type": "string"
+                },
+                "RecordOwner": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable_-_Flow_Key": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d1792aa8-6144-4217-81ff-fd2586d7c32c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "FlowKey",
+                "type": "string",
+                "value": "@body('Parse_JSON')?['FlowKey']"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Record_Owner": {
+          "runAfter": {
+            "Initialize_variable_-_Flow_Key": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e04c5cf2-4ff2-4a43-ab6c-ccb988c5617a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "RecordOwner",
+                "type": "string",
+                "value": "@{body('Parse_JSON')?['RecordOwner']}"
+              }
+            ]
+          }
+        },
+        "Condition_-_FlowKey": {
+          "actions": {
+            "Switch_-_Who_is_the_Record_Owner": {
+              "runAfter": {},
+              "cases": {
+                "Case_-_Aviation_Security": {
+                  "case": "Aviation Security",
+                  "actions": {
+                    "Scope_-_Try_Getting_Avsec_File_Categories": {
+                      "actions": {
+                        "Get_items_-_Avsec_SharePoint_File_Categories": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "8ce420db-a4c8-4577-ae7f-0429e24e3db5"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_sharepointonline_1",
+                              "operationId": "GetItems",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                            },
+                            "parameters": {
+                              "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
+                              "table": "ba3041d4-952c-4bde-af08-41b68e7428b6"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "Response_-_Avsec_SharePoint_File_Categories": {
+                          "runAfter": {
+                            "Get_items_-_Avsec_SharePoint_File_Categories": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "11ec196d-4743-409f-a349-585bc54f0d0b"
+                          },
+                          "type": "Response",
+                          "kind": "Http",
+                          "inputs": {
+                            "statusCode": 200,
+                            "body": "@body('Get_items_-_Avsec_SharePoint_File_Categories')"
+                          }
+                        }
+                      },
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "1983220b-4523-45e5-82f3-333205be1927"
+                      },
+                      "type": "Scope"
+                    },
+                    "Scope_-_Error_Try_Getting_Avsec_File_Categories": {
+                      "actions": {
+                        "Response_-_Error_AvSec": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "4a50b37f-42b8-4a7c-8502-d70c8e3ef93d"
+                          },
+                          "type": "Response",
+                          "kind": "Http",
+                          "inputs": {
+                            "statusCode": 400,
+                            "body": "Can't get AvSec File Categories"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Scope_-_Try_Getting_Avsec_File_Categories": [
+                          "Failed",
+                          "TimedOut"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "efd86257-52d8-4e9c-a9a2-7247e2b80d2b"
+                      },
+                      "type": "Scope"
+                    }
+                  }
+                },
+                "Case_-_ISSO": {
+                  "case": "Intermodal Surface Security Oversight",
+                  "actions": {
+                    "Scope_-_Try_Getting_ISSO_File_Categories": {
+                      "actions": {
+                        "Get_items_-_ISSO_SharePoint_File_Categories": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "c56ce178-69bc-4b24-94f2-0fe8f689a72b"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_sharepointonline_1",
+                              "operationId": "GetItems",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                            },
+                            "parameters": {
+                              "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
+                              "table": "18d088f0-3918-4b3b-9e65-fd31ce962342"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "Response": {
+                          "runAfter": {
+                            "Get_items_-_ISSO_SharePoint_File_Categories": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "9bd23501-35bf-491e-95fe-ac93cc3e43e5"
+                          },
+                          "type": "Response",
+                          "kind": "Http",
+                          "inputs": {
+                            "statusCode": 200,
+                            "body": "@body('Get_items_-_ISSO_SharePoint_File_Categories')"
+                          }
+                        }
+                      },
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "6cdff360-dd81-4a2d-a402-37c015f46e2d"
+                      },
+                      "type": "Scope"
+                    },
+                    "Scope_-_Error_Try_Getting_ISSO_File_Categories": {
+                      "actions": {
+                        "Response_-_Error_ISSO": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "aaae984a-c8e5-49b0-bfdd-b75d4f531d0c"
+                          },
+                          "type": "Response",
+                          "kind": "Http",
+                          "inputs": {
+                            "statusCode": 200,
+                            "body": "Can't get ISSO File Categories"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Scope_-_Try_Getting_ISSO_File_Categories": [
+                          "Failed",
+                          "TimedOut"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "4058438c-d1ed-4cdb-8069-792e09f5d549"
+                      },
+                      "type": "Scope"
+                    }
+                  }
+                },
+                "Case_-_Rail_Safety": {
+                  "case": "Rail Safety",
+                  "actions": {
+                    "Scope_-_Try_Getting_Rail_Safety_File_Categories": {
+                      "actions": {
+                        "Get_items_-_Rail_Safety_SharePoint_File_Categories": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "22f84250-5925-4e1d-a34e-e53301daecff"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_sharepointonline",
+                              "operationId": "GetItems",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                            },
+                            "parameters": {
+                              "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
+                              "table": "14822f6f-9b59-4c69-8335-b0305899e223"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "Response_2": {
+                          "runAfter": {
+                            "Get_items_-_Rail_Safety_SharePoint_File_Categories": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "5b01d218-da45-4a2e-8bb6-43cd1677ccce"
+                          },
+                          "type": "Response",
+                          "kind": "Http",
+                          "inputs": {
+                            "statusCode": 200,
+                            "body": "@body('Get_items_-_Rail_Safety_SharePoint_File_Categories')"
+                          }
+                        }
+                      },
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "6a39bd3c-6126-4265-ab6f-80dab29dfae0"
+                      },
+                      "type": "Scope"
+                    },
+                    "Scope_-_Error_Try_Getting_Rail_Safety_File_Categories": {
+                      "actions": {
+                        "Response_-_Error_Rail_Safety": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "f547b207-1ce9-4777-8dd7-9aca5f73d9a8"
+                          },
+                          "type": "Response",
+                          "kind": "Http",
+                          "inputs": {
+                            "statusCode": 200,
+                            "body": "Can't get Rail Safety File Categorie"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Scope_-_Try_Getting_Rail_Safety_File_Categories": [
+                          "TimedOut",
+                          "Failed"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "f2398ada-a4a5-479e-b042-e33b5f5e3fa7"
+                      },
+                      "type": "Scope"
+                    }
+                  }
+                }
+              },
+              "default": {
+                "actions": {
+                  "Response_-_Record_Owner_Failed": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "16a68758-b8bb-43f7-b0d9-6ee51bdb4d20"
+                    },
+                    "type": "Response",
+                    "kind": "Http",
+                    "inputs": {
+                      "statusCode": 400,
+                      "body": "Invalid"
+                    }
+                  }
+                }
+              },
+              "expression": "@variables('RecordOwner')",
+              "metadata": {
+                "operationMetadataId": "6322ed2b-a645-46a2-b879-55cab18b0bb0"
+              },
+              "type": "Switch"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_Record_Owner": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Response_-_Failed": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "f952bece-f549-4317-88c1-ba558f2d8e50"
+                },
+                "type": "Response",
+                "kind": "Http",
+                "inputs": {
+                  "statusCode": 400,
+                  "body": "Invalid"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@variables('FlowKey')",
+              "@parameters('SharePoint Flow Key (ts_SharePointFlowKey)')"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c5230b7f-68b0-4b9c-8212-8eea6b63c117"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

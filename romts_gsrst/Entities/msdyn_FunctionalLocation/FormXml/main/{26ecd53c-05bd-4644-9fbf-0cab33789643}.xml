@@ -1,0 +1,1277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{26ecd53c-05bd-4644-9fbf-0cab33789643}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
+      <tabs>
+        <tab name="tab_3" id="{831d6850-85ea-09c8-9bc2-027799b28e00}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="0">
+          <labels>
+            <label description="Summary" languagecode="1033" solutionaction="Modified" />
+            <label description="Résumé" languagecode="1036" solutionaction="Modified" />
+          </labels>
+          <columns>
+            <column width="34%" id="0">
+              <sections>
+                <section name="tab_3_section_1" showlabel="true" showbar="false" locklevel="0" id="{534c473e-d62d-8932-b13e-e4891743e25d}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{902df75c-4aa9-43ae-9f62-d48c8b69489d}" colspan="1" rowspan="1" ordinalvalue="10000">
+                        <control id="msdyn_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="msdyn_name" uniqueid="{9ee0ec29-6b96-4264-1bcc-57e75366e61c}" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7d5927ed-3cd0-8875-0640-e418e9e58496}" showlabel="true" locklevel="0" ordinalvalue="10016" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{28a17ad8-9ccb-642c-9a8c-20b5a4b12c5d}" showlabel="true" locklevel="0" ordinalvalue="10015" solutionaction="Modified">
+                        <labels>
+                          <label description="Parent Functional Location" languagecode="1033" solutionaction="Modified" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a082036a-c9d1-a93a-2530-c417c62c6cc1}" showlabel="true" locklevel="0" ordinalvalue="10017" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{2763a6cb-d086-c36e-a757-7c05bca5ba3b}" showlabel="true" locklevel="0" ordinalvalue="10018" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{97bdd6ba-8001-67e9-3e9e-b9028ad14ac1}" showlabel="true" locklevel="0" ordinalvalue="10019" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{a440450a-c265-a1d8-b711-401ec9446753}" showlabel="true" locklevel="0" ordinalvalue="10020" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{5a83eb52-da08-b048-11a0-37a9196900a0}" showlabel="true" locklevel="0" ordinalvalue="10021" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{c3de0815-60b7-c07c-8d07-4b8b349ad66d}" showlabel="true" locklevel="0" ordinalvalue="10001" solutionaction="Added">
+                        <labels>
+                          <label description="Site Name (English)" languagecode="1033" />
+                          <label description="Nom du Poste technique (Anglais)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_functionallocationnameenglish" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_functionallocationnameenglish" disabled="false" uniqueid="{859dc03d-9ed6-2b4b-473d-e6e9640b96e3}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7978bf4d-d634-44a9-ac43-e168877be8be}" locklevel="0" showlabel="true" ordinalvalue="10002" solutionaction="Added">
+                        <labels>
+                          <label description="Site Name (French)" languagecode="1033" />
+                          <label description="Nom du Poste technique (Français)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_functionallocationnamefrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_functionallocationnamefrench" disabled="false" uniqueid="{65401812-b73a-ad45-eac1-b106303a3e6a}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fe5a3ef7-f5d2-4b83-b069-f6a59bd9bc2b}" locklevel="0" ordinalvalue="10003" solutionaction="Added">
+                        <labels>
+                          <label description="Site Type" languagecode="1033" />
+                          <label description="Type de site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_sitetype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_sitetype" disabled="false" uniqueid="{02b54100-d5e1-b7c4-815d-5dcabc545825}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3c18b4a9-ebb6-21e5-2ba0-2b06e155976a}" showlabel="true" locklevel="0" ordinalvalue="10004" solutionaction="Added">
+                        <labels>
+                          <label description="Site Type2" languagecode="1033" />
+                          <label description="Type de site2" languagecode="1036" />
+                        </labels>
+                        <control id="ts_sitetype2" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_sitetype2" disabled="false" uniqueid="{866dec73-d3d9-149c-28b9-cee8a1e7bda5}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{34A3B92A-A67A-4D39-BC77-3ABDE3AEE365}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c5105b30-5e99-4186-2382-a71c670aeeda}" showlabel="true" locklevel="0" ordinalvalue="10005" solutionaction="Added">
+                        <labels>
+                          <label description="Site Type3" languagecode="1033" />
+                          <label description="Type de site3" languagecode="1036" />
+                        </labels>
+                        <control id="ts_sitetype3" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_sitetype3" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5d7c19c3-a495-4dfc-90ed-3e74385b447a}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10006" solutionaction="Added">
+                        <labels>
+                          <label description="Program" languagecode="1033" />
+                          <label description="Mode" languagecode="1036" />
+                        </labels>
+                        <control id="ts_mode" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="ts_mode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b1660606-10b3-446e-8a35-c923adc3cb4f}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10007" solutionaction="Added">
+                        <labels>
+                          <label description="ICAO Code" languagecode="1033" />
+                          <label description="Code OACI" languagecode="1036" />
+                        </labels>
+                        <control id="ts_icaocode" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_icaocode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f6d73efb-162c-41a7-b54f-f5a885dfe866}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10008" solutionaction="Added">
+                        <labels>
+                          <label description="IATA Code" languagecode="1033" />
+                          <label description="Code ATAI" languagecode="1036" />
+                        </labels>
+                        <control id="ts_iatacode" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_iatacode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{84396fdc-faec-4e8f-acf2-fa7d7743ad88}" locklevel="0" ordinalvalue="10009" solutionaction="Added">
+                        <labels>
+                          <label description="Business Unit" languagecode="1033" />
+                          <label description="Unité opérationnelle" languagecode="1036" />
+                        </labels>
+                        <control id="ts_businessunit" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_businessunit" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e7c92a92-72a3-4405-9046-c6939a448210}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10010" solutionaction="Added">
+                        <labels>
+                          <label description="Current Site Status" languagecode="1033" />
+                          <label description="Statut actuel du site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_sitestatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_sitestatus" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{66bdfd7f-12b2-48a7-b4c6-b115fc9d1213}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10011" solutionaction="Added">
+                        <labels>
+                          <label description="Class" languagecode="1033" />
+                          <label description="Class" languagecode="1036" />
+                        </labels>
+                        <control id="ts_class" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_class" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9eed05d6-9cd3-08e4-72c9-e62004bd4bd4}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10012" solutionaction="Added">
+                        <labels>
+                          <label description="Risk Score" languagecode="1033" />
+                          <label description="Cote de risque" languagecode="1036" />
+                        </labels>
+                        <control id="ts_riskscore" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="ts_riskscore" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e763ee2a-6470-b7c6-d05a-d47102bcdc4d}" showlabel="true" locklevel="0" ordinalvalue="10013" solutionaction="Added">
+                        <labels>
+                          <label description="Site Risk Rating" languagecode="1033" />
+                        </labels>
+                        <control id="ts_siteriskrating" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_siteriskrating" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f8621913-719e-46aa-8ac9-3e7079a80f17}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10014" solutionaction="Added">
+                        <labels>
+                          <label description="LPD to United States" languagecode="1033" />
+                          <label description="Dernier point de départ vers les États-Unis" languagecode="1036" />
+                        </labels>
+                        <control id="ts_lpdtounitedstates" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_lpdtounitedstates" disabled="false" uniqueid="{18DD7CCB-481B-44D8-B7A2-65362949BDE2}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9247d2bc-8cba-4792-ac6c-00d5bf6059d4}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10022" solutionaction="Added">
+                        <labels>
+                          <label description="Country" languagecode="1033" />
+                          <label description="Pays" languagecode="1036" />
+                        </labels>
+                        <control id="ts_country" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_country" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{47241a6a-e935-4d6f-bc79-cc911498a7d0}" locklevel="0" colspan="1" rowspan="1" visible="true" ordinalvalue="10023" solutionaction="Added">
+                        <labels>
+                          <label description="Region" languagecode="1033" />
+                          <label description="Région" languagecode="1036" />
+                        </labels>
+                        <control id="ts_region" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_region" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_3_section_8" showlabel="true" showbar="false" locklevel="0" id="{27895cd8-5ae6-9ba0-b9e8-9a5b2cece60e}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="1" solutionaction="Added">
+                  <labels>
+                    <label description="Aliases" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{65e761de-ab0c-314e-59a3-a4361adc393e}" showlabel="true" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Alias 1" languagecode="1033" />
+                        </labels>
+                        <control id="ts_alias1" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_alias1" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b9b47971-5492-201e-9c47-7a93e88007d1}" showlabel="true" locklevel="0" ordinalvalue="10001">
+                        <labels>
+                          <label description="Alias 2" languagecode="1033" />
+                        </labels>
+                        <control id="ts_alias2" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_alias2" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b3e90db9-ee77-2a17-3624-9939899060d9}" showlabel="true" locklevel="0" ordinalvalue="10002">
+                        <labels>
+                          <label description="Alias 3" languagecode="1033" />
+                        </labels>
+                        <control id="ts_alias3" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_alias3" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0623a108-bc56-e1b8-0783-c276c5b8936c}" showlabel="true" locklevel="0" ordinalvalue="10003">
+                        <labels>
+                          <label description="Alias 4" languagecode="1033" />
+                        </labels>
+                        <control id="ts_alias4" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_alias4" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{87c196de-a752-23ed-6423-7606d7445341}" showlabel="true" locklevel="0" ordinalvalue="10004">
+                        <labels>
+                          <label description="Alias 5" languagecode="1033" />
+                        </labels>
+                        <control id="ts_alias5" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_alias5" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_3_section_2" showlabel="true" showbar="false" locklevel="0" id="{51bcad77-63da-9cd9-10a7-20a832c14bad}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="2" solutionaction="Added">
+                  <labels>
+                    <label description="Parent Functional Location" languagecode="1033" />
+                    <label description="Emplacement fonctionnel parent" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{28a17ad8-9ccb-642c-9a8c-20b5a4b12c5d}" showlabel="true" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Parent Functional Location" languagecode="1033" />
+                          <label description="Poste technique parent" languagecode="1036" />
+                        </labels>
+                        <control id="msdyn_parentfunctionallocation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_parentfunctionallocation" disabled="false" uniqueid="{da05ac2d-be47-ac5b-eb43-6729aa4e436a}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%" id="1">
+              <sections>
+                <section name="AddressSection" showlabel="true" showbar="false" locklevel="0" id="{a1392020-0c41-1345-2d93-2e8ecd00600c}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="2" solutionaction="Modified">
+                  <rows>
+                    <row>
+                      <cell id="{90e9ee72-607c-20ac-4d97-eea21e1d98bb}" showlabel="true" locklevel="0" ordinalvalue="20007" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{70605a8d-e587-b064-44e5-4133cb1ad77e}" showlabel="true" locklevel="0" ordinalvalue="20009" solutionaction="Modified" />
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_3_section_9" id="87808f44-9daa-4272-a656-af22fb3b886f" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false" ordinalvalue="0" solutionaction="Added">
+                  <labels>
+                    <label description="Accountable Team" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{b1965fbd-501e-47c8-806f-d697926e31f7}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="Accountable Team" languagecode="1033" />
+                        </labels>
+                        <control id="ts_accountableteam" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_accountableteam" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_3_section_7" id="ecc9d8c3-8be0-466a-9aff-46df5ed30150" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="1" solutionaction="Added">
+                  <labels>
+                    <label description="Non-Operational Timeframe" languagecode="1033" />
+                    <label description="Période non opérationnelle" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{4e58f283-edaf-4cd2-b9c6-b63a40fa0d6c}" locklevel="0" colspan="1" rowspan="1" showlabel="true" ordinalvalue="10000">
+                        <labels>
+                          <label description="Non-Operational Start Date" languagecode="1033" />
+                          <label description="Date de début non opérationnelle" languagecode="1036" />
+                        </labels>
+                        <control id="ts_statusstartdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_statusstartdate" disabled="false" uniqueid="{dd6c8e05-6a6e-9519-6591-027b8d1ae48a}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0ded0341-c1cf-4429-b802-5672329d0b22}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10001">
+                        <labels>
+                          <label description="Non-Operational End Date" languagecode="1033" />
+                          <label description="Date de fin non opérationnelle" languagecode="1036" />
+                        </labels>
+                        <control id="ts_statusenddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_statusenddate" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5dcf1b14-7e2c-47bd-b718-d33b04ee8791}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10002">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                          <label description="Description" languagecode="1036" />
+                        </labels>
+                        <control id="ts_description" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_description" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%" id="2">
+              <sections>
+                <section name="tab_3_section_3" showlabel="false" showbar="false" locklevel="0" id="{0e7a16d4-9caa-5895-e6b7-9046534e7672}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" ordinalvalue="1" solutionaction="Modified">
+                  <rows>
+                    <row>
+                      <cell id="{55c34005-c73c-4198-96e9-3458f5c423c0}" showlabel="false" ordinalvalue="10000" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="_section_72" id="828d1b33-d434-4ccb-abd3-3a1b4d8bdfb7" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0" solutionaction="Added">
+                  <labels>
+                    <label description="Nouvelle Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{4b3e5807-b71e-4725-8853-a9a9dc250825}" rowspan="1" colspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-C143-495E-A496-C962E5B4488E}" disabled="false">
+                          <parameters>
+                            <UClientRecordPerPage>5</UClientRecordPerPage>
+                            <UClientActivities>appointment,email,phonecall,task,ts_interview</UClientActivities>
+                            <UClientDisplayActivityUsing>defaultfields</UClientDisplayActivityUsing>
+                            <UClientActivityCardMap>appointment:4201:,campaignactivity:4402:,campaignresponse:4401:,email:4202:,fax:4204:,incidentresolution:4206:,letter:4207:,opportunityclose:4208:,orderclose:4209:,phonecall:4210:,quoteclose:4211:,recurringappointmentmaster:4251:,serviceappointment:4214:,socialactivity:4216:,task:4212:,msdyn_bookingalert:10256:,msdyn_ocliveworkitem:10944:,msdyn_ocsession:10961:,msfp_alert:10235:,msfp_surveyinvite:10245:,msfp_surveyresponse:10247:,ts_enforcementaction:10882:,ts_incidentnotification:11085:,ts_incidentupdate:11086:,ts_interview:10853:,</UClientActivityCardMap>
+                            <UClientActivitiesConfigurationJSON>{"campaignactivity":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"incidentresolution":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"opportunityclose":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"orderclose":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"quoteclose":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"recurringappointmentmaster":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"socialactivity":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msdyn_bookingalert":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msdyn_ocliveworkitem":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msdyn_ocsession":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_alert":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_surveyinvite":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_surveyresponse":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"ts_enforcementaction":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"ts_incidentnotification":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"ts_incidentupdate":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"}}</UClientActivitiesConfigurationJSON>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="AssetsAndLocationsTab" id="{cbdcb6cd-7cdb-dba9-4a15-c56e93ac0648}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" visible="true" ordinalvalue="7" solutionaction="Modified">
+          <labels>
+            <label description="Assets and Subsites" languagecode="1033" solutionaction="Modified" />
+            <label description="Actifs et sites secondaires" languagecode="1036" solutionaction="Modified" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="AssetsAndLocationsSection" showlabel="false" showbar="false" locklevel="0" id="{3d65a5dc-a13c-0aac-4132-3e8b12a3b728}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Top" ordinalvalue="0">
+                  <labels>
+                    <label description="Actifs et sous-sites" languagecode="1036" solutionaction="Modified" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{b30d814b-8439-b2e0-0c85-71a66514400e}" showlabel="false" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Actifs et sous-sites" languagecode="1036" solutionaction="Modified" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{ee917274-39ff-434b-bf35-2cdf1cae71ff}" rowspan="1" colspan="1" showlabel="false" ordinalvalue="10001" solutionaction="Added">
+                        <labels>
+                          <label description="Functional Locations" languagecode="1033" />
+                          <label description="Postes techniques" languagecode="1036" />
+                        </labels>
+                        <control id="Subgrid_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>msdyn_functionallocation</TargetEntityType>
+                            <ViewId>{750E041A-F88C-4B3C-887A-1F1946B8D86B}</ViewId>
+                            <ViewIds>{750E041A-F88C-4B3C-887A-1F1946B8D86B},{CE3D1B20-7143-4293-BBC8-BCE3BBC7ECF0}</ViewIds>
+                            <EnableViewPicker>true</EnableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="LocationPropertiesTab" id="{5dd4b63a-c48a-c80d-d0ab-763e56abb330}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" visible="true" ordinalvalue="5" solutionaction="Modified" />
+        <tab name="NotesTab" id="{e028e131-ccd0-0b33-7512-6e11859a6059}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" visible="true" ordinalvalue="6" solutionaction="Modified" />
+        <tab name="Operations" id="{7b42591a-bc2a-0c3b-527c-9a32d49a2e82}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" visible="true" ordinalvalue="1" solutionaction="Added">
+          <labels>
+            <label description="Operations" languagecode="1033" />
+            <label description="Opérations" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="67%" id="0">
+              <sections>
+                <section name="tab_4_section_2" showlabel="false" showbar="false" locklevel="0" id="{b890a21d-4622-1c46-502c-e1330e187279}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{a3b714de-1611-48db-bae3-4bf0b424c52a}" rowspan="4" colspan="1" auto="false" showlabel="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="New SG control 1667332234154" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Operations" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>100</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ovs_operation</TargetEntityType>
+                            <ViewId>{CCA2CAE4-216E-46B5-934E-D9112870F36F}</ViewId>
+                            <ViewIds>{CCA2CAE4-216E-46B5-934E-D9112870F36F}</ViewIds>
+                            <RelationshipName>ts_ovs_operation_site_msdyn_functionallocati</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%" id="1">
+              <sections>
+                <section name="Operations_section_4" id="357198ca-03ba-4072-9a66-d90bb9480b4c" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{3edbd71d-c3c9-1870-1c41-55be3c76de76}" showlabel="false" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
+                        </labels>
+                        <control id="msdyn_name" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="msdyn_name" disabled="false" uniqueid="{013B411F-CF89-4E09-AA9C-3F8AECB1819D}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="Work Orders" id="0dd6c25b-9534-408b-91c9-fd0f019cdbcc" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="2" solutionaction="Added">
+          <labels>
+            <label description="Work Orders" languagecode="1033" />
+            <label description="Ordres de travail" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_7_section_1" id="385aa343-db2b-4486-9997-1591599c4b55" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto" ordinalvalue="0">
+                  <labels>
+                    <label description="Work Orders" languagecode="1033" />
+                    <label description="Ordres de travail" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{1d515b5b-82e7-4cbf-a66b-22c8aff9cf6a}" rowspan="4" colspan="1" auto="true" showlabel="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="Work Orders" languagecode="1033" />
+                          <label description="Ordres de travail" languagecode="1036" />
+                        </labels>
+                        <control id="Subgrid_2" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{5e0247e0-c841-8760-a572-a0d23a56e874}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>msdyn_workorder</TargetEntityType>
+                            <ViewId>{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F}</ViewId>
+                            <ViewIds>{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F},{FFE40A64-495B-EB11-A812-000D3A84DB40}</ViewIds>
+                            <RelationshipName>ts_msdyn_workorder_Site_msdyn_FunctionalLoca</RelationshipName>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <IsUserView>false</IsUserView>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <VisualizationId>{8E746648-1A4E-E111-93B3-000C2959F9B8}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="Cases" id="{169d1284-4677-2867-a0e5-8019bb08e07a}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" visible="true" ordinalvalue="3" solutionaction="Added">
+          <labels>
+            <label description="Cases" languagecode="1033" />
+            <label description="Cas" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="Cases" showlabel="false" showbar="false" locklevel="0" id="{bb905050-741b-b7dd-1a05-929cd9a0618c}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="220" celllabelalignment="Left" celllabelposition="Left" height="auto" ordinalvalue="0">
+                  <labels>
+                    <label description="Cases" languagecode="1033" />
+                    <label description="Cas" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{1791bd23-ba78-e99e-c7b2-8decb61aab49}" showlabel="false" colspan="1" auto="true" rowspan="4" ordinalvalue="10000">
+                        <labels>
+                          <label description="Cases" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
+                        </labels>
+                        <control id="Cases" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{00000000-0000-0000-00AA-000010001032}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>msdyn_msdyn_functionallocation_incident_FunctionalLocation</RelationshipName>
+                            <TargetEntityType>incident</TargetEntityType>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{00000000-0000-0000-00AA-000010001032},{00000000-0000-0000-00AA-000010001028}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId>{4143B74E-4A07-4D01-9FFE-2CDCAA4208FD}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="Findings" id="{9d69b151-eed6-36dd-1055-737087d2d515}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" visible="true" ordinalvalue="4" solutionaction="Added">
+          <labels>
+            <label description="Findings" languagecode="1033" />
+            <label description="Constatations" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="Findings" showlabel="false" showbar="false" locklevel="0" id="{ac42b921-aab9-42b4-3231-95a6e8962158}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="220" celllabelalignment="Left" celllabelposition="Left" height="auto" ordinalvalue="0">
+                  <labels>
+                    <label description="Findings" languagecode="1033" />
+                    <label description="Constatations" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{1916dba0-2979-076d-7280-c039e7de82c6}" showlabel="false" colspan="1" auto="true" rowspan="4" ordinalvalue="10000">
+                        <labels>
+                          <label description="Findings" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
+                        </labels>
+                        <control id="Findings" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{eeb9867e-6e2a-a22c-9589-e6070eae309a}">
+                          <parameters>
+                            <ViewId>{293497C0-BCAE-EC11-983E-002248ADE910}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ovs_Finding_functionallocation_msdyn_Func</RelationshipName>
+                            <TargetEntityType>ovs_finding</TargetEntityType>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{293497C0-BCAE-EC11-983E-002248ADE910},{77179513-BCAE-EC11-983E-002248ADE910}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="properties_tab" id="ebc30746-a340-4f8c-bbb8-3d549f6d5640" IsUserDefined="0" locklevel="0" showlabel="true" visible="true" ordinalvalue="8" solutionaction="Added">
+          <labels>
+            <label description="Properties" languagecode="1033" />
+            <label description="Propriétés" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_4_section_1" id="d5c628a5-dc95-46d6-abae-55d6fa2c46ca" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="JOURNAUX DE PROPRIÉTÉ" languagecode="1033" />
+                    <label description="JOURNAUX DE PROPRIÉTÉ" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{82133a64-245c-4790-b614-31beb0181689}" rowspan="1" colspan="1" auto="true" ordinalvalue="10000">
+                        <labels>
+                          <label description="Property Log History" languagecode="1033" />
+                          <label description="Journaux de propriété" languagecode="1036" />
+                        </labels>
+                        <control id="PropertyLogsSubGrid" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>msdyn_propertylog</TargetEntityType>
+                            <ViewId>{FB319CBC-A9BC-EA11-A81C-000D3A7599DB}</ViewId>
+                            <ViewIds>{76901DB2-CD2A-4CEA-B7AC-A47E18B55B84},{FB319CBC-A9BC-EA11-A81C-000D3A7599DB}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>ts_msdyn_functionallocation_msdyn_pl</RelationshipName>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_sitevisit" id="{0ba1c0ed-695d-9cd8-001b-98db26846996}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" visible="true" ordinalvalue="9" solutionaction="Added">
+          <labels>
+            <label description="Site Visit" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_9_section_1" showlabel="false" showbar="false" locklevel="0" id="{546632be-a186-d196-9565-63000e5382bb}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{0bb4924b-1751-ead3-3e85-39a81b06ec10}" showlabel="false" colspan="1" auto="false" rowspan="6" ordinalvalue="10000">
+                        <labels>
+                          <label description="Site Visit (Site)" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
+                        </labels>
+                        <control id="SiteVisitGird" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" indicationOfSubgrid="true" uniqueid="{BA6B3E49-66B8-B665-32CE-ACE7B37CC220}">
+                          <parameters>
+                            <ViewId>{317D8DF8-E80A-420C-8232-06933176B052}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_msdyn_functionallocation_ts_sitevisit_functionallocation</RelationshipName>
+                            <TargetEntityType>ts_sitevisit</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{317D8DF8-E80A-420C-8232-06933176B052}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="functional_location_document_tab" id="01b5166e-228e-4191-8563-2539474c6a60" IsUserDefined="0" locklevel="0" showlabel="true" visible="true" ordinalvalue="10" solutionaction="Added">
+          <labels>
+            <label description="Documents" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="70%" id="0">
+              <sections>
+                <section name="tab_6_section_1" id="c310bdd4-cc48-4aac-b2df-863825e8dfef" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{1334d22a-0d9a-9382-04a9-c2a85e701b61}" showlabel="false" colspan="1" auto="false" rowspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="New Document Center Notice" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>true</PassParameters>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <WebResourceId>{FCDC8C06-76AF-F011-BBD2-0022483C7C31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{936d6d37-36e7-8475-646e-7406b7352c74}" showlabel="true" colspan="1" auto="false" rowspan="13" ordinalvalue="10001">
+                        <labels>
+                          <label description="Files" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
+                        </labels>
+                        <control id="Files" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{42118476-3024-58a9-909d-b745e91da9aa}">
+                          <parameters>
+                            <ViewId>{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_Files_msdyn_FunctionalLocations</RelationshipName>
+                            <TargetEntityType>ts_file</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C},{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="30%" id="1">
+              <sections>
+                <section name="functional_location_document_section" id="cc1b84e7-d870-4deb-8bac-ebefa377e479" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{2772d1ab-532a-ce97-5a19-053099ce7538}" showlabel="false" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
+                        </labels>
+                        <control id="msdyn_name" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="msdyn_name" disabled="false" uniqueid="{A3AD9C9B-22E7-4EC2-A976-BC95FC53DE9F}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_Risk" id="8f62da6c-fd70-4b7e-b6e2-e399cc152229" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" visible="false" ordinalvalue="11" solutionaction="Added">
+          <labels>
+            <label description="Risk" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_12_section_1" id="0a30b914-a20f-43bb-b3e5-4df16e01f23d" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{88a13bb0-8252-4624-9b38-5c1c98fa26ae}" rowspan="4" colspan="1" auto="false" showlabel="true" ordinalvalue="10000">
+                        <labels>
+                          <label description="Entity Risk" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_EntityRisk" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_entityrisk</TargetEntityType>
+                            <ViewId>{F852F2DE-C6D6-49C0-B209-B0F8A9CDCFE5}</ViewId>
+                            <ViewIds>{F852F2DE-C6D6-49C0-B209-B0F8A9CDCFE5}</ViewIds>
+                            <RelationshipName>ts_EntityRisk_msdyn_FunctionalLocation_msdyn_FunctionalLocation</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <formLibraries>
+        <Library name="ts_/js/Common.js" libraryUniqueId="{06b32b3b-f3f3-44f7-8e16-12d4487d0463}" solutionaction="Added" />
+        <Library name="ts_/js/FunctionalLocation.js" libraryUniqueId="{99831703-bc89-4c59-b222-7bfd3b436688}" solutionaction="Added" />
+        <Library name="ts_/js/Site.js" libraryUniqueId="{39f4197f-e568-40b7-9aae-d75dc595ed89}" solutionaction="Added" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="AssetCommon.FunctionalLocation.Library.Load" libraryName="msdyn_/FunctionalLocation/AssetCommon.FunctionalLocation.Library.js" handlerUniqueId="{9b21d6c5-d142-7907-9dab-b03e3cbed296}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="2" solutionaction="Modified" />
+            <Handler functionName="ROM.FunctionalLocation.onLoad" libraryName="ts_/js/FunctionalLocation.js" handlerUniqueId="{2f99d731-9f81-40c5-bc44-1881260e43eb}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="1" solutionaction="Added" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{88c969a9-e73c-4a1e-9d57-759430df36eb}" enabled="true" parameters="&quot;functional_location_document_tab&quot;, &quot;functional_location_document_section&quot;" passExecutionContext="true" ordinalvalue="3" solutionaction="Added" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_statusstartdate" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.statusStartDateOnChange" libraryName="ts_/js/FunctionalLocation.js" handlerUniqueId="{79878bff-6468-4631-b48e-e1bc87a79ee4}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_sitetype" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.siteTypeOnChange" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{57142891-edf4-4668-a4f6-c9c3d93dd9f9}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="true" active="true" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.onSave" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{e46bc05c-b8c9-4c19-b05e-cb029ea3a700}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_region" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.regionOnChange" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{b8d03d27-cf0f-4815-92f1-ff549a67fdb0}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_class" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.classOnChange" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{9d0b1486-6f98-49e2-a06c-59edbae8535f}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_sitetype2" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.siteTypesVisibility" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{5a596284-065d-22ad-59ac-ec7d79b7b74e}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="msdyn_name" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.nameOnChange" libraryName="msdyn_/FunctionalLocation/AssetCommon.FunctionalLocation.Library.js" handlerUniqueId="{7002b078-9ba3-44b3-8ac7-a565f398c2cc}" enabled="false" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_functionallocationnameenglish" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.englishNameOnChange" libraryName="msdyn_/FunctionalLocation/AssetCommon.FunctionalLocation.Library.js" handlerUniqueId="{ef40ef9e-522e-4a1c-8e41-cd2a33df6f90}" enabled="false" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_functionallocationnamefrench" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.frenchNameOnChange" libraryName="msdyn_/FunctionalLocation/AssetCommon.FunctionalLocation.Library.js" handlerUniqueId="{37a1a9f3-33b1-49b0-8667-c5b0c49e8f1a}" enabled="false" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ownerid" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.onOwnerChange" libraryName="msdyn_/FunctionalLocation/AssetCommon.FunctionalLocation.Library.js" handlerUniqueId="{a6f9f747-0139-4c42-a319-95e148828227}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_icaocode" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.ICAOCodeOnChange" libraryName="ts_/js/FunctionalLocation.js" handlerUniqueId="{17e9eb75-ba5e-43ce-b228-bbff2bc0274c}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_iatacode" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.IATACodeOnChange" libraryName="ts_/js/FunctionalLocation.js" handlerUniqueId="{cd38dab8-86b0-469f-b6d9-e62523389559}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+      </events>
+      <controlDescriptions>
+        <controlDescription forControl="{B553B258-809E-8036-E02A-0C3D164EA230}" solutionaction="Modified">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}">
+            <parameters>
+              <datafieldname>msdyn_address1</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="Microsoft.AddressInputUCI">
+            <parameters>
+              <Address>msdyn_address1</Address>
+              <Street1>msdyn_address1</Street1>
+              <Street2>msdyn_address2</Street2>
+              <Street3>msdyn_address3</Street3>
+              <City>msdyn_city</City>
+              <StateOrProvince>msdyn_stateorprovince</StateOrProvince>
+              <CountryOrRegion>msdyn_country</CountryOrRegion>
+              <ZipOrPostalCode>msdyn_postalcode</ZipOrPostalCode>
+              <WriteToPrimaryField static="true" type="Enum">True</WriteToPrimaryField>
+              <AddressFormFormat static="true" type="Enum">LegacyFormat</AddressFormFormat>
+              <KeyProvider static="true" type="Enum">FS</KeyProvider>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="Microsoft.AddressInputUCI">
+            <parameters>
+              <Address>msdyn_address1</Address>
+              <Street1>msdyn_address1</Street1>
+              <Street2>msdyn_address2</Street2>
+              <Street3>msdyn_address3</Street3>
+              <City>msdyn_city</City>
+              <StateOrProvince>msdyn_stateorprovince</StateOrProvince>
+              <CountryOrRegion>msdyn_country</CountryOrRegion>
+              <ZipOrPostalCode>msdyn_postalcode</ZipOrPostalCode>
+              <WriteToPrimaryField static="true" type="Enum">True</WriteToPrimaryField>
+              <AddressFormFormat static="true" type="Enum">LegacyFormat</AddressFormFormat>
+              <KeyProvider static="true" type="Enum">FS</KeyProvider>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="Microsoft.AddressInputUCI">
+            <parameters>
+              <Address>msdyn_address1</Address>
+              <Street1>msdyn_address1</Street1>
+              <Street2>msdyn_address2</Street2>
+              <Street3>msdyn_address3</Street3>
+              <City>msdyn_city</City>
+              <StateOrProvince>msdyn_stateorprovince</StateOrProvince>
+              <CountryOrRegion>msdyn_country</CountryOrRegion>
+              <ZipOrPostalCode>msdyn_postalcode</ZipOrPostalCode>
+              <WriteToPrimaryField static="true" type="Enum">True</WriteToPrimaryField>
+              <AddressFormFormat static="true" type="Enum">LegacyFormat</AddressFormFormat>
+              <KeyProvider static="true" type="Enum">FS</KeyProvider>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{013B411F-CF89-4E09-AA9C-3F8AECB1819D}" solutionaction="Added">
+          <customControl id="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}">
+            <parameters>
+              <datafieldname>msdyn_name</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>msdyn_name</record>
+              <entityName type="SingleLine.Text" static="true">Functional Location</entityName>
+              <appName type="SingleLine.Text" static="true">ts_operationscreatorsite_43ee2</appName>
+              <appId type="SingleLine.Text" static="true">0ca230d8-6f9b-4a32-a196-23e5c0fd080a</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>msdyn_name</record>
+              <entityName type="SingleLine.Text" static="true">Functional Location</entityName>
+              <appName type="SingleLine.Text" static="true">ts_operationscreatorsite_43ee2</appName>
+              <appId type="SingleLine.Text" static="true">0ca230d8-6f9b-4a32-a196-23e5c0fd080a</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>msdyn_name</record>
+              <entityName type="SingleLine.Text" static="true">Functional Location</entityName>
+              <appName type="SingleLine.Text" static="true">ts_operationscreatorsite_43ee2</appName>
+              <appId type="SingleLine.Text" static="true">0ca230d8-6f9b-4a32-a196-23e5c0fd080a</appId>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{A3AD9C9B-22E7-4EC2-A976-BC95FC53DE9F}" solutionaction="Added">
+          <customControl id="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}">
+            <parameters>
+              <datafieldname>msdyn_name</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>msdyn_name</record>
+              <entityName type="SingleLine.Text" static="true">Functional Location</entityName>
+              <appName type="SingleLine.Text" static="true">ts_romdocumentcentresite_67d1f</appName>
+              <appId type="SingleLine.Text" static="true">c2fb8e34-4437-49b9-81af-12335e276a7c</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>msdyn_name</record>
+              <entityName type="SingleLine.Text" static="true">Functional Location</entityName>
+              <appName type="SingleLine.Text" static="true">ts_romdocumentcentresite_67d1f</appName>
+              <appId type="SingleLine.Text" static="true">c2fb8e34-4437-49b9-81af-12335e276a7c</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>msdyn_name</record>
+              <entityName type="SingleLine.Text" static="true">Functional Location</entityName>
+              <appName type="SingleLine.Text" static="true">ts_romdocumentcentresite_67d1f</appName>
+              <appId type="SingleLine.Text" static="true">c2fb8e34-4437-49b9-81af-12335e276a7c</appId>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{BA6B3E49-66B8-B665-32CE-ACE7B37CC220}" solutionaction="Added">
+          <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="0">
+            <parameters>
+              <ViewId>{317D8DF8-E80A-420C-8232-06933176B052}</ViewId>
+              <IsUserView>false</IsUserView>
+              <RelationshipName>ts_msdyn_functionallocation_ts_sitevisit_functionallocation</RelationshipName>
+              <TargetEntityType>ts_sitevisit</TargetEntityType>
+              <AutoExpand>Fixed</AutoExpand>
+              <EnableQuickFind>false</EnableQuickFind>
+              <EnableViewPicker>false</EnableViewPicker>
+              <ViewIds>{317D8DF8-E80A-420C-8232-06933176B052}</ViewIds>
+              <EnableJumpBar>false</EnableJumpBar>
+              <ChartGridMode>All</ChartGridMode>
+              <VisualizationId />
+              <IsUserChart>false</IsUserChart>
+              <EnableChartPicker>true</EnableChartPicker>
+              <RecordsPerPage>4</RecordsPerPage>
+              <HeaderColorCode>#F3F3F3</HeaderColorCode>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{317D8DF8-E80A-420C-8232-06933176B052}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_sitevisit" viewId="{317D8DF8-E80A-420C-8232-06933176B052}" attributeName="ts_fiscalyear">
+                    <DefaultViewId>{2E130628-B72E-ED11-9DB0-0022483C5061}</DefaultViewId>
+                    <DependentAttributeType>systemuser</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_sitevisit" viewId="{317D8DF8-E80A-420C-8232-06933176B052}" attributeName="ts_fiscalquarter">
+                    <DefaultViewId>{52C9CBFD-B62E-ED11-9DB0-0022483C5061}</DefaultViewId>
+                    <FilterRelationshipName>tc_TCFiscalQuarter_TCFiscalYear</FilterRelationshipName>
+                    <DependentAttributeName>ts_sitevisit.ts_fiscalyear</DependentAttributeName>
+                    <DependentAttributeType>tc_tcfiscalyear</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_msdyn_functionallocation_ts_sitevisit_functionallocation</RelationshipName>
+                <TargetEntityType>ts_sitevisit</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{317D8DF8-E80A-420C-8232-06933176B052}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{317D8DF8-E80A-420C-8232-06933176B052}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_sitevisit" viewId="{317D8DF8-E80A-420C-8232-06933176B052}" attributeName="ts_fiscalyear">
+                    <DefaultViewId>{2E130628-B72E-ED11-9DB0-0022483C5061}</DefaultViewId>
+                    <DependentAttributeType>systemuser</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_sitevisit" viewId="{317D8DF8-E80A-420C-8232-06933176B052}" attributeName="ts_fiscalquarter">
+                    <DefaultViewId>{52C9CBFD-B62E-ED11-9DB0-0022483C5061}</DefaultViewId>
+                    <FilterRelationshipName>tc_TCFiscalQuarter_TCFiscalYear</FilterRelationshipName>
+                    <DependentAttributeName>ts_sitevisit.ts_fiscalyear</DependentAttributeName>
+                    <DependentAttributeType>tc_tcfiscalyear</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_msdyn_functionallocation_ts_sitevisit_functionallocation</RelationshipName>
+                <TargetEntityType>ts_sitevisit</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{317D8DF8-E80A-420C-8232-06933176B052}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{18DD7CCB-481B-44D8-B7A2-65362949BDE2}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_lpdtounitedstates</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_lpdtounitedstates</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_lpdtounitedstates</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_lpdtounitedstates</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <header id="{163ea3df-ebcb-477c-8912-3a3c14b62a87}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows>
+          <row>
+            <cell id="{9b4458b1-620f-4923-9d9a-0cb2bf76b48b}" locklevel="0" ordinalvalue="10000">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+            <cell id="{4abafbb4-a651-42b6-9a1a-3ba55e5e4101}" showlabel="false" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{bdbbf941-d5b3-4e98-bc98-607c2acf7439}" showlabel="false" ordinalvalue="30002">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{88a644ea-0f70-4b1f-ba54-70abd90d154c}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows>
+          <row>
+            <cell id="{366ceb72-c6f4-4fce-87a0-4f1626dde54b}" showlabel="false" ordinalvalue="10000">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e71ac1b3-1ab2-4e92-975f-c3d07474cec8}" showlabel="false" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{170e4335-5771-4467-9297-395b5dd244ee}" showlabel="false" ordinalvalue="30002">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation solutionaction="Added">
+        <NavBar>
+          <NavBarByRelationshipItem RelationshipName="ts_msdyn_functionallocation_ts_securityincident_Origin" Sequence="10000" Area="Info" Id="nav_ts_msdyn_functionallocation_ts_securityincident_Origin" Show="false">
+            <Titles>
+              <Title LCID="1033" Text="Security Incidents" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="ts_msdyn_functionallocation_ts_securityincident_Destination" Sequence="10000" Area="Info" Id="nav_ts_msdyn_functionallocation_ts_securityincident_Destination" Show="false">
+            <Titles>
+              <Title LCID="1033" Text="Security Incidents" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="ts_msdyn_functionallocation_ts_securityincident_Subsite" Sequence="10000" Area="Info" Id="nav_ts_msdyn_functionallocation_ts_securityincident_Subsite" Show="false">
+            <Titles>
+              <Title LCID="1033" Text="Security Incidents" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="ts_ts_securityincident_DiversionAerodrome_ms" Sequence="10000" Area="Info" Id="nav_ts_ts_securityincident_DiversionAerodrome_ms" Show="false">
+            <Titles>
+              <Title LCID="1033" Text="Security Incidents" />
+            </Titles>
+          </NavBarByRelationshipItem>
+        </NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+      <LocalizedName description="Informations" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+      <Description description="Formulaire pour cette entité." languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

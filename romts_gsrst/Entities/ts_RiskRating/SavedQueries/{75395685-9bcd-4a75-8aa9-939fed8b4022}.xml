@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{75395685-9bcd-4a75-8aa9-939fed8b4022}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_riskratingid">
+          <cell name="ts_name" width="300" />
+          <cell name="ts_riskscore" width="102" />
+          <cell name="ts_riskweight" width="110" />
+          <cell name="ts_riskrange" width="105" />
+          <cell name="ts_riskfrequency" width="129" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_riskrating">
+          <attribute name="ts_riskratingid" />
+          <attribute name="ts_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_riskscore" />
+          <order attribute="ts_riskscore" descending="true" />
+          <attribute name="ts_riskweight" />
+          <attribute name="ts_riskrange" />
+          <attribute name="ts_riskfrequency" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Risk Ratings" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

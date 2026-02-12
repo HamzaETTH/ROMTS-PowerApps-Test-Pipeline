@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{eded7d77-6dc4-ed11-b596-6045bdf00fa1}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form shownavigationbar="true" showImage="false" maxWidth="1900" headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{b8e326ee-5c21-4a18-ba55-e3b56966c249}" IsUserDefined="1" locklevel="0" showlabel="true" expanded="true" name="{b8e326ee-5c21-4a18-ba55-e3b56966c249}" labelid="{a85bee94-4866-4c4b-8a9c-ea64f45aa962}" ordinalvalue="0">
+          <columns>
+            <column width="50%" id="0">
+              <sections>
+                <section showlabel="true" showbar="false" IsUserDefined="0" id="{cbc73eb8-4930-458e-a87b-7dc0e48a99e6}" name="{cbc73eb8-4930-458e-a87b-7dc0e48a99e6}" columns="11" locklevel="0" labelwidth="150" celllabelalignment="Left" celllabelposition="Left" labelid="{f4f568e2-d64c-40c8-8016-eca676e99415}" height="auto" layout="varwidth" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{adbcdbdb-d7d5-456e-be6f-7ae48478a7e2}" locklevel="0" colspan="1" rowspan="1" showlabel="false" ordinalvalue="10012" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{7854b714-e718-83ee-85ea-edd74db91684}" showlabel="true" locklevel="0" ordinalvalue="20013" solutionaction="Modified" />
+                      <cell id="{1d20b91f-5df5-4b46-bd64-62e0e76af8a1}" ordinalvalue="20017" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{974e30d3-e0ce-4524-8cdd-be0020e2302d}" showlabel="false" locklevel="0" ordinalvalue="10014" solutionaction="Modified" />
+                      <cell id="{2f3cb612-30a8-4d32-b768-b1d083d86715}" ordinalvalue="20016" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{483debd2-84c4-4716-aa9d-9fc6ac1ab558}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="20015" solutionaction="Modified" />
+                      <cell id="{5a1fbacd-6313-4d0a-b44e-6f3f3d8e4816}" ordinalvalue="20018" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{205e96cf-da91-4ac2-91ca-125520cce5cf}" locklevel="0" colspan="1" rowspan="1" showlabel="false" ordinalvalue="10016" solutionaction="Modified" />
+                      <cell id="{e0a8101d-27cc-4210-b33d-650f0a02d5ab}" ordinalvalue="20020" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{0c09fa60-9879-4717-8cf9-69a3d533eb20}" locklevel="0" colspan="2" rowspan="1" ordinalvalue="10018" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{5f4c4932-14a3-405c-bdf3-2b4a37a11ccf}" colspan="2" rowspan="1" ordinalvalue="10019" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{b80e1451-7d87-1c02-eeeb-4ac09054a211}" showlabel="true" locklevel="0" colspan="2" visible="false" ordinalvalue="10020" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{e041fbd2-7717-4e95-9f19-1b03858c8ef5}" colspan="2" rowspan="1" ordinalvalue="10021" solutionaction="Modified" />
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="lineitems_tab" id="04df713d-76e2-4d02-9e57-c8e7bf7f341c" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="1">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="lineitems_tab_section_3" id="0102cf7d-094f-46c1-a02a-2ea96afd5bf6" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="1">
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{5c13a920-d4b8-424a-a39f-f882a21fb612}" colspan="1" rowspan="6" showlabel="false" auto="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="Work Order Products" languagecode="1033" solutionaction="Modified" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions FallbackForm="true" Order="1" solutionaction="Modified">
+        <Role Id="{00BB53D6-DA92-E111-9D8C-000C2959F9B8}" solutionaction="Removed" />
+        <Role Id="{D008BFDE-DA92-E111-9D8C-000C2959F9B8}" solutionaction="Removed" />
+        <Role Id="{C4B99AFF-89B6-E311-9B7E-00155DA8FA1B}" solutionaction="Removed" />
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" solutionaction="Removed" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" solutionaction="Removed" />
+        <Role Id="{EF56A65A-65BE-F011-BBD2-6045BD5D2567}" solutionaction="Added" />
+      </DisplayConditions>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Work Order (preview)" languagecode="1033" />
+      <LocalizedName description="Ordre de travail (version préliminaire)" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+      <Description description="Formulaire pour cette entité." languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

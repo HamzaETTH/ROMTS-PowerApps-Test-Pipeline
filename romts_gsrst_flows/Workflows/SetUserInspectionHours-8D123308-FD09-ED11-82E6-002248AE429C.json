@@ -1,0 +1,174 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "43b6cea1-da73-4fc6-a89a-60b15fff3188"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ts_inspectionhours",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_inspector"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "If_Inspector_has_a_value": {
+          "actions": {
+            "List_users_with_this_inspection_hours": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "039d8fc6-3989-451f-885d-cc1b412bee22"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "systemusers",
+                  "$filter": "_ts_inspectionhours_value eq @{triggerOutputs()?['body/ts_inspectionhoursid']}"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each_user_with_inspection_hours": {
+              "foreach": "@outputs('List_users_with_this_inspection_hours')?['body/value']",
+              "actions": {
+                "clear_the_inspection_hours_lookup_value": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "651429a5-b880-417f-8647-3d17c731fdb4"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "systemusers",
+                      "recordId": "@items('Apply_to_each_user_with_inspection_hours')?['systemuserid']",
+                      "item/ts_InspectionHours@odata.bind": "@null"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "List_users_with_this_inspection_hours": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "f04e8031-b38a-433b-8ec0-09c6d2010bd4"
+              },
+              "type": "Foreach"
+            },
+            "Set_User_Inspection_Hours_to_modified_Inspection_Hours": {
+              "runAfter": {
+                "Apply_to_each_user_with_inspection_hours": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "edb2155d-6af3-4494-942d-7d4fd3a0db46"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "systemusers",
+                  "recordId": "@triggerOutputs()?['body/_ts_inspector_value']",
+                  "item/ts_InspectionHours@odata.bind": "/ts_inspectionhourses/@{triggerOutputs()?['body/ts_inspectionhoursid']}"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "else": {
+            "actions": {
+              "Clear_User_Inspection_Hours": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "9bc96e41-95d4-4b8c-b28d-e28a21547344"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps_1",
+                    "operationId": "UpdateRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "systemusers",
+                    "recordId": "@triggerOutputs()?['body/_ts_inspector_value']",
+                    "item/ts_InspectionHours@odata.bind": "@null"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@triggerOutputs()?['body/_ts_inspector_value']",
+                "@null"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "b7a3f6e0-a990-4ffb-8e05-f2deb1a947f7"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

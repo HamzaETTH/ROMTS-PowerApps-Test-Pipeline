@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_operationactivityriskscores.AddExistingAssoc.Hide" Location="Mscrm.SubGrid.ts_operationactivityriskscores.AddExistingAssoc" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_operationactivityriskscores.AddExistingStandard.Hide" Location="Mscrm.SubGrid.ts_operationactivityriskscores.AddExistingStandard" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_operationactivityriskscores.AddNewStandard.Hide" Location="Mscrm.SubGrid.ts_operationactivityriskscores.AddNewStandard" />
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_operationactivityriskscores.Command0.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="ReCalculateRiskScore" Library="$webresource:ts_/js/OperationActivityRiskScoresRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules />
+    <EnableRules />
+  </RuleDefinitions>
+  <LocLabels />
+</RibbonDiffXml>

@@ -1,0 +1,1200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <HideCustomAction HideActionId="Mscrm.AddExistingRecordFromSubGridAssociated" Location="Mscrm.SubGrid.contact.MainTab.Management.Controls._children" />
+    <HideCustomAction HideActionId="ovs.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.Hide" Location="Mscrm.SubGrid.msdyn_workorder.AddExistingStandard" />
+    <HideCustomAction HideActionId="ts.Mscrm.Form.msdyn_workorder.Activate.Hide" Location="Mscrm.Form.msdyn_workorder.Activate" />
+    <CustomAction Id="ts.Mscrm.Form.msdyn_workorder.Activate.TSIS.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="55">
+      <CommandUIDefinition>
+        <Button Alt="$Resources:Ribbon.HomepageGrid.account.Record.Status.Activate" Command="Mscrm.Form.Activate.TSIS" Id="Mscrm.Form.msdyn_workorder.Activate.TSIS" Image32by32="/_imgs/ribbon/Activate_32.png" Image16by16="/_imgs/ribbon/Activate_16.png" LabelText="$LocLabels:Mscrm.Form.msdyn_workorder.Activate.TSIS.LabelText" Sequence="55" TemplateAlias="o2" ToolTipTitle="$Resources:Ribbon.HomepageGrid.account.Record.Status.Activate" ToolTipDescription="$Resources(EntityPluralDisplayName):Ribbon.Tooltip.Activate" ModernImage="Activate" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="40">
+      <CommandUIDefinition>
+        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="Mscrm.AddExistingRecordFromSubGridAssociated" Id="Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc.LabelText" Sequence="40" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipDescription" ModernImage="AddExisting" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.Mscrm.SubGrid.msdyn_workorder.NewRecord.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="10">
+      <CommandUIDefinition>
+        <Button Command="Mscrm.NewRecordFromGrid" Id="Mscrm.SubGrid.msdyn_workorder.NewRecord" Image32by32="/_imgs/ribbon/newrecord32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.MainTab.New" Sequence="10" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Ribbon.SubGrid.MainTab.New" ToolTipDescription="$Resources(EntityDisplayName):Ribbon.Tooltip.New" ModernImage="New" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="65">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.Alt" Command="msdyn.ApplicationRibbon.Form.BookResource.Command" Description="Book" Id="msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button" LabelText="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.LabelText" Sequence="65" TemplateAlias="o2" ToolTipTitle="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.ToolTipTitle" ToolTipDescription="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.ToolTipDescription" ModernImage="$webresource:msdyn_/fps/Icons/CommandBar/CalendarButton.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="75">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.Alt" Command="msdyn.ApplicationRibbon.HomeGrid.BookResource.Command" Description="Book" Id="msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button" LabelText="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.LabelText" Sequence="75" TemplateAlias="o2" ToolTipTitle="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.ToolTipTitle" ToolTipDescription="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.ToolTipDescription" ModernImage="$webresource:msdyn_/fps/Icons/CommandBar/CalendarButton.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.AddAdditionalInspectors.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="24">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.Alt" Command="ts.msdyn_workorder.AddAdditionalInspectors" Id="ts.msdyn_workorder.AddAdditionalInspectors" LabelText="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.LabelText" Sequence="24" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.Button4.Planning.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="1">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.Button4.Planning.Alt" Command="ts.msdyn_workorder.TSIS.Planning" Id="ts.msdyn_workorder.Button4.Planning" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.Button4.Planning.LabelText" Sequence="1" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button4.Planning.ToolTipTitle" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.Button6.AddToTrip.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="22">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.Alt" Command="ts.msdyn_workorder.TSIS.AddToTrip" Id="ts.msdyn_workorder.Button6.AddToTrip" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.LabelText" Sequence="22" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.ToolTipTitle" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.Commit.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="1">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.Commit.Alt" Command="ts.msdyn_workorder.commitSelectedWorkOrders" Id="ts.msdyn_workorder.Commit" LabelText="$LocLabels:ts.msdyn_workorder.Commit.LabelText" Sequence="1" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Commit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.Commit.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.CopyServiceTask.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="50">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.CopyServiceTask.Alt" Command="ts.msdyn_workorder.CopyServiceTask" Id="ts.msdyn_workorder.CopyServiceTask" LabelText="$LocLabels:ts.msdyn_workorder.CopyServiceTask.LabelText" Sequence="50" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.CopyServiceTask.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.CopyServiceTask.ToolTipDescription" ModernImage="$webresource:ts_CopyServiceTaskIcon" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.Documents.Button.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="58">
+      <CommandUIDefinition>
+        <Button Command="ts.msdyn_workorder.Documents.Command" Id="ts.msdyn_workorder.Documents.Button" LabelText="$LocLabels:ts.msdyn_workorder.Documents.Button.LabelText" Sequence="58" TemplateAlias="o2" ModernImage="$webresource:ts_DocumentsIcon" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.EditUnplannedWO.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="1">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.Alt" Command="ts.msdyn_workorder.EditUnplannedWO" Id="ts.msdyn_workorder.EditUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.LabelText" Sequence="1" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.ToolTipDescription" ModernImage="$webresource:ts_EditPencilIcon" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.NewUnplannedWO.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.NewUnplannedWO.Alt" Command="ts.msdyn_workorder.NewUnplannedWorkOrder" Id="ts.msdyn_workorder.NewUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.NewUnplannedWO.LabelText" Sequence="0" TemplateAlias="o1" ModernImage="$webresource:ts_NewRecordIcon" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.NewUnplannedWOHome.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.NewUnplannedWOHome.Alt" Command="ts.msdyn_workorder.NewUnplannedWorkOrder" Id="ts.msdyn_workorder.NewUnplannedWOHome" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.NewUnplannedWOHome.LabelText" Sequence="0" TemplateAlias="o5" ModernImage="$webresource:ts_NewRecordIcon" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.SubGrid.AddExistingStandardSecurityIncident.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="30">
+      <CommandUIDefinition>
+        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="ts.msdyn_workorder.AddExistingStandardSecurityIncident" Id="ts.msdyn_workorder.SubGrid.AddExistingStandardSecurityIncident" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:ts.msdyn_workorder.SubGrid.AddExistingStandardSecurityIncident.LabelText" Sequence="30" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipDescription" ModernImage="AddExisting" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.SubGridCommit.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.SubGridCommit.Alt" Command="ts.msdyn_workorder.SubgridCommit" Id="ts.msdyn_workorder.SubGridCommit" LabelText="$LocLabels:ts.msdyn_workorder.SubGridCommit.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.SubGridCommit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.SubGridCommit.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.TripSubGrid.AddExisting.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="32">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.TripSubGrid.AddExisting.Alt" Command="ts.msdyn_workorder.AddExistingRecordSubGridForTrip" Id="ts.msdyn_workorder.TripSubGrid.AddExisting" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:ts.msdyn_workorder.TripSubGrid.AddExisting.LabelText" Sequence="32" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.TripSubGrid.AddExisting.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.TripSubGrid.AddExisting.ToolTipDescription" ModernImage="AddExisting" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.TSIS.Cancel.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="15">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.TSIS.Cancel.Alt" Command="ts.msdyn_workorder.TSIS.Cancel" Id="ts.msdyn_workorder.TSIS.Cancel" Image32by32="/_imgs/ribbon/edit_32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.TSIS.Cancel.LabelText" Sequence="15" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.TSIS.Cancel.ToolTipTitle" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="60">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.Alt" Command="ts.msdyn_workorder.TSIS.ExportToPdf" CommandValueId="ts.msdyn_workorder.TSIS.ExportToPdf" Id="ts.msdyn_workorder.TSIS.ExportToPdfButton" LabelText="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.LabelText" Sequence="60" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.TSIS.Justify.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="13">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.TSIS.Justify.Alt" Command="ts.msdyn_workorder.TSIS.Justify" Id="ts.msdyn_workorder.TSIS.Justify" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.TSIS.Justify.LabelText" Sequence="13" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.TSIS.Justify.ToolTipTitle" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="33">
+      <CommandUIDefinition>
+        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="ovs.msdyn_workorder.SubGrid.msdyn_workorder.AddExistingStandard" Id="ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.LabelText" Sequence="33" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipDescription" ModernImage="AddExisting" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ovs.msdyn_workorder.TSIS.msdyn_workorder.Assign.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="46">
+      <CommandUIDefinition>
+        <Button Alt="$Resources:Ribbon.HomepageGrid.MainTab.Actions.Assign" Command="ovs.msdyn_workorder.TSIS.AssignPrimaryRecord" Id="ovs.msdyn_workorder.TSIS.msdyn_workorder.Assign" Image32by32="/_imgs/ribbon/Assign_32.png" Image16by16="/_imgs/ribbon/Assign_16.png" LabelText="$Resources:Ribbon.HomepageGrid.MainTab.Actions.Assign" Sequence="46" TemplateAlias="o1" ToolTipTitle="$Resources:Ribbon.HomepageGrid.MainTab.Actions.Assign" ToolTipDescription="$Resources(EntityPluralDisplayName):Ribbon.Tooltip.Assign" ModernImage="Assign" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.AddExistingRecordFromSubGridAssociated">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AddExisting" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.AppendPrimary" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.AppendToSelected" />
+        <DisplayRule Id="Mscrm.ShowForManyToManyGrids" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.AddExistingRecordFromSubGridStandard">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="Mscrm.IsRelationshipEnabledInMocaOffline" />
+        <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AddExisting" />
+        <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.CanWriteSelected" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridStandard" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.AddNewRecordFromSubGridStandard">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="ts.msdyn_workorder.HideInOperation.EnableRule" />
+        <EnableRule Id="ts.msdyn_workorder.HideInStakeholder.EnableRule" />
+        <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.CreateSelectedEntityPermission" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.HideAddNewForChildEntities" />
+        <DisplayRule Id="ts.msdyn_workorder.HideAddNewForFunctionalLocation" />
+        <DisplayRule Id="ts.msdyn_workorder.HideAddNewForTrip" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Open.addNewFromSubGridStandard" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.AssignPrimaryRecord">
+      <EnableRules>
+        <EnableRule Id="Mscrm.FormStateNotNew" />
+        <EnableRule Id="Mscrm.AssignPrimaryPermission" />
+        <EnableRule Id="Mscrm.NotOffline" />
+        <EnableRule Id="ovs.msdyn_workorder.TSIS.isROMRole.inverted" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AssignPrimaryPermission" />
+        <DisplayRule Id="Mscrm.NotClosedActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Assign.assignObject" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.AssignSelectedRecord">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+        <EnableRule Id="Mscrm.NotOffline" />
+        <EnableRule Id="Mscrm.IsValidForHierarchyView" />
+        <EnableRule Id="Mscrm.IsValidForHierarchyPageInUC" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AssignSelectedEntityPermission" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Assign.assignSelectedRecords" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedControl" />
+          <CrmParameter Value="SelectedControlSelectedItemReferences" />
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.Form.Activate">
+      <EnableRules>
+        <EnableRule Id="Mscrm.CanWritePrimary" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWritePrimary" />
+        <DisplayRule Id="Mscrm.PrimaryIsInactive" />
+        <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode" />
+        <DisplayRule Id="Mscrm.PrimaryIsNotActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Activate.activatePrimaryRecord" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.Form.Activate.TSIS">
+      <EnableRules>
+        <EnableRule Id="Mscrm.CanWritePrimary" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWritePrimary" />
+        <DisplayRule Id="Mscrm.PrimaryIsInactive" />
+        <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode" />
+        <DisplayRule Id="Mscrm.PrimaryIsNotActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="ActivateWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.NewRecordFromGrid">
+      <EnableRules>
+        <EnableRule Id="Mscrm.IsValidForHierarchyView" />
+        <EnableRule Id="Mscrm.IsValidForHierarchyPageInUC" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="Mscrm.PrimaryIsNotActivityHomePageGrid" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CreateSelectedEntityPermission" />
+        <DisplayRule Id="Mscrm.ShowForNonRelationshipBoundGrids" />
+        <DisplayRule Id="Mscrm.HideNewForChildEntities" />
+        <DisplayRule Id="Mscrm.HideAddressEntities" />
+        <DisplayRule Id="Mscrm.SelectedEntityIsNotBPFEntity" />
+        <DisplayRule Id="Mscrm.IsNotActivityPointer" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Open.openNewRecord" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.RemoveSelectedRecord">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Disassociate.gridDisassociate" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+          <CrmParameter Value="FirstSelectedItemId" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.ShareSelectedRecord">
+      <EnableRules>
+        <EnableRule Id="Mscrm.NotOffline" />
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+        <EnableRule Id="Mscrm.ShareValid" />
+        <EnableRule Id="Mscrm.IsValidForHierarchyView" />
+        <EnableRule Id="Mscrm.ShowOnNonModernAndModernIfAllowed" />
+        <EnableRule Id="ts.msdyn_workorder.EnableRule20.ShowAdmin" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.ShareSelectedEntityPermission" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Share.shareSelectedRecords" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedControl" />
+          <CrmParameter Value="SelectedControlSelectedItemReferences" />
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="msdyn.ApplicationRibbon.HomeGrid.BookResource.Command">
+      <EnableRules>
+        <EnableRule Id="msdyn.ApplicationRibbon.HomeGrid.BookResource.EnableRule" />
+        <EnableRule Id="ts.msdyn_workorder.EnableRule20.ShowAdmin" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="isNaN" Library="$webresource:msdyn_/fps/LocalizationLibrary/Localization.Library.js" />
+        <JavaScriptFunction FunctionName="isNaN" Library="$webresource:msdyn_/fps/Utils/FpsUtils.js" />
+        <JavaScriptFunction FunctionName="FpsUtils.Form.bookButtonAction" Library="$webresource:msdyn_/fps/Utils/FpsUtils.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="FirstSelectedItemId" />
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ovs.msdyn_workorder.SubGrid.msdyn_workorder.AddExistingStandard">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="Mscrm.IsRelationshipEnabledInMocaOffline" />
+        <EnableRule Id="ts.msdyn_workorder.HideInOperation.EnableRule" />
+        <EnableRule Id="ts.msdyn_workorder.HideInStakeholder.EnableRule" />
+        <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData" />
+        <EnableRule Id="ts.msdyn_workorder.AddExistingForCaseSubGrid.EnableRule" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AddExisting" />
+        <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.CanWriteSelected" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="addExistingWorkOrdersToCase" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ovs.msdyn_workorder.TSIS.AssignPrimaryRecord">
+      <EnableRules>
+        <EnableRule Id="Mscrm.FormStateNotNew" />
+        <EnableRule Id="Mscrm.AssignPrimaryPermission" />
+        <EnableRule Id="Mscrm.NotOffline" />
+        <EnableRule Id="ovs.msdyn_workorder.TSIS.isROMRole" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AssignPrimaryPermission" />
+        <DisplayRule Id="Mscrm.NotClosedActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Assign.assignObject" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.AddAdditionalInspectors">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="bulkAddAdditionalInspectors" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.AddExistingRecordSubGridForTrip">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.AddExistingForTripSubGrid.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridStandard" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.AddExistingStandardSecurityIncident">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="Mscrm.IsRelationshipEnabledInMocaOffline" />
+        <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData" />
+        <EnableRule Id="ts.msdyn_workorder.PrimaryIsSecurityIncident" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AddExisting" />
+        <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.CanWriteSelected" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridStandard" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.commitSelectedWorkOrders">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+        <EnableRule Id="ts.msdyn_workorder.UserIsPlannerOrSystemAdmin" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="commitSelectedWorkOrders" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.CopyServiceTask">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="copyServiceTask" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.Documents.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="OpenFileUploadPage" Library="$webresource:ts_/js/AttachFile.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="PrimaryControlId" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.EditUnplannedWO">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.TSIS.disableEditWorkOrder" />
+        <EnableRule Id="ts.msdyn_workorder.enableEditWorkOrderButtonForOwnerOrInspector" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="editUnplannedWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.HideExportToPDFFlyout">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+        <EnableRule Id="ts.msdyn_workorder.UserIsPlannerOrSystemAdminOrManagerOrBusinessAdmin" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="ts.msdyn_workorder.Hide" />
+      </DisplayRules>
+      <Actions />
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.NewUnplannedWorkOrder">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="openUnplannedWorkOrderForm" Library="$webresource:ovs_/js/WorkOrderRibbon.js" />
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.SubgridCommit">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+        <EnableRule Id="ts.msdyn_workorder.isPlanORTeamPlanningDataSubgrid" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="commitSelectedWorkOrders" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.AddToTrip">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="workOrdersAddToTrip" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.Cancel">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+        <EnableRule Id="ts.msdyn_workorder.EnableRule17.EnableCancelButton" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="justifyWorkOrderCancellation" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithHiddenQuestions">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+        <EnableRule Id="ts.msdyn_workorder.UserIsPlannerOrSystemAdminOrManagerOrBusinessAdmin" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="ts.msdyn_workorder.Hide" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="exportWorkOrderFromSubgrid" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControl" />
+          <BoolParameter Value="true" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithoutHiddenQuestions">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+        <EnableRule Id="ts.msdyn_workorder.UserIsPlannerOrSystemAdminOrManagerOrBusinessAdmin" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="ts.msdyn_workorder.Hide" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="exportWorkOrderFromSubgrid" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.ExportToPdf">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.TSIS.hasWorkOrderName" />
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="exportWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.Justify">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="justifyWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.Planning">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="planningWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules>
+      <DisplayRule Id="Mscrm.AddExisting">
+        <ReferencingAttributeRequiredRule Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendPrimary">
+        <EntityPrivilegeRule PrivilegeType="Append" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendSelected">
+        <EntityPrivilegeRule PrivilegeType="Append" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendToPrimary">
+        <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendToSelected">
+        <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AssignPrimaryPermission">
+        <EntityPrivilegeRule PrivilegeType="Assign" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AssignSelectedEntityPermission">
+        <EntityPrivilegeRule PrivilegeType="Assign" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.CanWritePrimary">
+        <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.CanWriteSelected">
+        <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.CreateSelectedEntityPermission">
+        <EntityPrivilegeRule PrivilegeType="Create" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.HideAddNewForChildEntities">
+        <OrRule>
+          <Or>
+            <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="IsChildEntity" PropertyValue="false" />
+          </Or>
+          <Or>
+            <RelationshipTypeRule AppliesTo="SelectedEntity" AllowCustomRelationship="false" />
+          </Or>
+        </OrRule>
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.HideAddressEntities">
+        <EntityRule EntityName="customeraddress" AppliesTo="SelectedEntity" Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.HideNewForChildEntities">
+        <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="IsChildEntity" PropertyValue="false" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.IsNotActivityPointer">
+        <EntityRule EntityName="activitypointer" AppliesTo="SelectedEntity" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.NotClosedActivity">
+        <OrRule>
+          <Or>
+            <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="false" />
+          </Or>
+          <Or>
+            <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="true" />
+            <ValueRule Field="statecode" Value="Open" />
+          </Or>
+          <Or>
+            <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="true" />
+            <ValueRule Field="statecode" Value="Scheduled" />
+          </Or>
+        </OrRule>
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="HasStateCode" PropertyValue="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsInactive">
+        <FormStateRule State="Disabled" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsNotActivity">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="false" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.SelectedEntityIsNotBPFEntity">
+        <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="IsBPFEntity" PropertyValue="false" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShareSelectedEntityPermission">
+        <EntityPrivilegeRule PrivilegeType="Share" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowForManyToManyGrids">
+        <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="ManyToMany" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowForNonRelationshipBoundGrids">
+        <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="NoRelationship" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowForOneToManyGrids">
+        <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="OneToMany" />
+      </DisplayRule>
+      <DisplayRule Id="ts.msdyn_workorder.Hide">
+        <ValueRule Value="False" Default="false" />
+      </DisplayRule>
+      <DisplayRule Id="ts.msdyn_workorder.HideAddNewForFunctionalLocation">
+        <EntityRule EntityName="msdyn_functionallocation" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="ts.msdyn_workorder.HideAddNewForTrip">
+        <EntityRule EntityName="ts_trip" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="ts.msdyn_workorder.HideNewUnplannedWO">
+        <ValueRule Value="" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="ts.msdyn_workorder.ShowInExportJobForm">
+        <EntityRule EntityName="msdyn_workorder" AppliesTo="SelectedEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="FieldService.Form.msdyn_workorder.EnableRule.ShowSimplifiedCommands">
+        <CustomRule FunctionName="WorkOrders.Library.areAllRibbonCommandsEnabled" Library="$webresource:msdyn_/WorkOrder/WorkOrder.Library.js" Default="false" InvertResult="false">
+          <CrmParameter Value="SelectedControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.AppendToPrimary">
+        <RecordPrivilegeRule PrivilegeType="AppendTo" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.AssignPrimaryPermission">
+        <RecordPrivilegeRule PrivilegeType="Assign" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.CanWritePrimary">
+        <RecordPrivilegeRule PrivilegeType="Write" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.EntityFormIsEnabled">
+        <FormStateRule State="Disabled" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.FormStateNotNew">
+        <FormStateRule State="Create" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline">
+        <CustomRule FunctionName="XrmCore.Rules.Online.IsEntityAvailableForUserInMocaOffline" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsRelationshipEnabledInMocaOffline">
+        <CustomRule FunctionName="XrmCore.Rules.Online.IsRelationshipEnabledInMocaOffline" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsValidForHierarchyPageInUC">
+        <CustomRule FunctionName="XrmCore.Rules.HierarchyView.isValidForHierarchyPageInUC" Library="$webresource:Main_system_library.js" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsValidForHierarchyView">
+        <CustomRule FunctionName="XrmCore.Rules.HierarchyView.isValidForHierarchyView" Library="$webresource:Main_system_library.js" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.NotOffline">
+        <CrmOfflineAccessStateRule State="Offline" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.PrimaryIsNotActivityHomePageGrid">
+        <CustomRule FunctionName="XrmCore.Rules.Enabled.PrimaryIsNotActivityHomePageGrid" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.SelectionCountAtLeastOne">
+        <SelectionCountRule AppliesTo="SelectedEntity" Minimum="1" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.ShareValid">
+        <CustomRule FunctionName="XrmCore.Commands.Share.isShareValid" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.ShowOnNonModernAndModernIfAllowed">
+        <OrRule>
+          <Or>
+            <CommandClientTypeRule Type="Modern" InvertResult="true" />
+          </Or>
+          <Or>
+            <CustomRule FunctionName="XrmCore.InternalUtilities.DialogUtilities.isAllowLegacyDialogsEmbedding" Library="$webresource:Main_system_library.js" />
+          </Or>
+        </OrRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.VisualizationPaneNotMaximized">
+        <OrRule>
+          <Or>
+            <CommandClientTypeRule Type="Modern" />
+          </Or>
+          <Or>
+            <CustomRule FunctionName="Mscrm.GridCommandActions.disableButtonsWhenChartMaximized" Library="/_static/_common/scripts/CommandBarActions.js">
+              <CrmParameter Value="SelectedControl" />
+            </CustomRule>
+          </Or>
+        </OrRule>
+      </EnableRule>
+      <EnableRule Id="msdyn.ApplicationRibbon.HomeGrid.BookResource.EnableRule">
+        <CustomRule FunctionName="FpsUtils.Form.isBookButtonEnabled" Library="$webresource:msdyn_/fps/Utils/FpsUtils.js" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </CustomRule>
+        <SelectionCountRule AppliesTo="SelectedEntity" Minimum="1" Maximum="1" />
+      </EnableRule>
+      <EnableRule Id="ovs.msdyn_workorder.TSIS.isROMRole">
+        <CustomRule FunctionName="isROMRole" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="true" />
+      </EnableRule>
+      <EnableRule Id="ovs.msdyn_workorder.TSIS.isROMRole.inverted">
+        <CustomRule FunctionName="isROMRole" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.AddExistingForCaseSubGrid.EnableRule">
+        <CustomRule FunctionName="showAddExistingButton" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+          <StringParameter Value="45b022a4-928d-eb11-b1ac-000d3ae92dbf" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.AddExistingForTripSubGrid.EnableRule">
+        <CustomRule FunctionName="showAddExistingButton" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+          <StringParameter Value="6f157fec-1d27-464f-a848-f221e46fc3d5" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.enableEditWorkOrderButtonForOwnerOrInspector">
+        <CustomRule FunctionName="enableEditWorkOrderButtonForOwnerOrInspector" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false" InvertResult="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected">
+        <SelectionCountRule Minimum="1" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.EnableRule17.EnableCancelButton">
+        <ValueRule Field="msdyn_systemstatus" Value="690970003" InvertResult="true" />
+        <ValueRule Field="msdyn_systemstatus" Value="690970004" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.EnableRule20.ShowAdmin">
+        <CustomRule FunctionName="isSystemAdministrator" Library="$webresource:ovs_/js/WorkOrderRibbon.js" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.HideInOperation.EnableRule">
+        <EntityRule EntityName="ovs_operation" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.HideInStakeholder.EnableRule">
+        <EntityRule EntityName="account" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.IsNotSecurityIncident">
+        <EntityRule EntityName="ts_securityincident" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.isPlanORTeamPlanningDataSubgrid">
+        <CustomRule FunctionName="isTeamOrPlanContext" Library="$webresource:ovs_/js/WorkOrderRibbon.js" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.isTeamPlanningDataSubgrid">
+        <EntityRule EntityName="ts_teamplanningdata" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData">
+        <EntityRule EntityName="ts_teamplanningdata" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.PrimaryIsSecurityIncident">
+        <EntityRule EntityName="ts_securityincident" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.TSIS.disableEditWorkOrder">
+        <CustomRule FunctionName="disableEditButtonOnWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false" InvertResult="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.TSIS.hasWorkOrderName">
+        <CustomRule FunctionName="hasWorkOrderName" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false" InvertResult="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.UserIsPlannerOrSystemAdmin">
+        <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js">
+          <StringParameter Value="ROM - Planner|System Administrator" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.UserIsPlannerOrSystemAdminOrManagerOrBusinessAdmin">
+        <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js">
+          <StringParameter Value="System Administrator|ROM - Business Admin|ROM - Planner|ROM - Manager" />
+        </CustomRule>
+      </EnableRule>
+    </EnableRules>
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="Mscrm.Form.msdyn_workorder.Activate.TSIS.LabelText">
+      <Titles>
+        <Title description="Activate" languagecode="1033" />
+        <Title description="Activate" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc.LabelText">
+      <Titles>
+        <Title description="Add Existing {0} / Associated" languagecode="1033" />
+        <Title description="Add Existing {0} / Associated" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.Alt">
+      <Titles>
+        <Title description="Book" languagecode="1033" />
+        <Title description="Book" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.LabelText">
+      <Titles>
+        <Title description="Book" languagecode="1033" />
+        <Title description="Book" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Open schedule board to book a resource" languagecode="1033" />
+        <Title description="Open schedule board to book a resource" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Book Resource" languagecode="1033" />
+        <Title description="Book Resource" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.Alt">
+      <Titles>
+        <Title description="Book" languagecode="1033" />
+        <Title description="Book" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.LabelText">
+      <Titles>
+        <Title description="Book" languagecode="1033" />
+        <Title description="Book" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Open schedule board to book a resource" languagecode="1033" />
+        <Title description="Open schedule board to book a resource" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Book Resource" languagecode="1033" />
+        <Title description="Book Resource" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.LabelText">
+      <Titles>
+        <Title description="Add Existing {0}" languagecode="1033" />
+        <Title description="Add Existing {0}" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.AddAdditionalInspectors.Alt">
+      <Titles>
+        <Title description="Add Additional Inspectors" languagecode="1033" />
+        <Title description="Add Additional Inspectors" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.AddAdditionalInspectors.LabelText">
+      <Titles>
+        <Title description="Add Additional Inspectors" languagecode="1033" />
+        <Title description="Add Additional Inspectors" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.AddAdditionalInspectors.ToolTipDescription">
+      <Titles>
+        <Title description="Add Additional Inspectors" languagecode="1033" />
+        <Title description="Add Additional Inspectors" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.AddAdditionalInspectors.ToolTipTitle">
+      <Titles>
+        <Title description="Add Additional Inspectors" languagecode="1033" />
+        <Title description="Add Additional Inspectors" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Button4.Planning.Alt">
+      <Titles>
+        <Title description="Planning" languagecode="1033" />
+        <Title description="Planning" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Button4.Planning.LabelText">
+      <Titles>
+        <Title description="Planning" languagecode="1033" />
+        <Title description="Planning" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Button4.Planning.ToolTipTitle">
+      <Titles>
+        <Title description="Planning" languagecode="1033" />
+        <Title description="Planning" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Button6.AddToTrip.Alt">
+      <Titles>
+        <Title description="Add to trip" languagecode="1033" />
+        <Title description="Add to trip" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Button6.AddToTrip.LabelText">
+      <Titles>
+        <Title description="Add to trip" languagecode="1033" />
+        <Title description="Add to trip" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Button6.AddToTrip.ToolTipTitle">
+      <Titles>
+        <Title description="Add to trip" languagecode="1033" />
+        <Title description="Add to trip" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Commit.Alt">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+        <Title description="Commit" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Commit.LabelText">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+        <Title description="Commit" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Commit.ToolTipDescription">
+      <Titles>
+        <Title description="Set Work Orders to Committed State" languagecode="1033" />
+        <Title description="Set Work Orders to Committed State" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Commit.ToolTipTitle">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+        <Title description="Commit" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.Alt">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+        <Title description="Copy Service Task" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.LabelText">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+        <Title description="Copy Service Task" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.ToolTipDescription">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+        <Title description="Copy Service Task" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.ToolTipTitle">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+        <Title description="Copy Service Task" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Documents.Button.LabelText">
+      <Titles>
+        <Title description="Documents" languagecode="1033" />
+        <Title description="Documents" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.Alt">
+      <Titles>
+        <Title description="Edit Work Order" languagecode="1033" />
+        <Title description="Modifier l'ODT" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.LabelText">
+      <Titles>
+        <Title description="Edit Work Order" languagecode="1033" />
+        <Title description="Modifier l'ODT" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.ToolTipDescription">
+      <Titles>
+        <Title description="Edit Work Order in Workspace" languagecode="1033" />
+        <Title description="Modifier l'ordre de travail dans l’espace de travail" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.ToolTipTitle">
+      <Titles>
+        <Title description="Edit Work Order in Workspace" languagecode="1033" />
+        <Title description="Modifier l'ordre de travail dans l’espace de travail" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.NewUnplannedWO.Alt">
+      <Titles>
+        <Title description="New Unplanned WO" languagecode="1033" />
+        <Title description="Nouvel ODT non planifier" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.NewUnplannedWO.LabelText">
+      <Titles>
+        <Title description="New Unplanned WO" languagecode="1033" />
+        <Title description="Nouvel ODT non planifier" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.NewUnplannedWOHome.Alt">
+      <Titles>
+        <Title description="New Unplanned WO" languagecode="1033" />
+        <Title description="Nouvel ODT non planifier" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.NewUnplannedWOHome.LabelText">
+      <Titles>
+        <Title description="New Unplanned WO" languagecode="1033" />
+        <Title description="Nouvel ODT non planifier" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.SubGrid.AddExistingStandardSecurityIncident.LabelText">
+      <Titles>
+        <Title description="Add Existing {0} / Security " languagecode="1033" />
+        <Title description="Add Existing {0} / Security " languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.SubGridCommit.Alt">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+        <Title description="Commit" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.SubGridCommit.LabelText">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+        <Title description="Commit" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.SubGridCommit.ToolTipDescription">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+        <Title description="Commit" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.SubGridCommit.ToolTipTitle">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+        <Title description="Commit" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TripSubGrid.AddExisting.Alt">
+      <Titles>
+        <Title description="Add Existing {0}" languagecode="1033" />
+        <Title description="Add Existing {0}" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TripSubGrid.AddExisting.LabelText">
+      <Titles>
+        <Title description="Add Existing {0}" languagecode="1033" />
+        <Title description="Add Existing {0}" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TripSubGrid.AddExisting.ToolTipDescription">
+      <Titles>
+        <Title description="Add a {0} that already exists to the record you are working with." languagecode="1033" />
+        <Title description="Add a {0} that already exists to the record you are working with." languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TripSubGrid.AddExisting.ToolTipTitle">
+      <Titles>
+        <Title description="Add Existing {0}" languagecode="1033" />
+        <Title description="Add Existing {0}" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.Cancel.Alt">
+      <Titles>
+        <Title description="Cancel" languagecode="1033" />
+        <Title description="Cancel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.Cancel.LabelText">
+      <Titles>
+        <Title description="Cancel" languagecode="1033" />
+        <Title description="Cancel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.Cancel.ToolTipTitle">
+      <Titles>
+        <Title description="Cancel" languagecode="1033" />
+        <Title description="Cancel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.Alt">
+      <Titles>
+        <Title description="Export to PDF" languagecode="1033" />
+        <Title description="Export to PDF" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.LabelText">
+      <Titles>
+        <Title description="Export to PDF" languagecode="1033" />
+        <Title description="Export to PDF" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipDescription">
+      <Titles>
+        <Title description="Export to PDF" languagecode="1033" />
+        <Title description="Export to PDF" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipTitle">
+      <Titles>
+        <Title description="Export to PDF" languagecode="1033" />
+        <Title description="Export to PDF" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.Justify.Alt">
+      <Titles>
+        <Title description="Justify" languagecode="1033" />
+        <Title description="Justify" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.Justify.LabelText">
+      <Titles>
+        <Title description="Justify" languagecode="1033" />
+        <Title description="Justify" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.Justify.ToolTipTitle">
+      <Titles>
+        <Title description="Justify" languagecode="1033" />
+        <Title description="Justify" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

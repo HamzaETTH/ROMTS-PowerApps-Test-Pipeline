@@ -1,0 +1,108 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "8c7089d2-730e-4a0a-b0a9-2b4cc129943a"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "msdyn_workorder",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filterexpression": "_ts_suggestedinspection_value ne null"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "aaa17595-9ffe-43b5-93cf-ea3db37282a5"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_planinspectionsupportregions",
+              "fetchXml": "<fetch>\n<entity name='ts_planinspectionsupportregion'>\n<link-entity name='ts_suggestedinspection' from='ts_suggestedinspectionid' to='ts_suggestedinspection' link-type='inner' alias='ab'>\n<filter type='and'>\n<condition attribute='ts_suggestedinspectionid' operator='eq' value='@{triggerOutputs()?['body/_ts_suggestedinspection_value']}'/>\n</filter>\n</link-entity>\n</entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows')?['body/value']",
+          "actions": {
+            "Add_a_new_row": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "51b069f0-4071-48a5-b825-6e085c1d6d66"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_workordertimetrackings",
+                  "item/ts_Region@odata.bind": "/territories(@{items('Apply_to_each')?['_ts_region_value']})",
+                  "item/ts_WorkOrder@odata.bind": "/msdyn_workorders(@{triggerOutputs()?['body/msdyn_workorderid']})"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5d8fdf44-7336-4d3d-8dae-a9dcae957469"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

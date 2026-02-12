@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{7f444e84-7339-4740-ab2b-d0ebc2a548ec}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{237cbd93-40dd-4109-91e4-b1c42803277e}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{40d98a1a-b650-4daa-a187-29d10bbfcb7f}" visible="true" columns="11">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{4cc2ef8f-4267-4e80-aae6-77ceeba5d9eb}" visible="false">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d010309e-ade4-456c-8bd1-8b50a8ed9592}" visible="false">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{24c361ce-0321-42c3-9733-41aae1003c93}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Question Name" languagecode="1033" />
+                        </labels>
+                        <control id="ts_questionname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_questionname" disabled="true" />
+                      </cell>
+                      <cell id="{cc469f48-41fd-4e51-b78f-6c7914d1353a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Response" languagecode="1033" />
+                        </labels>
+                        <control id="ts_response" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_response" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{806db9c8-e247-4f9d-8f4a-c25b3979d568}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Question Text (English)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_questiontextenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_questiontextenglish" disabled="true" />
+                      </cell>
+                      <cell id="{708c38a5-d060-431d-8b63-526af6250793}" locklevel="0" colspan="1" rowspan="5">
+                        <labels>
+                          <label description="Details" languagecode="1033" />
+                        </labels>
+                        <control id="ts_details" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_details" disabled="true" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{cade9a49-449d-4646-8723-f6a7de5abac3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Question Text (French)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_questiontextfrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_questiontextfrench" disabled="true" />
+                      </cell>
+                      <cell locklevel="0" id="{69ce74db-e655-49f7-b74c-6de5186475e6}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1c0e52a3-59f2-4a7c-9c72-35fb27dd52ac}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Finding Type" languagecode="1033" />
+                        </labels>
+                        <control id="ts_findingtype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_findingtype" disabled="true" />
+                      </cell>
+                      <cell id="{5a86ce60-7d9e-4f41-841c-795abaf64726}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Parent Question Response" languagecode="1033" />
+                        </labels>
+                        <control id="ts_questionresponse" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_questionresponse" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d75677b9-99c9-4e93-951f-658c84849403}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Operations" languagecode="1033" />
+                        </labels>
+                        <control id="ts_operations" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_operations" disabled="true" />
+                      </cell>
+                      <cell locklevel="0" id="{e154ab1a-2c5a-4793-a700-c55283cd311f}" rowspan="4" colspan="1" auto="true">
+                        <labels>
+                          <label description="Sub Questions" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_questionresponse</TargetEntityType>
+                            <ViewId>{11A70B69-9A05-F011-BAE2-002248B2E1CA}</ViewId>
+                            <ViewIds>{4E0D2F7C-F88D-4CAC-8675-DD818999E051},{11A70B69-9A05-F011-BAE2-002248B2E1CA}</ViewIds>
+                            <RelationshipName>ts_QuestionResponse_ts_QuestionResponse_ts_QuestionResponse</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9ca6d82d-a20c-45ac-b6e3-ed68e829ca01}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Provision Reference" languagecode="1033" />
+                        </labels>
+                        <control id="ts_provisionreference" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_provisionreference" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a5bea785-df42-4a9a-81b6-2705115f129c}" locklevel="0" colspan="1" rowspan="6">
+                        <labels>
+                          <label description="Provision Text (English)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_provisiontextenglish" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_provisiontextenglish" disabled="true" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{9fa5484b-87ba-464e-821a-c0d8dbb6ad26}" locklevel="0" colspan="1" rowspan="6">
+                        <labels>
+                          <label description="Provision Text (French)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_provisiontextfrench" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_provisiontextfrench" disabled="true" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{0f057a6d-759e-4b15-89e8-facecf136b96}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{c8c8fb71-d2ec-4375-b3bf-5c579c5ed590}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                          <label description="Statut" languagecode="1036" />
+                        </labels>
+                        <control id="statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{e6145719-6a8c-45bb-8a4a-e8022d525d79}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{9efa0a26-02cf-4b80-a730-595ab18aaf2a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Version" languagecode="1033" />
+                        </labels>
+                        <control id="ts_version" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_version" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{c12c00e5-ab62-404c-9625-186e68b9a8e7}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{a4357146-7a08-4d99-8569-b3b0df5440a4}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a97905c7-b4fc-4117-a53f-d7b730b624b2}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{ab8757fe-03cc-4426-9855-2deb56c5bd28}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{ad26a1b6-42eb-4463-bf85-41772130bc75}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Work Order" languagecode="1033" />
+              </labels>
+              <control id="header_ts_workorder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_workorder" disabled="false" />
+            </cell>
+            <cell id="{bab5cd6f-b2e2-49b0-8340-bd9636b50660}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Work Order Service Task" languagecode="1033" />
+              </labels>
+              <control id="header_ts_msdyn_workorderservicetask" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_msdyn_workorderservicetask" disabled="true" />
+            </cell>
+            <cell id="{c8bca548-8e2b-45d0-8b1b-c7e8536a7205}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Questionnaire" languagecode="1033" />
+              </labels>
+              <control id="header_ts_questionnaire" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_questionnaire" disabled="false" />
+            </cell>
+            <cell locklevel="0" id="{4a8221a9-542f-426a-b520-9916ea6d5f88}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell locklevel="0" id="{cfd374e7-eb9e-4700-9751-4929716a5476}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell locklevel="0" id="{e8ea42b2-eb32-44da-a014-39fb490fec81}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{84869f95-7ad5-44c6-b03c-494f8d1dab1b}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Question Number" languagecode="1033" />
+              </labels>
+              <control id="header_ts_questionnumber" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_questionnumber" disabled="true" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{bf95a1ec-c976-44b8-9625-4628c668a7b7}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{aeedba16-c983-4745-9086-67fd6a65c38e}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9118e3bc-c181-45f1-aa7d-15551a584998}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{840603e2-93a3-4474-b06a-3b8b5aee0165}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

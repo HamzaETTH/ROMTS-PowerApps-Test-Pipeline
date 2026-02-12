@@ -1,0 +1,1886 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{48b0bc97-525e-4223-928e-8d60329ea9e9}</formid>
+    <IntroducedVersion>1.0.0.11</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
+      <tabs>
+        <tab verticallayout="true" id="{bb4b118e-a1c9-4e04-ae4d-8c6a177ee56c}" IsUserDefined="1" name="tab_general" expanded="true" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Summary" languagecode="1033" />
+            <label description="Résumé" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="34%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{3cd2cc0e-c906-46b2-a983-b002694ed43b}" columns="1">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Résumé" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{7e9c4ba2-e25b-47a5-ab7c-e07e069697e7}" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ovs_name" disabled="false" uniqueid="{44600ae0-2aee-eb96-ddb6-13c8c97c8713}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a0321cfc-5225-4dfc-9b28-7a3b32154784}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Operation Name English" languagecode="1033" />
+                          <label description="Operation Name Anglais" languagecode="1036" />
+                        </labels>
+                        <control id="ts_operationnameenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_operationnameenglish" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{80969a30-fb7b-4bba-af73-5fb5a5706ffa}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Operation Name French" languagecode="1033" />
+                          <label description="Operation Name Français" languagecode="1036" />
+                        </labels>
+                        <control id="ts_operationnamefrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_operationnamefrench" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2ed32984-2419-4fd5-9e4e-dc1ce4199f82}" locklevel="0">
+                        <labels>
+                          <label description="Stakeholder" languagecode="1033" />
+                          <label description="Intervenant" languagecode="1036" />
+                        </labels>
+                        <control id="ts_stakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_stakeholder" disabled="false">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2d59361c-c5ad-805d-8a17-47838e7a300e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Operation Type" languagecode="1033" />
+                          <label description="Type d'opération" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_operationtypeid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_operationtypeid" disabled="true">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d166c19f-601c-4b61-9ff0-314ea9e761c0}" locklevel="0">
+                        <labels>
+                          <label description="Site" languagecode="1033" />
+                          <label description="Site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="true" uniqueid="{89b92326-d5b2-003a-9595-bc26caaa5bac}">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6b2c6e84-e3dc-491d-9b8c-5960a892493c}" locklevel="0" showlabel="true">
+                        <labels>
+                          <label description="Subsite" languagecode="1033" />
+                          <label description="Sous-site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_subsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsite" disabled="true" uniqueid="{60e98a15-41c9-e7d0-ae90-d99bec2ac65b}">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <AvailableViewIds>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</AvailableViewIds>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d039e939-cc5e-5662-2a05-e1ec78088143}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Sub subsite" languagecode="1033" />
+                          <label description="Sous sous-site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_subsubsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsubsite" disabled="true" uniqueid="{9a049537-20b0-0588-386c-08035bacace4}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <AvailableViewIds>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f2ac85e4-e216-4197-9ae9-c931ca18f22b}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{aae16e11-566b-9678-10b1-70b415881ca7}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                          <label description="Statut" languagecode="1036" />
+                        </labels>
+                        <control id="statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f0d299f8-f4df-448f-8380-1829d70110e3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Current Operational Status" languagecode="1033" />
+                          <label description="Statut opérationnel actuel" languagecode="1036" />
+                        </labels>
+                        <control id="ts_operationalstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_operationalstatus" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c5da1e32-60b3-4485-8f45-b431e168e069}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Targeted Inspection Needed" languagecode="1033" />
+                          <label description="Identification d'inspection ciblée" languagecode="1036" />
+                        </labels>
+                        <control id="ts_targetedinspectionneeded" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_targetedinspectionneeded" disabled="false" uniqueid="{00091d81-9abc-4bc8-94c9-a12c6538c36b}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{f71435a3-87f0-4568-a9f7-7a600a161e8d}" rowspan="15" colspan="1">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-C143-495E-A496-C962E5B4488E}" disabled="false">
+                          <parameters>
+                            <UClientActivities>appointment,email,phonecall,task,ts_interview,ts_enforcementaction</UClientActivities>
+                            <UClientDisplayActivityUsing>defaultfields</UClientDisplayActivityUsing>
+                            <UClientActivityCardMap>appointment:4201:,campaignactivity:4402:,campaignresponse:4401:,email:4202:,fax:4204:,incidentresolution:4206:,letter:4207:,opportunityclose:4208:,orderclose:4209:,phonecall:4210:,quoteclose:4211:,recurringappointmentmaster:4251:,serviceappointment:4214:,socialactivity:4216:,task:4212:,msdyn_bookingalert:10256:,msdyn_ocliveworkitem:10944:,msdyn_ocsession:10961:,msfp_alert:10235:,msfp_surveyinvite:10245:,msfp_surveyresponse:10247:,ts_enforcementaction:10882:,ts_incidentnotification:11085:,ts_incidentupdate:11086:,ts_interview:10853:,</UClientActivityCardMap>
+                            <UClientActivitiesConfigurationJSON>{"campaignactivity":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"incidentresolution":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"opportunityclose":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"orderclose":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"quoteclose":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"recurringappointmentmaster":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"socialactivity":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msdyn_bookingalert":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msdyn_ocliveworkitem":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msdyn_ocsession":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_alert":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_surveyinvite":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_surveyresponse":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"ts_enforcementaction":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"ts_incidentnotification":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"ts_incidentupdate":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"}}</UClientActivitiesConfigurationJSON>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="tab_general_section_7" id="ee4f9564-4ce5-4a79-b1d7-0ee720f7bfd5" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{7b086511-f906-414a-99db-630f46dfc320}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="View Stakeholder in TCSCP" languagecode="1033" />
+                          <label description="Voir la partie prenante dans PCSTC" languagecode="1036" />
+                        </labels>
+                        <control id="ts_stakeholdertcscp" classid="{71716B6C-711E-476C-8AB8-5D11542BFB47}" datafieldname="ts_stakeholdertcscp" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section name="section_8" id="5d67d1d7-6820-4de3-bab9-3abe5189ca8b" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Non-Operational Timeframe" languagecode="1033" />
+                    <label description="Période non opérationnelle" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{31b1a3a2-a43c-444c-9292-62a78c993113}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Non-Operational Start Date" languagecode="1033" />
+                          <label description="Date de début non opérationnelle" languagecode="1036" />
+                        </labels>
+                        <control id="ts_statusstartdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_statusstartdate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1dbed185-85ab-438e-818d-bd492d85a93b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Non-Operational End Date" languagecode="1033" />
+                          <label description="Date de fin non opérationnelle" languagecode="1036" />
+                        </labels>
+                        <control id="ts_statusenddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_statusenddate" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8f49546d-89a8-456a-8989-63085e4cae73}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                          <label description="Description" languagecode="1036" />
+                        </labels>
+                        <control id="ts_description" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_description" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="Risk" id="fabdad95-06d8-4f1b-a5fc-2f776fdd83e7" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Risk" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{56ed1e71-0de4-42ef-ab76-b1754128a089}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
+                        <labels>
+                          <label description="Risk Score" languagecode="1033" />
+                          <label description="Cote de risque" languagecode="1036" />
+                        </labels>
+                        <control id="ts_riskscore" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_riskscore" disabled="true" uniqueid="{883d1cc5-e4c1-4237-5eb7-91e6035aa52d}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{09cb5a64-619e-852e-1269-db1cb257175d}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Risk Threshold" languagecode="1033" />
+                          <label description="Seuil de risque" languagecode="1036" />
+                        </labels>
+                        <control id="ts_risk" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_risk" disabled="true" uniqueid="{5b621c54-ae03-e8be-3d88-189c292c07d6}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{C3DCE72A-4BBF-4A77-ADB2-4C2D18F90779}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{12c026d8-556d-9414-51db-9c9d56ab8d73}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Operation Frequency" languagecode="1033" />
+                          <label description="Fréquence d'opération" languagecode="1036" />
+                        </labels>
+                        <control id="ts_operationfrequency" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operationfrequency" disabled="true" uniqueid="{0bcaab5c-0c8b-3b9a-4936-1b41d668359b}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{55912D95-4AD0-4893-B258-579AEFDEAEF6}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{65d36413-c34d-1ee2-2223-06aa538ed803}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Planning Status" languagecode="1033" />
+                          <label description="Statut de planification" languagecode="1036" />
+                        </labels>
+                        <control id="ts_planningstatus" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_planningstatus" disabled="false" uniqueid="{c974a9ca-dcde-787a-a745-ddc2a29562d6}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9eda91cc-3ee3-79dc-1e46-e8439a9b9053}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Date of last Security Plan Review" languagecode="1033" />
+                          <label description="Date du dernièr examen du plan de sureté" languagecode="1036" />
+                        </labels>
+                        <control id="ts_dateoflastsecurityplanreview" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_dateoflastsecurityplanreview" disabled="true" uniqueid="{6766a49e-b645-26d4-bb98-d85da820a1ad}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{56eed04e-45e6-d829-3e53-e6431cd947cb}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Date of last Comprehensive Inspection" languagecode="1033" />
+                          <label description="Date de la dernière inspection complète" languagecode="1036" />
+                        </labels>
+                        <control id="ts_dateoflastcomprehensiveinspection" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_dateoflastcomprehensiveinspection" disabled="true" uniqueid="{cd36cb7a-3849-0b4b-e6ed-6b3567c1d5c5}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6c3eeedb-6222-e8d5-3c9d-78b3a142413e}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Date of last Risk-based Inspection" languagecode="1033" />
+                          <label description="Date de la dernière inspection basée sur les risques" languagecode="1036" />
+                        </labels>
+                        <control id="ts_dateoflastriskbasedinspection" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_dateoflastriskbasedinspection" disabled="true" uniqueid="{84896445-d217-c7e2-9467-a92173c946da}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="section_riskrating" showlabel="false" showbar="false" locklevel="0" id="{bca3a1a5-712d-35d1-5060-ece14e13b585}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Risk Rating" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{caca234b-604d-e125-b01a-c5b090922a9a}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Regulated Entity Risk Rating" languagecode="1033" />
+                        </labels>
+                        <control id="ts_regulatedentityriskrating" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_regulatedentityriskrating" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7329dc59-5e75-1888-3007-a93e125d6bb6}" showlabel="false" colspan="1" auto="false">
+                        <labels>
+                          <label description="Operation Type Risk" languagecode="1033" />
+                          <label description="Type d'opération" languagecode="1036" />
+                        </labels>
+                        <control id="OperationTypeRisk" classid="{5C5600E0-1D6E-4205-A272-BE80DA87FD42}" datafieldname="ovs_operationtypeid" disabled="false">
+                          <parameters>
+                            <QuickForms>&lt;QuickFormIds&gt;&lt;QuickFormId entityname="ovs_operationtype"&gt;792514c6-b79e-43d2-b3bd-7cd1f941f811&lt;/QuickFormId&gt;&lt;/QuickFormIds&gt;</QuickForms>
+                            <ControlMode>Edit</ControlMode>
+                            <DisplayAsCustomer360Tile>false</DisplayAsCustomer360Tile>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section name="_section_156" id="9d30cc2e-a195-455a-907f-17443812a68a" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{70448650-a0de-4f18-974b-a0268ea9bd33}" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-C143-495E-A496-C962E5B4488E}" disabled="false">
+                          <parameters>
+                            <UClientDefaultModuleForCreateExperience>Posts</UClientDefaultModuleForCreateExperience>
+                            <UClientModules>Activities,Notes,Posts</UClientModules>
+                            <UClientActivities>email,task</UClientActivities>
+                            <UClientDisplayActivityUsing>defaultfields</UClientDisplayActivityUsing>
+                            <UClientActivityCardMap>appointment:4201:,campaignactivity:4402:,campaignresponse:4401:,email:4202:,fax:4204:,incidentresolution:4206:,letter:4207:,opportunityclose:4208:,orderclose:4209:,phonecall:4210:,quoteclose:4211:,recurringappointmentmaster:4251:,serviceappointment:4214:,socialactivity:4216:,task:4212:,msdyn_bookingalert:10256:,msfp_alert:10235:,msfp_surveyinvite:10245:,msfp_surveyresponse:10247:,ts_interview:10853:,</UClientActivityCardMap>
+                            <UClientActivitiesConfigurationJSON>{"msfp_surveyresponse":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_surveyinvite":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_alert":{"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"msdyn_bookingalert":{"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"quoteclose":{"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"fax":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"appointment":{"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default","showTopDate":true},"letter":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"opportunityclose":{"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"orderclose":{"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"recurringappointmentmaster":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"phonecall":{"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default","showTopDate":true},"incidentresolution":{"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"campaignactivity":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"socialactivity":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"task":{"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default","showTopDate":true},"ts_interview":{"showTopDate":true,"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"}}</UClientActivitiesConfigurationJSON>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="operation_activity_tab" id="cd2ab6a4-4756-4183-b1fb-a0d92e9d8df6" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Operation Activities" languagecode="1033" />
+            <label description="Activités opérationnelles" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="operation_activity_tab_section_3" id="3b075369-f11e-43e4-a288-e9016b2bf168" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Accountable Team" languagecode="1033" />
+                    <label description="Équipe responsible" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{a1b4617f-17ae-43c1-8612-8bdade8f0fe7}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
+                        <labels>
+                          <label description="Accountable Team" languagecode="1033" />
+                          <label description="Équipe responsible" languagecode="1036" />
+                        </labels>
+                        <control id="ts_opiteam" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_opiteam" disabled="true" uniqueid="{3c9835d4-da81-120e-904a-5e09e2d75052}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{57E39843-404C-48E5-B1D9-1889098FB65C}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_8_section_1" id="2ae2de4d-7063-47e7-9394-49f530a7718b" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto">
+                  <labels>
+                    <label description="Operation Activities" languagecode="1033" />
+                    <label description="Activités opérationnelles" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{ba2b1741-aeec-44a9-95b6-21943c4724fe}" colspan="1" rowspan="5" auto="true" showlabel="false">
+                        <labels>
+                          <label description="Operation Activities" languagecode="1033" />
+                          <label description="Contacts opérationnels" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="operation_activity_grid" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{826af1f0-faec-47cc-93c6-e011af58dbef}">
+                          <parameters>
+                            <TargetEntityType>ts_operationactivity</TargetEntityType>
+                            <ViewId>{6FB86010-D91C-ED11-B83E-002248AE429C}</ViewId>
+                            <EnableViewPicker>true</EnableViewPicker>
+                            <IsUserView>false</IsUserView>
+                            <RecordsPerPage>100</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <ViewIds>{6FB86010-D91C-ED11-B83E-002248AE429C},{31443B41-D91C-ED11-B83E-002248AE429C},{7C60082B-D91C-ED11-B83E-002248AE429C}</ViewIds>
+                            <EnableQuickFind>true</EnableQuickFind>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <AutoExpand>Auto</AutoExpand>
+                            <ChartGridMode>All</ChartGridMode>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RelationshipName>ts_ts_operationactivity_Operation_ovs_operat</RelationshipName>
+                            <VisualizationId />
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_7" id="ac070b8b-c52e-44d9-b890-d0d12abb4e34" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Operation Contacts" languagecode="1033" />
+            <label description="Contact opérationnel" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_7_Operation Contact" id="f2e7b01a-b57e-4e41-8e89-cb3f30ceee02" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Operation Contacts" languagecode="1033" />
+                    <label description="Contacts opérationnels" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{62e003e7-4ecc-4489-b288-e8657de725c2}" rowspan="1" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="Operation Contacts" languagecode="1033" />
+                          <label description="Contacts opérationnels" languagecode="1036" />
+                        </labels>
+                        <control id="Subgrid_Operation_Contacts" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <TargetEntityType>ts_operationcontact</TargetEntityType>
+                            <ViewId>{8DB7594D-56AC-EC11-983E-0022483E6BB0}</ViewId>
+                            <ViewIds>{7C7857F2-E9F0-40EA-84CE-D6D7F5467DCE},{8DB7594D-56AC-EC11-983E-0022483E6BB0}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>ts_operation_ts_operationcontact_operation</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="WorkOrders" id="{aa3b5296-db0c-27e4-98c9-84db9b139c55}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Work Orders" languagecode="1033" />
+            <label description="Ordres de travail" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_4_section_1" showlabel="false" showbar="false" locklevel="0" id="{dae136b0-d63b-9457-b702-092aa860bb8d}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" height="auto">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{02bac47c-97e2-9610-52de-9272ed7b3aae}" showlabel="false" colspan="1" auto="true" rowspan="6">
+                        <labels>
+                          <label description="Work Orders (Operation)" languagecode="1033" />
+                          <label description="Connexions" languagecode="1036" />
+                        </labels>
+                        <control id="WorkOrders" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{73C6442E-42D8-EC11-A7B5-000D3AE86ADA}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ovs_ovs_operation_msdyn_workorder</RelationshipName>
+                            <TargetEntityType>msdyn_workorder</TargetEntityType>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{FFE40A64-495B-EB11-A812-000D3A84DB40},{73C6442E-42D8-EC11-A7B5-000D3AE86ADA}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId>{8E746648-1A4E-E111-93B3-000C2959F9B8}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_9" id="869e3239-d19e-4280-9aa2-a55b713e2df9" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Related Actions" languagecode="1033" />
+            <label description="Actions Connexes " languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_9_section_1" id="eb3723e4-0a14-4e47-8044-029fd06cc54f" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{4cfd8615-f208-41d4-b042-21b331a9594d}" rowspan="4" colspan="1" auto="true" showlabel="false">
+                        <labels>
+                          <label description="Related Actions" languagecode="1033" />
+                          <label description="Activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="subgrid_related_actions" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" uniqueid="{7d3615d9-c7cb-4270-9284-bb1a03bb3538}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_action</TargetEntityType>
+                            <ViewId>{96C3881F-1BE9-ED11-A7C6-0022483C5061}</ViewId>
+                            <ViewIds>{3512178F-31FF-4A2D-A610-18D5C8F0BA94},{96C3881F-1BE9-ED11-A7C6-0022483C5061}</ViewIds>
+                            <RelationshipName />
+                            <HeaderColorCode />
+                            <IsUserView>false</IsUserView>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_8" id="34ab9cf2-e3f0-4f6f-963f-ad3ad0225f88" IsUserDefined="0" locklevel="0" showlabel="true" visible="false">
+          <labels>
+            <label description="Related Actions *nested" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_8_section_1" id="25a2580a-e455-4ce4-bab9-93ad55ce817a" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{570c9904-4cce-4f76-b4bc-f0d4efef52ff}" rowspan="6" colspan="1" auto="true" showlabel="false">
+                        <labels>
+                          <label description="subgrid_related_actions" languagecode="1033" />
+                          <label description="Activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="subgrid_related_actions_nested" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{a84a310b-3191-4b88-ab45-9be0b2d9a88b}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ovs_finding</TargetEntityType>
+                            <ViewId>{293497C0-BCAE-EC11-983E-002248ADE910}</ViewId>
+                            <ViewIds>{293497C0-BCAE-EC11-983E-002248ADE910},{77179513-BCAE-EC11-983E-002248ADE910}</ViewIds>
+                            <RelationshipName>ts_ovs_Finding_operationid_ovs_operation</RelationshipName>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <IsUserView>false</IsUserView>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_properties_avsec" id="79f957f0-2cf6-469d-b770-e017b753d8d2" IsUserDefined="0" locklevel="0" showlabel="true" visible="false">
+          <labels>
+            <label description="Properties" languagecode="1033" />
+            <label description="Propriétés" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_avsec_properties_air_carrier_passenger" id="27dd31ad-75e5-4edc-8eed-8f3c4ae3120a" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
+                  <labels>
+                    <label description="Air Carrier (Passenger)" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{454114e0-bf78-4474-a7c2-0fac3a6dafd5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Domestic" languagecode="1033" />
+                          <label description="Vols intérieur" languagecode="1036" />
+                        </labels>
+                        <control id="ts_domesticflights" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_domesticflights" disabled="false" uniqueid="{81cb0753-909a-4c7d-b6e1-f3a79ea92d08}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b4dd62b1-051a-4c02-aa00-29beaccb03c3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="International" languagecode="1033" />
+                          <label description="Vols international" languagecode="1036" />
+                        </labels>
+                        <control id="ts_internationalflights" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_internationalflights" disabled="false" uniqueid="{423167d2-4524-4986-82af-282f42b36661}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{38b8acd4-ffe9-430c-b2c4-cb235a9087e1}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Transborder" languagecode="1033" />
+                          <label description="Vols Transfrontière" languagecode="1036" />
+                        </labels>
+                        <control id="ts_transborderflights" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_transborderflights" disabled="false" uniqueid="{f9f74c3c-b4c2-411b-90bc-8d18c28cd336}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c2226e69-9b16-4d07-a668-df066d09f3e8}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="International Programs Branch (IPB)" languagecode="1033" />
+                          <label description="Division des programmes internationaux" languagecode="1036" />
+                        </labels>
+                        <control id="ts_internationalprogramsbranchipb" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_internationalprogramsbranchipb" disabled="false" uniqueid="{6acb9ce7-9588-4c19-8669-52e892ffdb0e}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{17604fd1-4ffe-4d75-8fdc-c546a626c457}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Catering" languagecode="1033" />
+                          <label description="Provisions d’hôtellerie et magasins" languagecode="1036" />
+                        </labels>
+                        <control id="ts_cateringandstores" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_cateringandstores" disabled="false" uniqueid="{4157698f-eb66-4d31-8ed3-56036c4168b8}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4eb416b6-55e2-4369-a74d-efa5346ea988}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="OSS" languagecode="1033" />
+                          <label description="Sûreté à guichet unique" languagecode="1036" />
+                        </labels>
+                        <control id="ts_oss" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_oss" disabled="false" uniqueid="{c21cc5ef-0e33-44bb-983d-d955b797e17a}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3810fc3d-63be-4fd1-8881-8612d6ccebf0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Cargo" languagecode="1033" />
+                          <label description="Fret Aérien" languagecode="1036" />
+                        </labels>
+                        <control id="ts_cargo" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_cargo" disabled="false" uniqueid="{23e20cad-b47d-4b7a-ba75-0ccc4d819255}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f0f76a16-0102-4937-9b27-dca1082bf63d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Mail" languagecode="1033" />
+                          <label description="Courrier" languagecode="1036" />
+                        </labels>
+                        <control id="ts_mail" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_mail" disabled="false" uniqueid="{40f3291a-944a-4753-97ab-624dfdc8ba68}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{66af541a-28d0-4c32-b6d0-605da30dd744}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Training" languagecode="1033" />
+                          <label description="Formation en matière de sûreté aérienne" languagecode="1036" />
+                        </labels>
+                        <control id="ts_aviationsecuritytraining" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_aviationsecuritytraining" disabled="false" uniqueid="{031a242c-47ee-4a00-9bb8-71c0124d87ff}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3ebd4b58-73b5-4155-b645-049bb43a755c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="OPI" languagecode="1033" />
+                          <label description="BPR" languagecode="1036" />
+                        </labels>
+                        <control id="ts_opi" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_opi" disabled="false" uniqueid="{c1847268-b47a-429f-b17a-4b0affc19db3}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4e2f9f9d-b779-4182-b74b-3b1fb488667a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Unattended aircraft" languagecode="1033" />
+                          <label description="Aéronef sans surveillance" languagecode="1036" />
+                        </labels>
+                        <control id="ts_unattendedaircraft" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_unattendedaircraft" disabled="false" uniqueid="{31a11677-d6bd-40ed-8918-0b577e4743c2}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6a700e10-3a4f-4dee-b58d-cd30c1537c42}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="RON" languagecode="1033" />
+                          <label description="Escale pour la nuit" languagecode="1036" />
+                        </labels>
+                        <control id="ts_ron" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_ron" disabled="false" uniqueid="{4fb83439-9d69-43e9-a0e5-8978dcd1eef4}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="operation_document_tab" id="bf3f1ff9-af5e-4c7b-a963-74d66c48e52a" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Documents" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="70%">
+              <sections>
+                <section name="tab_5_section_1" id="4d80d856-9801-4189-80c5-cf55d5329b41" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell rowspan="1" id="{1c605a66-e12b-401c-adda-09db4d5ee1e0}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b34e1b73-c2ed-8733-9e24-c7145ab87cd9}" showlabel="true" colspan="1" auto="false" rowspan="13">
+                        <labels>
+                          <label description="Files" languagecode="1033" />
+                          <label description="Connexions" languagecode="1036" />
+                        </labels>
+                        <control id="Files" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_Files_ovs_operations</RelationshipName>
+                            <TargetEntityType>ts_file</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C},{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="30%">
+              <sections>
+                <section name="operation_document_section" id="33ccdc9e-7244-419d-ac35-800f378138dd" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{67e752ad-ed12-3c54-cca6-e9374121553c}" showlabel="false" locklevel="0">
+                        <labels>
+                          <label description="Canvas App" languagecode="1033" />
+                          <label description="Statut Opérationnel" languagecode="1036" />
+                        </labels>
+                        <control id="ts_operationalstatus" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_operationalstatus" disabled="false" uniqueid="{60559683-6d00-0a2d-5699-13704abcea68}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_properties_isso" id="7fdd1e1f-4879-425e-9707-9517bc6b603a" IsUserDefined="0" locklevel="0" showlabel="true" visible="false">
+          <labels>
+            <label description="Properties" languagecode="1033" />
+            <label description="Propriétés" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="tab_properties_section_5" id="e484c8e7-5861-4c02-8bd4-3a4e2259b642" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="250">
+                  <labels>
+                    <label description="VSI" languagecode="1033" />
+                    <label description="IVS" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{cd3a486c-f232-45be-897c-e8d8d358514d}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="What type of dangerous goods (DGs) are handled at this site?" languagecode="1033" />
+                          <label description="Quel type de marchandises dangereuses (MDs) sont manipulées sur ce site ?" languagecode="1036" />
+                        </labels>
+                        <control id="ts_typeofdangerousgoods" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_typeofdangerousgoods" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c01b4a36-4f60-442e-95ef-859ef4e6f460}" locklevel="0" colspan="1" rowspan="1" showlabel="true" visible="false">
+                        <labels>
+                          <label description="Is this a site where Visual Security Inspections (VSIs) are conducted?" languagecode="1033" />
+                          <label description="Est-ce que ce site est un site d'inspection visuelle de sûreté (IVS)?" languagecode="1036" />
+                        </labels>
+                        <control id="ts_visualsecurityinspection" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_visualsecurityinspection" disabled="false" uniqueid="{7a6cc695-bd01-e3c9-8b7e-2572977d009a}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{80880f84-e349-4b64-87b8-a6b03b2f6281}" locklevel="0" colspan="1" rowspan="1" visible="false" showlabel="true">
+                        <labels>
+                          <label description="In the most recent Overview of the VSI conducted, how was the inspection overseen?" languagecode="1033" />
+                          <label description="Dans le dernier surveillance de l'IVS réalisé, comment l'inspection a-t-elle été supervisée ?" languagecode="1036" />
+                        </labels>
+                        <control id="ts_visualsecurityinspectiondetails" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_visualsecurityinspectiondetails" disabled="false" uniqueid="{68d80d7a-3ac1-7542-05c0-28dbc44cda52}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="is_security_inspection_site_section" showlabel="false" showbar="false" locklevel="0" id="{845a18db-c73a-0640-9425-e42b7ca1ce4a}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Top" visible="false">
+                  <labels>
+                    <label description="Is Security Inspection Site" languagecode="1033" />
+                    <label description="Est-ce que ce site est un site d'inspections de sûreté (IS)?" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{7712e5b2-6433-905c-e74a-b1925b48eeac}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Is this a site where Security Inspections (SIs) are conducted?" languagecode="1033" />
+                          <label description="Est-ce que ce site est un site d'inspections de sûreté (IS)?" languagecode="1036" />
+                        </labels>
+                        <control id="ts_issecurityinspectionsite" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_issecurityinspectionsite" disabled="false" uniqueid="{8971219e-da46-7b04-7bbb-83cc9a5577ad}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2b03fdba-79af-422a-88a7-f27c6940f079}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="In the most recent Overview of the SI conducted, where was inspection overseen?" languagecode="1033" />
+                          <label description="Dans le dernier surveillance de l'IS réalisé, où l'inspection était-elle supervisée?" languagecode="1036" />
+                        </labels>
+                        <control id="ts_securityinspectiondetails" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_securityinspectiondetails" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5ba134bd-a234-0127-06dc-bd4cc416cd73}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="What type of station is this operation/site?" languagecode="1033" />
+                          <label description="Quel est le type de station de cette opération/site ?" languagecode="1036" />
+                        </labels>
+                        <control id="ts_stationtype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_stationtype" disabled="false" uniqueid="{a1eb87dd-e75c-e132-8e18-a436d882017e}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="tab_properties_section_4" id="f80a4664-2e57-4bab-af35-fa9dccaeedec" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="PPE" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{c90f82d5-b7a0-4af6-9a48-4ede8ebe459f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Is PPE Required at this site?" languagecode="1033" />
+                          <label description="EPI nécessaire" languagecode="1036" />
+                        </labels>
+                        <control id="ts_pperequired" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="ts_pperequired" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{85c6cd8f-0fc5-4a66-ada8-6373e386f410}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="If yes, which group of PPE is necessary?" languagecode="1033" />
+                          <label description="Catégories d'EPI" languagecode="1036" />
+                        </labels>
+                        <control id="ts_ppecategories" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="ts_ppecategories" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{32fbdb7d-69ec-4ecf-b4cc-9da9e3cee5a0}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description=" Is any specialized PPE required at this site?" languagecode="1033" />
+                          <label description="EPI spécialisés nécessaire" languagecode="1036" />
+                        </labels>
+                        <control id="ts_specializedpperequired" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="ts_specializedpperequired" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0191fd8a-4cbc-4f29-b7de-201c6e1755ec}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="If yes, select all that applies" languagecode="1033" />
+                          <label description="Type d'EPI spécialisé" languagecode="1036" />
+                        </labels>
+                        <control id="ts_typesofspecializedppe" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="ts_typesofspecializedppe" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f3403d93-6ec0-4043-ba46-da9b819f9874}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
+                        <labels>
+                          <label description="PPE Guidance" languagecode="1033" />
+                          <label description="Guide d'EPI" languagecode="1036" />
+                        </labels>
+                        <control id="ts_ppeguide" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_ppeguide" disabled="false" uniqueid="{b5e37728-3575-e018-a1d2-b0ceb4536e2c}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{996c770b-347a-8d31-c4c0-d9b91c7a89d6}" showlabel="true" locklevel="0" rowspan="2">
+                        <labels>
+                          <label description="Additional PPE Comments" languagecode="1033" />
+                          <label description="Commentaires supplémentaires sur les EPI" languagecode="1036" />
+                        </labels>
+                        <control id="ts_comments" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_comments" disabled="false" uniqueid="{7a544b26-546c-4da2-18e1-e01c48b2ae79}" />
+                      </cell>
+                    </row>
+                    <row />
+                  </rows>
+                </section>
+                <section name="tab_properties_ppeguide" id="4df3edf1-0a1d-4024-a8e9-fdcf8476c9d4" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto">
+                  <labels>
+                    <label description="PPE Guide" languagecode="1033" />
+                    <label description="Guide d'EPI" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{06b500b9-a698-078b-0421-3490099e3abe}" showlabel="false" colspan="1" visible="false" auto="true" rowspan="24">
+                        <labels>
+                          <label description="PPEGuide" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_PPEGuide" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/PPEGuide.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <ShowOnMobileClient>true</ShowOnMobileClient>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <WebResourceId>{69DB6CAC-32B0-EC11-983E-002248ADEF38}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="plan_track" id="91cb443c-3562-41d9-97d7-c7149cc1b8fe" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Risk" languagecode="1033" />
+            <label description="Risques" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_10_section_1" id="719ff35e-c443-4e0f-a006-346ba3ce4c8c" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{6fd9fd83-58dd-4be6-9482-261f36b98c41}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{df900ab7-12ad-4bb4-81e3-0476e0349ffa}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="Operation Activities" languagecode="1033" />
+                          <label description="Activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_OperationRiskAssessments" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>25</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>true</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_operationriskassessment</TargetEntityType>
+                            <ViewId>{1AED0C50-1C98-40BB-81C5-425CDA9C5611}</ViewId>
+                            <ViewIds>{1AED0C50-1C98-40BB-81C5-425CDA9C5611},{68023A36-9B9F-49B4-8CD7-965ED52C17E1}</ViewIds>
+                            <RelationshipName>ts_operationriskassessment_operation</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="entity_risk_section" id="8d159d1a-ef03-4417-8e48-8236accd4217" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Entity Risk Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{1271f8c4-31b5-4302-bcc0-9c83688f097b}" rowspan="4" colspan="1" auto="false">
+                        <labels>
+                          <label description="Risk" languagecode="1033" />
+                          <label description="Activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_EntityRisk" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_entityrisk</TargetEntityType>
+                            <ViewId>{F852F2DE-C6D6-49C0-B209-B0F8A9CDCFE5}</ViewId>
+                            <ViewIds>{F852F2DE-C6D6-49C0-B209-B0F8A9CDCFE5}</ViewIds>
+                            <RelationshipName>ts_EntityRisk_ovs_operation_ovs_operation</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions>
+        <controlDescription forControl="{60559683-6d00-0a2d-5699-13704abcea68}">
+          <customControl id="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}">
+            <parameters>
+              <datafieldname>ts_operationalstatus</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>ts_operationalstatus</record>
+              <entityName static="true" type="SingleLine.Text">Operation</entityName>
+              <appName static="true" type="SingleLine.Text">ts_romdocumentcentreoperation_41384</appName>
+              <appId static="true" type="SingleLine.Text">634786c5-cae5-4d08-a304-2b26d4af8798</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>ts_operationalstatus</record>
+              <entityName static="true" type="SingleLine.Text">Operation</entityName>
+              <appName static="true" type="SingleLine.Text">ts_romdocumentcentreoperation_41384</appName>
+              <appId static="true" type="SingleLine.Text">634786c5-cae5-4d08-a304-2b26d4af8798</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>ts_operationalstatus</record>
+              <entityName static="true" type="SingleLine.Text">Operation</entityName>
+              <appName static="true" type="SingleLine.Text">ts_romdocumentcentreoperation_41384</appName>
+              <appId static="true" type="SingleLine.Text">634786c5-cae5-4d08-a304-2b26d4af8798</appId>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{b5e37728-3575-e018-a1d2-b0ceb4536e2c}">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_ppeguide</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_ppeguide</value>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_ppeguide</value>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_ppeguide</value>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{826af1f0-faec-47cc-93c6-e011af58dbef}">
+          <customControl id="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+            <parameters />
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{6FB86010-D91C-ED11-B83E-002248AE429C}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_operationactivity" viewId="{d2e3e160-3870-4b88-8e03-cd9d465e6106}" attributeName="ts_operation">
+                    <DefaultViewId>{2cfcd309-d4d6-ec11-a7b5-000d3a8485f2}</DefaultViewId>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ts_operationactivity_Operation_ovs_operat</RelationshipName>
+                <TargetEntityType>ts_operationactivity</TargetEntityType>
+                <EnableViewPicker>true</EnableViewPicker>
+                <FilteredViewIds>{6FB86010-D91C-ED11-B83E-002248AE429C},{31443B41-D91C-ED11-B83E-002248AE429C},{7C60082B-D91C-ED11-B83E-002248AE429C}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{6FB86010-D91C-ED11-B83E-002248AE429C}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_operationactivity" viewId="{d2e3e160-3870-4b88-8e03-cd9d465e6106}" attributeName="ts_operation">
+                    <DefaultViewId>{2cfcd309-d4d6-ec11-a7b5-000d3a8485f2}</DefaultViewId>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ts_operationactivity_Operation_ovs_operat</RelationshipName>
+                <TargetEntityType>ts_operationactivity</TargetEntityType>
+                <EnableViewPicker>true</EnableViewPicker>
+                <FilteredViewIds>{6FB86010-D91C-ED11-B83E-002248AE429C},{31443B41-D91C-ED11-B83E-002248AE429C},{7C60082B-D91C-ED11-B83E-002248AE429C}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{6FB86010-D91C-ED11-B83E-002248AE429C}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_operationactivity" viewId="{d2e3e160-3870-4b88-8e03-cd9d465e6106}" attributeName="ts_operation">
+                    <DefaultViewId>{2cfcd309-d4d6-ec11-a7b5-000d3a8485f2}</DefaultViewId>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ts_operationactivity_Operation_ovs_operat</RelationshipName>
+                <TargetEntityType>ts_operationactivity</TargetEntityType>
+                <EnableViewPicker>true</EnableViewPicker>
+                <FilteredViewIds>{6FB86010-D91C-ED11-B83E-002248AE429C},{31443B41-D91C-ED11-B83E-002248AE429C},{7C60082B-D91C-ED11-B83E-002248AE429C}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{81cb0753-909a-4c7d-b6e1-f3a79ea92d08}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_domesticflights</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_domesticflights</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_domesticflights</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_domesticflights</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{423167d2-4524-4986-82af-282f42b36661}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_internationalflights</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_internationalflights</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_internationalflights</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_internationalflights</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{f9f74c3c-b4c2-411b-90bc-8d18c28cd336}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_transborderflights</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_transborderflights</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_transborderflights</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_transborderflights</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{6acb9ce7-9588-4c19-8669-52e892ffdb0e}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_internationalprogramsbranchipb</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_internationalprogramsbranchipb</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_internationalprogramsbranchipb</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_internationalprogramsbranchipb</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{4157698f-eb66-4d31-8ed3-56036c4168b8}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_cateringandstores</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_cateringandstores</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_cateringandstores</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_cateringandstores</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{c21cc5ef-0e33-44bb-983d-d955b797e17a}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_oss</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_oss</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_oss</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_oss</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{23e20cad-b47d-4b7a-ba75-0ccc4d819255}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_cargo</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_cargo</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_cargo</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_cargo</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{40f3291a-944a-4753-97ab-624dfdc8ba68}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_mail</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_mail</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_mail</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_mail</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{031a242c-47ee-4a00-9bb8-71c0124d87ff}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_aviationsecuritytraining</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_aviationsecuritytraining</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_aviationsecuritytraining</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_aviationsecuritytraining</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{c1847268-b47a-429f-b17a-4b0affc19db3}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_opi</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_opi</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_opi</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_opi</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{31a11677-d6bd-40ed-8918-0b577e4743c2}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_unattendedaircraft</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_unattendedaircraft</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_unattendedaircraft</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_unattendedaircraft</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{4fb83439-9d69-43e9-a0e5-8978dcd1eef4}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_ron</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_ron</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_ron</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_ron</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{a84a310b-3191-4b88-ab45-9be0b2d9a88b}">
+          <customControl id="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+            <parameters />
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{293497C0-BCAE-EC11-983E-002248ADE910}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ovs_Finding_operationid_ovs_operation</RelationshipName>
+                <TargetEntityType>ovs_finding</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{293497C0-BCAE-EC11-983E-002248ADE910},{77179513-BCAE-EC11-983E-002248ADE910}</FilteredViewIds>
+              </data-set>
+              <data-set name="SubGrid">
+                <ViewId>{3512178F-31FF-4A2D-A610-18D5C8F0BA94}</ViewId>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>ts_action</TargetEntityType>
+                <SubGridParentId>ts_finding</SubGridParentId>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{293497C0-BCAE-EC11-983E-002248ADE910}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ovs_Finding_operationid_ovs_operation</RelationshipName>
+                <TargetEntityType>ovs_finding</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{293497C0-BCAE-EC11-983E-002248ADE910},{77179513-BCAE-EC11-983E-002248ADE910}</FilteredViewIds>
+              </data-set>
+              <data-set name="SubGrid">
+                <ViewId>{3512178F-31FF-4A2D-A610-18D5C8F0BA94}</ViewId>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>ts_action</TargetEntityType>
+                <SubGridParentId>ts_finding</SubGridParentId>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{293497C0-BCAE-EC11-983E-002248ADE910}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ovs_Finding_operationid_ovs_operation</RelationshipName>
+                <TargetEntityType>ovs_finding</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{293497C0-BCAE-EC11-983E-002248ADE910},{77179513-BCAE-EC11-983E-002248ADE910}</FilteredViewIds>
+              </data-set>
+              <data-set name="SubGrid">
+                <ViewId>{3512178F-31FF-4A2D-A610-18D5C8F0BA94}</ViewId>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>ts_action</TargetEntityType>
+                <SubGridParentId>ts_finding</SubGridParentId>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{00091d81-9abc-4bc8-94c9-a12c6538c36b}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_targetedinspectionneeded</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_targetedinspectionneeded</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_targetedinspectionneeded</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_targetedinspectionneeded</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <header id="{a24764d0-170e-4da7-bf83-6936f3889c51}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{6746435b-204b-4012-8004-f13fd92e5d0d}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d1933077-63d3-414a-b686-3ec2c71e636f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{967a20ce-2efe-42c3-b718-6b2f28de07ca}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{43ccac9b-dc92-4f45-b93c-fa58571492b3}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Stakeholder" languagecode="1033" />
+                <label description="Intervenant" languagecode="1036" />
+              </labels>
+              <control id="header_ts_stakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_stakeholder" disabled="false" />
+            </cell>
+            <cell id="{d41055a6-b587-488d-a745-c25027493c83}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Operation Type" languagecode="1033" />
+                <label description="Type d'opération" languagecode="1036" />
+              </labels>
+              <control id="header_ovs_operationtypeid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_operationtypeid" disabled="false" />
+            </cell>
+            <cell id="{613fd3f9-96e0-44be-a065-df48206609a9}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Site" languagecode="1033" />
+                <label description="Site" languagecode="1036" />
+              </labels>
+              <control id="header_ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{cd55dee3-ec04-4d45-93c5-bb60255d12b2}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{02fd6f2d-8148-4c8f-a5b2-3eea468d7c06}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{53149165-bcfb-4ba1-b188-a27df7af833f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a2ae1d95-af5f-4c0d-9ac8-aac248450048}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <formLibraries>
+        <Library name="ts_/js/Operation.js" libraryUniqueId="{07b1987c-8bbd-bd36-c671-15b1d2c226c3}" />
+        <Library name="ts_/js/utils/SubGridFetchXmlModifier.js" libraryUniqueId="{f9fc3fca-4f1c-4b14-ba7e-7f70d24c6af5}" />
+        <Library name="ts_/js/Common.js" libraryUniqueId="{fb6de064-1258-4cdd-9728-4b8a70c99241}" />
+      </formLibraries>
+      <events>
+        <event name="onchange" application="true" active="true" attribute="ts_site">
+          <Handlers>
+            <Handler functionName="ROM.Operation.siteOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{0b59a1e1-f644-46c7-a3bc-10d3a770d71b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="true" active="true">
+          <Handlers>
+            <Handler functionName="ROM.Operation.onLoad" libraryName="ts_/js/Operation.js" handlerUniqueId="{0152adec-3673-4a18-9738-762d648cb0b3}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{211959f3-af35-4b39-89c7-c8fbc7cd730f}" enabled="true" parameters="&quot;operation_document_tab&quot;, &quot;operation_document_section&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_statusstartdate">
+          <Handlers>
+            <Handler functionName="ROM.Operation.statusStartDateOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{870ae36b-5eff-4e0a-8bd9-e4f49fd6c731}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="true" active="true">
+          <Handlers>
+            <Handler functionName="ROM.Operation.onSave" libraryName="ts_/js/Operation.js" handlerUniqueId="{a77dd23f-1c59-445a-a16c-e1f34248726e}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_pperequired">
+          <Handlers>
+            <Handler functionName="ROM.Operation.ppeRequiredOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{daa07aeb-038f-41ac-a64a-9d0e30b6866b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_specializedpperequired">
+          <Handlers>
+            <Handler functionName="ROM.Operation.specializedPPERequiredOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{ee676658-98dd-4512-8b71-aed4f0eb1440}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_ppeguide">
+          <Handlers>
+            <Handler functionName="ROM.Operation.ppeGuideOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{3731abfc-57f4-4173-b6a7-14f408e6cbf2}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_visualsecurityinspection">
+          <Handlers>
+            <Handler functionName="ROM.Operation.VSIConductedOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{a9ff290b-4b7a-4416-a048-6cb74749d79a}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_issecurityinspectionsite">
+          <Handlers>
+            <Handler functionName="ROM.Operation.SIConductedOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{b37281dc-6fef-481b-b8d8-dd58ad4369c3}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_stakeholder">
+          <Handlers>
+            <Handler functionName="ROM.Operation.stakeholderOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{dfa95cbc-cbe8-4be9-8bcc-c12c2ca9bb5b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ovs_operationtypeid">
+          <Handlers>
+            <Handler functionName="ROM.Operation.operationTypeOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{50ebc0d8-5dff-4ee4-85fe-bdcf73a8cb16}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_typeofdangerousgoods">
+          <Handlers>
+            <Handler functionName="ROM.Operation.typeOfDangerousGoodsOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{3394b92d-1a33-4301-8918-81fd15805fdd}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onrecordselect" application="false" active="false" relationship="" control="operation_activity_grid">
+          <Handlers>
+            <Handler functionName="ROM.Operation.setFieldsDisabled" libraryName="ts_/js/Operation.js" handlerUniqueId="{b3c27354-0a59-8b05-46a5-9dab5e675c1c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_subsite">
+          <Handlers>
+            <Handler functionName="ROM.Operation.subsiteOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{833e1e73-edb8-c0c3-5171-351c5588d13d}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+      <LocalizedName description="Information" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Formulaire pour cette entité." languagecode="1033" />
+      <Description description="Formulaire pour cette entité." languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

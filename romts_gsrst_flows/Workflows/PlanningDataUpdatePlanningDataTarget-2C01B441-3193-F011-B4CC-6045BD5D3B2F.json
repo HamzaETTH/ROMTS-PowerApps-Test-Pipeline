@@ -1,0 +1,184 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added_-_Planning_Data": {
+          "metadata": {
+            "operationMetadataId": "c14ab233-bdfb-4161-974e-cf6cb885f37a"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ts_planningdata",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "When a new Planning Data record is created"
+        }
+      },
+      "actions": {
+        "Initialize_variable_-_Planning_Data_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "6f9bcfc4-abf5-4978-9f17-12762526b59d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Planning Data ID",
+                "type": "string",
+                "value": "@{triggerBody()?['ts_planningdataid']}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Fiscal_Year": {
+          "runAfter": {
+            "Initialize_variable_-_Planning_Data_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "39b405d2-fec2-4a5e-aa3b-7c67e14eb3f4"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Fiscal Year",
+                "type": "string",
+                "value": "@{triggerBody()?['_ts_fiscalyear_value']}"
+              }
+            ]
+          }
+        },
+        "List_rows_-_Risk_Frequencies": {
+          "runAfter": {
+            "Initialize_variable_-_Planning_Data_Target_Weight": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "babc5c7c-7a86-4525-9904-652199294b00"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_riskfrequencies",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"ts_riskfrequency\">\n    <attribute name=\"ts_planningdatatargetweight\" />\n\n    <link-entity name=\"ts_operationactivityriskscores\" from=\"ts_riskfrequency\" to=\"ts_riskfrequencyid\" link-type=\"inner\">\n      <attribute name=\"ts_operationactivityriskscoresid\" />\n      <attribute name=\"ts_fiscalyear\" />\n\n      <link-entity name=\"ts_operationactivity\" from=\"ts_operationactivityid\" to=\"ts_operationactivity\" link-type=\"inner\">\n        <attribute name=\"ts_operationactivityid\" />\n\n        <link-entity name=\"ts_planningdata\" from=\"ts_operationactivity\" to=\"ts_operationactivityid\" link-type=\"inner\">\n          <attribute name=\"ts_planningdataid\" />\n          <filter>\n            <condition attribute=\"ts_planningdataid\" operator=\"eq\" value=\"@{variables('Planning Data ID')}\" />\n          </filter>\n        </link-entity>\n      </link-entity>\n\n      <filter>\n        <condition attribute=\"ts_fiscalyear\" operator=\"eq\" value=\"@{variables('Fiscal Year')}\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>\n"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Get the Planning Data Target Weight from the related Risk Frequency that is part of the Operation Activity Risk Scores and Fiscal Year from the Operation Activity Risk Score."
+        },
+        "Apply_to_each_-_Planning_Data": {
+          "foreach": "@outputs('List_rows_-_Risk_Frequencies')?['body/value']",
+          "actions": {
+            "Set_variable_-_Planning_Data_Target_Weight": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "b1714190-a78b-42b3-b1bb-47dce563165e"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Planning Data Target Weight",
+                "value": "@{items('Apply_to_each_-_Planning_Data')?['ts_planningdatatargetweight']}"
+              }
+            },
+            "Update_a_row_-_Planning_Data": {
+              "runAfter": {
+                "Set_variable_-_Planning_Data_Target_Weight": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5efd27ac-c4ee-4f54-a423-d901c010b571"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_planningdatas",
+                  "recordId": "@variables('Planning Data ID')",
+                  "item/ts_target": "@items('Apply_to_each_-_Planning_Data')?['ts_planningdatatargetweight']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows_-_Risk_Frequencies": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3d8bda3b-fd93-4bee-a477-e87dc126eef1"
+          },
+          "type": "Foreach",
+          "description": "Set the Target for the Planning Data to the value we have in Planning Data Target Weight that is in Risk Frequency."
+        },
+        "Initialize_variable_-_Planning_Data_Target_Weight": {
+          "runAfter": {
+            "Initialize_variable_-_Fiscal_Year": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "dc13e11a-729e-4bb0-aaff-abe5302fa993"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Planning Data Target Weight",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

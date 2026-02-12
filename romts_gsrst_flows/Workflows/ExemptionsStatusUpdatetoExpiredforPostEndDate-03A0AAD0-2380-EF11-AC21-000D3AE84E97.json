@@ -1,0 +1,99 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Recurrence_Every_Day": {
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "startTime": "2024-09-24T08:00:00Z"
+          },
+          "metadata": {
+            "operationMetadataId": "baca4e71-6bac-456a-a2ad-e3af4923bc1c"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "List_rows_-_Exemption": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "a00cdef7-a5c7-4662-af56-1422d476ca73"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_exemptions",
+              "fetchXml": "<fetch version=\"1.0\" mapping=\"logical\" no-lock=\"false\" distinct=\"true\">\n\t<entity name=\"ts_exemption\">\n\t\t<attribute name=\"ts_name\"/>\n\t\t<order attribute=\"ts_name\" descending=\"false\"/>\n\t\t<attribute name=\"ts_startdate\"/>\n\t\t<attribute name=\"ts_enddate\"/>\n\t\t<attribute name=\"ts_exemptionid\"/>\n\t\t<filter type=\"and\">\n\t\t\t<condition attribute=\"statecode\" operator=\"eq\" value=\"0\"/>\n\t\t\t<condition attribute=\"ts_recordstatus\" operator=\"ne\" value=\"741130004\"/>\n\t\t\t<filter type=\"or\">\n\t\t\t\t<condition attribute=\"ts_enddate\" operator=\"yesterday\"/>\n\t\t\t\t<condition attribute=\"ts_enddate\" operator=\"olderthan-x-days\" value=\"1\"/>\n\t\t\t</filter>\n\t\t</filter>\n\t</entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows_-_Exemption')?['body/value']",
+          "actions": {
+            "Update_a_row": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "b2bf8aab-a138-4f59-a0cf-df4906201a6b"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_exemptions",
+                  "recordId": "@items('Apply_to_each')?['ts_exemptionid']",
+                  "item/ts_recordstatus": 741130004
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows_-_Exemption": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "446aa1fe-8456-498f-ab07-cd927c8b62cd"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

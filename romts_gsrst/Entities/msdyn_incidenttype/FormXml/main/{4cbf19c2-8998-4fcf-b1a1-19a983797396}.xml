@@ -1,0 +1,2100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{4cbf19c2-8998-4fcf-b1a1-19a983797396}</formid>
+    <IntroducedVersion>3.1.0.3</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form shownavigationbar="true" showImage="false" maxWidth="1900" headerdensity="HighWithControls" solutionaction="Modified">
+      <tabs>
+        <tab verticallayout="true" id="{c6408e85-49e7-4216-bf96-986a20c64ecb}" IsUserDefined="1" name="{c6408e85-49e7-4216-bf96-986a20c64ecb}" locklevel="0" expanded="true" showlabel="true" ordinalvalue="0">
+          <columns>
+            <column width="100%" id="0" solutionaction="Modified">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{aa02fbb3-348e-4f8c-bc8e-1fe3f9bd7d90}" name="{aa02fbb3-348e-4f8c-bc8e-1fe3f9bd7d90}" locklevel="0" labelwidth="200" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{305c3b5d-dd9d-46c4-a318-e263b44a6699}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Name" languagecode="1033" solutionaction="Added" />
+                          <label description="Nom" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                      <cell id="{bb6a8110-2625-45a1-bd14-f280a4ad168d}" ordinalvalue="10006" solutionaction="Modified">
+                        <labels>
+                          <label description="Owner" languagecode="1033" solutionaction="Added" />
+                          <label description="Propriétaire" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9142335a-62de-42d4-99d4-a16096fb1fec}" showlabel="false" ordinalvalue="20001" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8ec03f57-ec58-41b9-a1cd-7c17dd5dcdec}" locklevel="0" ordinalvalue="10002" solutionaction="Added">
+                        <labels>
+                          <label description="Incident Type Name (English)" languagecode="1033" />
+                          <label description="Nom du type d'incident (Anglais)" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_incidenttypenameenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ovs_incidenttypenameenglish" disabled="false" />
+                      </cell>
+                      <cell id="{47804e2b-84a4-438b-9da9-8621aafee8e3}" showlabel="false" ordinalvalue="20003" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7d05441a-1cc4-4428-a97f-57e819d1b6cd}" locklevel="0" ordinalvalue="10004" solutionaction="Added">
+                        <labels>
+                          <label description="Incident Type Name (French)" languagecode="1033" />
+                          <label description="Nom du type d'incident (Français)" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_incidenttypenamefrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ovs_incidenttypenamefrench" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{d5b970a1-58ea-42c5-a76b-e9c3b9b0c344}" showlabel="false" ordinalvalue="20005" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b56206a5-c21c-41a4-86c4-00b4bcc02ec7}" showlabel="false" ordinalvalue="20007" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section showlabel="true" showbar="true" IsUserDefined="0" id="{2405DB6B-E18C-49E5-A76B-505837745C84}" name="{2405DB6B-E18C-49E5-A76B-505837745C84}" locklevel="0" labelwidth="200" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="1">
+                  <rows>
+                    <row>
+                      <cell id="{65dc435b-a07d-de02-2352-425738baeb1b}" showlabel="true" locklevel="0" rowspan="5" colspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="Description" languagecode="1033" solutionaction="Added" />
+                          <label description="Description" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="2%" id="1" solutionaction="Removed" />
+          </columns>
+        </tab>
+        <tab name="f1tab_details" id="{787a0c0b-2a71-43c3-7a7e-0513150165a9}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="1">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_3_section_1" showlabel="true" showbar="true" locklevel="0" id="{4572cca1-82ad-e52c-9527-257216736e2e}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="200" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{39383092-779d-3c29-76b2-1de1ea8d2eba}" showlabel="true" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Default Work Order Type" languagecode="1033" solutionaction="Added" />
+                          <label description="Type d'ordre de travail par défaut" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0d35df8f-5ad4-412c-875b-887d67e107a0}" showlabel="true" locklevel="0" ordinalvalue="20005" solutionaction="Modified">
+                        <labels>
+                          <label description="Suggested Duration" languagecode="1033" solutionaction="Added" />
+                          <label description="Durée suggérée" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a865abae-a52b-b0e3-6523-c26cda145742}" showlabel="true" locklevel="0" ordinalvalue="10008" solutionaction="Modified" />
+                      <cell id="{ecac25d2-6ce6-1335-e208-ba06c350bc72}" showlabel="true" locklevel="0" ordinalvalue="20007" solutionaction="Modified">
+                        <labels>
+                          <label description="Last Calculated Time" languagecode="1033" solutionaction="Added" />
+                          <label description="Heure du dernier calcul" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                        <control id="msdyn_lastcalculatedtime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="msdyn_lastcalculatedtime" disabled="true" uniqueid="{c8c19e2c-c46d-ebe2-347b-38e19017c16d}" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{75609de4-dd2d-db3b-aea2-cb60981dca56}" showlabel="true" locklevel="0" ordinalvalue="20003" solutionaction="Added">
+                        <labels>
+                          <label description="Estimated Duration (In Hours)" languagecode="1033" />
+                          <label description="Estimated Duration (In Hours)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimateddurationinhours" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_estimateddurationinhours" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0058f098-8af3-474c-988f-3ed4b15fc343}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10004" solutionaction="Added">
+                        <labels>
+                          <label description="Risk Score" languagecode="1033" />
+                          <label description="Cote de risque" languagecode="1036" />
+                        </labels>
+                        <control id="ts_riskscore" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_riskscore" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{855283d1-3602-b034-25a8-3b3e925c5326}" showlabel="true" locklevel="0" ordinalvalue="10006" solutionaction="Added">
+                        <labels>
+                          <label description="Include in Planning" languagecode="1033" />
+                          <label description="Inclure dans la planification" languagecode="1036" />
+                        </labels>
+                        <control id="ts_includeinplanning" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="ts_includeinplanning" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{28d7a70a-cddb-2509-da64-69add352b4e8}" showlabel="true" locklevel="0" ordinalvalue="20009" solutionaction="Added">
+                        <labels>
+                          <label description="WO Preparation Time" languagecode="1033" />
+                          <label description="Temps de préparation de l'ordre de travail" languagecode="1036" />
+                        </labels>
+                        <control id="ts_preparationtime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_preparationtime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{948dc00a-c16c-48eb-ae5f-d0c81618f8a9}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10010" solutionaction="Added">
+                        <labels>
+                          <label description="Reporting Category" languagecode="1033" />
+                          <label description="Catégorie de rapport" languagecode="1036" />
+                        </labels>
+                        <control id="ts_reportingcategory" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_reportingcategory" disabled="false" />
+                      </cell>
+                      <cell id="{821a65b3-1a49-3823-3442-4e4ac4b17be5}" showlabel="true" locklevel="0" ordinalvalue="20011" solutionaction="Added">
+                        <labels>
+                          <label description="WO Conducting Oversight" languagecode="1033" />
+                          <label description="Temps lié à la surveillance de l'ordre de travail" languagecode="1036" />
+                        </labels>
+                        <control id="ts_conductingoversight" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_conductingoversight" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{50a27102-e0bd-48c7-a845-10fccd4e67db}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10012" solutionaction="Added">
+                        <labels>
+                          <label description="International" languagecode="1033" />
+                          <label description="International" languagecode="1036" />
+                        </labels>
+                        <control id="ts_international" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_international" disabled="false" uniqueid="{ED3CADFD-1FBD-4AF0-968A-6D32E4DC3708}" />
+                      </cell>
+                      <cell id="{7ea59baa-b767-7e85-e205-0bba9b93b57c}" showlabel="true" locklevel="0" ordinalvalue="20013" solutionaction="Added">
+                        <labels>
+                          <label description="WO Reporting and Documentation" languagecode="1033" />
+                          <label description="Rapport et documentation de l'ordre de travail" languagecode="1036" />
+                        </labels>
+                        <control id="ts_reportinganddocumentation" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_reportinganddocumentation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d6c36c42-6406-402f-af7b-68190fb05da1}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10014" solutionaction="Added">
+                        <labels>
+                          <label description="Domestic" languagecode="1033" />
+                          <label description="Domestic" languagecode="1036" />
+                        </labels>
+                        <control id="ts_domestic" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_domestic" disabled="false" uniqueid="{8214306E-ED83-4207-9AE3-60B173030AB9}" />
+                      </cell>
+                      <cell id="{892ee460-a72b-d68d-2a56-24e4360057a8}" showlabel="false" ordinalvalue="20015" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{25746d78-13ac-d0d0-5ad7-7d24d6156875}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10016" solutionaction="Added">
+                        <labels>
+                          <label description="Program Area" languagecode="1033" />
+                        </labels>
+                        <control id="ts_programarea" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_programarea" disabled="false" uniqueid="{a18a2429-2705-cbe9-b9a8-db07820b19ea}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{CD93CE63-89FD-4B0D-A407-C8005A8F9DD9}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{98e4936e-c82a-ac93-6982-57a9032692c6}" showlabel="false" ordinalvalue="20017" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8963d551-3312-e56d-6ccb-c6a7019ae520}" showlabel="false" colspan="1" auto="false" ordinalvalue="10018" solutionaction="Added">
+                        <labels>
+                          <label description="Program Area Risk Rating" languagecode="1033" />
+                        </labels>
+                        <control id="ProgramAreaRiskRatingQV" classid="{5C5600E0-1D6E-4205-A272-BE80DA87FD42}" datafieldname="ts_programarea" disabled="false">
+                          <parameters>
+                            <QuickForms>&lt;QuickFormIds&gt;&lt;QuickFormId entityname="ts_programarea"&gt;d568149c-d352-4a67-980f-d9caf7456eab&lt;/QuickFormId&gt;&lt;/QuickFormIds&gt;</QuickForms>
+                            <ControlMode>Edit</ControlMode>
+                            <DisplayAsCustomer360Tile>false</DisplayAsCustomer360Tile>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{806d1e8c-7a46-c5d1-8b61-cc5addc67b59}" showlabel="false" ordinalvalue="20019" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{19d3d025-3d6c-5728-4ad7-27a1ba0bc124}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10020" solutionaction="Added">
+                        <labels>
+                          <label description="Program Activity Risk Rating" languagecode="1033" />
+                        </labels>
+                        <control id="ts_programactivityriskrating" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_programactivityriskrating" disabled="false" uniqueid="{0e107e45-2382-e0a7-5436-4ccea1c65ce0}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{65081F3D-A99E-401C-A69E-CB0097581569}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{672baedc-cd5d-6873-bb8e-adac23ab1b39}" showlabel="false" ordinalvalue="20021" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="KnowledgeArticleSection" showlabel="false" showbar="false" locklevel="0" id="{edc00ad5-8d16-ec19-2721-2172911864e1}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="2" solutionaction="Modified">
+                  <rows>
+                    <row>
+                      <cell id="{436a6e40-42d2-7eb2-2c76-452dd0c9c7c4}" showlabel="true" colspan="2" auto="false" rowspan="7" ordinalvalue="10000">
+                        <labels>
+                          <label description="Articles de la Base de connaissances" languagecode="1036" solutionaction="Modified" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="f1tab_details_section_4" id="78ba52af-a7c8-4f4b-87b6-ec6d3a10aeda" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="1" solutionaction="Added">
+                  <labels>
+                    <label description="Operation Types" languagecode="1033" />
+                    <label description="Types d'opération" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{c7239ad3-5dc4-422d-b956-6c8fe4d13481}" rowspan="1" colspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="Operation Types" languagecode="1033" />
+                          <label description="Types d'opération" languagecode="1036" />
+                        </labels>
+                        <control id="Subgrid_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>ovs_operationtype</TargetEntityType>
+                            <ViewId>{197A1F2C-DE05-4771-A10E-12478A08C99E}</ViewId>
+                            <ViewIds>{197A1F2C-DE05-4771-A10E-12478A08C99E}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>ts_ovs_operationtypes_msdyn_incidenttypes</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="f1tab_details_section_5" id="3610e8ec-0e5a-4350-96a4-a1ceb1eb0bec" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="3" solutionaction="Added">
+                  <labels>
+                    <label description="Prescribed Frequency Override" languagecode="1033" />
+                    <label description="Remplacement de la fréquence prescrite" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{90a075e3-37f0-447b-87bc-86b82ca52852}" rowspan="4" colspan="1" auto="false" showlabel="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="New SG control 1749590318140" languagecode="1033" />
+                          <label description="Types d'opération" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_prescribedfrequencyoverride_ActivityType_msdyn_incidenttype</RelationshipName>
+                            <TargetEntityType>ts_prescribedfrequencyoverride</TargetEntityType>
+                            <ViewId>{45678D29-F57D-4A63-BA50-4FD5D2327B27}</ViewId>
+                            <ViewIds>{45678D29-F57D-4A63-BA50-4FD5D2327B27}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_4" id="{c0346530-5ed8-2895-28c5-d4427903d9b0}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false" visible="false" ordinalvalue="2" solutionaction="Modified">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_4_section_1" showlabel="false" showbar="false" locklevel="0" id="{4643500d-03dd-5a4c-a709-3d5e6a7397bd}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" height="auto" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{02309bd9-305b-de82-25ad-a6b31ce2811e}" showlabel="false" colspan="1" auto="true" rowspan="4" ordinalvalue="10000">
+                        <labels>
+                          <label description="Articles de la Base de connaissances" languagecode="1036" solutionaction="Modified" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_5" id="{0e3413b8-e4bb-274b-c145-225c5d16a12b}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false" visible="false" ordinalvalue="3" solutionaction="Modified">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_5_section_1" showlabel="false" showbar="false" locklevel="0" id="{0e9e706a-0e48-74c8-532b-e3682cab7a16}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" height="auto" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{1b0dce64-3be4-d2b2-3566-cc574d52dceb}" showlabel="false" colspan="1" auto="true" rowspan="4" ordinalvalue="10000">
+                        <labels>
+                          <label description="Articles de la Base de connaissances" languagecode="1036" solutionaction="Modified" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_6" id="{ee0e4d3a-a00e-b674-b7de-a9bbd0cb2452}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false" ordinalvalue="4">
+          <labels>
+            <label description="Tâches de service" languagecode="1036" solutionaction="Modified" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_6_section_1" showlabel="false" showbar="false" locklevel="0" id="{e3629b37-4722-52bc-7c67-3740db8b4e09}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" height="auto" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{1c463a31-ed12-b04e-e410-5250309a41e9}" showlabel="false" colspan="1" auto="true" rowspan="4" ordinalvalue="10000">
+                        <labels>
+                          <label description="Articles de la Base de connaissances" languagecode="1036" solutionaction="Modified" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_7" id="{5548CC32-AF39-43BF-9C21-99778E7FBE29}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="6" solutionaction="Modified">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_7_section_1" showlabel="false" showbar="false" locklevel="0" id="{C6AC7DE8-6451-47FE-9824-20A0CCD60741}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" height="auto" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{44bedb52-8165-6614-c485-ac9781b97b4b}" showlabel="true" colspan="1" auto="false" rowspan="4" ordinalvalue="10000">
+                        <labels>
+                          <label description="Articles de la Base de connaissances" languagecode="1036" solutionaction="Modified" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="Incident Type Resolutions" id="{d2410668-09a2-db29-61d2-115538d9045b}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="9" solutionaction="Modified">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_8_section_1" showlabel="false" showbar="false" locklevel="0" id="{bceebe68-a841-8e22-0da2-034088cc5a69}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" height="auto" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{7db4448d-1832-c229-92e2-93386e5cd88a}" showlabel="true" colspan="1" auto="false" rowspan="7" ordinalvalue="10000">
+                        <labels>
+                          <label description="Articles de la Base de connaissances" languagecode="1036" solutionaction="Modified" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab id="{5ab960c7-1f45-4a9e-8b19-dce393cb735b}" IsUserDefined="0" expanded="false" ordinalvalue="11" solutionaction="Modified" />
+        <tab name="operation_activity_tab" id="22acbe52-e549-405e-8606-0bac37dbc787" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false" ordinalvalue="5" solutionaction="Added">
+          <labels>
+            <label description="Operation Activities" languagecode="1033" />
+            <label description="Activités opérationnelles" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_9_section_1" id="ffe3288f-de77-4ed4-addd-b09f488ce177" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto" ordinalvalue="0">
+                  <labels>
+                    <label description="Operation Activities" languagecode="1033" />
+                    <label description="Activités opérationnelles" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{055bb531-7351-4d7c-83dd-b5ee8718bdf6}" colspan="1" rowspan="5" auto="true" showlabel="true" ordinalvalue="10000">
+                        <labels>
+                          <label description="Operation Activities" languagecode="1033" />
+                          <label description="Activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="operation_activity_grid" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{B1468151-2CFA-4E3A-909D-89B9CF4654EB}">
+                          <parameters>
+                            <TargetEntityType>ts_operationactivity</TargetEntityType>
+                            <ViewId>{8E2A9D16-0A23-ED11-9DB2-002248AE441F}</ViewId>
+                            <EnableViewPicker>true</EnableViewPicker>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_ts_operationactivity_Activity_msdyn_incid</RelationshipName>
+                            <ViewIds>{8E2A9D16-0A23-ED11-9DB2-002248AE441F},{588695EE-0A23-ED11-9DB2-002248AE429C},{84A266B7-0A23-ED11-9DB2-002248AE429C}</ViewIds>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RecordsPerPage>100</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <EnableQuickFind>true</EnableQuickFind>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <AutoExpand>Auto</AutoExpand>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_visibilitycontrol" id="{2aa681d1-7d65-13db-1477-c85ce3e9c086}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" visible="false" ordinalvalue="7" solutionaction="Added">
+          <labels>
+            <label description="Visibility Control" languagecode="1033" />
+            <label description="Contrôle de la visibilité" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_11_section_1" showlabel="true" showbar="false" locklevel="0" id="{9c98cda9-8d46-cd67-c5cb-847c68d5ad13}" IsUserDefined="0" layout="varwidth" columns="111" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <labels>
+                    <label description="Field Visible" languagecode="1033" />
+                    <label description="Champ visible" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{00104999-0e69-4f0f-8711-20bded4f72a5}" ordinalvalue="10000">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{c87f40bd-2f5f-4f5e-9897-eff4bcb71d0e}" ordinalvalue="20001">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{b6e1ae52-6f98-4573-afea-6d6c2b4563f8}" ordinalvalue="30002">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_ControlVisibility" id="{6b96e405-60ee-db53-d89c-58567c631a0c}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="8" solutionaction="Added">
+          <labels>
+            <label description="Visibility Control" languagecode="1033" />
+            <label description="Contrôle de la visibilité" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_13_section_1" showlabel="false" showbar="false" locklevel="0" id="{e99024b4-68d3-877e-c421-84e2165e7c8c}" IsUserDefined="0" layout="varwidth" columns="111" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <labels>
+                    <label description="Field Visible" languagecode="1033" />
+                    <label description="Champ visible" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{5a1ceea4-185c-b75e-c6a3-0109162c12b2}" showlabel="true" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Location" languagecode="1033" />
+                          <label description="Emplacement" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vlocation" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vlocation" disabled="false" uniqueid="{2B90B307-D5B3-DE99-2310-DAD538843740}" />
+                      </cell>
+                      <cell id="{24543264-2ebc-c8e5-479a-7469c7059902}" showlabel="true" locklevel="0" ordinalvalue="20001">
+                        <labels>
+                          <label description="Registration (Mark)" languagecode="1033" />
+                          <label description="Enregistrement (Marque)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vregistration" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vregistration" disabled="false" uniqueid="{8CC66A1E-E693-557D-77A0-988789976B2B}" />
+                      </cell>
+                      <cell id="{50e2e9c8-9c60-705a-79a3-15046711dd01}" showlabel="true" locklevel="0" ordinalvalue="30002">
+                        <labels>
+                          <label description="Passenger Services" languagecode="1033" />
+                          <label description="Services aux passagers" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vpassengerservices" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vpassengerservices" disabled="false" uniqueid="{B7680DC9-BCD1-9D60-0405-8424BAA3C506}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{48096db5-c8a4-b381-585c-a4e1aa269e76}" showlabel="true" locklevel="0" ordinalvalue="10003">
+                        <labels>
+                          <label description="Flight Number" languagecode="1033" />
+                          <label description="Numéro de vol" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vflightnumber" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vflightnumber" disabled="false" uniqueid="{91D234D4-E3D5-E623-35DB-B4A603CA9EE8}" />
+                      </cell>
+                      <cell id="{b7a91b82-c558-a5ea-34e5-4dd92dac6a67}" showlabel="true" locklevel="0" ordinalvalue="20004">
+                        <labels>
+                          <label description="Manufacturer" languagecode="1033" />
+                          <label description="Fabricant" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vmanufacturer" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vmanufacturer" disabled="false" uniqueid="{DD0DB192-0459-8673-BA7A-EB0E713AB98A}" />
+                      </cell>
+                      <cell id="{0acc4084-edd0-4580-b017-74474ca8284a}" showlabel="true" locklevel="0" ordinalvalue="30005">
+                        <labels>
+                          <label description="Ramp Services" languagecode="1033" />
+                          <label description="Services de rampe" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vrampservices" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vrampservices" disabled="false" uniqueid="{0882A10B-96A4-ADCA-952B-00C96373E115}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d52207d1-0bc6-7453-4334-c5dd5a095590}" showlabel="true" locklevel="0" ordinalvalue="10006">
+                        <labels>
+                          <label description="Departure Aerodrome" languagecode="1033" />
+                          <label description="Aérodrome de départ" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vorigin" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vorigin" disabled="false" uniqueid="{16796951-7DB5-90E4-3E4A-D262212B7EA1}" />
+                      </cell>
+                      <cell id="{63837000-4734-4649-eb56-d636da815b1e}" showlabel="true" locklevel="0" ordinalvalue="20007">
+                        <labels>
+                          <label description="Model" languagecode="1033" />
+                          <label description="Modèle" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vmodel" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vmodel" disabled="false" uniqueid="{CB0B2388-520B-ED3C-D405-E11C6C8DC847}" />
+                      </cell>
+                      <cell id="{a3355787-0dd5-236b-5b5b-368e71b2b816}" showlabel="true" locklevel="0" ordinalvalue="30008">
+                        <labels>
+                          <label description="Cargo Services" languagecode="1033" />
+                          <label description="Services de fret" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vcargoservices" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vcargoservices" disabled="false" uniqueid="{9C6A8B84-5A31-E777-B24A-83442273984A}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e82d39ea-94c1-01c6-0672-d52dc27500dd}" showlabel="true" locklevel="0" ordinalvalue="10009">
+                        <labels>
+                          <label description="Arrival Aerodrome" languagecode="1033" />
+                          <label description="Aérodrome d'arrivée" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vdestination" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vdestination" disabled="false" uniqueid="{B8205309-5157-951B-2759-01A91E6CC816}" />
+                      </cell>
+                      <cell id="{157d5151-e64b-7290-dd40-a87de696c470}" showlabel="true" locklevel="0" ordinalvalue="20010">
+                        <labels>
+                          <label description="Brand Name" languagecode="1033" />
+                          <label description="Marque" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vbrandname" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vbrandname" disabled="false" uniqueid="{1456CA8C-20CC-86B3-783C-83885B5C3DA9}" />
+                      </cell>
+                      <cell id="{7e673ac4-ecc0-195b-0bd7-19cbb073d36b}" showlabel="true" locklevel="0" ordinalvalue="30011">
+                        <labels>
+                          <label description="Catering Services" languagecode="1033" />
+                          <label description="Service de restauration" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vcateringservices" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vcateringservices" disabled="false" uniqueid="{01D390C6-59E9-9353-0656-26B33924BC5B}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c6a6d50a-a257-0984-e425-351280c7ed2d}" showlabel="true" locklevel="0" ordinalvalue="10012">
+                        <labels>
+                          <label description="Flight Category" languagecode="1033" />
+                          <label description="Catégorie de vol" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vflightcategory" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vflightcategory" disabled="false" uniqueid="{0D890B72-A466-8CD6-3721-8A0E2BC6845E}" />
+                      </cell>
+                      <cell id="{41084c7c-a771-7e14-92a1-d0b3c3ab6591}" showlabel="true" locklevel="0" ordinalvalue="20013">
+                        <labels>
+                          <label description="AOC Operation" languagecode="1033" />
+                          <label description="Opération CEA" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vaocoperation" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vaocoperation" disabled="false" uniqueid="{36EE6C5B-6E2E-DCD5-12A7-721440A0164B}" />
+                      </cell>
+                      <cell id="{68a3b2dc-466a-d681-c186-7dd3a8273d4b}" showlabel="true" locklevel="0" ordinalvalue="30014">
+                        <labels>
+                          <label description="Grooming Services" languagecode="1033" />
+                          <label description="Services de toilettage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vgroomingservices" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vgroomingservices" disabled="false" uniqueid="{953CED43-0042-6D07-03BC-29C750A0054C}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6c503440-ec1c-1907-c411-63091601c79c}" showlabel="true" locklevel="0" ordinalvalue="10015">
+                        <labels>
+                          <label description="Flight Type" languagecode="1033" />
+                          <label description="Type de vol" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vflighttype" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vflighttype" disabled="false" uniqueid="{B6BB3812-2496-67CB-C72A-54A2D3ADD558}" />
+                      </cell>
+                      <cell id="{c87c5210-6d0c-d189-9688-51b51eee1be0}" showlabel="true" locklevel="0" ordinalvalue="20016">
+                        <labels>
+                          <label description="AOC Stakeholder" languagecode="1033" />
+                          <label description="Acteur CEA" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vaocstakeholder" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vaocstakeholder" disabled="false" uniqueid="{3EAA77EA-3B4E-DB43-CDA0-98248CEB1E82}" />
+                      </cell>
+                      <cell id="{b5437049-e77a-6a85-15e8-4c7115c0e423}" showlabel="true" locklevel="0" ordinalvalue="30017">
+                        <labels>
+                          <label description="Security Search Services" languagecode="1033" />
+                          <label description="Services de recherche de sécurité" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vsecuritysearchservices" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vsecuritysearchservices" disabled="false" uniqueid="{15D097A2-2590-38A6-44D1-CD754D8AA396}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d8603b57-e604-a1d8-b104-c117ea6eda33}" showlabel="true" locklevel="0" ordinalvalue="10018">
+                        <labels>
+                          <label description="PAX Checked-in" languagecode="1033" />
+                          <label description="Passager enregistré" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vpaxcheckedin" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vpaxcheckedin" disabled="false" uniqueid="{A3EE3884-B47C-649A-BAE6-B45ADA900591}" />
+                      </cell>
+                      <cell id="{432726c2-ee00-2897-ed07-7cd93a9160ac}" showlabel="true" locklevel="0" ordinalvalue="20019">
+                        <labels>
+                          <label description="AOC Operation Type" languagecode="1033" />
+                          <label description="Type d'opération CEA" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vaocoperationtype" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vaocoperationtype" disabled="false" uniqueid="{E1699259-5291-7259-31DD-42AEDCC50787}" />
+                      </cell>
+                      <cell id="{14517c25-8b07-9919-1435-41c3e6bbd4e5}" showlabel="true" locklevel="0" ordinalvalue="30020">
+                        <labels>
+                          <label description="Access Control Security Services" languagecode="1033" />
+                          <label description="Services de sécurité de contrôle d'accès" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vaccesscontrolsecurityservices" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vaccesscontrolsecurityservices" disabled="false" uniqueid="{E344E6B4-CE9A-8037-4582-05BC6B54D01B}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9543aa35-d890-74e6-ccee-a65cad937919}" showlabel="true" locklevel="0" ordinalvalue="10021">
+                        <labels>
+                          <label description="PAX Boarded" languagecode="1033" />
+                          <label description="Passager embarqué" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vpaxboarded" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vpaxboarded" disabled="false" uniqueid="{CDC8C738-2B83-C35D-D577-8EC737B125B6}" />
+                      </cell>
+                      <cell id="{2665ac63-52c7-774a-027e-6d906c1984d0}" showlabel="true" locklevel="0" ordinalvalue="20022">
+                        <labels>
+                          <label description="AOC Site" languagecode="1033" />
+                          <label description="Site du CEA" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vaocsite" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vaocsite" disabled="false" uniqueid="{DD8E8776-BD4E-8B55-928A-B1796A13A6CD}" />
+                      </cell>
+                      <cell id="{b570a447-a166-04e7-723b-94b6b1057654}" showlabel="true" locklevel="0" ordinalvalue="30023">
+                        <labels>
+                          <label description="Other Security Services" languagecode="1033" />
+                          <label description="Autres services de sécurité" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vothersecurityservices" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vothersecurityservices" disabled="false" uniqueid="{3DED612E-4AC0-7A7A-47E7-4BEBE9D996A8}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{672a09da-d7d6-8bc8-0175-cad46ddee7c6}" showlabel="true" locklevel="0" ordinalvalue="10024">
+                        <labels>
+                          <label description="CB Checked-in" languagecode="1033" />
+                          <label description="Bagages enregistrés enregistrés" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vcbcheckedin" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vcbcheckedin" disabled="false" uniqueid="{731059E9-565B-45EE-05C1-501E87168987}" />
+                      </cell>
+                      <cell id="{c8561bc1-6197-0cb2-a5a1-9791a7e453d9}" showlabel="false" ordinalvalue="20025">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{888457ae-becd-8a0e-b33e-9d43e2dc0c01}" showlabel="true" locklevel="0" ordinalvalue="30026">
+                        <labels>
+                          <label description="Report Details" languagecode="1033" />
+                          <label description="Détails du rapport" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vreportdetails" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vreportdetails" disabled="false" uniqueid="{69BD8B82-660A-0128-123D-0731E9916E99}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{30dc15b3-8467-5931-b1a2-134b96c3bd86}" showlabel="true" locklevel="0" ordinalvalue="10027">
+                        <labels>
+                          <label description="CB Loaded" languagecode="1033" />
+                          <label description="Bagages enregistrés chargés" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vcbloaded" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vcbloaded" disabled="false" uniqueid="{897E892B-E249-E967-42C5-495E70E33A8A}" />
+                      </cell>
+                      <cell id="{561bcc52-cd2e-a165-b056-152c4c352ca9}" showlabel="false" ordinalvalue="20028">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{cc592e14-6657-1d39-7e01-c57eec044763}" showlabel="false" ordinalvalue="30029">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3944aa04-4bcd-2d27-0d89-d7b136d02925}" showlabel="true" locklevel="0" ordinalvalue="10030">
+                        <labels>
+                          <label description="Scheduled Time of Departure/Arrival" languagecode="1033" />
+                          <label description="Heure de départ/d'arrivée prévue" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vscheduledtime" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vscheduledtime" disabled="false" uniqueid="{3296A435-533E-A680-B7CD-0E4003D91A21}" />
+                      </cell>
+                      <cell id="{aa5b92cc-3d01-d5a1-8959-9b1e95068bc4}" showlabel="false" ordinalvalue="20031">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{e5892dc3-eb4d-7d6c-ecb4-03ed46bd169c}" showlabel="false" ordinalvalue="30032">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c81d2c3d-0e83-1343-d260-798880d0ed98}" showlabel="true" locklevel="0" ordinalvalue="10033">
+                        <labels>
+                          <label description="Actual Time of Departure/Arrival" languagecode="1033" />
+                          <label description="Heure réelle de départ/arrivée" languagecode="1036" />
+                        </labels>
+                        <control id="ts_vactualtime" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_vactualtime" disabled="false" uniqueid="{44415586-6225-E953-10C5-601361A93CA6}" />
+                      </cell>
+                      <cell id="{ca862466-d873-a879-1849-bc3ea420e769}" showlabel="false" ordinalvalue="20034">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{70c69ad4-1097-87b8-883b-90e43c2cd964}" showlabel="false" ordinalvalue="30035">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_properties" id="e62427ec-e027-497f-88c3-bc32903900e6" IsUserDefined="0" locklevel="0" showlabel="true" visible="false" ordinalvalue="10" solutionaction="Added">
+          <labels>
+            <label description="Properties" languagecode="1033" />
+            <label description="Propriétés" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_10_section_1" id="69a36d23-3a3b-40aa-9f15-349667b9ab5f" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{5a388ea3-b9ab-4fc2-b2e1-101a7eee5eee}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="Domestic" languagecode="1033" />
+                          <label description="Vols intérieur" languagecode="1036" />
+                        </labels>
+                        <control id="ts_domesticflights" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_domesticflights" disabled="false" uniqueid="{634EAAC8-B1C8-4A52-A993-ADB2361ABF8A}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a25d6f1f-6ff6-41ce-8f0f-bf3e250dbb3b}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10001">
+                        <labels>
+                          <label description="International" languagecode="1033" />
+                          <label description="Vols international" languagecode="1036" />
+                        </labels>
+                        <control id="ts_internationalflights" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_internationalflights" disabled="false" uniqueid="{53E08A7A-47D8-4040-A83E-F492989F5456}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d2540051-77f2-4780-a64a-c7489e3e4216}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10002">
+                        <labels>
+                          <label description="Transborder" languagecode="1033" />
+                          <label description="Vols Transfrontière" languagecode="1036" />
+                        </labels>
+                        <control id="ts_transborderflights" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_transborderflights" disabled="false" uniqueid="{313FB9F4-1848-42CC-8A48-69B7CF8DC428}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4f0177fa-4f12-452f-ab96-f4aa850ef6a2}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10003">
+                        <labels>
+                          <label description="International Programs Branch (IPB)" languagecode="1033" />
+                          <label description="Division des programmes internationaux" languagecode="1036" />
+                        </labels>
+                        <control id="ts_internationalprogramsbranchipb" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_internationalprogramsbranchipb" disabled="false" uniqueid="{3F10527B-C026-4B05-AE86-48CBBC980281}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6c77dff5-a43a-4e9b-8794-6b6feeb05bbc}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10004">
+                        <labels>
+                          <label description="Catering" languagecode="1033" />
+                          <label description="Provisions d’hôtellerie et magasins" languagecode="1036" />
+                        </labels>
+                        <control id="ts_cateringandstores" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_cateringandstores" disabled="false" uniqueid="{40B8F004-692B-4BF2-9BBC-E69F13C48301}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b3e43a1e-d94b-4cd0-8553-72262b90638a}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10005">
+                        <labels>
+                          <label description="OSS" languagecode="1033" />
+                          <label description="Sûreté à guichet unique" languagecode="1036" />
+                        </labels>
+                        <control id="ts_onestopsecurityoss" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_onestopsecurityoss" disabled="false" uniqueid="{F2423952-1F2C-4477-AB3D-73C064744F34}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c468fa28-c8e4-41ef-92ca-6d6940cf6f8b}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10006">
+                        <labels>
+                          <label description="Cargo" languagecode="1033" />
+                          <label description="Fret Aérien" languagecode="1036" />
+                        </labels>
+                        <control id="ts_aircargo" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_aircargo" disabled="false" uniqueid="{2FA8A772-8523-4ADE-B8E9-47C1D5FF1FB8}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7c0c1ddc-563e-493b-be5b-12bd5544b59e}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10007">
+                        <labels>
+                          <label description="Mail" languagecode="1033" />
+                          <label description="Courrier" languagecode="1036" />
+                        </labels>
+                        <control id="ts_mail" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_mail" disabled="false" uniqueid="{DD8689CD-C70C-4CDF-82BE-BA973FD83E92}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f4d287fb-feab-40a5-a4c4-41dc961b1673}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10008">
+                        <labels>
+                          <label description="Training" languagecode="1033" />
+                          <label description="Formation en matière de sûreté aérienne" languagecode="1036" />
+                        </labels>
+                        <control id="ts_aviationsecuritytraining" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_aviationsecuritytraining" disabled="false" uniqueid="{C1FA0850-2943-41F6-A502-A9FD534B3129}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d800ccd8-c2f1-45cf-8bbb-9c1d1e654ea1}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10009">
+                        <labels>
+                          <label description="OPI" languagecode="1033" />
+                          <label description="BPR" languagecode="1036" />
+                        </labels>
+                        <control id="ts_opi" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_opi" disabled="false" uniqueid="{D83D791A-46B4-4A21-8CBA-F35243A4DEC5}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0d26b33a-3c80-4cdb-960a-f87a8acb8677}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10010">
+                        <labels>
+                          <label description="Unattended Aircraft" languagecode="1033" />
+                          <label description="Aéronef sans surveillance" languagecode="1036" />
+                        </labels>
+                        <control id="ts_unattendedaircraft" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_unattendedaircraft" disabled="false" uniqueid="{555C82D7-6FD1-4E3E-B551-998147B9156A}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3c5213d4-db57-4f17-93b2-cb483c772141}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10011">
+                        <labels>
+                          <label description="RON" languagecode="1033" />
+                          <label description="Escale pour la nuit" languagecode="1036" />
+                        </labels>
+                        <control id="ts_remainovernightron" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_remainovernightron" disabled="false" uniqueid="{7C73D751-F07A-432D-89BF-E90AF21BC135}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_risk" id="2897470f-628a-4ff4-8065-bb0608619edd" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="12" solutionaction="Added">
+          <labels>
+            <label description="Risk" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_risk_section_4" id="027a7853-a4a3-4af2-92f8-1ff76bce630b" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="Risk" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{1912e708-af7b-49e6-a025-754390daf9c6}" rowspan="4" colspan="1" auto="false" showlabel="true" ordinalvalue="10000">
+                        <labels>
+                          <label description="Entity Risks" languagecode="1033" />
+                          <label description="Types d'opération" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_EntityRisk" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_entityrisk</TargetEntityType>
+                            <ViewId>{F852F2DE-C6D6-49C0-B209-B0F8A9CDCFE5}</ViewId>
+                            <ViewIds>{F852F2DE-C6D6-49C0-B209-B0F8A9CDCFE5}</ViewIds>
+                            <RelationshipName>ts_EntityRisk_msdyn_incidenttype_msdyn_incidenttype</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{bff1a46d-6596-4d01-b3e0-be3161938c53}" rowspan="4" colspan="1" auto="false" showlabel="true" ordinalvalue="10001">
+                        <labels>
+                          <label description="Prescribed Frequencies" languagecode="1033" />
+                          <label description="Types d'opération" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_3" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_prescribedfrequencyoverride_ActivityType_msdyn_incidenttype</RelationshipName>
+                            <TargetEntityType>ts_prescribedfrequencyoverride</TargetEntityType>
+                            <ViewId>{45678D29-F57D-4A63-BA50-4FD5D2327B27}</ViewId>
+                            <ViewIds>{45678D29-F57D-4A63-BA50-4FD5D2327B27}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <footer id="{a3760a70-d20a-4890-b8d5-ecff3daaa62b}">
+        <rows>
+          <row>
+            <cell id="{131da1dc-442f-4250-a889-3e8e563099f3}" ordinalvalue="10000">
+              <labels>
+                <label description="Status" languagecode="1033" solutionaction="Added" />
+                <label description="Statut" languagecode="1036" solutionaction="Added" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation>
+        <NavBar>
+          <NavBarByRelationshipItem Area="Info" Show="false" RelationshipName="ts_entityriskfrequency_ActivityType_msdyn_incidenttype" Id="nav_ts_entityriskfrequency_ActivityType_msdyn_incidenttype" Sequence="10000" solutionaction="Added">
+            <Titles>
+              <Title Text="Prescribed Frequencies" LCID="1033" />
+            </Titles>
+          </NavBarByRelationshipItem>
+        </NavBar>
+      </Navigation>
+      <controlDescriptions>
+        <controlDescription forControl="{634EAAC8-B1C8-4A52-A993-ADB2361ABF8A}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_domesticflights</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_domesticflights</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_domesticflights</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_domesticflights</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{53E08A7A-47D8-4040-A83E-F492989F5456}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_internationalflights</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_internationalflights</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_internationalflights</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_internationalflights</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{313FB9F4-1848-42CC-8A48-69B7CF8DC428}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_transborderflights</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_transborderflights</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_transborderflights</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_transborderflights</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{3F10527B-C026-4B05-AE86-48CBBC980281}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_internationalprogramsbranchipb</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_internationalprogramsbranchipb</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_internationalprogramsbranchipb</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_internationalprogramsbranchipb</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{40B8F004-692B-4BF2-9BBC-E69F13C48301}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_cateringandstores</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_cateringandstores</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_cateringandstores</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_cateringandstores</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{F2423952-1F2C-4477-AB3D-73C064744F34}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_onestopsecurityoss</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_onestopsecurityoss</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_onestopsecurityoss</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_onestopsecurityoss</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{2FA8A772-8523-4ADE-B8E9-47C1D5FF1FB8}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_aircargo</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_aircargo</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_aircargo</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_aircargo</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{DD8689CD-C70C-4CDF-82BE-BA973FD83E92}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_mail</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_mail</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_mail</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_mail</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{C1FA0850-2943-41F6-A502-A9FD534B3129}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_aviationsecuritytraining</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_aviationsecuritytraining</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_aviationsecuritytraining</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_aviationsecuritytraining</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{D83D791A-46B4-4A21-8CBA-F35243A4DEC5}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_opi</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_opi</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_opi</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_opi</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{555C82D7-6FD1-4E3E-B551-998147B9156A}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_unattendedaircraft</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_unattendedaircraft</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_unattendedaircraft</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_unattendedaircraft</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{7C73D751-F07A-432D-89BF-E90AF21BC135}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_remainovernightron</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_remainovernightron</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_remainovernightron</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_remainovernightron</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{B1468151-2CFA-4E3A-909D-89B9CF4654EB}" solutionaction="Added">
+          <customControl id="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+            <parameters />
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{8E2A9D16-0A23-ED11-9DB2-002248AE441F}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ts_operationactivity_Activity_msdyn_incid</RelationshipName>
+                <TargetEntityType>ts_operationactivity</TargetEntityType>
+                <EnableViewPicker>true</EnableViewPicker>
+                <FilteredViewIds>{8E2A9D16-0A23-ED11-9DB2-002248AE441F},{588695EE-0A23-ED11-9DB2-002248AE429C},{84A266B7-0A23-ED11-9DB2-002248AE429C}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{8E2A9D16-0A23-ED11-9DB2-002248AE441F}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ts_operationactivity_Activity_msdyn_incid</RelationshipName>
+                <TargetEntityType>ts_operationactivity</TargetEntityType>
+                <EnableViewPicker>true</EnableViewPicker>
+                <FilteredViewIds>{8E2A9D16-0A23-ED11-9DB2-002248AE441F},{588695EE-0A23-ED11-9DB2-002248AE429C},{84A266B7-0A23-ED11-9DB2-002248AE429C}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{8E2A9D16-0A23-ED11-9DB2-002248AE441F}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ts_operationactivity_Activity_msdyn_incid</RelationshipName>
+                <TargetEntityType>ts_operationactivity</TargetEntityType>
+                <EnableViewPicker>true</EnableViewPicker>
+                <FilteredViewIds>{8E2A9D16-0A23-ED11-9DB2-002248AE441F},{588695EE-0A23-ED11-9DB2-002248AE429C},{84A266B7-0A23-ED11-9DB2-002248AE429C}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{2B90B307-D5B3-DE99-2310-DAD538843740}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vlocation</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vlocation</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vlocation</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vlocation</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{3296A435-533E-A680-B7CD-0E4003D91A21}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vscheduledtime</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vscheduledtime</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vscheduledtime</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vscheduledtime</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{44415586-6225-E953-10C5-601361A93CA6}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vactualtime</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vactualtime</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vactualtime</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vactualtime</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{B7680DC9-BCD1-9D60-0405-8424BAA3C506}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vpassengerservices</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vpassengerservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vpassengerservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vpassengerservices</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{91D234D4-E3D5-E623-35DB-B4A603CA9EE8}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vflightnumber</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vflightnumber</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vflightnumber</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vflightnumber</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{16796951-7DB5-90E4-3E4A-D262212B7EA1}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vorigin</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vorigin</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vorigin</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vorigin</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{B8205309-5157-951B-2759-01A91E6CC816}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vdestination</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vdestination</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vdestination</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vdestination</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{A3EE3884-B47C-649A-BAE6-B45ADA900591}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vpaxcheckedin</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vpaxcheckedin</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vpaxcheckedin</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vpaxcheckedin</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{CDC8C738-2B83-C35D-D577-8EC737B125B6}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vpaxboarded</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vpaxboarded</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vpaxboarded</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vpaxboarded</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{731059E9-565B-45EE-05C1-501E87168987}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vcbcheckedin</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vcbcheckedin</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vcbcheckedin</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vcbcheckedin</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{897E892B-E249-E967-42C5-495E70E33A8A}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vcbloaded</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vcbloaded</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vcbloaded</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vcbloaded</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{1456CA8C-20CC-86B3-783C-83885B5C3DA9}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vbrandname</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vbrandname</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vbrandname</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vbrandname</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{36EE6C5B-6E2E-DCD5-12A7-721440A0164B}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vaocoperation</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaocoperation</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaocoperation</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaocoperation</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{3EAA77EA-3B4E-DB43-CDA0-98248CEB1E82}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vaocstakeholder</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaocstakeholder</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaocstakeholder</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaocstakeholder</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{E1699259-5291-7259-31DD-42AEDCC50787}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vaocoperationtype</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaocoperationtype</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaocoperationtype</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaocoperationtype</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{DD8E8776-BD4E-8B55-928A-B1796A13A6CD}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vaocsite</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaocsite</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaocsite</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaocsite</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{0882A10B-96A4-ADCA-952B-00C96373E115}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vrampservices</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vrampservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vrampservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vrampservices</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{9C6A8B84-5A31-E777-B24A-83442273984A}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vcargoservices</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vcargoservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vcargoservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vcargoservices</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{01D390C6-59E9-9353-0656-26B33924BC5B}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vcateringservices</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vcateringservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vcateringservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vcateringservices</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{953CED43-0042-6D07-03BC-29C750A0054C}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vgroomingservices</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vgroomingservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vgroomingservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vgroomingservices</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{15D097A2-2590-38A6-44D1-CD754D8AA396}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vsecuritysearchservices</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vsecuritysearchservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vsecuritysearchservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vsecuritysearchservices</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{E344E6B4-CE9A-8037-4582-05BC6B54D01B}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vaccesscontrolsecurityservices</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaccesscontrolsecurityservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaccesscontrolsecurityservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vaccesscontrolsecurityservices</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{3DED612E-4AC0-7A7A-47E7-4BEBE9D996A8}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vothersecurityservices</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vothersecurityservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vothersecurityservices</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vothersecurityservices</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{8CC66A1E-E693-557D-77A0-988789976B2B}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vregistration</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vregistration</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vregistration</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vregistration</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{DD0DB192-0459-8673-BA7A-EB0E713AB98A}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vmanufacturer</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vmanufacturer</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vmanufacturer</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vmanufacturer</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{CB0B2388-520B-ED3C-D405-E11C6C8DC847}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vmodel</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vmodel</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vmodel</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vmodel</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{69BD8B82-660A-0128-123D-0731E9916E99}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vreportdetails</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vreportdetails</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vreportdetails</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vreportdetails</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{0D890B72-A466-8CD6-3721-8A0E2BC6845E}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vflightcategory</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vflightcategory</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vflightcategory</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vflightcategory</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{B6BB3812-2496-67CB-C72A-54A2D3ADD558}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_vflighttype</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vflighttype</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vflighttype</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_vflighttype</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{ED3CADFD-1FBD-4AF0-968A-6D32E4DC3708}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_international</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_international</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_international</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_international</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{8214306E-ED83-4207-9AE3-60B173030AB9}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_domestic</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_domestic</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_domestic</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_domestic</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <formLibraries>
+        <Library name="ts_/js/Common.js" libraryUniqueId="{7d4ce49c-34c7-8909-dbba-9700ccbebe18}" solutionaction="Added" />
+        <Library name="ovs_/js/IncidentType.js" libraryUniqueId="{81572579-4c7e-4546-b6a0-26dd7c6c02f1}" solutionaction="Added" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.IncidentType.onLoad" libraryName="ovs_/js/IncidentType.js" handlerUniqueId="{0cb0abe7-ed70-4900-9cbf-e9c4eeaa743a}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="1" solutionaction="Added" />
+          </Handlers>
+        </event>
+        <event name="onrecordselect" application="false" active="false" relationship="" control="operation_activity_grid" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.IncidentType.setFieldsDisabled" libraryName="ovs_/js/IncidentType.js" handlerUniqueId="{bdc010d9-8648-6c59-0a83-8e43cee5042c}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="false" active="false" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.IncidentType.onSave" libraryName="ovs_/js/IncidentType.js" handlerUniqueId="{71e2500a-ea71-4eb9-9cae-2df697629c3c}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+      </events>
+      <header id="{d6d4dd2f-cc5a-4581-89f9-a6731626d5cb}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows>
+          <row>
+            <cell id="{f7ac0e83-c12e-4c5e-9514-ed48823e013b}" ordinalvalue="10000">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{67c98f63-21c1-4faa-94d4-a26c59425d26}" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{25844a40-d449-420b-b5d1-fd8010a2bfa7}" ordinalvalue="30002">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <DisplayConditions FallbackForm="true" Order="0" solutionaction="Added">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+      <LocalizedName description="Information" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Formulaire pour cette entité." languagecode="1033" />
+      <Description description="Formulaire pour cette entité." languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

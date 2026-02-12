@@ -1,0 +1,13 @@
+<environmentvariabledefinition schemaname="ts_AviationSecurityDirectorateDomesticTeamGUID">
+  <description default="The team guid for everything in AvSec except for AvSec International.">
+    <label description="The team guid for everything in AvSec except for AvSec International." languagecode="1033" />
+  </description>
+  <displayname default="Aviation Security Directorate - Domestic Team GUID">
+    <label description="Aviation Security Directorate - Domestic Team GUID" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.20230417.1</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

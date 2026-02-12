@@ -1,0 +1,636 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_excelonlinebusiness": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedexcelonlinebusiness_b4933"
+        },
+        "api": {
+          "name": "shared_excelonlinebusiness"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_DataverseROMTSGSRST"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "c42d8d39-d1f4-4ef9-b01a-ec3df1c21964"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Legislation Source ID",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Enter the ID of the Legislation Source",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_rows_-_Legislations": {
+          "runAfter": {
+            "Initialize_variable_-_Order_Number": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0f96e88b-ebd8-474c-8b33-40fae4bc591e"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "qm_rclegislations",
+              "fetchXml": "<fetch xmlns:generator='MarkMpn.SQL4CDS'>\n  <entity name='qm_rclegislation'>\n    <attribute name='qm_rclegislationid' />\n    <link-entity name='qm_tylegislationsource' to='qm_tylegislationsourceid' from='qm_tylegislationsourceid' alias='Qm_tylegislationsource' link-type='inner'>\n      <filter>\n        <condition attribute='qm_tylegislationsourceid' operator='eq' value='' />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Initialize_variable_-_Legislation_Count": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "3b951192-66b7-4f4a-975d-cdb373589e49"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Legislation Count",
+                "type": "integer",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "Set_variable_-_Legislation_Count": {
+          "runAfter": {
+            "List_rows_-_Legislations": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e9442011-bb43-4d93-9386-e80942b75866"
+          },
+          "type": "SetVariable",
+          "inputs": {
+            "name": "Legislation Count",
+            "value": "@length(outputs('List_rows_-_Legislations')?['body/value'])"
+          }
+        },
+        "Condition_-_Legislation_Count_equal_to_0": {
+          "actions": {
+            "Scope_-_Try_Get_Excel_File": {
+              "actions": {
+                "Apply_to_each_-_Legislation_Update": {
+                  "foreach": "@outputs('List_rows_present_in_a_table_-_Legislation_Update')?['body/value']",
+                  "actions": {
+                    "Append_to_array_variable_-_Excel_Rows_Array": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "420677a1-2474-40bc-9bc3-e8d958896711"
+                      },
+                      "type": "AppendToArrayVariable",
+                      "inputs": {
+                        "name": "Excel Rows Array",
+                        "value": "@items('Apply_to_each_-_Legislation_Update')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "List_rows_present_in_a_table_-_Legislation_Update": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "8ef8ef05-d670-49b1-a6c3-a205dc50c604"
+                  },
+                  "type": "Foreach"
+                },
+                "List_rows_present_in_a_table_-_Legislation_Update": {
+                  "runAfter": {},
+                  "metadata": {
+                    "01BEZBBROJVO2ZCPM2TRFZ5VMX4EMRX72N": "/Mechanism for uploading legislation provisions/Legislation Upload.xlsx",
+                    "operationMetadataId": "060e93a6-e454-4c26-aea3-2064b8bc17a6",
+                    "tableId": "{00000000-000C-0000-FFFF-FFFF00000000}",
+                    "01BEZBBROEVWQEK7LJ7VGZKT5DJ537QF56": "/Mechanism for uploading legislation provisions/Legislation Upload.xlsx",
+                    "01GJVXCVAQ7V5D5LFLNJE3IVO6BXF2OWM5": "/Mechanism for uploading legislation provisions/Legislation Upload.xlsx",
+                    "01GJVXCVDNWYRFCYIMTZD2ZTYTPPK6GCAE": "/Mechanism for uploading legislation provisions/Legislation Upload.xlsx",
+                    "01GJVXCVFBOQN4R54AEZAINFSUMHMXALAF": "/Mechanism for uploading legislation provisions/Legislation Upload Som Test.xlsx",
+                    "01GJVXCVEPSPM2WVY7GNGIDDC2G3U5XU6O": "/ROM-TS/Mechanism for uploading legislation provisions/Legislation Upload.xlsx"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_excelonlinebusiness",
+                      "operationId": "GetItems",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness"
+                    },
+                    "parameters": {
+                      "source": "me",
+                      "drive": "b!MLZShIUzOUy5ZKS91iP8vMBdDNHP9NpNl43AVxAtsli9t_IgI-LeRaYLW0tJXfQm",
+                      "file": "01GJVXCVDNWYRFCYIMTZD2ZTYTPPK6GCAE",
+                      "table": "{5C28612A-2959-4E29-B7C6-59073D458122}"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  },
+                  "runtimeConfiguration": {
+                    "paginationPolicy": {
+                      "minimumItemCount": 5000
+                    }
+                  }
+                },
+                "Apply_to_each_-_Create_Legislation_Records": {
+                  "foreach": "@variables('Excel Rows Array')",
+                  "actions": {
+                    "Add_a_new_row_-_Legislation": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "69724865-7785-40e8-adbd-4deaa781c6ef"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "CreateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "qm_rclegislations",
+                          "item/qm_tylegislationsourceId@odata.bind": "/qm_tylegislationsources(@{triggerBody()['text']})",
+                          "item/qm_tylegislationtypeId@odata.bind": "/qm_tylegislationtypes(@{items('Apply_to_each_-_Create_Legislation_Records')?['Legislation Type ID']})",
+                          "item/qm_name": "@Items('Apply_to_each_-_Create_Legislation_Records')?['Name']",
+                          "item/ts_nameenglish": "@Items('Apply_to_each_-_Create_Legislation_Records')?['Name']",
+                          "item/ts_namefrench": "@Items('Apply_to_each_-_Create_Legislation_Records')?['French Name']",
+                          "item/qm_legislationetxt": "@Items('Apply_to_each_-_Create_Legislation_Records')?['English Text']",
+                          "item/qm_legislationftxt": "@Items('Apply_to_each_-_Create_Legislation_Records')?['French Text']",
+                          "item/qm_inforcedte": "@concat(formatDateTime(Items('Apply_to_each_-_Create_Legislation_Records')?['Inforce Date'], 'yyyy-MM-dd'), 'T00:00:00Z')",
+                          "item/qm_legislationlbl": "@Items('Apply_to_each_-_Create_Legislation_Records')?['Label']",
+                          "item/ts_ordernbr": "@variables('Order Number')"
+                        },
+                        "authentication": {
+                          "type": "Raw",
+                          "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                        }
+                      }
+                    },
+                    "Append_to_array_variable__-_Created_Legislations_Array": {
+                      "runAfter": {
+                        "Add_a_new_row_-_Legislation": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "e648eae4-cbbf-4054-8e6b-4a8da79d7402"
+                      },
+                      "type": "AppendToArrayVariable",
+                      "inputs": {
+                        "name": "Created Legislations Array",
+                        "value": {
+                          "qm_rclegislationid": "@{body('Add_a_new_row_-_Legislation')?['qm_rclegislationid']}",
+                          "qm_name": "@{body('Add_a_new_row_-_Legislation')?['qm_name']}",
+                          "legislation_id": "@{Items('Apply_to_each_-_Create_Legislation_Records')?['Legislation ID']}"
+                        }
+                      }
+                    },
+                    "Set_variable_-_HasParent": {
+                      "runAfter": {
+                        "Append_to_array_variable__-_Created_Legislations_Array": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "3c0c5f05-9054-4c2f-b671-0b81932625cb"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "HasParent",
+                        "value": "@{items('Apply_to_each_-_Create_Legislation_Records')?['Parent Legislation']}"
+                      }
+                    },
+                    "Condition_-_HasParent_is_not_null": {
+                      "actions": {
+                        "Filter_array_-_Created_Legislations_-_Name": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "f4d1983a-b27c-47b4-bf33-6163f7a12614"
+                          },
+                          "type": "Query",
+                          "inputs": {
+                            "from": "@variables('Created Legislations Array')",
+                            "where": "@equals(item()?['qm_name'], items('Apply_to_each_-_Create_Legislation_Records')?['Parent Legislation'])"
+                          }
+                        },
+                        "Filter_array_-_Created_Legislations_-_Legislation_ID": {
+                          "runAfter": {
+                            "Filter_array_-_Created_Legislations_-_Name": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "7085cd8c-1887-4b1b-a5f2-23e0b984eed5"
+                          },
+                          "type": "Query",
+                          "inputs": {
+                            "from": "@body('Filter_array_-_Created_Legislations_-_Name')",
+                            "where": "@equals(item()?['legislation_id'], items('Apply_to_each_-_Create_Legislation_Records')?['Parent Legislation ID'])"
+                          }
+                        },
+                        "Update_a_row_-_Legislation_-_Parent": {
+                          "runAfter": {
+                            "Set_variable_-_Legislation_Parent_Update": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "1025eac4-02a3-4f4b-83a9-00e180c30ca2"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "UpdateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "qm_rclegislations",
+                              "recordId": "@body('Add_a_new_row_-_Legislation')?['qm_rclegislationid']",
+                              "item/qm_rcParentLegislationId@odata.bind": "/qm_rclegislations(@{variables('Legislation Parent Update')})"
+                            },
+                            "authentication": {
+                              "type": "Raw",
+                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                            }
+                          }
+                        },
+                        "Set_variable_-_Legislation_Parent_Update": {
+                          "runAfter": {
+                            "Filter_array_-_Created_Legislations_-_Legislation_ID": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "6b9e6dec-cc5f-4857-81f2-52da33893066"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "Legislation Parent Update",
+                            "value": "@{Body('Filter_array_-_Created_Legislations_-_Legislation_ID')[0]['qm_rclegislationid']}"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Increment_variable_-_Order_Number": [
+                          "Succeeded"
+                        ]
+                      },
+                      "expression": {
+                        "not": {
+                          "equals": [
+                            "@variables('HasParent')",
+                            ""
+                          ]
+                        }
+                      },
+                      "metadata": {
+                        "operationMetadataId": "3bd93bc9-7577-4431-9133-ddfde1cf0185"
+                      },
+                      "type": "If"
+                    },
+                    "Increment_variable_-_Order_Number": {
+                      "runAfter": {
+                        "Set_variable_-_HasParent": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "85839f6b-67f1-4e9e-8b30-ff46bc31045c"
+                      },
+                      "type": "IncrementVariable",
+                      "inputs": {
+                        "name": "Order Number",
+                        "value": 1
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Apply_to_each_-_Legislation_Update": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "d9a74f85-438f-46f7-afd6-5c41cd90382e"
+                  },
+                  "type": "Foreach"
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "a3ebf96c-5853-4098-85fb-b3c620c5fc23"
+              },
+              "type": "Scope"
+            },
+            "Scope_-_Catch_Get_Excel_File": {
+              "actions": {
+                "Terminate_-_Cannot_get_Excel_File": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "69046770-c615-49fd-b17e-f1eaa1b4ed1a"
+                  },
+                  "type": "Terminate",
+                  "inputs": {
+                    "runStatus": "Failed",
+                    "runError": {
+                      "message": "Unable to retrieve the excel file"
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Scope_-_Try_Get_Excel_File": [
+                  "Failed"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "032aa98b-ec81-4700-81b0-07f7cc2e1161"
+              },
+              "type": "Scope"
+            }
+          },
+          "runAfter": {
+            "Apply_to_each_-_Legislation_Section_Types": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Terminate_-_Legislation_Source_has_Legislations": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "4de83dbd-3252-4913-8f2b-eb46a22f2dea"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Failed",
+                  "runError": {
+                    "message": "The Legislation Source already has Legislation values."
+                  }
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@variables('Legislation Count')",
+              0
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6f38971d-1ad5-48e1-9243-dc31e74b446e"
+          },
+          "type": "If"
+        },
+        "Initialize_variable_-_Excel_Rows_-_Array": {
+          "runAfter": {
+            "Initialize_variable_-_Legislation_Count": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "59ed8249-699c-4ae3-b8ce-86e30d2619f7"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Excel Rows Array",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "List_rows_Legislation_Section_Types": {
+          "runAfter": {
+            "Initialize_variable_-_HasParent": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "33aa1240-9f42-42c9-9b4b-7a04b4f84491"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "qm_tylegislationtypes",
+              "$select": "ts_englishname"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Apply_to_each_-_Legislation_Section_Types": {
+          "foreach": "@outputs('List_rows_Legislation_Section_Types')?['body/value']",
+          "actions": {
+            "Append_to_array_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f7349a60-e961-48e6-be3e-ce264a55f9ad"
+              },
+              "type": "AppendToArrayVariable",
+              "inputs": {
+                "name": "Legislation Section Type - Array",
+                "value": "@items('Apply_to_each_-_Legislation_Section_Types')?['ts_englishname']"
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows_Legislation_Section_Types": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "eab0985e-90fb-406f-b685-eca0f896f74e"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable_-_Legislation_Section_Type_-_Array": {
+          "runAfter": {
+            "Initialize_variable_-_Created_Legislations_Array": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "05dc2a04-af56-4f43-a02c-044533a7e1bf"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Legislation Section Type - Array",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Legislation_Section_Type_Found": {
+          "runAfter": {
+            "Initialize_variable_-_Legislation_Section_Type_-_Array": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b77f548d-91e6-4702-baf8-38cdfb4d12e8"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Legislation Section Type Not Found",
+                "type": "boolean",
+                "value": "@false"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Created_Legislations_Array": {
+          "runAfter": {
+            "Initialize_variable_-_Excel_Rows_-_Array": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "09417e19-5dad-44ac-804a-e75cb3875733"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Created Legislations Array",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_HasParent": {
+          "runAfter": {
+            "Set_variable_-_Legislation_Count": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "dd9c24d1-e974-4ddb-a9db-052ff50f6d4b"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "HasParent",
+                "type": "string",
+                "value": "\"\""
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Legislation_Parent_Update": {
+          "runAfter": {
+            "Initialize_variable_-_Legislation_Section_Type_Found": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f62da7b3-5f3e-492c-918d-6731c13881b6"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Legislation Parent Update",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Order_Number": {
+          "runAfter": {
+            "Initialize_variable_-_Legislation_Parent_Update": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b15953b4-d36a-4380-a734-a58419e0f53f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Order Number",
+                "type": "integer",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

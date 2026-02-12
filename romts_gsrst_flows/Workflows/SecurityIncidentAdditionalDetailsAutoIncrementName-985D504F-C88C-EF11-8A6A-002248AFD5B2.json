@@ -1,0 +1,216 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_DataverseROMTSGSRST"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "af54f6c1-2a2e-400f-a4e3-8bd6df985022"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ts_securityincidentadditionaldetails",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition": {
+          "actions": {
+            "List_rows": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "e0f9a98f-4cb1-4abb-a7e8-36f039b11b4b"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_securityincidentadditionaldetailses",
+                  "fetchXml": "<fetch>\n  <entity name=\"ts_securityincidentadditionaldetails\">\n    <filter>\n      <condition attribute=\"ts_securityincident\" operator=\"eq\" value=\"@{triggerOutputs()?['body/_ts_securityincident_value']}\"/>\n    </filter>\n  </entity>\n</fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Set_variable": {
+              "runAfter": {
+                "List_rows": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "4508c00a-cb45-4832-bf06-66928e54e9f8"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "CountAdditionalDetails",
+                "value": "@length(body('List_rows')?['value'])"
+              }
+            },
+            "Update_a_row": {
+              "runAfter": {
+                "Set_variable_2": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "379a31f2-71b4-49b3-b9b3-39dbb79e87d6"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_securityincidentadditionaldetailses",
+                  "recordId": "@triggerOutputs()?['body/ts_securityincidentadditionaldetailsid']",
+                  "item/ts_name": "@concat(variables('SecurityIncidentName')?['value'][0]?['_ts_securityincident_value@OData.Community.Display.V1.FormattedValue'],'-', string(variables('PaddedCountAdditionalDetails')))"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Set_variable_2": {
+              "runAfter": {
+                "Set_variable_3": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c4563254-c3e3-4c0f-9d95-10b90132eb11"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "SecurityIncidentName",
+                "value": "@body('List_rows')"
+              }
+            },
+            "Set_variable_3": {
+              "runAfter": {
+                "Set_variable": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "38f2a7f9-5dc3-46c1-a171-2998d5dae7c3"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "PaddedCountAdditionalDetails",
+                "value": "@if(less(int(variables('CountAdditionalDetails')), 10), concat('0', string(variables('CountAdditionalDetails'))), string(variables('CountAdditionalDetails')))"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_3": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@triggerOutputs()?['body/_ts_securityincident_value']",
+                ""
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "59013342-5599-4822-919e-e2dd2c473458"
+          },
+          "type": "If"
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "47de73d4-4a03-4b14-921b-86cc8bf010f6"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "CountAdditionalDetails",
+                "type": "integer"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_2": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "83caa6fb-1b2b-4873-817e-b5237ce0f67c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SecurityIncidentName",
+                "type": "object"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_3": {
+          "runAfter": {
+            "Initialize_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b70466b1-65cb-48ab-8412-de05029e0e5c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "PaddedCountAdditionalDetails",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

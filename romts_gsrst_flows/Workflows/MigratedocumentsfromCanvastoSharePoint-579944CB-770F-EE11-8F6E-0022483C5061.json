@@ -1,0 +1,391 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_1a8ca"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedsharepointonline_2906c"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "c06c21fa-d3c9-4ac6-932f-5983017594cf"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "ace570a8-8c01-4410-97d5-0cbf689a76bc"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_files",
+              "$top": 5
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows')?['body/value']",
+          "actions": {
+            "Download_a_file_or_an_image": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "0e90f719-1b90-42fd-b4a1-eabf4cf598c4"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetEntityFileImageFieldContent",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_files",
+                  "recordId": "@items('Apply_to_each')?['ts_fileid']",
+                  "fileImageFieldName": "ts_attachment"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Create_file_in_SharePoint": {
+              "runAfter": {
+                "Condition_3": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ac6b3db0-2b46-476b-bb35-42bde434c069"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "CreateFile",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://034gc.sharepoint.com/sites/Dynamics365Development",
+                  "folderPath": "/Test Document Library",
+                  "name": "@variables('FileName')",
+                  "body": "@body('Download_a_file_or_an_image')"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              },
+              "runtimeConfiguration": {
+                "contentTransfer": {
+                  "transferMode": "Chunked"
+                }
+              }
+            },
+            "Update_file_properties": {
+              "runAfter": {
+                "Create_file_in_SharePoint": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "eb345586-2a27-4369-b08d-5697c96182e7"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "PatchFileItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://034gc.sharepoint.com/sites/Dynamics365Development",
+                  "table": "04a32f00-a0b7-42b2-8a0d-269b7160bfef",
+                  "id": "@outputs('Create_file_in_SharePoint')?['body/ItemId']",
+                  "item/Multi_x002d_lineTag": "@variables('Reord Tag')",
+                  "item/Category/Id": "@variables('Category')"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Condition": {
+              "actions": {
+                "Append_to_string_variable": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "2928ff4c-e25c-4c2a-be6e-e62e6b096ac8"
+                  },
+                  "type": "AppendToStringVariable",
+                  "inputs": {
+                    "name": "Reord Tag",
+                    "value": "@items('Apply_to_each')?['_ts_msdyn_workorder_value@OData.Community.Display.V1.FormattedValue']"
+                  }
+                }
+              },
+              "runAfter": {
+                "Set_variable_2": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "not": {
+                  "equals": [
+                    "@items('Apply_to_each')?['_ts_msdyn_workorder_value']",
+                    "@null"
+                  ]
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "c40c95ce-7e21-472c-bb13-28f4b6eab650"
+              },
+              "type": "If"
+            },
+            "Condition_2": {
+              "actions": {
+                "Append_to_string_variable_2": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "edfc72e1-2f76-40c3-ad84-b451abb4207f"
+                  },
+                  "type": "AppendToStringVariable",
+                  "inputs": {
+                    "name": "Reord Tag",
+                    "value": "@items('Apply_to_each')?['_ts_incident_value@OData.Community.Display.V1.FormattedValue']"
+                  }
+                }
+              },
+              "runAfter": {
+                "Condition": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "not": {
+                  "equals": [
+                    "@items('Apply_to_each')?['_ts_incident_value@Microsoft.Dynamics.CRM.lookuplogicalname']",
+                    "@null"
+                  ]
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "af07aea7-d448-4ce5-b9ae-be00dedfabc2"
+              },
+              "type": "If"
+            },
+            "Set_variable": {
+              "runAfter": {
+                "Download_a_file_or_an_image": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5c719306-05b5-4e4a-a258-bb4ae8a7edec"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Reord Tag",
+                "value": " "
+              }
+            },
+            "Get_files_(properties_only)": {
+              "runAfter": {
+                "Condition_2": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e666037a-7446-4879-8f58-54250893abf5"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "GetFileItems",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://034gc.sharepoint.com/sites/Dynamics365Development",
+                  "table": "04a32f00-a0b7-42b2-8a0d-269b7160bfef",
+                  "$filter": "FileLeafRef eq '@{variables('FileName')}' "
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Set_variable_2": {
+              "runAfter": {
+                "Set_variable": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "b30edd53-c0cd-46ff-8b97-51576504d13d"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "FileName",
+                "value": "@items('Apply_to_each')?['ts_file']"
+              }
+            },
+            "Condition_3": {
+              "actions": {},
+              "runAfter": {
+                "Get_files_(properties_only)": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Set_variable_FileName": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "5c4d437d-150c-47cf-a103-dec61f064ef9"
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "FileName",
+                      "value": "@{concat(first(split(items('Apply_to_each')?['ts_file'],'.')),'_',formatDateTime(items('Apply_to_each')?['createdon'], 'yyyy-MM-dd_hhmmtt'),'.', last(split(items('Apply_to_each')?['ts_file'],'.')))}"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@length(outputs('Get_files_(properties_only)')?['body/value'])",
+                  0
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "0f83729f-2e39-4241-bf3a-22c4b93a7c91"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_3": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "64b35e76-253a-449c-9afe-a0ad6fe4da95"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6e165980-349d-4245-96f7-a6d724a8db2a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Reord Tag",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_2": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "af849ec2-30ad-405d-a6fb-22b0e9e426c3"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Category",
+                "type": "integer",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "Initialize_variable_3": {
+          "runAfter": {
+            "Initialize_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "622afbb3-6554-4a8a-a853-4075284de77c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "FileName",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

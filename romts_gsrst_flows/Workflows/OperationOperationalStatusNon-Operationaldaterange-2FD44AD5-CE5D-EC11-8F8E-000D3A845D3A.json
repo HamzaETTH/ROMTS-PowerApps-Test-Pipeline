@@ -1,0 +1,151 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "87ae4727-c3b3-463f-8708-bf10cae3261b"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ovs_operation",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_statusstartdate,ts_statusenddate"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "if_Start_Date_is_not_null": {
+          "actions": {
+            "Is_End_Date_is_null": {
+              "actions": {
+                "Add_a_new_row_2": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "64561a97-bfb1-47b5-9d20-7a0e0fb17042"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "CreateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "posts",
+                      "item/source": 1,
+                      "item/largetext": "Status effective date range set for Non-Operational on @{triggerOutputs()?['body/ts_statusstartdate']} with no end date with a description of \"@{triggerOutputs()?['body/ts_description']}\"",
+                      "item/text": " ",
+                      "item/type": 3,
+                      "item/regardingobjectid_ovs_operation@odata.bind": "/ovs_operations/@{triggerOutputs()?['body/ovs_operationid']}"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Add_a_new_row_4": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "2f9c7b3e-da25-4996-a7e0-d334a0211f9b"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "CreateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "posts",
+                        "item/source": 1,
+                        "item/largetext": "Status effective date range set for Non-Operational on @{triggerOutputs()?['body/ts_statusstartdate']} to @{triggerOutputs()?['body/ts_statusenddate']} with a description of \"@{triggerOutputs()?['body/ts_description']}\"",
+                        "item/text": " ",
+                        "item/type": 3,
+                        "item/regardingobjectid_ovs_operation@odata.bind": "/ovs_operations/@{triggerOutputs()?['body/ovs_operationid']}"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@triggerOutputs()?['body/ts_statusenddate']",
+                  "@null"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "407c6a14-8b1c-4daa-be04-2155f7c5a2ce"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {},
+          "else": {
+            "actions": {
+              "Terminate": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "e78eab12-feb8-4011-ab5c-8c61e77de8cf"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Cancelled"
+                }
+              }
+            }
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@triggerOutputs()?['body/ts_statusstartdate']",
+                "@null"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "c07e1299-cfab-44bc-87a1-75cf7b652095"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

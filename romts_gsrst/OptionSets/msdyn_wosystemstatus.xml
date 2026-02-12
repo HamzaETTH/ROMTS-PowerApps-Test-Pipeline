@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="msdyn_wosystemstatus" localizedName="WO System Status" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>3.1.0.3</IntroducedVersion>
+  <ExternalTypeName></ExternalTypeName>
+  <displaynames>
+    <displayname description="WO System Status" languagecode="1033" />
+    <displayname description="Statut du système de l'ordre de travail" languagecode="1036" />
+  </displaynames>
+  <Descriptions>
+    <Description description="" languagecode="1033" />
+    <Description description="" languagecode="1036" />
+  </Descriptions>
+  <options>
+    <option value="690970000" ExternalValue="" Color="" IsHidden="0">
+      <labels>
+        <label description="New" languagecode="1033" />
+        <label description="Nouveau" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="690970001" ExternalValue="" Color="" IsHidden="0">
+      <labels>
+        <label description="Scheduled" languagecode="1033" />
+        <label description="Planifié" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="690970002" ExternalValue="" Color="" IsHidden="0">
+      <labels>
+        <label description="In Progress - Do Not Use This" languagecode="1033" />
+        <label description="En cours" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="741130001" ExternalValue="" Color="" IsHidden="0">
+      <labels>
+        <label description="In Progress" languagecode="1033" />
+        <label description="En cours" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="690970003" ExternalValue="" Color="" IsHidden="0">
+      <labels>
+        <label description="Completed" languagecode="1033" />
+        <label description="Terminé" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="741130000" ExternalValue="" Color="#0000ff" IsHidden="0">
+      <labels>
+        <label description="Closed" languagecode="1033" />
+        <label description="Complété" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="690970004" ExternalValue="" Color="" IsHidden="0">
+      <labels>
+        <label description="Closed &amp; Inactive" languagecode="1033" />
+        <label description="Complété &amp; Inactive" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="690970005" ExternalValue="" Color="" IsHidden="0">
+      <labels>
+        <label description="Cancelled" languagecode="1033" />
+        <label description="Annulé" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+  </options>
+</optionset>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{27a14e4b-dde9-4ed0-908a-d6ee4c01e68b}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_incompleteworkorderreasonid">
+          <cell name="ts_name" width="300" />
+          <cell name="ts_reasonenglish" width="100" />
+          <cell name="ts_reasonfrench" width="100" />
+          <cell name="ownerid" width="100" />
+          <cell name="statecode" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_incompleteworkorderreason">
+          <attribute name="ts_incompleteworkorderreasonid" />
+          <attribute name="ts_name" />
+          <order attribute="ts_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+          <attribute name="ts_reasonenglish" />
+          <attribute name="ts_reasonfrench" />
+          <attribute name="ownerid" />
+          <attribute name="statecode" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Inactive Incomplete Inspection Justification" languagecode="1033" />
+      <LocalizedName description="Justification Inactive de l'Inspection Incomplète" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

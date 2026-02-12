@@ -1,0 +1,466 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsOutlook"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Recurrence": {
+          "recurrence": {
+            "frequency": "Month",
+            "interval": 3,
+            "timeZone": "Eastern Standard Time",
+            "startTime": "2022-10-01T04:15:00Z"
+          },
+          "metadata": {
+            "operationMetadataId": "f5e1a9f6-0bbc-4462-af29-a3c7093db10c"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "List_of_owners": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "5e1d58cc-b3b7-4bce-96ec-3bdbfbffc8d8"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "$select": "internalemailaddress",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">\n  <entity name=\"systemuser\">\n    <attribute name=\"fullname\" />\n    <attribute name=\"systemuserid\" />\n    <attribute name=\"internalemailaddress\" />\n    <order attribute=\"fullname\" descending=\"false\" />\n    <link-entity name=\"msdyn_workorder\" from=\"owninguser\" to=\"systemuserid\" link-type=\"inner\" alias=\"af\">\n      <filter type=\"and\">\n        <filter type=\"and\">\n          <condition attribute=\"msdyn_systemstatus\" operator=\"ne\" value=\"690970003\" />\n          <condition attribute=\"msdyn_systemstatus\" operator=\"ne\" value=\"690970004\" />\n<condition attribute=\"msdyn_systemstatus\" operator=\"ne\" value=\"690970005\" />\n        </filter>\n      </filter>\n      <link-entity name=\"tc_tcfiscalquarter\" from=\"tc_tcfiscalquarterid\" to=\"ovs_fiscalquarter\" link-type=\"inner\" alias=\"ag\">\n        <filter type=\"and\">\n        <condition attribute=\"tc_quarterend\" operator=\"yesterday\" />\n        </filter>\n      </link-entity>\n    </link-entity>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_of_WOs_": {
+          "runAfter": {
+            "Initialize_variable_3": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "234a22e5-e286-467d-9e49-92ebfde53925"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "msdyn_workorders",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"msdyn_workorder\">\n    <attribute name=\"msdyn_name\" />\n    <attribute name=\"msdyn_workorderid\" />\n    <attribute name=\"ownerid\" />\n    <attribute name=\"ovs_fiscalquarter\" />\n    <order attribute=\"msdyn_name\" descending=\"false\" />\n    <filter type=\"and\">\n      <filter type=\"and\">\n        <condition attribute=\"msdyn_systemstatus\" operator=\"ne\" value=\"690970004\" />\n        <condition attribute=\"msdyn_systemstatus\" operator=\"ne\" value=\"690970003\" />\n<condition attribute=\"msdyn_systemstatus\" operator=\"ne\" value=\"690970005\" />\n      </filter>\n    </filter>\n    <link-entity name=\"tc_tcfiscalquarter\" from=\"tc_tcfiscalquarterid\" to=\"ovs_fiscalquarter\" link-type=\"inner\" alias=\"af\">\n      <attribute name=\"tc_quarterend\" />\n      <filter type=\"and\">\n       <condition attribute=\"tc_quarterend\" operator=\"yesterday\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Apply_to_each_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "347b5469-3e14-4dd1-ac47-7287abedc66f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "romAppId",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Get_Rom_app_ID": {
+          "runAfter": {
+            "Initialize_appmoduleid_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "250228cf-b838-44df-8b7b-189317b3ef5d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "appmodules",
+              "$select": "uniquename, appmoduleid",
+              "$filter": "uniquename eq 'ovs_ROM'",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('Get_Rom_app_ID')?['body/value']",
+          "actions": {
+            "Set_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "41dcff4f-daa1-4a20-84a9-23681d6b6ffc"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "romAppId",
+                "value": "@items('Apply_to_each')?['appmoduleid']"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_a_row_by_ID_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1e77c9e0-b74a-4ac3-992b-883acbcd4718"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_and_set_view_link_(EN)": {
+          "runAfter": {
+            "URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "faefed7a-6172-458d-8d6d-7504adcfcbe5"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "viewLinkEN",
+                "type": "string",
+                "value": "<a href=\"https://@{uriHost(outputs('URL'))}/main.aspx?appid=@{variables('romAppId')}&pagetype=entitylist&etn=msdyn_workorder&viewid=f92642ec-7519-ed11-b83f-002248ae441f&viewType=1039\">Click here to view the list</a>"
+              }
+            ]
+          }
+        },
+        "URL": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "93ceb643-6d07-47c7-8f78-9817051689ac"
+          },
+          "type": "Compose",
+          "inputs": "@outputs('Get_a_row_by_ID_2')?['body/@odata.id']"
+        },
+        "Apply_to_each_3": {
+          "foreach": "@outputs('Get_Rom_app_ID')?['body/value']",
+          "actions": {
+            "Set_variable_2": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "051f4b87-c1f9-4fcf-8636-f4f13f7dfc9d"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "appmoduleid",
+                "value": "@items('Apply_to_each_3')?['appmoduleid']"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_Rom_app_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d30c09d6-e6c8-42e0-bcba-03192c963fda"
+          },
+          "type": "Foreach"
+        },
+        "Get_a_row_by_ID_2": {
+          "runAfter": {
+            "Apply_to_each_3": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9eec9cb8-ca68-4a49-acde-2c9bb5513e22"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "appmodules",
+              "recordId": "@variables('appmoduleid')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_appmoduleid_variable": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0efb0017-13b6-4ca4-85b1-0025cc6b90f5"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "appmoduleid",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Apply_to_each_4": {
+          "foreach": "@outputs('List_of_WOs_')?['body/value']",
+          "actions": {
+            "Get_a_row_by_ID_3": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "3a2379d6-9e0b-4837-a6e5-a3d911b4bf4d"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "tc_tcfiscalquarters",
+                  "recordId": "@items('Apply_to_each_4')?['_ovs_fiscalquarter_value']",
+                  "$select": "tc_fiscalquarternum"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Set_variable_3": {
+              "runAfter": {
+                "Get_a_row_by_ID_3": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "b4739368-352d-4829-8af5-845cf79a5d56"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "quarter",
+                "value": "@{outputs('Get_a_row_by_ID_3')?['body/tc_fiscalquarternum']}\n"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9ee03065-699c-4bb0-9112-a084596969b6"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable_2": {
+          "runAfter": {
+            "Initialize_and_set_view_link_(FR)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "24951baf-68ca-43c5-99ae-b9948e715ad3"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "quarter",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_3": {
+          "runAfter": {
+            "List_of_owners": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4e486355-982b-42a1-b52e-0b45109c0c32"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "workorderID",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Apply_to_each_2": {
+          "foreach": "@outputs('List_of_WOs_')?['body/value']",
+          "actions": {
+            "Set_variable_4": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "0f84d00f-7777-4c16-9bca-ee2b4f61771e"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "workorderID",
+                "value": "@items('Apply_to_each_2')?['msdyn_name']"
+              }
+            }
+          },
+          "runAfter": {
+            "List_of_WOs_": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "80b4900e-c095-4413-99f0-8507dc3ad9fd"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_and_set_view_link_(FR)": {
+          "runAfter": {
+            "Initialize_and_set_view_link_(EN)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "faefed7a-6172-458d-8d6d-7504adcfcbe5"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "viewLinkFR",
+                "type": "string",
+                "value": "<a href=\"https://@{uriHost(outputs('URL'))}/main.aspx?appid=@{variables('romAppId')}&pagetype=entitylist&etn=msdyn_workorder&viewid=f92642ec-7519-ed11-b83f-002248ae441f&viewType=1039\">Cliquer ici pour évaluer la liste</a>"
+              }
+            ]
+          }
+        },
+        "Condition": {
+          "actions": {
+            "Send_to_each_owner": {
+              "foreach": "@outputs('List_of_owners')?['body/value']",
+              "actions": {
+                "Send_an_email_(V2)_2": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "35171094-358f-4921-89f4-582450d0eb89"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365_1",
+                      "operationId": "SendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage/To": "@items('Send_to_each_owner')?['internalemailaddress']",
+                      "emailMessage/Subject": "The list of incomplete Q@{variables('quarter')} inspections is ready to review / La liste des inspections du T@{variables('quarter')} incomplètes est prête à être révisée.",
+                      "emailMessage/Body": "<p>The list of Q@{variables('quarter')}inspections that are still in progress as of the end of the quarter.<br>\n@{variables('viewLinkEN')}<br>\n<br>\n<br>\nLa liste des inspections du T@{variables('quarter')} qui sont toujours en cours à la fin du trimestre a été produite et doit être passée en revue et justifiée.<br>\n@{variables('viewLinkFR')}<br>\n</p>",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "3274ebad-4baf-40b8-8089-27bddb8c9d5f"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Apply_to_each_4": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Terminate": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "08eb8abe-0fdf-46db-a88d-c101f43aeafc"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Failed"
+                }
+              }
+            }
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@empty(body('List_of_owners')?['value'])",
+                "@true"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "9021921c-007a-4dca-b12b-3031a19c4a8f"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="ts_planningstate" localizedName="Planning State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>1.0.20220825.2</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <ExternalTypeName></ExternalTypeName>
+  <displaynames>
+    <displayname description="Planning State" languagecode="1033" />
+    <displayname description="État" languagecode="1036" />
+  </displaynames>
+  <Descriptions>
+    <Description description="" languagecode="1033" />
+  </Descriptions>
+  <options>
+    <option value="717750000" ExternalValue="" Color="#0000ff" IsHidden="0">
+      <labels>
+        <label description="Draft" languagecode="1033" />
+        <label description="Ébauche" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750001" ExternalValue="" Color="#0000ff" IsHidden="0">
+      <labels>
+        <label description="Committed" languagecode="1033" />
+        <label description="Engagé" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+  </options>
+</optionset>

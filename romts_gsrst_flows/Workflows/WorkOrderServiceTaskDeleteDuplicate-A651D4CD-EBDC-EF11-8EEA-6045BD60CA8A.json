@@ -1,0 +1,332 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted_-_Work_Order_Service_Task": {
+          "metadata": {
+            "operationMetadataId": "06fec9a7-6efd-4636-8734-49584da4da00"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "msdyn_workorderservicetask",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "List_rows_-_Work_Order": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "5141933b-853b-42f2-81fb-e511280c236a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "msdyn_workorders",
+              "$filter": "msdyn_workorderid eq @{triggerOutputs()?['body/_msdyn_workorder_value']}"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_variable_-_Work_Order_Region": {
+          "runAfter": {
+            "Initialize_variable_-_Work_Order_Service_Task_Name": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bcbbea78-d057-4fa4-a42d-7450def86655"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Work Order Region",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Apply_to_each_-_Set_Region": {
+          "foreach": "@outputs('List_rows_-_Work_Order')?['body/value']",
+          "actions": {
+            "Set_variable_-_Region": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "9178681f-31e1-4222-8cfd-64801d48f227"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Work Order Region",
+                "value": "@items('Apply_to_each_-_Set_Region')?['_ts_region_value']"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_Work_Order_Service_Task_Count": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "62521722-a333-4783-8710-4df2be63e0cb"
+          },
+          "type": "Foreach"
+        },
+        "Condition_-_Work_Order_Region_is_International": {
+          "actions": {
+            "Condition_-_Does_the_Work_Order_Service_Task_not_have_-1_at_the_end": {
+              "actions": {
+                "Delete_a_row_-_Work_Order_Service_Task": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "47020dbd-07e7-4112-88dd-141479730e74"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "DeleteRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorderservicetasks",
+                      "recordId": "@variables('Work Order Service Task ID')"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "and": [
+                  {
+                    "not": {
+                      "equals": [
+                        "@variables('Work Order Service Task Name')",
+                        "@'1'"
+                      ]
+                    }
+                  },
+                  {
+                    "or": [
+                      {
+                        "not": {
+                          "equals": [
+                            "@variables('Task Type')",
+                            "931b334c-c55b-ee11-8df0-000d3af4f52a"
+                          ]
+                        }
+                      },
+                      {
+                        "equals": [
+                          "@variables('Task Type')",
+                          "765fcc32-7339-ef11-a316-6045bd5f6387"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "fa4bf5b0-4cac-4206-ba28-0a6058bbf740"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_Task_Type": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Terminate_-_Not_an_International_Work_Order": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "3a2f0886-6e4b-4745-910d-bc76b43abbf9"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Succeeded"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@variables('Work Order Region')",
+              "@'3bf0fa88-150f-eb11-a813-000d3af3a7a7'"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "801bdf96-7f23-4981-864c-7710859d821e"
+          },
+          "type": "If"
+        },
+        "Initialize_variable_-_Work_Order_Service_Task_Count": {
+          "runAfter": {
+            "Apply_to_each_-_Set_Work_Order_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d3fd9668-7e2e-463c-9618-8edf34ef687b"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Work Order Service Task Count",
+                "type": "integer",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "Initialize_variable__-_Work_Order_ID": {
+          "runAfter": {
+            "Initialize_variable_-_Work_Order_Region": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c48a8eab-be98-4b0d-813e-762e7761723b"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Work Order ID",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Apply_to_each_-_Set_Work_Order_ID": {
+          "foreach": "@outputs('List_rows_-_Work_Order')?['body/value']",
+          "actions": {
+            "Set_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "eace0faa-dcde-4003-99fa-a8591d5f577d"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Work Order ID",
+                "value": "@{items('Apply_to_each_-_Set_Work_Order_ID')?['msdyn_workorderid']}"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable__-_Work_Order_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "aeff198d-fd09-4f69-9b3e-9f9a35cb35ef"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable_-_Work_Order_Service_Task_ID": {
+          "runAfter": {
+            "List_rows_-_Work_Order": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3ab4865e-377d-471d-90c8-244c79d0db61"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Work Order Service Task ID",
+                "type": "string",
+                "value": "@{triggerBody()?['msdyn_workorderservicetaskid']}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Work_Order_Service_Task_Name": {
+          "runAfter": {
+            "Initialize_variable_-_Work_Order_Service_Task_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2015329d-6d53-4f6b-8720-436601b76a47"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Work Order Service Task Name",
+                "type": "string",
+                "value": "@{substring(triggerBody()?['msdyn_name'], add(length(triggerBody()?['msdyn_name']), -1), 1)}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Task_Type": {
+          "runAfter": {
+            "Apply_to_each_-_Set_Region": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d692a270-c275-4fe9-b879-5ef2c9e85e7e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Task Type",
+                "type": "string",
+                "value": "@triggerOutputs()?['body/_msdyn_tasktype_value']"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

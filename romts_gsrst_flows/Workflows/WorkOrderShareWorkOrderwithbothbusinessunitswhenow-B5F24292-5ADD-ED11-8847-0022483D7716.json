@@ -1,0 +1,325 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Aviation Security Directorate - Domestic Team GUID (ts_AviationSecurityDirectorateDomesticTeamGUID)": {
+          "defaultValue": "8544831b-bead-eb11-8236-000d3ae8b866",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ts_AviationSecurityDirectorateDomesticTeamGUID"
+          }
+        },
+        "Intermodal Surface Security Oversight (ISSO) Team GUID (ts_IntermodalSurfaceSecurityOversightISSOTeamGUID)": {
+          "defaultValue": "478513c3-b426-ec11-b6e6-000d3af4f86f",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ts_IntermodalSurfaceSecurityOversightISSOTeamGUID"
+          }
+        }
+      },
+      "triggers": {
+        "When_a_Work_Order_owned_by_a_Dual_Inspector_is_added,_modified": {
+          "metadata": {
+            "operationMetadataId": "11a6d929-6233-429b-970f-cffcc88e2519"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "msdyn_workorder",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ownerid"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "List_Owning_User": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "caa70d66-8b3f-499e-85af-f2d26167d18f"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "$select": "ts_dualinspector",
+              "$filter": "systemuserid eq @{triggerOutputs()?['body/_ownerid_value']}",
+              "$expand": "businessunitid($select=name)",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_Owning_User')?['body/value']",
+          "actions": {
+            "If_the_Owner_belongs_to_ISSO": {
+              "actions": {
+                "Set_TeamId_to_AvSec_Domestic's_Team_GUID": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "7c7eea16-91ca-4cbd-85a6-fa13c915e273"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "TeamId",
+                    "value": "@parameters('Aviation Security Directorate - Domestic Team GUID (ts_AviationSecurityDirectorateDomesticTeamGUID)')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Business_Unit_is_not_Transport": {
+                    "actions": {
+                      "Set_TeamId_to_ISSO's_Team_GUID": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "3852eda8-b156-4609-ba19-ed1f3ee72364"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "TeamId",
+                          "value": "@parameters('Intermodal Surface Security Oversight (ISSO) Team GUID (ts_IntermodalSurfaceSecurityOversightISSOTeamGUID)')"
+                        }
+                      }
+                    },
+                    "runAfter": {},
+                    "expression": {
+                      "not": {
+                        "startsWith": [
+                          "@items('Apply_to_each')?['businessunitid/name']",
+                          "Transport"
+                        ]
+                      }
+                    },
+                    "metadata": {
+                      "operationMetadataId": "36a9f5bb-6e5a-4556-a46e-de0de96bd444"
+                    },
+                    "type": "If"
+                  }
+                }
+              },
+              "expression": {
+                "startsWith": [
+                  "@items('Apply_to_each')?['businessunitid/name']",
+                  "Intermodal"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "7cbf3eed-c900-4897-be0e-9f00fb70bede"
+              },
+              "type": "If"
+            },
+            "If_User_is_Dual_Inspector_(Grant_or_Revoke_Access)": {
+              "actions": {
+                "If_TeamId_has_a_value": {
+                  "actions": {
+                    "Compose_PrincipalAccess": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "d49c4cd8-fbdd-4d34-8869-26e93713c4b1"
+                      },
+                      "type": "Compose",
+                      "inputs": {
+                        "Principal": {
+                          "teamid": "@{variables('TeamId')}",
+                          "@{variables('At')}odata.type": "Microsoft.Dynamics.CRM.team"
+                        },
+                        "AccessMask": "ReadAccess,WriteAccess"
+                      }
+                    },
+                    "Share_the_Work_Order_with_the_opposite_business_unit": {
+                      "runAfter": {
+                        "Compose_PrincipalAccess": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "dbc66d1b-e390-45d9-9f66-870ad0543d7a"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "PerformUnboundAction",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "actionName": "GrantAccess",
+                          "item/Target": "msdyn_workorders(@{triggerOutputs()?['body/msdyn_workorderid']})",
+                          "item/PrincipalAccess": "@outputs('Compose_PrincipalAccess')"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "expression": {
+                    "not": {
+                      "equals": [
+                        "@variables('TeamId')",
+                        "@null"
+                      ]
+                    }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "2444575b-131b-4da6-ad4c-1259a9fdfba7"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "If_the_Owner_belongs_to_ISSO": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Unshare_the_Work_Order_with_AvSec_Domestic": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "ce216610-4989-4794-9591-89682c48b99e"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps_1",
+                        "operationId": "PerformUnboundAction",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "actionName": "RevokeAccess",
+                        "item/Target": "msdyn_workorders(@{triggerOutputs()?['body/msdyn_workorderid']})",
+                        "item/Revokee": "teams(@{parameters('Aviation Security Directorate - Domestic Team GUID (ts_AviationSecurityDirectorateDomesticTeamGUID)')})"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  },
+                  "Unshare_the_Work_Order_with_ISSO": {
+                    "runAfter": {
+                      "Unshare_the_Work_Order_with_AvSec_Domestic": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "f2e0034f-4301-480e-bef0-8ad458db4400"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps_1",
+                        "operationId": "PerformUnboundAction",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "actionName": "RevokeAccess",
+                        "item/Target": "msdyn_workorders(@{triggerOutputs()?['body/msdyn_workorderid']})",
+                        "item/Revokee": "teams(@{parameters('Intermodal Surface Security Oversight (ISSO) Team GUID (ts_IntermodalSurfaceSecurityOversightISSOTeamGUID)')})"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each')?['ts_dualinspector']",
+                  "@true"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "459fd22b-e87e-4c3a-a4cf-42f77662b639"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_At": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "654d3274-54aa-456c-8b68-5cbc67f93841"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_At": {
+          "runAfter": {
+            "Initialize_TeamId": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5f2f6078-4316-46ae-8a0c-a4defa08c177"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "At",
+                "type": "string",
+                "value": "@@"
+              }
+            ]
+          }
+        },
+        "Initialize_TeamId": {
+          "runAfter": {
+            "List_Owning_User": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "abe6c6dd-be95-454c-9321-62fd565b3be4"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "TeamId",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

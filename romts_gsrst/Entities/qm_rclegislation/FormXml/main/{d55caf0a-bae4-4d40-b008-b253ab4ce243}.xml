@@ -1,0 +1,1117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{d55caf0a-bae4-4d40-b008-b253ab4ce243}</formid>
+    <IntroducedVersion>1.0.0.6</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{6d31243c-4f4f-47f6-bc67-d6e87531eb7a}" IsUserDefined="1" name="tab_1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{e2fb0e3f-7448-4531-a803-767a37ce03b0}" name="{e2fb0e3f-7448-4531-a803-767a37ce03b0}" columns="111" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Top">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{8f2b80f8-6425-46b6-9aee-e8e19a76b985}" visible="false">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
+                        </labels>
+                        <control id="qm_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="qm_name" uniqueid="{b816d969-ba4b-5b72-5297-a7278ac972a0}" />
+                      </cell>
+                      <cell id="{a3eb26ce-9c8d-bc59-0481-2136606707e1}" showlabel="true" locklevel="0" rowspan="6">
+                        <labels>
+                          <label description="English Text" languagecode="1033" />
+                          <label description="Texte anglais" languagecode="1036" />
+                        </labels>
+                        <control id="qm_legislationetxt" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="qm_legislationetxt" disabled="false" uniqueid="{cbce957e-2a27-2436-42c5-97bc0aa172c3}" />
+                      </cell>
+                      <cell id="{cd06879f-48c3-452b-86a4-16ffd4d45d71}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Infraction Type" languagecode="1033" />
+                          <label description="Type d'infraction" languagecode="1036" />
+                        </labels>
+                        <control id="ts_infractiontype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_infractiontype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{553aab26-6e5d-48b4-9bdd-ac644c39a5e5}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell rowspan="19" id="{d6549154-4bc8-4e4d-b4d5-4bbfabb73715}" showlabel="true" colspan="1">
+                        <labels>
+                          <label description="Legislation" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_new_1" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/LegislationOnProvisions.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{ec76bbed-c59a-ef11-8a6a-002248afd5b2}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{0b78e40c-6f7e-4388-b2d8-4537208f0adc}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{4cc05125-43c1-4685-be4e-4f7f8094218a}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{bbe5f1de-6403-44de-83f6-f5f41778244b}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{d352519a-9480-4a04-ba04-f67f1793ed6e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{b92ec197-a2e1-4d85-b48e-e48cfa41788a}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{f366e5de-294c-4e80-a286-1b1fc49c6345}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{797bb874-9cc0-428c-a674-dd07f12f5aca}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{d3425183-ed43-4a1e-82e9-c57183f85c85}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{fe879b2e-28db-4136-bb62-043d983effd8}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{2bd190d3-1ae8-44ce-937a-183dc1472dc5}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{e9308a09-6b64-4ed7-a81f-0dcd592d0557}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{74100f06-693f-44a6-8334-538864b445d9}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{101edca9-d92f-4091-9517-b0306c40ba37}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{74444ce1-a24e-4556-bf9f-1e4863c3e60c}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{a5b35904-9357-41df-91ca-ceab4b82be2a}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{af3fa7f9-fb44-4b12-aa30-fdab406070ad}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{17589ea0-89e8-4747-b092-23164e7a1774}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{801ab782-42a4-4337-9823-c7f30d947a4e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{c49a2ff9-561c-4e6f-8e5a-58d87a7b8af2}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{7345c333-526a-4ad0-99e7-fc4209d2f4f3}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{557ef344-0f6a-46a5-bb0a-02fd8ecf7412}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{baedacd8-4f88-472a-a7dc-3e008d39a8c7}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{7041d9b7-b468-45ee-8310-2bbb39837ff3}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{d8ca0dfd-d5cc-4e0b-986c-b2bfcb7617b5}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{d7d1caa9-243d-43f9-a184-2d1ed5303723}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{b742482c-2e01-4480-ac29-27c563f4d27f}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{f4b4fd64-650d-4347-979b-8a82ee48d787}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{dd6e9264-6c5c-4c1b-896a-85e170ca9d78}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{5d033a35-1b6c-4d21-8dda-97fc766e3d7d}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{652f3e5e-3be4-4d01-aa8c-97d11b751067}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{24a35226-632a-4197-901a-f6439205dd0b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Name (English)" languagecode="1033" />
+                          <label description="Nom (Anglais)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_nameenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_nameenglish" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{e930a2aa-43c6-400f-9d85-3e3d7a6cfee2}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a008cb0c-115b-47c1-9a15-dbe6b6974d06}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Name (French)" languagecode="1033" />
+                          <label description="Nom (Français)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_namefrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_namefrench" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{64768b58-8288-49cd-813f-26d1d70a23da}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{be618aea-fceb-4b46-81e3-5be3a5309ee9}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{692772a1-0c75-bc77-67c5-d21ae0286cd7}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Legislation Source" languagecode="1033" />
+                          <label description="Émmeteur du règlement" languagecode="1036" />
+                        </labels>
+                        <control id="qm_tylegislationsourceid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="qm_tylegislationsourceid" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{c527c8d8-d969-4f4e-83a7-c5393bc378c3}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{c3aad518-b329-4dca-8caf-0a2f5c868574}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{acaca201-d831-96b8-435e-b05d1206d78a}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Legislation Type" languagecode="1033" />
+                          <label description="Type de règlement" languagecode="1036" />
+                        </labels>
+                        <control id="qm_tylegislationtypeid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="qm_tylegislationtypeid" disabled="false" uniqueid="{bedcc336-744e-a772-6b9b-cb8c9c99804c}" />
+                      </cell>
+                      <cell locklevel="0" id="{73d9a2e3-e6de-4fd1-9fb6-fbf6bee42e49}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{89d2f717-a545-4f85-9685-f0a1d7e3857b}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4e783866-ed42-b0c3-b902-cc03b462c5c6}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Provision Category" languagecode="1033" />
+                          <label description="Catégorie de disposition" languagecode="1036" />
+                        </labels>
+                        <control id="ts_provisioncategory" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_provisioncategory" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{9590b403-c51e-4e2a-9868-2108530d3d4f}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{4a3fc957-97f4-4af8-a18a-189dc85f190e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{22c18e40-fb4b-40fa-a33a-6574798153e1}" locklevel="0">
+                        <labels>
+                          <label description="Label" languagecode="1033" />
+                          <label description="Marque" languagecode="1036" />
+                        </labels>
+                        <control id="qm_legislationlbl" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="qm_legislationlbl" disabled="false" />
+                      </cell>
+                      <cell id="{28212d1d-5023-3140-d60e-9ae97499c8c7}" showlabel="true" locklevel="0" rowspan="6">
+                        <labels>
+                          <label description="French Text" languagecode="1033" />
+                          <label description="Texte français" languagecode="1036" />
+                        </labels>
+                        <control id="qm_legislationftxt" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="qm_legislationftxt" disabled="false" uniqueid="{233da23e-6aae-9ae2-a93a-c925adda6167}" />
+                      </cell>
+                      <cell locklevel="0" id="{75a7401f-ab5f-44f7-a8ef-b665d9a710b3}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a68e0cd8-b59c-46fd-9426-c9c0e223cda1}" locklevel="0">
+                        <labels>
+                          <label description="Last Amended Dte" languagecode="1033" />
+                          <label description="Date de dernière mise à jour" languagecode="1036" />
+                        </labels>
+                        <control id="qm_lastamendeddte" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="qm_lastamendeddte" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{62dc9463-d000-438f-a56d-2a4fbb806bd2}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d4bd46b5-2449-4adc-bdda-bbb6d7887674}" locklevel="0">
+                        <labels>
+                          <label description="Inforce Date" languagecode="1033" />
+                          <label description="Date d'entrée en vigueur" languagecode="1036" />
+                        </labels>
+                        <control id="qm_inforcedte" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="qm_inforcedte" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{1d49cc71-ced8-45c1-83d6-defa00593ad6}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ddb11261-3535-42c2-846a-0fb4cf7aabfc}" locklevel="0">
+                        <labels>
+                          <label description="Parent Provision" languagecode="1033" />
+                          <label description="Législation parentale" languagecode="1036" />
+                        </labels>
+                        <control id="qm_rcparentlegislationid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="qm_rcparentlegislationid" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{050423d2-7f6a-46ab-8f14-dc293e98a2f3}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a362d2d6-99f4-4723-9efc-55d55f851390}" locklevel="0">
+                        <labels>
+                          <label description="Enabling Provision" languagecode="1033" />
+                          <label description=" Disposition habilitante" languagecode="1036" />
+                        </labels>
+                        <control id="qm_enablingprovision" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="qm_enablingprovision" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{33eeb27b-5aa9-46f7-89c0-72d6c3cf8680}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{0611abea-d1df-4443-a336-2bba213be077}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{114bbd50-1ad0-452f-9334-97f6cf3d1f18}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7ffd5db5-403c-4c63-b17b-550111b68d56}" locklevel="0" colspan="1" rowspan="1" visible="true">
+                        <labels>
+                          <label description="Order" languagecode="1033" />
+                        </labels>
+                        <control id="ts_ordernbr" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_ordernbr" disabled="false" />
+                      </cell>
+                      <cell id="{9ea7e274-bb69-5782-3686-cb9db5169d4d}" showlabel="true" locklevel="0" rowspan="6">
+                        <labels>
+                          <label description="Violation Display Text EN" languagecode="1033" />
+                          <label description="Affichage des violations en anglais" languagecode="1036" />
+                        </labels>
+                        <control id="qm_violationdisplaytexten" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="qm_violationdisplaytexten" disabled="false" uniqueid="{cb19d2e3-5299-3500-4b0c-b87a24279b98}" />
+                      </cell>
+                      <cell locklevel="0" id="{b6f9c402-2e80-40fd-8c37-67eafa3d595d}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{327b7686-ddea-20e6-b7b6-c215ec0930e1}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                          <label description="Statut" languagecode="1036" />
+                        </labels>
+                        <control id="statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{602d86ae-9b98-41d6-8ccf-7d89a36bd21e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7b76da91-b757-9604-95cb-87e537b71cb8}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Status Reason" languagecode="1033" />
+                          <label description="Raison du statut" languagecode="1036" />
+                        </labels>
+                        <control id="statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{34ea9763-601e-4ab2-96af-0e435396f3f6}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{986b2a6c-c3dd-426a-4582-6134ad50a714}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{2c988e20-a1d2-41ce-b83e-c25dd2087d9e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{bd52991c-992c-13dd-1912-73c823d77e83}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{4e61f15d-64f8-4865-b515-d52a5867cf59}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8c7d457e-d5c9-6054-e29b-2450515cd882}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{c289308c-61d9-4085-a600-1491d6bb692b}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6b6d20c6-804a-878e-d37b-d5ab874bc649}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{7995a975-c533-a772-934a-5c9ebecb0ba8}" showlabel="true" locklevel="0" rowspan="6">
+                        <labels>
+                          <label description="Violation Display Text FR" languagecode="1033" />
+                          <label description="Affichage des violations en français" languagecode="1036" />
+                        </labels>
+                        <control id="qm_violationdisplaytextfr" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="qm_violationdisplaytextfr" disabled="false" uniqueid="{db7e76ec-a2d5-6d48-5c39-2d75e654ad40}" />
+                      </cell>
+                      <cell locklevel="0" id="{55124f9e-f518-4bba-b42d-647f082f76c9}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5b3257a5-396d-899c-0b30-20a1bc6a2aba}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{f55e3dd7-9bc0-445a-9956-aaa05f8375cd}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ebc1965e-73dc-7697-16bd-4328e49e145d}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{249b9f5e-60ad-4ce0-aaa8-190e036ff90f}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{571ff670-a002-4440-a878-cb57111dfdbf}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{6a3ccaac-21ec-4f84-ab76-33f5199a6c12}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{3d18810b-1fa9-4fea-b0d0-4154e8ddb13a}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{b3af90fc-0ca2-4f38-95f0-d59de67adfc0}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{7fce2ec3-7f41-42b6-aa61-fb47c546385d}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{4269f708-eddd-4358-bf7f-e3e73265a23a}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{3e577efa-29a2-40d5-b8d1-f74218ebe951}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{948c34a8-002b-4f99-8d22-114030ff0055}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Classification" languagecode="1033" />
+                          <label description="Classification" languagecode="1036" />
+                        </labels>
+                        <control id="ts_classification" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_classification" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{0757db52-2163-4948-be42-facd5738f607}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_1_section_4" id="a614aebe-0f0a-4a10-a80b-a9281ae4f82d" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Legislation Characteristics" languagecode="1033" />
+                    <label description="Caractéristiques législatives" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{af566f97-48e4-4c51-974c-1d2eef34145f}" rowspan="1" colspan="1" showlabel="false">
+                        <labels>
+                          <label description="Legislation Characteristics" languagecode="1033" />
+                          <label description="Caractéristiques législatives" languagecode="1036" />
+                        </labels>
+                        <control id="Subgrid_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>qm_tylegislationcharacteristic</TargetEntityType>
+                            <ViewId>{B1230891-1AA0-4D0C-9D11-B9C66319A0F5}</ViewId>
+                            <ViewIds>{B1230891-1AA0-4D0C-9D11-B9C66319A0F5}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>qm_rclegislation_tylegislationcharacteristic</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_4" id="ffff03c8-43bc-4818-a894-3969206c7d00" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Associated Provisions" languagecode="1033" />
+                    <label description="Dispositions associées" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{78512adb-3787-8d8d-7769-350b6aed5803}" showlabel="true" colspan="1" auto="false" rowspan="7">
+                        <labels>
+                          <label description="Causes" languagecode="1033" />
+                          <label description="Causes" languagecode="1036" />
+                        </labels>
+                        <control id="causes_sub_grid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{4797655A-2612-4C5D-81BE-A514900A38EA}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_related_causes</RelationshipName>
+                            <TargetEntityType>qm_rclegislation</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{4797655A-2612-4C5D-81BE-A514900A38EA}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{dd10906d-0c03-0032-a893-2b3845006640}" showlabel="true" colspan="1" auto="false" rowspan="7">
+                        <labels>
+                          <label description="References" languagecode="1033" />
+                          <label description="Références" languagecode="1036" />
+                        </labels>
+                        <control id="references_sub_grid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{4797655A-2612-4C5D-81BE-A514900A38EA}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_related_references</RelationshipName>
+                            <TargetEntityType>qm_rclegislation</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{4797655A-2612-4C5D-81BE-A514900A38EA}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{cc553070-bf14-4407-98c0-f21ea7790eb4}" rowspan="1" colspan="1" showlabel="true">
+                        <labels>
+                          <label description="Hierarchy" languagecode="1033" />
+                          <label description="Hiérarchie" languagecode="1036" />
+                        </labels>
+                        <control id="Subgrid_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>qm_rclegislation</TargetEntityType>
+                            <ViewId>{4797655A-2612-4C5D-81BE-A514900A38EA}</ViewId>
+                            <ViewIds>{4797655A-2612-4C5D-81BE-A514900A38EA}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>qm_qm_rclegislation_qm_rclegislation</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_3" id="c966d9cf-a65f-4f3a-ac69-9218d2366467" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false">
+          <labels>
+            <label description="Additional Properties" languagecode="1033" />
+            <label description="Propriétés supplémentaires" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_3_section_1" id="f186a642-2a3c-4588-8573-5c4f5c6f9ddb" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Additional Properties" languagecode="1033" />
+                    <label description="Propriétés supplémentaires" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{9451d867-1e1f-4875-b171-4bfa8e647743}" locklevel="0">
+                        <labels>
+                          <label description="Justice Id" languagecode="1033" />
+                          <label description="Identifiant de Justice" languagecode="1036" />
+                        </labels>
+                        <control id="qm_justiceid" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="qm_justiceid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f55abe49-0823-438d-8364-00b5c0f974d7}" locklevel="0">
+                        <labels>
+                          <label description="Justice Id French" languagecode="1033" />
+                          <label description="Identifiant de Justice Français" languagecode="1036" />
+                        </labels>
+                        <control id="qm_justicefid" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="qm_justicefid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c73d3a25-7b21-4d00-a2f1-1268438a3fed}" locklevel="0">
+                        <labels>
+                          <label description="Historical Note" languagecode="1033" />
+                          <label description="Note Historique" languagecode="1036" />
+                        </labels>
+                        <control id="qm_historicalnoteetxt" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="qm_historicalnoteetxt" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cda21dab-b403-488c-9ec8-f73c696da3f5}" locklevel="0">
+                        <labels>
+                          <label description="Historical Note French" languagecode="1033" />
+                          <label description="Note Historique Française" languagecode="1036" />
+                        </labels>
+                        <control id="qm_historicalnoteftxt" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="qm_historicalnoteftxt" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{69a30381-5576-4443-8764-90959f03b92c}" locklevel="0">
+                        <labels>
+                          <label description="Additional Metadata English" languagecode="1033" />
+                          <label description="Métadonnées Supplémentaires" languagecode="1036" />
+                        </labels>
+                        <control id="qm_additionalmetadataetxt" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="qm_additionalmetadataetxt" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f2a7a339-63f0-41b0-9b81-c911358f6d9f}" locklevel="0">
+                        <labels>
+                          <label description="Additional Metadata French" languagecode="1033" />
+                          <label description="Métadonnées Supplémentaires Françaises" languagecode="1036" />
+                        </labels>
+                        <control id="qm_additionalmetadataftxt" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="qm_additionalmetadataftxt" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="87934bf1-b3ee-4715-94bd-a4f5ba913081" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false">
+          <labels>
+            <label description="Record Log" languagecode="1033" />
+            <label description="Journal d'enregistrement" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" id="83d711fd-3bdc-4cb4-9329-dccbf9616c42" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1111" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                    <label description="Nouvelle section" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{d88cafa0-b750-45ab-b1e2-702378320494}" locklevel="0">
+                        <labels>
+                          <label description="Created By" languagecode="1033" />
+                          <label description="Créé par" languagecode="1036" />
+                        </labels>
+                        <control id="createdby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdby" disabled="false" />
+                      </cell>
+                      <cell id="{c30e8282-4212-425f-af45-a118a3c6d557}" locklevel="0">
+                        <labels>
+                          <label description="Modified By" languagecode="1033" />
+                          <label description="Modifié par" languagecode="1036" />
+                        </labels>
+                        <control id="modifiedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="modifiedby" disabled="false" />
+                      </cell>
+                      <cell showlabel="false" locklevel="0" id="{30cabf13-917e-4a1a-b691-986edd04d6a1}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell showlabel="false" locklevel="0" id="{5b199927-5660-45d2-a4ce-5306b307b24d}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c0f365db-610f-434b-a6aa-17ff552ce324}" locklevel="0">
+                        <labels>
+                          <label description="Created On" languagecode="1033" />
+                          <label description="Créé le" languagecode="1036" />
+                        </labels>
+                        <control id="createdon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="createdon" disabled="false" />
+                      </cell>
+                      <cell id="{e1fc3b32-3038-42a2-938f-aae9035bfa22}" locklevel="0">
+                        <labels>
+                          <label description="Modified On" languagecode="1033" />
+                          <label description="Modifié le" languagecode="1036" />
+                        </labels>
+                        <control id="modifiedon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="modifiedon" disabled="false" />
+                      </cell>
+                      <cell showlabel="false" locklevel="0" id="{e14b29ee-24ad-43d7-8f3d-eae7dc5988cb}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell showlabel="false" locklevel="0" id="{e6b8b435-efa7-4b37-8a22-e26f07f4f7b9}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_6" id="d6ad8f33-18d7-4082-88c1-b83378382c8b" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Related Findings" languagecode="1033" />
+            <label description="Constatations Connexes" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_6_section_1" id="4caad64a-52c0-4140-8344-d402a9006e1d" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{1e87cc24-7a3e-4608-bb65-a836c8fa4b27}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1676918712406" languagecode="1033" />
+                          <label description="Caractéristiques législatives" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_3" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ovs_finding</TargetEntityType>
+                            <ViewId>{1560F875-4FB1-ED11-83FE-0022483D7716}</ViewId>
+                            <ViewIds>{77179513-BCAE-EC11-983E-002248ADE910},{293497C0-BCAE-EC11-983E-002248ADE910},{1560F875-4FB1-ED11-83FE-0022483D7716}</ViewIds>
+                            <RelationshipName>ts_qm_rclegislation_qm_rclegislation_ovs_Fin</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_5" id="84747b94-c8ff-4954-8c7d-2b67fb0bd54b" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Operation Types" languagecode="1033" />
+            <label description="Types d'opération" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_5_section_1" id="29924073-f462-4f74-aa9e-830f77ae25e4" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{0ce4b4da-7e76-4779-a77e-fec69ad06401}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1714661608176" languagecode="1033" />
+                          <label description="Caractéristiques législatives" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_4" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ovs_operationtype</TargetEntityType>
+                            <ViewId>{197A1F2C-DE05-4771-A10E-12478A08C99E}</ViewId>
+                            <ViewIds>{197A1F2C-DE05-4771-A10E-12478A08C99E}</ViewIds>
+                            <RelationshipName>ts_ovs_operationtype_qm_rclegislation_qm_rcl</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_7" id="9838d2d3-d7c2-469f-92c0-3fdeb7c639f3" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Infractions" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_7_section_1" id="9f34ad61-1eb4-461e-92d3-d575bb65162b" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{6d39838d-e141-4182-9e69-f71bfe484b42}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1737729933036" languagecode="1033" />
+                          <label description="Caractéristiques législatives" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_5" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_infraction_legislation_qm_rclegislation</RelationshipName>
+                            <TargetEntityType>ts_infraction</TargetEntityType>
+                            <ViewId>{238CEC3A-3E60-4EE5-8094-335C33C62B4E}</ViewId>
+                            <ViewIds>{238CEC3A-3E60-4EE5-8094-335C33C62B4E}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar>
+          <NavBarByRelationshipItem Area="Info" Show="false" RelationshipName="ts_qm_rclegislation_qm_rclegislation_ovs_Fin" Id="nav_ts_qm_rclegislation_qm_rclegislation_ovs_Fin" Sequence="10000">
+            <Titles>
+              <Title Text="Findings" LCID="1033" />
+            </Titles>
+          </NavBarByRelationshipItem>
+        </NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+      <header id="{2fdbe8e6-a5e2-4e18-9cee-d278892d77c9}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{63aeaa7d-6786-4e8e-8039-f10cdbf51965}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{420ddada-5ee9-4328-b546-a09a95c92e8c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{0abec49e-fb9e-4d89-88d1-9b9e7e83b242}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{729f0e8d-22d3-41b6-b4bf-93ab2fb5b67f}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{8fb95215-2acf-4c7b-aa66-4f5fa5361f9e}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{87e5915f-2d94-4d63-8204-41fe80c798ae}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{034f839f-d624-491f-a795-161fb0a71464}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+      <LocalizedName description="Information" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+      <Description description="Formulaire pour cette entité." languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

@@ -1,0 +1,455 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted_-_Operation_Type": {
+          "metadata": {
+            "operationMetadataId": "4cf54692-2552-48e2-9e18-3c1b89078880"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ovs_operationtype",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_riskapplication"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "When an Operation Type is Created or Updated - Run this flow if ts_riskapplication is updated"
+        }
+      },
+      "actions": {
+        "List_rows_-_Entity_Risks": {
+          "runAfter": {
+            "Apply_to_each_-_Risk_Applications": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c2f61f1d-dc33-4e3c-ab3e-6a8d3ca3e576"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_entityrisks",
+              "$select": "ts_entityriskid",
+              "$filter": "ts_entityname eq 741130002 and ts_entityid eq '@{triggerBody()?['ovs_operationtypeid']}'"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Get the Entity Risk records that are related to the Operation Type"
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows_-_Entity_Risks')?['body/value']",
+          "actions": {
+            "Update_a_row": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d4c96a6e-8c16-4bc5-b550-1c01b5bea746"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_entityrisks",
+                  "recordId": "@items('Apply_to_each')?['ts_entityriskid']",
+                  "item/ts_RiskApplicationOperationType@odata.bind": "/ovs_operationtypes(@{triggerBody()?['ovs_operationtypeid']})",
+                  "item/ts_usesriskapplicationactivitytype": "@variables('Uses Risk Application Activity Type')",
+                  "item/ts_usesriskapplicationoperation": "@variables('Uses Risk Application Operation')",
+                  "item/ts_usesriskapplicationoperationtype": "@variables('Uses Risk Application Operation Type')",
+                  "item/ts_usesriskapplicationprogramarea": "@variables('Uses Risk Application Program Area')",
+                  "item/ts_usesriskapplicationsite": "@variables('Uses Risk Application Site')",
+                  "item/ts_usesriskapplicationstakeholder": "@variables('Uses Risk Application Stakeholder')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows_-_Entity_Risks": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8684d3b8-9f93-457a-9545-c121aa2df81a"
+          },
+          "type": "Foreach",
+          "description": "For each Entity Risk found, update the selected 'Uses Risk Application' columns"
+        },
+        "Initialize_variable_-_Risk_Applications": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "b35d6409-8b95-43e4-9bf1-fe56a5daad94"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Risk Applications",
+                "type": "array",
+                "value": "@split(coalesce(triggerBody()?['ts_riskapplication'], ''), ',')"
+              }
+            ]
+          },
+          "description": "Retrieve the Risk Applications that are set in the Operation Type record."
+        },
+        "Initialize_variable_-_Uses_Risk_Application_Activity_Type": {
+          "runAfter": {
+            "Initialize_variable_-_Risk_Applications": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "194ff131-b0f0-4c42-be1d-ad585054433f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Uses Risk Application Activity Type",
+                "type": "boolean",
+                "value": false
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Uses_Risk_Application_Operation": {
+          "runAfter": {
+            "Initialize_variable_-_Uses_Risk_Application_Activity_Type": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "61ffb885-5638-4b35-b514-4b04a4e4d5af"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Uses Risk Application Operation",
+                "type": "boolean",
+                "value": false
+              }
+            ]
+          },
+          "description": "This is used to set ts_UsesRiskApplicationOperation in ts_EntityRisk"
+        },
+        "Initialize_variable_-_Uses_Risk_Application_Operation_Type": {
+          "runAfter": {
+            "Initialize_variable_-_Uses_Risk_Application_Operation": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4235926b-a86c-4776-97e5-20d397e55065"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Uses Risk Application Operation Type",
+                "type": "boolean",
+                "value": false
+              }
+            ]
+          },
+          "description": "This is used to set ts_UsesRiskApplicationOperationType in ts_EntityRisk"
+        },
+        "Initialize_variable_-_Uses_Risk_Application_Program_Area": {
+          "runAfter": {
+            "Initialize_variable_-_Uses_Risk_Application_Operation_Type": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "907c4c45-cadb-4538-bbf9-e2fe6ae7c3f5"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Uses Risk Application Program Area",
+                "type": "boolean",
+                "value": false
+              }
+            ]
+          },
+          "description": "This is used to set ts_UsesRiskApplicationProgramArea in ts_EntityRisk"
+        },
+        "Initialize_variable_-_Uses_Risk_Application_Site": {
+          "runAfter": {
+            "Initialize_variable_-_Uses_Risk_Application_Program_Area": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a755c136-44f4-4174-b3df-4bdefe19f1aa"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Uses Risk Application Site",
+                "type": "boolean",
+                "value": false
+              }
+            ]
+          },
+          "description": "This is used to set ts_UsesRiskApplicationSite in ts_EntityRisk"
+        },
+        "Initialize_variable_-_Uses_Risk_Application_Stakeholder": {
+          "runAfter": {
+            "Initialize_variable_-_Uses_Risk_Application_Site": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f576b6bf-ea17-4d3c-91c9-307df5b2eee6"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Uses Risk Application Stakeholder",
+                "type": "boolean",
+                "value": false
+              }
+            ]
+          },
+          "description": "This is used to set ts_UsesRiskApplicationStakeholder in ts_EntityRisk"
+        },
+        "Apply_to_each_-_Risk_Applications": {
+          "foreach": "@variables('Risk Applications')",
+          "actions": {
+            "Condition_-_Activity_Type": {
+              "actions": {
+                "Set_variable_-_Uses_Risk_Application_Activity_Type": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "e8ca26c4-642d-4d59-9bee-3b0b4b6d6a1a"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Uses Risk Application Activity Type",
+                    "value": true
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each_-_Risk_Applications')",
+                  "741130000"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "49144a10-4727-4bf9-8e4b-82ab11ba6681"
+              },
+              "type": "If"
+            },
+            "Condition_-_Operation": {
+              "actions": {
+                "Set_variable_-_Uses_Risk_Application_Operation": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "6f4735c6-2b33-416f-8646-5fc1420ba6da"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Uses Risk Application Operation",
+                    "value": true
+                  }
+                }
+              },
+              "runAfter": {
+                "Condition_-_Activity_Type": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each_-_Risk_Applications')",
+                  "741130002"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "4bc48700-4185-429d-a8f9-fa07f691a082"
+              },
+              "type": "If"
+            },
+            "Condition_-_Operation_Type": {
+              "actions": {
+                "Set_variable_-_Uses_Risk_Application_Operation_Type": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "723584ae-5ee1-4738-8c38-27c91a221974"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Uses Risk Application Operation Type",
+                    "value": true
+                  }
+                }
+              },
+              "runAfter": {
+                "Condition_-_Operation": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each_-_Risk_Applications')",
+                  "741130003"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "3aa99d00-5d61-4572-906b-02c3797e1155"
+              },
+              "type": "If"
+            },
+            "Condition_-_Program_Area": {
+              "actions": {
+                "Set_variable_-_Uses_Risk_Application_Program_Area": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "db3b3a2c-28cd-4110-9450-e7caf0de1987"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Uses Risk Application Program Area",
+                    "value": true
+                  }
+                }
+              },
+              "runAfter": {
+                "Condition_-_Operation_Type": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each_-_Risk_Applications')",
+                  "741130001"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "eb26517b-3d36-4adb-89de-23b9e2460cfa"
+              },
+              "type": "If"
+            },
+            "Condition_-_Site": {
+              "actions": {
+                "Set_variable_-_Uses_Risk_Application_Site": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "0c0a22c8-e780-4244-ad9f-387e253d07c0"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Uses Risk Application Site",
+                    "value": true
+                  }
+                }
+              },
+              "runAfter": {
+                "Condition_-_Program_Area": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each_-_Risk_Applications')",
+                  "741130004"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "187969b6-6ba4-468d-bf2b-0b538869536b"
+              },
+              "type": "If"
+            },
+            "Condition_-_Stakeholder": {
+              "actions": {
+                "Set_variable_-_Uses_Risk_Application_Stakeholder": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "88269a63-f3ea-444c-a4f5-efa2c24a2c7b"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Uses Risk Application Stakeholder",
+                    "value": true
+                  }
+                }
+              },
+              "runAfter": {
+                "Condition_-_Site": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each_-_Risk_Applications')",
+                  "741130005"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "713cfcef-73ee-4fc3-9005-e0504328a88f"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_Uses_Risk_Application_Stakeholder": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b9b95726-63e2-48a0-ae5e-d266dcf37b04"
+          },
+          "type": "Foreach",
+          "description": "Set the booleans for the  'Uses Risk Application Activity Type' variables depending on what was selected in the Risk Applications choice column in Operation Type.  That way we know what exactly needs to be updated in Entity Risk Record."
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

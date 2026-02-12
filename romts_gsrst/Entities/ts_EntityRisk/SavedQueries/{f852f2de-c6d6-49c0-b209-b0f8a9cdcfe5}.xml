@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{f852f2de-c6d6-49c0-b209-b0f8a9cdcfe5}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_entityriskid">
+          <cell name="ts_name" width="100" />
+          <cell name="ts_fiscalyear" width="103" />
+          <cell name="ts_riskscore" width="102" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_entityrisk">
+          <attribute name="ts_entityriskid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_riskscore" />
+          <attribute name="ts_fiscalyear" />
+          <order attribute="ts_fiscalyear" descending="true" />
+          <attribute name="ts_name" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Entity Risks" languagecode="1033" />
+      <LocalizedName description="Risques actifs de l'entité" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

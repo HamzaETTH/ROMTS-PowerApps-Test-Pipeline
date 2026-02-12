@@ -1,0 +1,2671 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_conversionservice_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsContentConversion"
+        },
+        "api": {
+          "name": "shared_conversionservice"
+        }
+      },
+      "shared_wordonlinebusiness_2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsWordOnlineBusiness"
+        },
+        "api": {
+          "name": "shared_wordonlinebusiness"
+        }
+      },
+      "shared_onedriveforbusiness": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsOneDriveForBusiness"
+        },
+        "api": {
+          "name": "shared_onedriveforbusiness"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "SharePoint Flow Key (ts_SharePointFlowKey)": {
+          "defaultValue": "6u4qTO,e|[)-rY2n\\jk#Fas:,{35~d",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ts_SharePointFlowKey",
+            "description": "This key is used by the SharePointAttachFilePopUp.html web resource to connect to the Power Automate Flows that use HTTPS"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "058050a3-c95a-4fbf-86c9-b7694021e8ea"
+          },
+          "type": "Request",
+          "kind": "Http",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "FindingsReportId": {
+                  "type": "string"
+                },
+                "SensitivityLevel": {
+                  "type": "string"
+                },
+                "UserLanguage": {
+                  "type": "integer"
+                }
+              }
+            },
+            "triggerAuthenticationType": "All"
+          }
+        }
+      },
+      "actions": {
+        "Initialize_variable_-_FlowKey": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ca425bd2-31a6-48db-8681-d62b8f0a4365"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "FlowKey",
+                "type": "string",
+                "value": "@body('Parse_JSON')?['FlowKey']"
+              }
+            ]
+          }
+        },
+        "Get_a_Findings_Report_record_by_ID": {
+          "runAfter": {
+            "Condition_-_FlowKey": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "03b154f9-a51e-4a17-9b10-abc407c3a4a7"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "ts_findingsreports",
+              "recordId": "@triggerBody()?['FindingsReportId']"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Case": {
+          "runAfter": {
+            "Get_a_Findings_Report_record_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b4e43e1f-cdc8-4098-86fb-3d6f85b5dc77"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "incidents",
+              "recordId": "@outputs('Get_a_Findings_Report_record_by_ID')?['body/_ts_case_value']"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Owner_of_Case": {
+          "runAfter": {
+            "Get_Case": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e576970f-b940-47fa-aafb-e1cfa5752a74"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@outputs('Get_Case')?['body/_ownerid_value']",
+              "$select": "fullname,address1_telephone1,internalemailaddress"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Stakeholder_of_Case": {
+          "runAfter": {
+            "Get_Owner_of_Case": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8e051925-8d01-453a-bc10-8bb73b07acd8"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "accounts",
+              "recordId": "@outputs('Get_Case')?['body/_customerid_value']"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Site_of_Case": {
+          "runAfter": {
+            "Get_Stakeholder_of_Case": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fb6452dc-417d-47c3-8a47-db02e3045c24"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "msdyn_functionallocations",
+              "recordId": "@outputs('Get_Case')?['body/_msdyn_functionallocation_value']"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_Non-Compliance_Findings": {
+          "runAfter": {
+            "Get_Site_of_Case": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "45bdbc14-9a72-4e05-b6f6-8d2c6db8727a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "ovs_findings",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">\n  <entity name=\"ovs_finding\">\n    <attribute name=\"ovs_findingid\" />\n<attribute name=\"ts_notetostakeholder\" />\n<attribute name=\"ovs_findingprovisionreference\" />\n<attribute name=\"ts_findingprovisiontexten\" />\n<attribute name=\"ts_findingprovisiontextfr\" />\n<attribute name=\"ts_issueaddressedonsite\" />\n<attribute name=\"ts_noncompliancetimeframe\" />\n    <order attribute=\"ovs_finding\" descending=\"false\" />\n    <filter type=\"and\">\n      <condition attribute=\"ts_findingtype\" operator=\"eq\" value=\"717750002\" />\n    </filter>\n    <link-entity name=\"ts_findingsreport_ovs_finding\" from=\"ovs_findingid\" to=\"ovs_findingid\" visible=\"false\" intersect=\"true\">\n      <link-entity name=\"ts_findingsreport\" from=\"ts_findingsreportid\" to=\"ts_findingsreportid\" alias=\"ad\">\n        <filter type=\"and\">\n          <condition attribute=\"ts_findingsreportid\" operator=\"eq\" value=\"{@{outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_findingsreportid']}}\" />\n        </filter>\n      </link-entity>\n    </link-entity>\n  </entity>\n</fetch>"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_ContactFullName": {
+          "runAfter": {
+            "List_Non-Compliance_Findings": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8f4739d3-1892-4ae2-be8a-8fb5f866dd8f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "ContactFullName",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "If_Case_has_a_Contact": {
+          "actions": {
+            "Get_Contact_of_Case": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "c8574f95-5800-42a2-b301-4a5ad99e3a00"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "contacts",
+                  "recordId": "@outputs('Get_Case')?['body/_primarycontactid_value']",
+                  "$select": "fullname"
+                },
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Set_ContactFullName": {
+              "runAfter": {
+                "Get_Contact_of_Case": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "6ab7d737-c15c-4329-b44b-6f4f554fb95e"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "ContactFullName",
+                "value": "@outputs('Get_Contact_of_Case')?['body/fullname']"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_ContactFullName": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@outputs('Get_Case')?['body/_primarycontactid_value']",
+                "@null"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "49c19d34-4d37-42de-9c2a-31a88c23199d"
+          },
+          "type": "If"
+        },
+        "Initialize_NonComplianceFindingsArray_variable": {
+          "runAfter": {
+            "If_Case_has_a_Contact": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6acb51d0-8874-4225-be93-86c68f795ae7"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "NonComplianceFindingsArray",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Initialize_CurrentIndex_variable": {
+          "runAfter": {
+            "Initialize_NonComplianceFindingsArray_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "64c7d280-5c48-435f-a9a9-51cc6cd9554a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "CurrentIndex",
+                "type": "integer",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "Initialize_ProvisionTextLocalized_variable": {
+          "runAfter": {
+            "Initialize_CurrentIndex_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c1e04d68-6661-4eab-8ac7-fccf846b381f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "ProvisionTextLocalized",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_IssueAddressedOnSiteLocalizedLabel_variable": {
+          "runAfter": {
+            "Initialize_ProvisionTextLocalized_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f3bc50b2-e638-43d2-89e5-b0943080692f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "IssueAddressedOnSiteLocalizedLabel",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_RequiredAction_variable": {
+          "runAfter": {
+            "Initialize_IssueAddressedOnSiteLocalizedLabel_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "849b61b7-816a-4afc-847a-6faaca93e0ba"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "RequiredAction",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_Timeframe_variable": {
+          "runAfter": {
+            "Initialize_RequiredAction_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3c0b392c-3c93-4b1d-8f9e-ddcc81508696"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Timeframe",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Apply_to_each_Non-Compliance_Finding": {
+          "foreach": "@outputs('List_Non-Compliance_Findings')?['body/value']",
+          "actions": {
+            "Append_to_NonComplianceFindingsArray_variable": {
+              "runAfter": {
+                "If_Issue_addressed_on_site_is_Yes": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a3bcb621-f930-4579-bb61-f69d17723850"
+              },
+              "type": "AppendToArrayVariable",
+              "inputs": {
+                "name": "NonComplianceFindingsArray",
+                "value": {
+                  "FindingNCDetails": "@{items('Apply_to_each_Non-Compliance_Finding')?['ts_notetostakeholder']}",
+                  "FindingNCProvisionName": "@{items('Apply_to_each_Non-Compliance_Finding')?['ovs_findingprovisionreference']}",
+                  "FindingNCProvisionText": "@{variables('ProvisionTextLocalized')}",
+                  "FindingNCAddressedOnSite": "@{variables('IssueAddressedOnSiteLocalizedLabel')}",
+                  "FindingNCRequiredAction": "@{variables('RequiredAction')}",
+                  "FindingNonComplianceIndex": "@{variables('CurrentIndex')}"
+                }
+              }
+            },
+            "Increment_CurrentIndex": {
+              "runAfter": {
+                "Append_to_NonComplianceFindingsArray_variable": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e4ce4699-6f02-40e5-b846-f667b177bff5"
+              },
+              "type": "IncrementVariable",
+              "inputs": {
+                "name": "CurrentIndex",
+                "value": 1
+              }
+            },
+            "Non-Compliance_Loop,_if_language_is_French": {
+              "actions": {
+                "Non-Compliance_Provision_Text_(FR)_Html_to_Text": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "481d14da-03bb-4a53-8766-ac5cef8acedb"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_conversionservice_1",
+                      "operationId": "HtmlToText",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_conversionservice"
+                    },
+                    "parameters": {
+                      "Content": "<p>@{items('Apply_to_each_Non-Compliance_Finding')?['ts_findingprovisiontextfr']}</p>"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Set_ProvisionTextLocalized_French": {
+                  "runAfter": {
+                    "Non-Compliance_Provision_Text_(FR)_Html_to_Text": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "3d4a2a6e-89eb-46ab-ae35-608c36e2a19a"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "ProvisionTextLocalized",
+                    "value": "@{body('Non-Compliance_Provision_Text_(FR)_Html_to_Text')}"
+                  }
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Non-Compliance_Provision_Text_(EN)_Html_to_Text": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "a82c4eb5-01e2-44f4-bd01-f3e2483c2615"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_conversionservice_1",
+                        "operationId": "HtmlToText",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_conversionservice"
+                      },
+                      "parameters": {
+                        "Content": "<p>@{items('Apply_to_each_Non-Compliance_Finding')?['ts_findingprovisiontexten']}</p>"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  },
+                  "Set_ProvisionTextLocalized_English": {
+                    "runAfter": {
+                      "Non-Compliance_Provision_Text_(EN)_Html_to_Text": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "41e7dbee-d517-41e6-83fe-cb738197dcae"
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "ProvisionTextLocalized",
+                      "value": "@body('Non-Compliance_Provision_Text_(EN)_Html_to_Text')"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_language']",
+                  717750001
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ceb710fb-2612-4f19-abe1-c1c3947f819f"
+              },
+              "type": "If"
+            },
+            "If_Issue_addressed_on_site_is_Yes": {
+              "actions": {
+                "Non-Compliance_Loop,_if_language_is_French_2": {
+                  "actions": {
+                    "Set_IssueAddressedOnSiteLocalizedLabel_to_Oui": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "e33ed194-e365-43c6-ad32-b9700ef548ea"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "IssueAddressedOnSiteLocalizedLabel",
+                        "value": "Oui"
+                      }
+                    },
+                    "Set_RequiredAction_Yes_French": {
+                      "runAfter": {
+                        "Set_IssueAddressedOnSiteLocalizedLabel_to_Oui": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "b78dd6ab-bd32-4467-a1cf-0eabea3350bb"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "RequiredAction",
+                        "value": "Aucune mesure supplémentaire n’est exigée, car les mesures nécessaires à la rectification des cas de non-conformité ont été prises."
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "else": {
+                    "actions": {
+                      "Set_IssueAddressedOnSiteLocalizedLabel_to_Yes": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "8377d786-cf3f-4e94-8d2a-90b429f64277"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "IssueAddressedOnSiteLocalizedLabel",
+                          "value": "Yes"
+                        }
+                      },
+                      "Set_RequiredAction_Yes_English": {
+                        "runAfter": {
+                          "Set_IssueAddressedOnSiteLocalizedLabel_to_Yes": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "d0acb110-a9f6-4460-b68f-ad60a3892aa3"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "RequiredAction",
+                          "value": "No further action is required as measures to address the non-compliance have been taken. "
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "equals": [
+                      "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_language']",
+                      717750001
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "3b071d8e-a546-43c5-9ad1-4852b89fed47"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "Non-Compliance_Loop,_if_language_is_French": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Non-Compliance_Loop,_if_language_is_French_3": {
+                    "actions": {
+                      "Set_IssueAddressedOnSIteLocalizedLabel_to_Non": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "0c335f64-07c5-4495-834e-891f8538bc92"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "IssueAddressedOnSiteLocalizedLabel",
+                          "value": "Non"
+                        }
+                      },
+                      "Set_RequiredAction_No_French": {
+                        "runAfter": {
+                          "If_Timeframe_is_30_days_French_(Set_Timeframe_Variable)": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "3cf9db1e-9a24-4f14-baa9-3951ecb2601f"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "RequiredAction",
+                          "value": "Des mesures correctives doivent être prises immédiatement pour rectifier les cas de non-conformité au Règlement. Veuillez nous informer par écrit des mesures prises par l’entreprise pour rectifier les cas de non-conformité au Règlement. Vous disposez d’une période de @{variables('Timeframe')} à compter de la date du présent rapport."
+                        }
+                      },
+                      "If_Timeframe_is_30_days_French_(Set_Timeframe_Variable)": {
+                        "actions": {
+                          "Set_Timeframe_to_30_jours": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "2665d272-d071-4279-9397-e4bdfeb6f07f"
+                            },
+                            "type": "SetVariable",
+                            "inputs": {
+                              "name": "Timeframe",
+                              "value": "30 jours"
+                            }
+                          }
+                        },
+                        "runAfter": {
+                          "Set_IssueAddressedOnSIteLocalizedLabel_to_Non": [
+                            "Succeeded"
+                          ]
+                        },
+                        "else": {
+                          "actions": {
+                            "Set_Timeframe_to_14_jours": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "3638c21a-1117-4a81-b7ee-37f00b9d02d8"
+                              },
+                              "type": "SetVariable",
+                              "inputs": {
+                                "name": "Timeframe",
+                                "value": "14 jours"
+                              }
+                            }
+                          }
+                        },
+                        "expression": {
+                          "equals": [
+                            "@items('Apply_to_each_Non-Compliance_Finding')?['ts_noncompliancetimeframe']",
+                            717750000
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "f5330254-5659-432f-aa5f-cc09bc235e27"
+                        },
+                        "type": "If"
+                      }
+                    },
+                    "runAfter": {},
+                    "else": {
+                      "actions": {
+                        "Set_IssueAddressedOnSIteLocalizedLabel_to_No": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "b289bea1-7f22-4163-9210-ab653c1cb628"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "IssueAddressedOnSiteLocalizedLabel",
+                            "value": "No"
+                          }
+                        },
+                        "If_Timeframe_is_30_days_English_(Set_Timeframe_Variable)": {
+                          "actions": {
+                            "Set_Timeframe_to_30_days": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "b3e1bd82-0e13-4d9e-aa63-65ea7e99442f"
+                              },
+                              "type": "SetVariable",
+                              "inputs": {
+                                "name": "Timeframe",
+                                "value": "30 days"
+                              }
+                            }
+                          },
+                          "runAfter": {
+                            "Set_IssueAddressedOnSIteLocalizedLabel_to_No": [
+                              "Succeeded"
+                            ]
+                          },
+                          "else": {
+                            "actions": {
+                              "Set_Timeframe_to_14_days": {
+                                "runAfter": {},
+                                "metadata": {
+                                  "operationMetadataId": "87993e97-5a0d-4be1-818c-eb9b4389df43"
+                                },
+                                "type": "SetVariable",
+                                "inputs": {
+                                  "name": "Timeframe",
+                                  "value": "14 days"
+                                }
+                              }
+                            }
+                          },
+                          "expression": {
+                            "equals": [
+                              "@items('Apply_to_each_Non-Compliance_Finding')?['ts_noncompliancetimeframe']",
+                              717750000
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "51778d0d-5e49-4b88-b235-4d166f408989"
+                          },
+                          "type": "If"
+                        },
+                        "set_RequiredAction_No_English": {
+                          "runAfter": {
+                            "If_Timeframe_is_30_days_English_(Set_Timeframe_Variable)": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "4825e26c-5c69-4657-878b-39ea580dfc4f"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "RequiredAction",
+                            "value": "Corrective measures must be put in place immediately to address the instances of regulatory non-compliance. Please inform us in writing what actions the company has taken to address the regulatory non-compliance within @{variables('Timeframe')} from the date of this report.  "
+                          }
+                        }
+                      }
+                    },
+                    "expression": {
+                      "equals": [
+                        "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_language']",
+                        717750001
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "244aa155-7aec-48e5-ac6d-158f3285873f"
+                    },
+                    "type": "If"
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each_Non-Compliance_Finding')?['ts_issueaddressedonsite']",
+                  717750000
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c573a560-5114-4cf4-a4a5-89c4e208ca6b"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_Timeframe_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c401d633-faf2-42db-899d-95117859ca82"
+          },
+          "type": "Foreach"
+        },
+        "List_Observation_Findings": {
+          "runAfter": {
+            "Apply_to_each_Non-Compliance_Finding": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a8ddea09-db11-4c29-bcda-06c2304d2ca4"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "ovs_findings",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">\n  <entity name=\"ovs_finding\">\n    <attribute name=\"ovs_findingid\" />\n<attribute name=\"ts_notetostakeholder\" />\n<attribute name=\"ovs_findingprovisionreference\" />\n<attribute name=\"ts_findingprovisiontexten\" />\n<attribute name=\"ts_findingprovisiontextfr\" />\n<attribute name=\"ts_issueaddressedonsite\" />\n    <order attribute=\"ovs_finding\" descending=\"false\" />\n    <filter type=\"and\">\n      <condition attribute=\"ts_findingtype\" operator=\"eq\" value=\"717750001\" />\n    </filter>\n    <link-entity name=\"ts_findingsreport_ovs_finding\" from=\"ovs_findingid\" to=\"ovs_findingid\" visible=\"false\" intersect=\"true\">\n      <link-entity name=\"ts_findingsreport\" from=\"ts_findingsreportid\" to=\"ts_findingsreportid\" alias=\"ae\">\n        <filter type=\"and\">\n          <condition attribute=\"ts_findingsreportid\" operator=\"eq\" value=\"{@{outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_findingsreportid']}}\" />\n        </filter>\n      </link-entity>\n    </link-entity>\n  </entity>\n</fetch>"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_ObservationFindingsArray_variable": {
+          "runAfter": {
+            "List_Observation_Findings": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fec1ea8e-2b2c-4dd1-a5fb-50436769943b"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "ObservationFindingsArray",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Set_CurrentIndex_to_1": {
+          "runAfter": {
+            "Initialize_ObservationFindingsArray_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d28fe460-1629-43ae-891c-b15809059845"
+          },
+          "type": "SetVariable",
+          "inputs": {
+            "name": "CurrentIndex",
+            "value": 1
+          }
+        },
+        "Apply_to_each_Observation_Finding": {
+          "foreach": "@outputs('List_Observation_Findings')?['body/value']",
+          "actions": {
+            "Append_to_ObservationFindingsArray_variable": {
+              "runAfter": {
+                "If_Issue_addressed_on_site_is_Yes_2": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "19395986-a5e6-4c6f-a009-e354c9660c10"
+              },
+              "type": "AppendToArrayVariable",
+              "inputs": {
+                "name": "ObservationFindingsArray",
+                "value": {
+                  "FindingOBDetails": "@{items('Apply_to_each_Observation_Finding')?['ts_notetostakeholder']}",
+                  "FindingOBProvisionName": "@{items('Apply_to_each_Observation_Finding')?['ovs_findingprovisionreference']}",
+                  "FindingOBProvisionText": "@{variables('ProvisionTextLocalized')}",
+                  "FindingOBAddressedOnSite": "@{variables('IssueAddressedOnSiteLocalizedLabel')}",
+                  "FindingObservationIndex": "@{variables('CurrentIndex')}"
+                }
+              }
+            },
+            "Observation_Increment_CurrentIndex_": {
+              "runAfter": {
+                "Append_to_ObservationFindingsArray_variable": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "dba662fc-3c86-4093-88ea-4050d565b8ab"
+              },
+              "type": "IncrementVariable",
+              "inputs": {
+                "name": "CurrentIndex",
+                "value": 1
+              }
+            },
+            "Observation_Loop,_if_language_is_French": {
+              "actions": {
+                "Observation_Provision_Text_(FR)_Html_to_Text": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "481d14da-03bb-4a53-8766-ac5cef8acedb"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_conversionservice_1",
+                      "operationId": "HtmlToText",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_conversionservice"
+                    },
+                    "parameters": {
+                      "Content": "<p>@{items('Apply_to_each_Observation_Finding')?['ts_findingprovisiontextfr']}</p>"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Set_ProvisionTextLocalized_French_2": {
+                  "runAfter": {
+                    "Observation_Provision_Text_(FR)_Html_to_Text": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "3d4a2a6e-89eb-46ab-ae35-608c36e2a19a"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "ProvisionTextLocalized",
+                    "value": "@{body('Observation_Provision_Text_(FR)_Html_to_Text')}"
+                  }
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Observation_Provision_Text_(EN)_Html_to_Text": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "a82c4eb5-01e2-44f4-bd01-f3e2483c2615"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_conversionservice_1",
+                        "operationId": "HtmlToText",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_conversionservice"
+                      },
+                      "parameters": {
+                        "Content": "<p>@{items('Apply_to_each_Observation_Finding')?['ts_findingprovisiontexten']}</p>"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  },
+                  "Set_ProvisionTextLocalized_English_2": {
+                    "runAfter": {
+                      "Observation_Provision_Text_(EN)_Html_to_Text": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "41e7dbee-d517-41e6-83fe-cb738197dcae"
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "ProvisionTextLocalized",
+                      "value": "@{body('Observation_Provision_Text_(EN)_Html_to_Text')}"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_language']",
+                  717750001
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ceb710fb-2612-4f19-abe1-c1c3947f819f"
+              },
+              "type": "If"
+            },
+            "If_Issue_addressed_on_site_is_Yes_2": {
+              "actions": {
+                "Observation_Loop,_if_language_is_French_2": {
+                  "actions": {
+                    "Set_IssueAddressedOnSiteLocalizedLabel_to_Oui_2": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "e33ed194-e365-43c6-ad32-b9700ef548ea"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "IssueAddressedOnSiteLocalizedLabel",
+                        "value": "Oui"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "else": {
+                    "actions": {
+                      "Set_IssueAddressedOnSiteLocalizedLabel_to_Yes_2": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "8377d786-cf3f-4e94-8d2a-90b429f64277"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "IssueAddressedOnSiteLocalizedLabel",
+                          "value": "Yes"
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "equals": [
+                      "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_language']",
+                      717750001
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "3b071d8e-a546-43c5-9ad1-4852b89fed47"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "Observation_Loop,_if_language_is_French": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Observation_Loop,_if_language_is_French_3": {
+                    "actions": {
+                      "Set_IssueAddressedOnSIteLocalizedLabel_to_Non_2": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "0c335f64-07c5-4495-834e-891f8538bc92"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "IssueAddressedOnSiteLocalizedLabel",
+                          "value": "Non"
+                        }
+                      }
+                    },
+                    "runAfter": {},
+                    "else": {
+                      "actions": {
+                        "Set_IssueAddressedOnSIteLocalizedLabel_to_No_2": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "b289bea1-7f22-4163-9210-ab653c1cb628"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "IssueAddressedOnSiteLocalizedLabel",
+                            "value": "No"
+                          }
+                        }
+                      }
+                    },
+                    "expression": {
+                      "equals": [
+                        "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_language']",
+                        717750001
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "244aa155-7aec-48e5-ac6d-158f3285873f"
+                    },
+                    "type": "If"
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each_Observation_Finding')?['ts_issueaddressedonsite']",
+                  717750000
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c573a560-5114-4cf4-a4a5-89c4e208ca6b"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Set_CurrentIndex_to_1": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "100ddf38-2ecb-48c0-9343-58bc3fd0f825"
+          },
+          "type": "Foreach"
+        },
+        "List_first_WOST_from_Case": {
+          "runAfter": {
+            "Apply_to_each_Observation_Finding": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8c34fe57-8457-4fcf-9891-10b65b190d0c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "msdyn_workorderservicetasks",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"msdyn_workorderservicetask\">\n    <attribute name=\"msdyn_workorderservicetaskid\" />\n    <attribute name=\"ts_servicetaskstartdate\" />\n<attribute name=\"msdyn_workorder\"/>\n<filter>\n      <condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />\n    </filter>\n    <order attribute=\"ts_servicetaskstartdate\" descending=\"false\" />\n    <link-entity name=\"incident\" from=\"incidentid\" to=\"ovs_caseid\" link-type=\"inner\" alias=\"aj\">\n      <filter type=\"and\">\n        <condition attribute=\"incidentid\" operator=\"eq\" value=\"{@{outputs('Get_Case')?['body/incidentid']}}\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>",
+              "$top": 1
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_WorkOrderGuid_variable": {
+          "runAfter": {
+            "List_first_WOST_from_Case": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b5f9abb6-cab8-4b68-bad3-06573b57c7f0"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "WorkOrderGuid",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Retrieve_Work_Order_Guid_of_first_WOST": {
+          "foreach": "@outputs('List_first_WOST_from_Case')?['body/value']",
+          "actions": {
+            "Set_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "8f0f847b-424a-4da0-9c98-c31033bc465b"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "WorkOrderGuid",
+                "value": "@items('Retrieve_Work_Order_Guid_of_first_WOST')?['_msdyn_workorder_value']"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_WorkOrderGuid_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a0be8823-03d2-4376-97c4-05eef0c84e05"
+          },
+          "type": "Foreach"
+        },
+        "Get_Work_Order": {
+          "runAfter": {
+            "Retrieve_Work_Order_Guid_of_first_WOST": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f222af94-76c2-46fa-a24a-2ee67e7dca81"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "msdyn_workorders",
+              "recordId": "@variables('WorkOrderGuid')"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_isRemoteInspection_variable": {
+          "runAfter": {
+            "Get_Work_Order": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4550713a-43bd-4713-b3c1-0379692c30fe"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "isRemoteInspection",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "if_Work_Order_is_Remote": {
+          "actions": {
+            "isRemoteInspection_is_Yes,_if_Language_is_French": {
+              "actions": {
+                "Set_isRemoteInspection_to_Oui": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "9a195470-5436-4dbe-9d79-9e79b3c66814"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "isRemoteInspection",
+                    "value": "Oui"
+                  }
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "set_isRemoteInspection_to_Yes": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "b96e1cd3-f983-4620-9f8d-17d1ac0a59cc"
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "isRemoteInspection",
+                      "value": "Yes"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_language']",
+                  717750001
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5a7b77e6-2e32-4c59-bd18-a1110a4ce54f"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_isRemoteInspection_variable": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "isRemoteInspection_is_No,_Language_is_French": {
+                "actions": {
+                  "set_isRemoteInspection_to_Non": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "6f211ae9-833e-4ea5-96cb-d31762acd024"
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "isRemoteInspection",
+                      "value": "Non"
+                    }
+                  }
+                },
+                "runAfter": {},
+                "else": {
+                  "actions": {
+                    "set_isRemoteInspection_to_No": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "77243b2b-764b-49e3-95fd-a898878433b2"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "isRemoteInspection",
+                        "value": "No"
+                      }
+                    }
+                  }
+                },
+                "expression": {
+                  "equals": [
+                    "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_language']",
+                    717750001
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "9718b87e-2485-473e-bbb3-90f3408a62c4"
+                },
+                "type": "If"
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@outputs('Get_Work_Order')?['body/msdyn_worklocation']",
+              690970002
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9de156d6-1e85-40be-8cea-1c6e58626d5e"
+          },
+          "type": "If"
+        },
+        "Get_Activity_Type_of_Work_Order": {
+          "runAfter": {
+            "if_Work_Order_is_Remote": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1d022a88-c670-44fd-9d98-a89a660e11ec"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "msdyn_incidenttypes",
+              "recordId": "@outputs('Get_Work_Order')?['body/_msdyn_primaryincidenttype_value']"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Get_Activity_Type_of_Work_Order": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fd13f53f-be82-4dea-92d3-1e75a63109e0"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "LegislationSource",
+                "type": "string",
+                "value": "Invalid Operation Type ID"
+              }
+            ]
+          }
+        },
+        "If_Operation_Type_is_Railway_Carrier_or_Railway_Loader_(TDG)": {
+          "actions": {
+            "Operation_Type_TDG_If_Language_is_French": {
+              "actions": {
+                "Set_Legislation_Source_to_TDG_French": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "25971150-ce4a-4996-8d1c-a71fd1bfed5a"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "LegislationSource",
+                    "value": "Règlement sur la sûreté du transport ferroviaire des marchandises dangereuses"
+                  }
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Set_Legislation_Source_to_TDG_English": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "b1e2d8f9-27ea-414e-95e0-8ca43bd928d3"
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "LegislationSource",
+                      "value": "Transportation of Dangerous Goods by Rail Security Regulations"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_language']",
+                  717750001
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "1e86bb0e-eca4-47f2-b0ac-b2265e14eab7"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Operation_Type_PAX_If_language_is_French": {
+                "actions": {
+                  "Set_Legislation_Source_PAX_French": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "c4f29d9a-bbb3-4a96-a7ac-48f0ee50d8e0"
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "LegislationSource",
+                      "value": "Règlement sur la sûreté du transport ferroviaire de voyageurs"
+                    }
+                  }
+                },
+                "runAfter": {},
+                "else": {
+                  "actions": {
+                    "Set_Legislation_Source_PAX_English": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "1db0d345-7531-4bdf-91bb-ead87206cfa1"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "LegislationSource",
+                        "value": "Passenger Rail Transportation Security Regulations"
+                      }
+                    }
+                  }
+                },
+                "expression": {
+                  "equals": [
+                    "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_language']",
+                    717750001
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "dc6a048e-3106-4e59-8eed-ff9511278731"
+                },
+                "type": "If"
+              }
+            }
+          },
+          "expression": {
+            "or": [
+              {
+                "equals": [
+                  "@outputs('Get_Work_Order')?['body/_ovs_operationtypeid_value']",
+                  "d883b39a-c751-eb11-a812-000d3af3ac0d"
+                ]
+              },
+              {
+                "equals": [
+                  "@outputs('Get_Work_Order')?['body/_ovs_operationtypeid_value']",
+                  "da56fea1-c751-eb11-a812-000d3af3ac0d"
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f64ec593-b61c-4d16-869b-53ec5cfe7aff"
+          },
+          "type": "If"
+        },
+        "Initialize_InspectionDate_variable": {
+          "runAfter": {
+            "If_Operation_Type_is_Railway_Carrier_or_Railway_Loader_(TDG)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8e15552b-295f-4c84-8299-65ba7f74e2eb"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "InspectionDate",
+                "type": "string",
+                "value": "@{formatDateTime(body('List_first_WOST_from_Case')?['value']?[0]?.ts_servicetaskstartdate, 'MM-dd-yyyy')}"
+              }
+            ]
+          }
+        },
+        "Initialize_PopulatedTemplateFilePath_variable": {
+          "runAfter": {
+            "Initialize_InspectionDate_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "402f85f7-55f4-4f36-be17-c9c1798eb4fe"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "PopulatedTemplateFilePath",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_CreatedFileId_variable": {
+          "runAfter": {
+            "Initialize_PopulatedTemplateFilePath_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0824cf89-664a-413a-8761-c2f41b966853"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "CreatedFileId",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Populate_Word_Template,_If_Language_is_French": {
+          "actions": {
+            "If_there_are_Observations_French": {
+              "actions": {
+                "If_there_are_Non-Compliances_French": {
+                  "actions": {
+                    "Populate_Non-compliance_and_Observations_template_French": {
+                      "runAfter": {},
+                      "metadata": {
+                        "01WA4NRKVCNUYB4NAJZZFJK7BBQMHEL7F4": "/Word Templates/Findings Report Template 3.docx",
+                        "operationMetadataId": "122a63dc-9781-496a-8718-1a56ce4fc0cb",
+                        "01WA4NRKWEQEDG4EEXNVGJLQYTEZG5DNH4": "/Word Templates/Findings Report Template 3.docx",
+                        "01WA4NRKV3HGNXGFBL2VDKQPFBNF5L2SGE": "/Word Templates/Findings Report Template 3.docx",
+                        "01WA4NRKXGNLOIQR5TEBAI53OGTC64BIND": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKXC6AURXGNJTZHIVWOKSMWRP7F2": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKSZJOWAWEJ3ENCZAYRDQ4PGVXQT": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKUM3QZTP4YR2BDJAUP4NP4QTDOM": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKUGMPOFBG6W3FDJYHVR7QZ5SKOJ": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKV2A6KDK2HOF5HZ4WNLXM6W6MCX": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKQSMSG3XD3OCBHI3M5AOKJAK6HM": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKS5JCH4X4G3HJCIRNOD4UFMNWOU": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKRRXFP2FQYLERAJALFACTKV3OPW": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKW2TLSII7TBMRCZIS5WA7UIMIQJ": "/Word Templates/Findings Report Template Observations and Non-compliance English.docx",
+                        "01WA4NRKQYZ7QFAJMI4BDZRCDUEZL5LZPU": "/Word Templates/Findings Report Template Observations and Non-compliance English.docx",
+                        "01WA4NRKXZGB23Q3NSRZBLXCDRJRIBDRHU": "/Word Templates/Findings Report Template Observations and Non-compliance French.docx",
+                        "01WA4NRKW2U3PL2ZCGMJH3TJQCEHRVX4YE": "/Word Templates/Findings Report Template Observations and Non-compliance French.docx",
+                        "01WA4NRKSWM3D7S4B47VDJVXXG2BVILKY4": "/Word Templates/Findings Report Template Observations and Non-compliance French.docx",
+                        "01WA4NRKW7MLLHLJYJXBH3U3ZQ6Z6QMDYO": "/Word Templates/Findings Report Template Observations and Non-compliance French.docx",
+                        "01WA4NRKSEFJTURRKJAJEZSVSYQRIZQUUU": "/Word Templates/Findings Report Template Observations and Non-compliance French.docx",
+                        "01BEZBBRPHFYFEZBMEBBCLLPS4NFLLZDMN": "/ISSO Finding Report Templates/Findings Report Template Observations and Non-compliance French.docx",
+                        "01GJVXCVHRAHVF55DK7VE3MQCQU7LP42BV": "/ISSO Finding Report Templates/Findings Report Template Observations and Non-compliance French.docx"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "parameters": {
+                          "source": "me",
+                          "drive": "b!MLZShIUzOUy5ZKS91iP8vMBdDNHP9NpNl43AVxAtsli9t_IgI-LeRaYLW0tJXfQm",
+                          "file": "01GJVXCVHRAHVF55DK7VE3MQCQU7LP42BV",
+                          "dynamicFileSchema/11118978": "@triggerBody()?['SensitivityLevel']",
+                          "dynamicFileSchema/349296081": "@variables('NonComplianceFindingsArray')",
+                          "dynamicFileSchema/440577447": "@outputs('Get_Owner_of_Case')?['body/fullname']",
+                          "dynamicFileSchema/741609046": "@outputs('Get_Stakeholder_of_Case')?['body/name']",
+                          "dynamicFileSchema/755639229": "@outputs('Get_Activity_Type_of_Work_Order')?['body/ovs_incidenttypenamefrench']",
+                          "dynamicFileSchema/1735188722": "@variables('isRemoteInspection')",
+                          "dynamicFileSchema/1736668477": "@variables('ContactFullName')",
+                          "dynamicFileSchema/-1890633480": "@outputs('Get_Stakeholder_of_Case')?['body/name']",
+                          "dynamicFileSchema/-1540503820": "@outputs('Get_Site_of_Case')?['body/ts_functionallocationnamefrench']",
+                          "dynamicFileSchema/-870916165": "@variables('InspectionDate')",
+                          "dynamicFileSchema/-1028721268": "@variables('LegislationSource')",
+                          "dynamicFileSchema/-1547982281": "@length(body('List_Non-Compliance_Findings')?['value'])",
+                          "dynamicFileSchema/-1600710248": "@variables('ObservationFindingsArray')",
+                          "dynamicFileSchema/-2055616344": "@outputs('Get_Owner_of_Case')?['body/address1_telephone1']",
+                          "dynamicFileSchema/-776399849": "@outputs('Get_Owner_of_Case')?['body/internalemailaddress']",
+                          "dynamicFileSchema/-74362292": "@triggerBody()?['SensitivityLevel']"
+                        },
+                        "host": {
+                          "connectionName": "shared_wordonlinebusiness_2",
+                          "operationId": "CreateFileItem",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Create_Non-compliance_and_Observations_Template_File_French": {
+                      "runAfter": {
+                        "Populate_Non-compliance_and_Observations_template_French": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "4cb848b3-6d85-498b-a924-a7ac69896b58"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_onedriveforbusiness",
+                          "operationId": "CreateFile",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                        },
+                        "parameters": {
+                          "folderPath": "/FindingsReports",
+                          "name": "Findings Report @{outputs('Get_Case')?['body/title']}@{formatDateTime(utcNow(), 'fffffff')}.docx",
+                          "body": "@body('Populate_Non-compliance_and_Observations_template_French')"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      },
+                      "runtimeConfiguration": {
+                        "contentTransfer": {
+                          "transferMode": "Chunked"
+                        }
+                      }
+                    },
+                    "Non-compliance_and_Observations_Set_CreatedFileId_French": {
+                      "runAfter": {
+                        "Create_Non-compliance_and_Observations_Template_File_French": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "c6b83888-88c2-4f58-96cd-e748ae8815f6"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "CreatedFileId",
+                        "value": "@outputs('Create_Non-compliance_and_Observations_Template_File_French')?['body/Id']"
+                      }
+                    },
+                    "Non-compliance_and_Observations_Set_PopulatedTemplateFilePath_variable_French": {
+                      "runAfter": {
+                        "Non-compliance_and_Observations_Set_CreatedFileId_French": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "c8a08671-edb1-4249-b8c3-3ea7aadcfbf4"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "PopulatedTemplateFilePath",
+                        "value": "@outputs('Create_Non-compliance_and_Observations_Template_File_French')?['body/Path']"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "else": {
+                    "actions": {
+                      "Populate_Observations_template_French": {
+                        "runAfter": {},
+                        "metadata": {
+                          "01WA4NRKVCNUYB4NAJZZFJK7BBQMHEL7F4": "/Word Templates/Findings Report Template 3.docx",
+                          "operationMetadataId": "122a63dc-9781-496a-8718-1a56ce4fc0cb",
+                          "01WA4NRKWEQEDG4EEXNVGJLQYTEZG5DNH4": "/Word Templates/Findings Report Template 3.docx",
+                          "01WA4NRKV3HGNXGFBL2VDKQPFBNF5L2SGE": "/Word Templates/Findings Report Template 3.docx",
+                          "01WA4NRKXGNLOIQR5TEBAI53OGTC64BIND": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKXC6AURXGNJTZHIVWOKSMWRP7F2": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKSZJOWAWEJ3ENCZAYRDQ4PGVXQT": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKUM3QZTP4YR2BDJAUP4NP4QTDOM": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKUGMPOFBG6W3FDJYHVR7QZ5SKOJ": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKV2A6KDK2HOF5HZ4WNLXM6W6MCX": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKQSMSG3XD3OCBHI3M5AOKJAK6HM": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKS5JCH4X4G3HJCIRNOD4UFMNWOU": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKRRXFP2FQYLERAJALFACTKV3OPW": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKW2TLSII7TBMRCZIS5WA7UIMIQJ": "/Word Templates/Findings Report Template Observations and Non-compliance English.docx",
+                          "01WA4NRKQHABQHD2SS5BBZW4UEG6SQQALF": "/Word Templates/Findings Report Template Observations English.docx",
+                          "01WA4NRKWQWFFQFZCW7VAJRHPXPOGRLT37": "/Word Templates/Findings Report Template Observations French.docx",
+                          "01WA4NRKVKWIWBIOPUZRC3P3SSUWCRFW4P": "/Word Templates/Findings Report Template Observations French.docx",
+                          "01WA4NRKW52X7AHWF3GBFLDKEVWPLSNSRB": "/Word Templates/Findings Report Template Observations French.docx",
+                          "01BEZBBRP4SZNRFQHTEJGYHGV54BD33SVL": "/ISSO Finding Report Templates/Findings Report Template Observations French.docx",
+                          "01GJVXCVEVXHCIX5OVBFHKURDG65OZNARC": "/ISSO Finding Report Templates/Findings Report Template Observations French.docx"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "parameters": {
+                            "source": "me",
+                            "drive": "b!MLZShIUzOUy5ZKS91iP8vMBdDNHP9NpNl43AVxAtsli9t_IgI-LeRaYLW0tJXfQm",
+                            "file": "01GJVXCVEVXHCIX5OVBFHKURDG65OZNARC",
+                            "dynamicFileSchema/440577447": "@outputs('Get_Owner_of_Case')?['body/fullname']",
+                            "dynamicFileSchema/741609046": "@outputs('Get_Stakeholder_of_Case')?['body/name']",
+                            "dynamicFileSchema/755639229": "@outputs('Get_Activity_Type_of_Work_Order')?['body/ovs_incidenttypenamefrench']",
+                            "dynamicFileSchema/1388382706": "@variables('LegislationSource')",
+                            "dynamicFileSchema/1735188722": "@variables('isRemoteInspection')",
+                            "dynamicFileSchema/1736668477": "@variables('ContactFullName')",
+                            "dynamicFileSchema/-1890633480": "@outputs('Get_Stakeholder_of_Case')?['body/name']",
+                            "dynamicFileSchema/-1540503820": "@outputs('Get_Site_of_Case')?['body/ts_functionallocationnamefrench']",
+                            "dynamicFileSchema/-870916165": "@variables('InspectionDate')",
+                            "dynamicFileSchema/-1600710248": "@variables('ObservationFindingsArray')",
+                            "dynamicFileSchema/-2055616344": "@outputs('Get_Owner_of_Case')?['body/address1_telephone1']",
+                            "dynamicFileSchema/-776399849": "@outputs('Get_Owner_of_Case')?['body/internalemailaddress']",
+                            "dynamicFileSchema/-1239005699": "@triggerBody()?['SensitivityLevel']",
+                            "dynamicFileSchema/-74362292": "@triggerBody()?['SensitivityLevel']"
+                          },
+                          "host": {
+                            "connectionName": "shared_wordonlinebusiness_2",
+                            "operationId": "CreateFileItem",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      },
+                      "Create_Observations_Template_File_French": {
+                        "runAfter": {
+                          "Populate_Observations_template_French": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "4cb848b3-6d85-498b-a924-a7ac69896b58"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_onedriveforbusiness",
+                            "operationId": "CreateFile",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                          },
+                          "parameters": {
+                            "folderPath": "/FindingsReports",
+                            "name": "Findings Report @{outputs('Get_Case')?['body/title']}@{formatDateTime(utcNow(), 'fffffff')}.docx",
+                            "body": "@body('Populate_Observations_template_French')"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        },
+                        "runtimeConfiguration": {
+                          "contentTransfer": {
+                            "transferMode": "Chunked"
+                          }
+                        }
+                      },
+                      "Observations_Set_CreatedFileId_French": {
+                        "runAfter": {
+                          "Create_Observations_Template_File_French": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "c6b83888-88c2-4f58-96cd-e748ae8815f6"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "CreatedFileId",
+                          "value": "@outputs('Create_Observations_Template_File_French')?['body/Id']"
+                        }
+                      },
+                      "Observations_Set_PopulatedTemplateFilePath_variable_French": {
+                        "runAfter": {
+                          "Observations_Set_CreatedFileId_French": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "c8a08671-edb1-4249-b8c3-3ea7aadcfbf4"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "PopulatedTemplateFilePath",
+                          "value": "@outputs('Create_Observations_Template_File_French')?['body/Path']"
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "greater": [
+                      "@length(variables('NonComplianceFindingsArray'))",
+                      0
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "63458497-3eb3-49bd-a2f2-caeda8c88693"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Populate_Non-Compliance_template_French": {
+                    "runAfter": {},
+                    "metadata": {
+                      "01WA4NRKVCNUYB4NAJZZFJK7BBQMHEL7F4": "/Word Templates/Findings Report Template 3.docx",
+                      "operationMetadataId": "122a63dc-9781-496a-8718-1a56ce4fc0cb",
+                      "01WA4NRKWEQEDG4EEXNVGJLQYTEZG5DNH4": "/Word Templates/Findings Report Template 3.docx",
+                      "01WA4NRKV3HGNXGFBL2VDKQPFBNF5L2SGE": "/Word Templates/Findings Report Template 3.docx",
+                      "01WA4NRKXGNLOIQR5TEBAI53OGTC64BIND": "/Word Templates/Findings Report Template.docx",
+                      "01WA4NRKXC6AURXGNJTZHIVWOKSMWRP7F2": "/Word Templates/Findings Report Template.docx",
+                      "01WA4NRKSZJOWAWEJ3ENCZAYRDQ4PGVXQT": "/Word Templates/Findings Report Template.docx",
+                      "01WA4NRKUM3QZTP4YR2BDJAUP4NP4QTDOM": "/Word Templates/Findings Report Template.docx",
+                      "01WA4NRKUGMPOFBG6W3FDJYHVR7QZ5SKOJ": "/Word Templates/Findings Report Template.docx",
+                      "01WA4NRKV2A6KDK2HOF5HZ4WNLXM6W6MCX": "/Word Templates/Findings Report Template.docx",
+                      "01WA4NRKQSMSG3XD3OCBHI3M5AOKJAK6HM": "/Word Templates/Findings Report Template.docx",
+                      "01WA4NRKS5JCH4X4G3HJCIRNOD4UFMNWOU": "/Word Templates/Findings Report Template.docx",
+                      "01WA4NRKRRXFP2FQYLERAJALFACTKV3OPW": "/Word Templates/Findings Report Template.docx",
+                      "01WA4NRKW2TLSII7TBMRCZIS5WA7UIMIQJ": "/Word Templates/Findings Report Template Observations and Non-compliance English.docx",
+                      "01WA4NRKQHABQHD2SS5BBZW4UEG6SQQALF": "/Word Templates/Findings Report Template Observations English.docx",
+                      "01WA4NRKSTEAP7MCRQYRDJECNBQECKZLXV": "/Word Templates/Findings Report Template Non-compliance English.docx",
+                      "01WA4NRKSZN7KFOSA4VRHJTSNCWXCQGLD7": "/Word Templates/Findings Report Template Non-compliance French.docx",
+                      "01WA4NRKTLRDY7VUD4T5FINXMWN3GM5YJD": "/Word Templates/Findings Report Template Non-compliance French.docx",
+                      "01WA4NRKVO5EPFTDCO7NBKRYWBGA773LZP": "/Word Templates/Findings Report Template Non-compliance French.docx",
+                      "01WA4NRKUC3VHTFVOXUFAZ5AO3EPYAN2LI": "/Word Templates/Findings Report Template Non-compliance French.docx",
+                      "01BEZBBRJAYZQENIDEPBC2FYISS4LLD42Q": "/ISSO Finding Report Templates/Findings Report Template Non-compliance French.docx",
+                      "01JWWJDI7WP3FWO7IUJRFZP743ZXOWLY6O": "/ROM - Finding Report Templates/Findings Report Template Non-compliance French.docx",
+                      "01GJVXCVBYZBXL52DKDBELZIBB5QDXSM43": "/ISSO Finding Report Templates/Findings Report Template Non-compliance French.docx"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "parameters": {
+                        "source": "me",
+                        "drive": "b!MLZShIUzOUy5ZKS91iP8vMBdDNHP9NpNl43AVxAtsli9t_IgI-LeRaYLW0tJXfQm",
+                        "file": "01GJVXCVBYZBXL52DKDBELZIBB5QDXSM43",
+                        "dynamicFileSchema/349296081": "@variables('NonComplianceFindingsArray')",
+                        "dynamicFileSchema/440577447": "@outputs('Get_Owner_of_Case')?['body/fullname']",
+                        "dynamicFileSchema/560606256": "@variables('LegislationSource')",
+                        "dynamicFileSchema/741609046": "@outputs('Get_Stakeholder_of_Case')?['body/name']",
+                        "dynamicFileSchema/755639229": "@outputs('Get_Activity_Type_of_Work_Order')?['body/ovs_incidenttypenamefrench']",
+                        "dynamicFileSchema/1735188722": "@variables('isRemoteInspection')",
+                        "dynamicFileSchema/1736668477": "@variables('ContactFullName')",
+                        "dynamicFileSchema/-1890633480": "@outputs('Get_Stakeholder_of_Case')?['body/name']",
+                        "dynamicFileSchema/-1540503820": "@outputs('Get_Site_of_Case')?['body/ts_functionallocationnamefrench']",
+                        "dynamicFileSchema/-870916165": "@variables('InspectionDate')",
+                        "dynamicFileSchema/-1547982281": "@length(body('List_Non-Compliance_Findings')?['value'])",
+                        "dynamicFileSchema/-2055616344": "@outputs('Get_Owner_of_Case')?['body/address1_telephone1']",
+                        "dynamicFileSchema/-776399849": "@outputs('Get_Owner_of_Case')?['body/internalemailaddress']",
+                        "dynamicFileSchema/-1362742275": "@triggerBody()?['SensitivityLevel']"
+                      },
+                      "host": {
+                        "connectionName": "shared_wordonlinebusiness_2",
+                        "operationId": "CreateFileItem",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  },
+                  "Create_Non-Compliance_Template_File_French": {
+                    "runAfter": {
+                      "Populate_Non-Compliance_template_French": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "4cb848b3-6d85-498b-a924-a7ac69896b58"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_onedriveforbusiness",
+                        "operationId": "CreateFile",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                      },
+                      "parameters": {
+                        "folderPath": "/FindingsReports",
+                        "name": "Findings Report @{outputs('Get_Case')?['body/title']}@{formatDateTime(utcNow(), 'fffffff')}.docx",
+                        "body": "@body('Populate_Non-Compliance_template_French')"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    },
+                    "runtimeConfiguration": {
+                      "contentTransfer": {
+                        "transferMode": "Chunked"
+                      }
+                    }
+                  },
+                  "Non-Compliance_Set_CreatedFileId_French": {
+                    "runAfter": {
+                      "Create_Non-Compliance_Template_File_French": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "c6b83888-88c2-4f58-96cd-e748ae8815f6"
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "CreatedFileId",
+                      "value": "@outputs('Create_Non-Compliance_Template_File_French')?['body/Id']"
+                    }
+                  },
+                  "Non-Compliance_Set_PopulatedTemplateFilePath_variable_French": {
+                    "runAfter": {
+                      "Non-Compliance_Set_CreatedFileId_French": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "c8a08671-edb1-4249-b8c3-3ea7aadcfbf4"
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "PopulatedTemplateFilePath",
+                      "value": "@outputs('Create_Non-Compliance_Template_File_French')?['body/Path']"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "greater": [
+                  "@length(variables('ObservationFindingsArray'))",
+                  0
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "2bd3b046-f0dd-45e3-91fe-88de8df9ca4e"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_CreatedFileId_variable": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "If_there_are_Observations_English": {
+                "actions": {
+                  "If_there_are_Non-Compliances_English": {
+                    "actions": {
+                      "Populate_Non-compliance_and_Observations_template_English": {
+                        "runAfter": {},
+                        "metadata": {
+                          "01WA4NRKVCNUYB4NAJZZFJK7BBQMHEL7F4": "/Word Templates/Findings Report Template 3.docx",
+                          "operationMetadataId": "122a63dc-9781-496a-8718-1a56ce4fc0cb",
+                          "01WA4NRKWEQEDG4EEXNVGJLQYTEZG5DNH4": "/Word Templates/Findings Report Template 3.docx",
+                          "01WA4NRKV3HGNXGFBL2VDKQPFBNF5L2SGE": "/Word Templates/Findings Report Template 3.docx",
+                          "01WA4NRKXGNLOIQR5TEBAI53OGTC64BIND": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKXC6AURXGNJTZHIVWOKSMWRP7F2": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKSZJOWAWEJ3ENCZAYRDQ4PGVXQT": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKUM3QZTP4YR2BDJAUP4NP4QTDOM": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKUGMPOFBG6W3FDJYHVR7QZ5SKOJ": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKV2A6KDK2HOF5HZ4WNLXM6W6MCX": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKQSMSG3XD3OCBHI3M5AOKJAK6HM": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKS5JCH4X4G3HJCIRNOD4UFMNWOU": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKRRXFP2FQYLERAJALFACTKV3OPW": "/Word Templates/Findings Report Template.docx",
+                          "01WA4NRKW2TLSII7TBMRCZIS5WA7UIMIQJ": "/Word Templates/Findings Report Template Observations and Non-compliance English.docx",
+                          "01WA4NRKQYZ7QFAJMI4BDZRCDUEZL5LZPU": "/Word Templates/Findings Report Template Observations and Non-compliance English.docx",
+                          "01WA4NRKQXRBRPCSI5SRAJPJNLE3LHGTIN": "/Word Templates/Findings Report Template Observations and Non-compliance English.docx",
+                          "01WA4NRKXSCQTLG7YN6VGL7CMIYP2P7V3W": "/Word Templates/Findings Report Template Observations and Non-compliance English.docx",
+                          "01BEZBBRISAO5G5RCYJZG3LWDYF47AKHRS": "/ISSO Finding Report Templates/Findings Report Template Observations and Non-compliance English.docx",
+                          "01GJVXCVCL4GAG7MTLJBDI2Y7WBTP2Y5OM": "/ISSO Finding Report Templates/Findings Report Template Observations and Non-compliance English.docx"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "parameters": {
+                            "source": "me",
+                            "drive": "b!MLZShIUzOUy5ZKS91iP8vMBdDNHP9NpNl43AVxAtsli9t_IgI-LeRaYLW0tJXfQm",
+                            "file": "01GJVXCVCL4GAG7MTLJBDI2Y7WBTP2Y5OM",
+                            "dynamicFileSchema/349296081": "@variables('NonComplianceFindingsArray')",
+                            "dynamicFileSchema/440577447": "@outputs('Get_Owner_of_Case')?['body/fullname']",
+                            "dynamicFileSchema/741609046": "@outputs('Get_Stakeholder_of_Case')?['body/name']",
+                            "dynamicFileSchema/755639229": "@outputs('Get_Activity_Type_of_Work_Order')?['body/ovs_incidenttypenameenglish']",
+                            "dynamicFileSchema/1735188722": "@variables('isRemoteInspection')",
+                            "dynamicFileSchema/1736668477": "@variables('ContactFullName')",
+                            "dynamicFileSchema/-1890633480": "@outputs('Get_Stakeholder_of_Case')?['body/name']",
+                            "dynamicFileSchema/-1540503820": "@outputs('Get_Site_of_Case')?['body/ts_functionallocationnameenglish']",
+                            "dynamicFileSchema/-870916165": "@variables('InspectionDate')",
+                            "dynamicFileSchema/-829444419": "@variables('LegislationSource')",
+                            "dynamicFileSchema/-1547982281": "@length(body('List_Non-Compliance_Findings')?['value'])",
+                            "dynamicFileSchema/-1600710248": "@variables('ObservationFindingsArray')",
+                            "dynamicFileSchema/-2055616344": "@outputs('Get_Owner_of_Case')?['body/address1_telephone1']",
+                            "dynamicFileSchema/-776399849": "@outputs('Get_Owner_of_Case')?['body/internalemailaddress']",
+                            "dynamicFileSchema/-74362292": "@triggerBody()?['SensitivityLevel']",
+                            "dynamicFileSchema/-2132317597": "@triggerBody()?['SensitivityLevel']"
+                          },
+                          "host": {
+                            "connectionName": "shared_wordonlinebusiness_2",
+                            "operationId": "CreateFileItem",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      },
+                      "Create_Non-compliance_and_Observations_Template_File_English": {
+                        "runAfter": {
+                          "Populate_Non-compliance_and_Observations_template_English": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "4cb848b3-6d85-498b-a924-a7ac69896b58"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_onedriveforbusiness",
+                            "operationId": "CreateFile",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                          },
+                          "parameters": {
+                            "folderPath": "/FindingsReports",
+                            "name": "Findings Report @{outputs('Get_Case')?['body/title']}@{formatDateTime(utcNow(), 'fffffff')}.docx",
+                            "body": "@body('Populate_Non-compliance_and_Observations_template_English')"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        },
+                        "runtimeConfiguration": {
+                          "contentTransfer": {
+                            "transferMode": "Chunked"
+                          }
+                        }
+                      },
+                      "Non-compliance_and_Observations_Set_CreatedFileId_English": {
+                        "runAfter": {
+                          "Create_Non-compliance_and_Observations_Template_File_English": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "c6b83888-88c2-4f58-96cd-e748ae8815f6"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "CreatedFileId",
+                          "value": "@outputs('Create_Non-compliance_and_Observations_Template_File_English')?['body/Id']"
+                        }
+                      },
+                      "Non-compliance_and_Observations_Set_PopulatedTemplateFilePath_variable_English": {
+                        "runAfter": {
+                          "Non-compliance_and_Observations_Set_CreatedFileId_English": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "c8a08671-edb1-4249-b8c3-3ea7aadcfbf4"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "PopulatedTemplateFilePath",
+                          "value": "@outputs('Create_Non-compliance_and_Observations_Template_File_English')?['body/Path']"
+                        }
+                      }
+                    },
+                    "runAfter": {},
+                    "else": {
+                      "actions": {
+                        "Populate_Observations_template_English": {
+                          "runAfter": {},
+                          "metadata": {
+                            "01WA4NRKVCNUYB4NAJZZFJK7BBQMHEL7F4": "/Word Templates/Findings Report Template 3.docx",
+                            "operationMetadataId": "122a63dc-9781-496a-8718-1a56ce4fc0cb",
+                            "01WA4NRKWEQEDG4EEXNVGJLQYTEZG5DNH4": "/Word Templates/Findings Report Template 3.docx",
+                            "01WA4NRKV3HGNXGFBL2VDKQPFBNF5L2SGE": "/Word Templates/Findings Report Template 3.docx",
+                            "01WA4NRKXGNLOIQR5TEBAI53OGTC64BIND": "/Word Templates/Findings Report Template.docx",
+                            "01WA4NRKXC6AURXGNJTZHIVWOKSMWRP7F2": "/Word Templates/Findings Report Template.docx",
+                            "01WA4NRKSZJOWAWEJ3ENCZAYRDQ4PGVXQT": "/Word Templates/Findings Report Template.docx",
+                            "01WA4NRKUM3QZTP4YR2BDJAUP4NP4QTDOM": "/Word Templates/Findings Report Template.docx",
+                            "01WA4NRKUGMPOFBG6W3FDJYHVR7QZ5SKOJ": "/Word Templates/Findings Report Template.docx",
+                            "01WA4NRKV2A6KDK2HOF5HZ4WNLXM6W6MCX": "/Word Templates/Findings Report Template.docx",
+                            "01WA4NRKQSMSG3XD3OCBHI3M5AOKJAK6HM": "/Word Templates/Findings Report Template.docx",
+                            "01WA4NRKS5JCH4X4G3HJCIRNOD4UFMNWOU": "/Word Templates/Findings Report Template.docx",
+                            "01WA4NRKRRXFP2FQYLERAJALFACTKV3OPW": "/Word Templates/Findings Report Template.docx",
+                            "01WA4NRKW2TLSII7TBMRCZIS5WA7UIMIQJ": "/Word Templates/Findings Report Template Observations and Non-compliance English.docx",
+                            "01WA4NRKQHABQHD2SS5BBZW4UEG6SQQALF": "/Word Templates/Findings Report Template Observations English.docx",
+                            "01WA4NRKTMKS4FIR6RJRDKZQ7SALJFIHYO": "/Word Templates/Findings Report Template Observations English.docx",
+                            "01WA4NRKSNV5ERNGAUWJAIBSSCJAINKLVT": "/Word Templates/Findings Report Template Observations English.docx",
+                            "01BEZBBRLK356YGFG67BHJNBBOUVX2L7OS": "/ISSO Finding Report Templates/Findings Report Template Observations English.docx",
+                            "01GJVXCVBN4DEERQW7FNB3H4F77G35DOHE": "/ISSO Finding Report Templates/Findings Report Template Observations English.docx"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "source": "me",
+                              "drive": "b!MLZShIUzOUy5ZKS91iP8vMBdDNHP9NpNl43AVxAtsli9t_IgI-LeRaYLW0tJXfQm",
+                              "file": "01GJVXCVBN4DEERQW7FNB3H4F77G35DOHE",
+                              "dynamicFileSchema/440577447": "@outputs('Get_Owner_of_Case')?['body/fullname']",
+                              "dynamicFileSchema/557512346": "@triggerBody()?['SensitivityLevel']",
+                              "dynamicFileSchema/741609046": "@outputs('Get_Stakeholder_of_Case')?['body/name']",
+                              "dynamicFileSchema/755639229": "@outputs('Get_Activity_Type_of_Work_Order')?['body/ovs_incidenttypenameenglish']",
+                              "dynamicFileSchema/1735188722": "@variables('isRemoteInspection')",
+                              "dynamicFileSchema/1736668477": "@variables('ContactFullName')",
+                              "dynamicFileSchema/-1890633480": "@outputs('Get_Stakeholder_of_Case')?['body/name']",
+                              "dynamicFileSchema/-1540503820": "@outputs('Get_Site_of_Case')?['body/ts_functionallocationnameenglish']",
+                              "dynamicFileSchema/-870916165": "@variables('InspectionDate')",
+                              "dynamicFileSchema/-1016300762": "@variables('LegislationSource')",
+                              "dynamicFileSchema/-1600710248": "@variables('ObservationFindingsArray')",
+                              "dynamicFileSchema/-2055616344": "@outputs('Get_Owner_of_Case')?['body/address1_telephone1']",
+                              "dynamicFileSchema/-776399849": "@outputs('Get_Owner_of_Case')?['body/internalemailaddress']",
+                              "dynamicFileSchema/-74362292": "@triggerBody()?['SensitivityLevel']"
+                            },
+                            "host": {
+                              "connectionName": "shared_wordonlinebusiness_2",
+                              "operationId": "CreateFileItem",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "Create_Observations_Template_File_English": {
+                          "runAfter": {
+                            "Populate_Observations_template_English": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "4cb848b3-6d85-498b-a924-a7ac69896b58"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_onedriveforbusiness",
+                              "operationId": "CreateFile",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                            },
+                            "parameters": {
+                              "folderPath": "/FindingsReports",
+                              "name": "Findings Report @{outputs('Get_Case')?['body/title']}@{formatDateTime(utcNow(), 'fffffff')}.docx",
+                              "body": "@body('Populate_Observations_template_English')"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          },
+                          "runtimeConfiguration": {
+                            "contentTransfer": {
+                              "transferMode": "Chunked"
+                            }
+                          }
+                        },
+                        "Observations_Set_CreatedFileId_English": {
+                          "runAfter": {
+                            "Create_Observations_Template_File_English": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "c6b83888-88c2-4f58-96cd-e748ae8815f6"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "CreatedFileId",
+                            "value": "@outputs('Create_Observations_Template_File_English')?['body/Id']"
+                          }
+                        },
+                        "Observations_Set_PopulatedTemplateFilePath_variable_English": {
+                          "runAfter": {
+                            "Observations_Set_CreatedFileId_English": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "c8a08671-edb1-4249-b8c3-3ea7aadcfbf4"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "PopulatedTemplateFilePath",
+                            "value": "@outputs('Create_Observations_Template_File_English')?['body/Path']"
+                          }
+                        }
+                      }
+                    },
+                    "expression": {
+                      "greater": [
+                        "@length(variables('NonComplianceFindingsArray'))",
+                        0
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "2f02b906-8339-4468-a939-0c6b29d8ecba"
+                    },
+                    "type": "If"
+                  }
+                },
+                "runAfter": {},
+                "else": {
+                  "actions": {
+                    "Populate_Non-Compliance_template_English": {
+                      "runAfter": {},
+                      "metadata": {
+                        "01WA4NRKVCNUYB4NAJZZFJK7BBQMHEL7F4": "/Word Templates/Findings Report Template 3.docx",
+                        "operationMetadataId": "122a63dc-9781-496a-8718-1a56ce4fc0cb",
+                        "01WA4NRKWEQEDG4EEXNVGJLQYTEZG5DNH4": "/Word Templates/Findings Report Template 3.docx",
+                        "01WA4NRKV3HGNXGFBL2VDKQPFBNF5L2SGE": "/Word Templates/Findings Report Template 3.docx",
+                        "01WA4NRKXGNLOIQR5TEBAI53OGTC64BIND": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKXC6AURXGNJTZHIVWOKSMWRP7F2": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKSZJOWAWEJ3ENCZAYRDQ4PGVXQT": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKUM3QZTP4YR2BDJAUP4NP4QTDOM": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKUGMPOFBG6W3FDJYHVR7QZ5SKOJ": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKV2A6KDK2HOF5HZ4WNLXM6W6MCX": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKQSMSG3XD3OCBHI3M5AOKJAK6HM": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKS5JCH4X4G3HJCIRNOD4UFMNWOU": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKRRXFP2FQYLERAJALFACTKV3OPW": "/Word Templates/Findings Report Template.docx",
+                        "01WA4NRKW2TLSII7TBMRCZIS5WA7UIMIQJ": "/Word Templates/Findings Report Template Observations and Non-compliance English.docx",
+                        "01WA4NRKQHABQHD2SS5BBZW4UEG6SQQALF": "/Word Templates/Findings Report Template Observations English.docx",
+                        "01WA4NRKSTEAP7MCRQYRDJECNBQECKZLXV": "/Word Templates/Findings Report Template Non-compliance English.docx",
+                        "01WA4NRKSQ54ZQTJW7KBE2CH6WU2YNTAQL": "/Word Templates/Findings Report Template Non-compliance English.docx",
+                        "01WA4NRKUGQJTAGEOHIRD3QRBZD462MRTN": "/Word Templates/Findings Report Template Non-compliance English.docx",
+                        "01BEZBBRI5JWSXYYXU7JF2TJFVDKACJMQW": "/ISSO Finding Report Templates/Findings Report Template Non-compliance English.docx",
+                        "01GJVXCVCJXVXHKG36XVFY7H5OC45RXNEY": "/ISSO Finding Report Templates/Findings Report Template Non-compliance English.docx"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "parameters": {
+                          "source": "me",
+                          "drive": "b!MLZShIUzOUy5ZKS91iP8vMBdDNHP9NpNl43AVxAtsli9t_IgI-LeRaYLW0tJXfQm",
+                          "file": "01GJVXCVCJXVXHKG36XVFY7H5OC45RXNEY",
+                          "dynamicFileSchema/349296081": "@variables('NonComplianceFindingsArray')",
+                          "dynamicFileSchema/440577447": "@outputs('Get_Owner_of_Case')?['body/fullname']",
+                          "dynamicFileSchema/741609046": "@outputs('Get_Stakeholder_of_Case')?['body/name']",
+                          "dynamicFileSchema/748928961": "@variables('LegislationSource')",
+                          "dynamicFileSchema/755639229": "@outputs('Get_Activity_Type_of_Work_Order')?['body/ovs_incidenttypenameenglish']",
+                          "dynamicFileSchema/1735188722": "@variables('isRemoteInspection')",
+                          "dynamicFileSchema/1736668477": "@variables('ContactFullName')",
+                          "dynamicFileSchema/-1890633480": "@outputs('Get_Stakeholder_of_Case')?['body/name']",
+                          "dynamicFileSchema/-1540503820": "@outputs('Get_Site_of_Case')?['body/ts_functionallocationnameenglish']",
+                          "dynamicFileSchema/-870916165": "@variables('InspectionDate')",
+                          "dynamicFileSchema/-1547982281": "@length(body('List_Non-Compliance_Findings')?['value'])",
+                          "dynamicFileSchema/-2055616344": "@outputs('Get_Owner_of_Case')?['body/address1_telephone1']",
+                          "dynamicFileSchema/-776399849": "@outputs('Get_Owner_of_Case')?['body/internalemailaddress']",
+                          "dynamicFileSchema/-74362292": "@triggerBody()?['SensitivityLevel']",
+                          "dynamicFileSchema/-1881847817": "@triggerBody()?['SensitivityLevel']"
+                        },
+                        "host": {
+                          "connectionName": "shared_wordonlinebusiness_2",
+                          "operationId": "CreateFileItem",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Create_Non-Compliance_Template_File_English": {
+                      "runAfter": {
+                        "Populate_Non-Compliance_template_English": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "4cb848b3-6d85-498b-a924-a7ac69896b58"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_onedriveforbusiness",
+                          "operationId": "CreateFile",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                        },
+                        "parameters": {
+                          "folderPath": "/FindingsReports",
+                          "name": "Findings Report @{outputs('Get_Case')?['body/title']}@{formatDateTime(utcNow(), 'fffffff')}.docx",
+                          "body": "@body('Populate_Non-Compliance_template_English')"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      },
+                      "runtimeConfiguration": {
+                        "contentTransfer": {
+                          "transferMode": "Chunked"
+                        }
+                      }
+                    },
+                    "Non-Compliance_Set_CreatedFileId_English": {
+                      "runAfter": {
+                        "Create_Non-Compliance_Template_File_English": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "c6b83888-88c2-4f58-96cd-e748ae8815f6"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "CreatedFileId",
+                        "value": "@outputs('Create_Non-Compliance_Template_File_English')?['body/Id']"
+                      }
+                    },
+                    "Non-Compliance_Set_PopulatedTemplateFilePath_variable_English": {
+                      "runAfter": {
+                        "Non-Compliance_Set_CreatedFileId_English": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "c8a08671-edb1-4249-b8c3-3ea7aadcfbf4"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "PopulatedTemplateFilePath",
+                        "value": "@outputs('Create_Non-Compliance_Template_File_English')?['body/Path']"
+                      }
+                    }
+                  }
+                },
+                "expression": {
+                  "greater": [
+                    "@length(variables('ObservationFindingsArray'))",
+                    0
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "745cd707-f121-4884-8feb-4971c646f76d"
+                },
+                "type": "If"
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_language']",
+              717750001
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e1d35a9a-84c4-4d70-894a-3b3ddd68a645"
+          },
+          "type": "If"
+        },
+        "Convert_Word_Document_to_PDF": {
+          "runAfter": {
+            "Populate_Word_Template,_If_Language_is_French": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0ac972e8-1bf0-4968-9bba-d404e20a6429"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "source": "me",
+              "drive": "b!MLZShIUzOUy5ZKS91iP8vMBdDNHP9NpNl43AVxAtsli9t_IgI-LeRaYLW0tJXfQm",
+              "file": "@variables('PopulatedTemplateFilePath')"
+            },
+            "host": {
+              "connectionName": "shared_wordonlinebusiness_2",
+              "operationId": "GetFilePDF",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Create_a_new_File_record": {
+          "runAfter": {
+            "Convert_Word_Document_to_PDF": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3ac98ce7-7c4f-41a7-a802-870f2b181107"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "ts_files",
+              "item/ts_file": "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_name']",
+              "item/ts_visibletootherprograms": false,
+              "item/ts_filecategory@odata.bind": "ts_filecategories(ac75e950-a98d-ec11-8d20-000d3a0c9366)",
+              "item/ts_filesubcategory@odata.bind": "ts_filesubcategories(b49d0d07-50b7-ec11-983e-0022483dbf81)",
+              "item/ts_formintegrationid": "@concat('CASE ', outputs('Get_Case')?['body/title'])",
+              "item/ts_isfindingsreport": true,
+              "item/ownerid@odata.bind": "systemusers(@{outputs('Get_Case')?['body/_ownerid_value']})",
+              "item/ts_sensitivitylevel": "@outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_sensitivitylevel']"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "CreateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Attach_PDF_to_new_File_record": {
+          "runAfter": {
+            "Create_a_new_File_record": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cbea8206-f3f7-45e1-8c75-70ce2178ee6d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "x-ms-file-name": "@{outputs('Get_a_Findings_Report_record_by_ID')?['body/ts_name']}.pdf",
+              "entityName": "ts_files",
+              "recordId": "@outputs('Create_a_new_File_record')?['body/ts_fileid']",
+              "fileImageFieldName": "ts_attachment",
+              "item": "@body('Convert_Word_Document_to_PDF')"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "UpdateEntityFileImageFieldContent",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Relate_new_File_record_to_Case": {
+          "runAfter": {
+            "Attach_PDF_to_new_File_record": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8853745e-d83c-4a86-9f39-fe32d3685573"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "incidents",
+              "recordId": "@outputs('Get_Case')?['body/incidentid']",
+              "associationEntityRelationship": "ts_Files_Incidents",
+              "item/@odata.id": "@outputs('Create_a_new_File_record')?['body/@odata.id']"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "AssociateEntities",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Create_a_Post_on_Case": {
+          "runAfter": {
+            "Relate_new_File_record_to_Case": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6e7c2b8e-00bc-4a15-9fca-38ca1073d1a8"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "posts",
+              "item/source": 1,
+              "item/largetext": "A Findings Report has been created.",
+              "item/text": "A Findings Report has been created.",
+              "item/type": 3,
+              "item/regardingobjectid_incident@odata.bind": "incidents(@{outputs('Get_Case')?['body/incidentid']})"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "CreateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "If_UserLanguage_is_French_(Sending_Notifcation)": {
+          "actions": {
+            "Create_Notification_French": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "bfef1b19-6163-4d86-b432-c2ac52ab78bf"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "appnotifications",
+                  "item/title": "Rapport de constatation créé",
+                  "item/body": "Votre rapport de constatation a été créé",
+                  "item/data": "{\n  \"actions\": [\n        {\n        \"title\": \"Consulter le rapport de constatation\",\n        \"data\": {\n            \"url\": \"?pagetype=entityrecord&etn=ts_file&id=@{outputs('Create_a_new_File_record')?['body/ts_fileid']}\",\n            \"navigationTarget\": \"dialog\"\n               }        \n        }\n      ]\n     }",
+                  "item/ttlinseconds": 1200,
+                  "item/icontype": 100000001,
+                  "item/ownerid@odata.bind": "systemusers(@{outputs('Get_a_Findings_Report_record_by_ID')?['body/_ownerid_value']})",
+                  "item/toasttype": 200000000
+                },
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Create_a_Post_on_Case": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Create_Notification_English": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "bfef1b19-6163-4d86-b432-c2ac52ab78bf"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "parameters": {
+                    "entityName": "appnotifications",
+                    "item/title": "Findings Report Created",
+                    "item/body": "Your Findings Report has been created",
+                    "item/data": "{\n  \"actions\": [\n        {\n        \"title\": \"View Findings Report\",\n        \"data\": {\n            \"url\": \"?pagetype=entityrecord&etn=ts_file&id=@{outputs('Create_a_new_File_record')?['body/ts_fileid']}\",\n            \"navigationTarget\": \"dialog\"\n               }        \n        }\n      ]\n     }",
+                    "item/ttlinseconds": 1200,
+                    "item/icontype": 100000001,
+                    "item/ownerid@odata.bind": "systemusers(@{outputs('Get_a_Findings_Report_record_by_ID')?['body/_ownerid_value']})",
+                    "item/toasttype": 200000000
+                  },
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps_1",
+                    "operationId": "CreateRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@triggerBody()?['UserLanguage']",
+              1036
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "766d040c-dd5f-4400-b416-4b32c6d0da68"
+          },
+          "type": "If"
+        },
+        "Update_a_row": {
+          "runAfter": {
+            "If_UserLanguage_is_French_(Sending_Notifcation)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e8bbe407-7b8a-4b46-a4b9-0153c0b014d2"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "ts_files",
+              "recordId": "@outputs('Create_a_new_File_record')?['body/ts_fileid']",
+              "item/ownerid@odata.bind": "teams(@{outputs('Get_Activity_Type_of_Work_Order')?['body/_ownerid_value']})"
+            },
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "UpdateOnlyRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Wait_2_seconds": {
+          "runAfter": {
+            "Update_a_row": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "86260f12-ed64-486a-9788-02484d94d571"
+          },
+          "type": "Wait",
+          "inputs": {
+            "interval": {
+              "count": 2,
+              "unit": "Second"
+            }
+          }
+        },
+        "Delete_the_temporary_file": {
+          "runAfter": {
+            "Wait_2_seconds": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3436eb44-a9d0-404b-a836-c41b23fd519e"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_onedriveforbusiness",
+              "operationId": "DeleteFile",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+            },
+            "parameters": {
+              "id": "@variables('CreatedFileId')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Condition_-_FlowKey": {
+          "actions": {},
+          "runAfter": {
+            "Initialize_variable_-_FlowKey": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Terminate": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "e5630e37-8abb-4737-af76-76dcea4e8314"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Failed",
+                  "runError": {
+                    "code": "401",
+                    "message": "Description: Invalid FlowKey - Security check failed"
+                  }
+                }
+              }
+            }
+          },
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@variables('FlowKey')",
+                  "@parameters('SharePoint Flow Key (ts_SharePointFlowKey)')"
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4a9817e7-0368-47b0-a7eb-c15c8e8d1f34"
+          },
+          "type": "If"
+        },
+        "Parse_JSON": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "b6fd3727-2e14-48ed-bffe-a0b8e0dfa2a4"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerOutputs()?['headers']",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Content-Type": {
+                  "type": "string"
+                },
+                "FlowKey": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

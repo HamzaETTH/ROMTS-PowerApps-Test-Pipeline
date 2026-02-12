@@ -1,0 +1,978 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{f1f36a58-8341-4148-8e30-46eb056cec1b}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
+      <tabs>
+        <tab verticallayout="true" id="{9d0ebc93-5d52-4c14-a2a1-e20fa13ad71b}" IsUserDefined="1">
+          <labels>
+            <label description="Overview" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="67%">
+              <sections>
+                <section showlabel="true" showbar="false" IsUserDefined="0" id="{36aa68e2-f88c-463a-9d6d-717a7c982249}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{76a650f8-7945-40a8-9697-e72b52a31a00}" visible="false">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Name" languagecode="1036" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6760361a-f6f6-4150-901e-c148c210eaa1}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Operation" languagecode="1033" />
+                        </labels>
+                        <control id="ts_operation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2e4d45b5-4760-41d7-8308-4aaad6fb11a2}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Contact" languagecode="1033" />
+                        </labels>
+                        <control id="ts_contact" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_contact" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{114373d3-21ab-4327-b864-7a25a3c17abe}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Infraction Type" languagecode="1033" />
+                          <label description="Type d'infraction" languagecode="1036" />
+                        </labels>
+                        <control id="ts_infractiontype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_infractiontype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b17f10b0-6f5d-4c5c-9f30-eae42b13b2c2}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Region" languagecode="1033" />
+                        </labels>
+                        <control id="ts_region" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_region" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d6096637-ab07-43bb-ab29-237123523bd6}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Operation Type" languagecode="1033" />
+                        </labels>
+                        <control id="ts_operationtype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operationtype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{226732ab-33e6-4f7d-be0c-dfe753d2b8a5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Stakeholder" languagecode="1033" />
+                        </labels>
+                        <control id="ts_stakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_stakeholder" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e60935b1-2388-44f4-b6c0-703032e70525}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Site" languagecode="1033" />
+                        </labels>
+                        <control id="ts_functionallocation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_functionallocation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{62410a09-4235-40d4-a263-37f98232884e}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Was the issue addressed on-site?" languagecode="1033" />
+                        </labels>
+                        <control id="ts_issueaddressedonsite" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_issueaddressedonsite" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9c7f0dac-6d14-4912-abd5-9e87ea45fa23}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Timeframe to address Non-Compliance" languagecode="1033" />
+                        </labels>
+                        <control id="ts_noncompliancetimeframe" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_noncompliancetimeframe" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d1d0d928-89ce-496d-a910-4e38dbbe0c82}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Provision Reference" languagecode="1033" />
+                          <label description="Legislation" languagecode="1036" />
+                        </labels>
+                        <control id="ts_legislation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{faab392e-4a3b-40b9-b24e-af60999b9971}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Provision Text (EN)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_infractionprovisiontexten" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_infractionprovisiontexten" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{46d37253-0ae6-404b-8580-d5ce355075be}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Provision Text (FR)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_infractionprovisiontextfr" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_infractionprovisiontextfr" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell rowspan="6" id="{54d5bb59-4951-4f1b-828b-8828ae627211}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/InfractionProvisionText.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_InfractionProvisionText" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/InfractionProvisionText.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{547b0176-1bea-ef11-9342-000d3ae93ca1}</WebResourceId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{1a06017f-8618-4590-8c75-0f35d2e31718}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Final Enforcement Action" languagecode="1033" />
+                        </labels>
+                        <control id="ts_finalenforcementaction" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_finalenforcementaction" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_3" id="0deaf494-af8c-46b3-a7f8-47bf5554ba37" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Related to" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{5392adf9-510b-4b37-abc9-34c55871ec25}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{459d4770-dae8-4be1-8aa5-5321efd15807}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Work Order" languagecode="1033" />
+                        </labels>
+                        <control id="ts_workorder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_workorder" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d9ffd20e-960e-4e67-9955-ccb0ce979306}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Case" languagecode="1033" />
+                        </labels>
+                        <control id="ts_case" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_case" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{66c3da19-94f6-4152-b112-52f9f871dfb4}" rowspan="4" colspan="1" auto="false" showlabel="true">
+                        <labels>
+                          <label description="Findings" languagecode="1033" />
+                          <label description="Constatations" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_ovs_finding_infraction_ts_infraction</RelationshipName>
+                            <TargetEntityType>ovs_finding</TargetEntityType>
+                            <ViewId>{293497C0-BCAE-EC11-983E-002248ADE910}</ViewId>
+                            <ViewIds>{77179513-BCAE-EC11-983E-002248ADE910},{0F6D195A-2793-EC11-B3FE-0022483E8601},{293497C0-BCAE-EC11-983E-002248ADE910}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{6e6be6f0-6a21-4eee-9f16-3990d81ede7e}" rowspan="4" colspan="1" auto="false" showlabel="true">
+                        <labels>
+                          <label description="Actions" languagecode="1033" />
+                          <label description="Constatations" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_3" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_infraction_ts_infraction_ts_actioninfraction</RelationshipName>
+                            <TargetEntityType>ts_actioninfraction</TargetEntityType>
+                            <ViewId>{8d9e17c7-37f9-46d1-8086-88048ec75ccf}</ViewId>
+                            <ViewIds>{8d9e17c7-37f9-46d1-8086-88048ec75ccf}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section name="_section_911" id="efacfd1a-a0d9-451d-bf36-fa63672dc352" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Notes" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{fe4c2ff2-6d8c-4f04-843f-a0f25f01722e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2bbb5530-a457-4aa9-bf95-279b1f17c8d1}" locklevel="0" colspan="1" rowspan="1" showlabel="false">
+                        <labels>
+                          <label description="Notes" languagecode="1033" />
+                        </labels>
+                        <control id="ts_notes" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_notes" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_RATE" id="bbaba8b3-51d1-4639-a6cd-4825b455da43" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="RATE" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="90%">
+              <sections>
+                <section name="tab_3_section_1" id="9aafefa6-8b44-44ce-90d6-41ecd68af486" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="11" labelwidth="115" height="auto">
+                  <labels>
+                    <label description="RATE" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row height="auto">
+                      <cell locklevel="0" id="{0b765b58-6b57-4da1-abae-ba914e11e184}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{4dcbbaed-08a4-3291-ee3b-ce8edb30164e}" showlabel="false" colspan="1" auto="true" rowspan="1">
+                        <labels>
+                          <label description="RATEFactorGuide_SpecificNonComplianceHistory" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactorGuide_SpecificNonComplianceHistory" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_SpecificNonComplianceHistory.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{47D8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1ea74518-4d1c-451b-9166-1cdf602149d3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Specific Non-Compliance History" languagecode="1033" />
+                        </labels>
+                        <control id="ts_ratespecificnoncompliancehistory" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_ratespecificnoncompliancehistory" disabled="false" />
+                      </cell>
+                      <cell id="{e2a08618-1009-a174-dde6-b4d9b8ab15ab}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="RATEFactorGuide_GeneralNonComplianceHistory" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactorGuide_GeneralNonComplianceHistory" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_GeneralNonComplianceHistory.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{28D8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{39505175-7df9-4437-890c-a4535c36e561}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="General Non-Compliance History" languagecode="1033" />
+                        </labels>
+                        <control id="ts_rategeneralnoncompliancehistory" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rategeneralnoncompliancehistory" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{93CDA42E-838B-EC11-8D20-0022483C8E25}</DefaultViewId>
+                            <AvailableViewIds>{378E4D67-6DB8-4AD1-8432-FBC60A3F5397},{5CBA633E-017D-4D7D-8369-F3C2034DB2DA},{C9707442-511D-41AA-A5E2-EF767CABB2A0},{3F058D92-1F7E-EC11-8D20-0022483CBF0E},{6AEAD01D-207E-EC11-8D20-0022483CBF0E},{A62FBD8D-207E-EC11-8D20-0022483D65D3},{CA8054AD-207E-EC11-8D20-0022483D65D3},{5B61023F-207E-EC11-8D20-0022483CBF0E},{DDE6CAF6-1F7E-EC11-8D20-0022483CBF0E},{D2AA5B6F-207E-EC11-8D20-0022483CBF0E},{6305448F-838B-EC11-8D20-0022483C8E25},{D76FF554-838B-EC11-8D20-0022483CA2F9},{2EC6E3DE-848B-EC11-8D20-0022483C8E25},{2BCC29BC-848B-EC11-8D20-0022483CA2F9},{93CDA42E-838B-EC11-8D20-0022483C8E25},{8C08E18B-848B-EC11-8D20-0022483CA2F9},{816DA6E0-838B-EC11-8D20-0022483C8E25},{BEB33A17-848B-EC11-8D20-0022483C8E25}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{11d29978-5a98-6cac-a199-5e879b49e969}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="RATEFactorGuide_ActualPotentialHarmVulnerability" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactorGuide_ActualPotentialHarmVulnerability" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_ActualPotentialHarmVulnerability.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{16D8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{621d5cc9-670f-4221-b51d-b2e993c58b8b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Actual or Potential Harm" languagecode="1033" />
+                        </labels>
+                        <control id="ts_rateactualorpotentialharm" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rateactualorpotentialharm" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{D76FF554-838B-EC11-8D20-0022483CA2F9}</DefaultViewId>
+                            <AvailableViewIds>{378E4D67-6DB8-4AD1-8432-FBC60A3F5397},{5CBA633E-017D-4D7D-8369-F3C2034DB2DA},{C9707442-511D-41AA-A5E2-EF767CABB2A0},{3F058D92-1F7E-EC11-8D20-0022483CBF0E},{6AEAD01D-207E-EC11-8D20-0022483CBF0E},{A62FBD8D-207E-EC11-8D20-0022483D65D3},{CA8054AD-207E-EC11-8D20-0022483D65D3},{5B61023F-207E-EC11-8D20-0022483CBF0E},{DDE6CAF6-1F7E-EC11-8D20-0022483CBF0E},{D2AA5B6F-207E-EC11-8D20-0022483CBF0E},{6305448F-838B-EC11-8D20-0022483C8E25},{D76FF554-838B-EC11-8D20-0022483CA2F9},{2EC6E3DE-848B-EC11-8D20-0022483C8E25},{2BCC29BC-848B-EC11-8D20-0022483CA2F9},{93CDA42E-838B-EC11-8D20-0022483C8E25},{8C08E18B-848B-EC11-8D20-0022483CA2F9},{816DA6E0-838B-EC11-8D20-0022483C8E25},{BEB33A17-848B-EC11-8D20-0022483C8E25}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{36b31ddc-2900-de0e-1dab-27b40d0e7dbb}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="RATEFactorGuide_Intentionality" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactorGuide_Intentionality" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_Intentionality.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{2ED8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{64ad0602-8ee4-4b84-8a82-007a4a810f60}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Intentionality" languagecode="1033" />
+                        </labels>
+                        <control id="ts_rateintentionality" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rateintentionality" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{8C08E18B-848B-EC11-8D20-0022483CA2F9}</DefaultViewId>
+                            <AvailableViewIds>{378E4D67-6DB8-4AD1-8432-FBC60A3F5397},{5CBA633E-017D-4D7D-8369-F3C2034DB2DA},{C9707442-511D-41AA-A5E2-EF767CABB2A0},{3F058D92-1F7E-EC11-8D20-0022483CBF0E},{6AEAD01D-207E-EC11-8D20-0022483CBF0E},{A62FBD8D-207E-EC11-8D20-0022483D65D3},{CA8054AD-207E-EC11-8D20-0022483D65D3},{5B61023F-207E-EC11-8D20-0022483CBF0E},{DDE6CAF6-1F7E-EC11-8D20-0022483CBF0E},{D2AA5B6F-207E-EC11-8D20-0022483CBF0E},{6305448F-838B-EC11-8D20-0022483C8E25},{D76FF554-838B-EC11-8D20-0022483CA2F9},{2EC6E3DE-848B-EC11-8D20-0022483C8E25},{2BCC29BC-848B-EC11-8D20-0022483CA2F9},{93CDA42E-838B-EC11-8D20-0022483C8E25},{8C08E18B-848B-EC11-8D20-0022483CA2F9},{816DA6E0-838B-EC11-8D20-0022483C8E25},{BEB33A17-848B-EC11-8D20-0022483C8E25}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{48b2aa65-9ce9-1109-7ddd-c5a9c55d4b3e}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="RATEFactorGuide_EconomicBenefit" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactorGuide_EconomicBenefit" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_EconomicBenefit.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{22D8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{91ee9e2b-ca51-4dc8-af1e-ffe87342ca28}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Economic Benefit" languagecode="1033" />
+                        </labels>
+                        <control id="ts_rateeconomicbenefit" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rateeconomicbenefit" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{2BCC29BC-848B-EC11-8D20-0022483CA2F9}</DefaultViewId>
+                            <AvailableViewIds>{378E4D67-6DB8-4AD1-8432-FBC60A3F5397},{5CBA633E-017D-4D7D-8369-F3C2034DB2DA},{C9707442-511D-41AA-A5E2-EF767CABB2A0},{3F058D92-1F7E-EC11-8D20-0022483CBF0E},{6AEAD01D-207E-EC11-8D20-0022483CBF0E},{A62FBD8D-207E-EC11-8D20-0022483D65D3},{CA8054AD-207E-EC11-8D20-0022483D65D3},{5B61023F-207E-EC11-8D20-0022483CBF0E},{DDE6CAF6-1F7E-EC11-8D20-0022483CBF0E},{D2AA5B6F-207E-EC11-8D20-0022483CBF0E},{6305448F-838B-EC11-8D20-0022483C8E25},{D76FF554-838B-EC11-8D20-0022483CA2F9},{2EC6E3DE-848B-EC11-8D20-0022483C8E25},{2BCC29BC-848B-EC11-8D20-0022483CA2F9},{93CDA42E-838B-EC11-8D20-0022483C8E25},{8C08E18B-848B-EC11-8D20-0022483CA2F9},{816DA6E0-838B-EC11-8D20-0022483C8E25},{BEB33A17-848B-EC11-8D20-0022483C8E25}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{46c9719d-32aa-009e-d771-808648038326}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="RATEFactorGuide_AcceptanceOfResponsibility" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactorGuide_AcceptanceOfResponsibility" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_AcceptanceOfResponsibility.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{54F3CDD3-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{870791bd-f01f-4067-9f86-f89e28feb7d0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Acceptance of Responsibility" languagecode="1033" />
+                        </labels>
+                        <control id="ts_rateresponsibility" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rateresponsibility" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{6305448F-838B-EC11-8D20-0022483C8E25}</DefaultViewId>
+                            <AvailableViewIds>{378E4D67-6DB8-4AD1-8432-FBC60A3F5397},{5CBA633E-017D-4D7D-8369-F3C2034DB2DA},{C9707442-511D-41AA-A5E2-EF767CABB2A0},{3F058D92-1F7E-EC11-8D20-0022483CBF0E},{6AEAD01D-207E-EC11-8D20-0022483CBF0E},{A62FBD8D-207E-EC11-8D20-0022483D65D3},{CA8054AD-207E-EC11-8D20-0022483D65D3},{5B61023F-207E-EC11-8D20-0022483CBF0E},{DDE6CAF6-1F7E-EC11-8D20-0022483CBF0E},{D2AA5B6F-207E-EC11-8D20-0022483CBF0E},{6305448F-838B-EC11-8D20-0022483C8E25},{D76FF554-838B-EC11-8D20-0022483CA2F9},{2EC6E3DE-848B-EC11-8D20-0022483C8E25},{2BCC29BC-848B-EC11-8D20-0022483CA2F9},{93CDA42E-838B-EC11-8D20-0022483C8E25},{8C08E18B-848B-EC11-8D20-0022483CA2F9},{816DA6E0-838B-EC11-8D20-0022483C8E25},{BEB33A17-848B-EC11-8D20-0022483C8E25}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{7b18a8a4-5ba2-cbda-6147-b7366150ead4}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="RATEFactorGuide_MitigationOfHarm" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactorGuide_MitigationOfHarm" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_MitigationOfHarm.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{38D8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{463cfef2-fbf7-4823-a8bf-e1c4fe2198a0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Mitigation of Harm" languagecode="1033" />
+                        </labels>
+                        <control id="ts_ratemitigationofharm" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_ratemitigationofharm" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{816DA6E0-838B-EC11-8D20-0022483C8E25}</DefaultViewId>
+                            <AvailableViewIds>{378E4D67-6DB8-4AD1-8432-FBC60A3F5397},{5CBA633E-017D-4D7D-8369-F3C2034DB2DA},{C9707442-511D-41AA-A5E2-EF767CABB2A0},{3F058D92-1F7E-EC11-8D20-0022483CBF0E},{6AEAD01D-207E-EC11-8D20-0022483CBF0E},{A62FBD8D-207E-EC11-8D20-0022483D65D3},{CA8054AD-207E-EC11-8D20-0022483D65D3},{5B61023F-207E-EC11-8D20-0022483CBF0E},{DDE6CAF6-1F7E-EC11-8D20-0022483CBF0E},{D2AA5B6F-207E-EC11-8D20-0022483CBF0E},{6305448F-838B-EC11-8D20-0022483C8E25},{D76FF554-838B-EC11-8D20-0022483CA2F9},{2EC6E3DE-848B-EC11-8D20-0022483C8E25},{2BCC29BC-848B-EC11-8D20-0022483CA2F9},{93CDA42E-838B-EC11-8D20-0022483C8E25},{8C08E18B-848B-EC11-8D20-0022483CA2F9},{816DA6E0-838B-EC11-8D20-0022483C8E25},{BEB33A17-848B-EC11-8D20-0022483C8E25}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{67b8c736-4a6a-72c7-c1d0-0352b5443392}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="RATEFactorGuide_PreventionOfRecurrence" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactorGuide_PreventionOfRecurrence" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_PreventionOfRecurrence.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{3FD8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0dfcf669-4745-4e42-9e76-d866dc17fe9a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Prevention of  Recurrence " languagecode="1033" />
+                        </labels>
+                        <control id="ts_ratepreventingrecurrence" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_ratepreventingrecurrence" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{BEB33A17-848B-EC11-8D20-0022483C8E25}</DefaultViewId>
+                            <AvailableViewIds>{378E4D67-6DB8-4AD1-8432-FBC60A3F5397},{5CBA633E-017D-4D7D-8369-F3C2034DB2DA},{C9707442-511D-41AA-A5E2-EF767CABB2A0},{3F058D92-1F7E-EC11-8D20-0022483CBF0E},{6AEAD01D-207E-EC11-8D20-0022483CBF0E},{A62FBD8D-207E-EC11-8D20-0022483D65D3},{CA8054AD-207E-EC11-8D20-0022483D65D3},{5B61023F-207E-EC11-8D20-0022483CBF0E},{DDE6CAF6-1F7E-EC11-8D20-0022483CBF0E},{D2AA5B6F-207E-EC11-8D20-0022483CBF0E},{6305448F-838B-EC11-8D20-0022483C8E25},{D76FF554-838B-EC11-8D20-0022483CA2F9},{2EC6E3DE-848B-EC11-8D20-0022483C8E25},{2BCC29BC-848B-EC11-8D20-0022483CA2F9},{93CDA42E-838B-EC11-8D20-0022483C8E25},{8C08E18B-848B-EC11-8D20-0022483CA2F9},{816DA6E0-838B-EC11-8D20-0022483C8E25},{BEB33A17-848B-EC11-8D20-0022483C8E25}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{60671a7a-8572-65c3-2168-ce731b132991}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="RATEFactorGuide_Cooperation" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactorGuide_Cooperation" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_Cooperation.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{1CD8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6276b806-1239-4e47-8abd-6a806bacf753}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Cooperation" languagecode="1033" />
+                        </labels>
+                        <control id="ts_ratecooperation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_ratecooperation" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{2EC6E3DE-848B-EC11-8D20-0022483C8E25}</DefaultViewId>
+                            <AvailableViewIds>{378E4D67-6DB8-4AD1-8432-FBC60A3F5397},{5CBA633E-017D-4D7D-8369-F3C2034DB2DA},{C9707442-511D-41AA-A5E2-EF767CABB2A0},{3F058D92-1F7E-EC11-8D20-0022483CBF0E},{6AEAD01D-207E-EC11-8D20-0022483CBF0E},{A62FBD8D-207E-EC11-8D20-0022483D65D3},{CA8054AD-207E-EC11-8D20-0022483D65D3},{5B61023F-207E-EC11-8D20-0022483CBF0E},{DDE6CAF6-1F7E-EC11-8D20-0022483CBF0E},{D2AA5B6F-207E-EC11-8D20-0022483CBF0E},{6305448F-838B-EC11-8D20-0022483C8E25},{D76FF554-838B-EC11-8D20-0022483CA2F9},{2EC6E3DE-848B-EC11-8D20-0022483C8E25},{2BCC29BC-848B-EC11-8D20-0022483CA2F9},{93CDA42E-838B-EC11-8D20-0022483C8E25},{8C08E18B-848B-EC11-8D20-0022483CA2F9},{816DA6E0-838B-EC11-8D20-0022483C8E25},{BEB33A17-848B-EC11-8D20-0022483C8E25}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{2022d41e-b29c-daed-4a42-8d4b690565d8}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_3_section_3" id="6587617c-7ada-4fac-9374-c305eb6edd34" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{e596b9dc-161d-454e-8660-bc2a929bd43a}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{409e001c-fa60-4012-8fe7-7fee6841f2f0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Previous Enforcement Mechanism" languagecode="1033" />
+                        </labels>
+                        <control id="ts_ratepreviousenforcementmechanism" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_ratepreviousenforcementmechanism" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_3_section_4" id="fbdf4d01-1142-4947-958e-c84fd76260c0" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{92b3e482-ee71-4c6b-8b13-b9715e82e59c}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6495f848-96c7-4bcf-884b-bdc573cea7be}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Enforcement Recommendation" languagecode="1033" />
+                        </labels>
+                        <control id="ts_rateenforcementrecommendation" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_rateenforcementrecommendation" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{bb161641-72e4-427a-95ae-134861e953b1}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Accept RATE Recommendation" languagecode="1033" />
+                        </labels>
+                        <control id="ts_acceptraterecommendation" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_acceptraterecommendation" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="RATE_proposed_section" id="21ad807b-c0de-4ad9-83d3-a82f9cdb4f44" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{3ecad18c-ef38-43eb-840c-9bb3e6c54dd4}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9590a343-1238-4790-bb31-7fcf32d86cea}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Approving Team" languagecode="1033" />
+                        </labels>
+                        <control id="ts_rateapprovingteam" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rateapprovingteam" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{00000000-0000-0000-00AA-000010001026}</DefaultViewId>
+                            <AvailableViewIds>{023E8FD1-8872-46AC-82B6-76F9EECECC20},{DEA89BA4-EED0-41FE-ADFC-35AA73456462},{311E70D5-46DB-EE11-904A-0022480BC284},{00000000-0000-0000-00AA-000010001026},{1811613A-143D-40FD-8D7B-7356EC7C9DF5},{00000000-0000-0000-00AA-000010001024},{A596FF84-88FD-4EEA-84F6-335B357E176A},{00000000-0000-0000-00AA-000010001027},{7BE91FF9-A303-ED11-82E6-002248AE441F},{57E39843-404C-48E5-B1D9-1889098FB65C}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{30919061-34b1-42e0-82cb-bcb93b24fadd}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Manager" languagecode="1033" />
+                        </labels>
+                        <control id="ts_ratemanager" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_ratemanager" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{298A2853-22E5-ED11-8848-0022483D7716}</DefaultViewId>
+                            <AvailableViewIds>{9C91FF7F-3DF9-4AA9-9F00-AAA2BEB3192F},{71FF097F-A986-EB11-B1AD-002248216F73},{ABA981C9-16A2-4DCC-B694-376AE95FA4B0},{862C3CBF-23FF-4EAB-B9A9-7B438BAC70A9},{27E6C8F8-3972-EB11-A812-000D3A374668},{94B84E8F-2772-EB11-A812-000D3A374668},{07FD7812-3A72-EB11-A812-000D3A374668},{51AF2F40-36BB-4198-9B0C-71A986C7C953},{F79AD170-AE03-4F4C-8132-D4AA08520A0C},{298A2853-22E5-ED11-8848-0022483D7716},{99A522B5-E038-E911-A9AA-000D3A36C3BF},{28890F93-B2CB-E811-A94C-000D3A7083A8},{79EA2CCE-4C0D-4DE8-A6A4-AB4B2E362937},{29BD662E-52E7-EC11-BB3C-0022483D86CE},{00000000-0000-0000-00AA-000010001119},{5953249B-2A59-43BF-A94F-6B8CC1F2D245},{72C011FB-4FC7-ED11-B597-0022483C5061},{00000000-0000-0000-00AA-000010001019},{D651EB0F-3EA9-EC11-983E-0022483E6BB0},{2579C85C-5D9E-EC11-B3FE-002248AD8B2F},{DA675923-DA9D-4702-AAD6-3207283A5ACE},{00000000-0000-0000-00AA-000010001020},{8DD58E14-0138-47D4-BA2D-A7DC76094D05},{00000000-0000-0000-00AA-000010001021},{30561B8D-8DBD-E811-8149-000D3A45C66E},{1FE05F14-0074-49E3-B55D-0AF1FD0A2B85},{AF89FDC8-5D83-40B4-988C-A0941579EE9D},{BDEEA953-79CD-EC11-A7B5-002248AD8DB2},{BB3CD580-ECFB-4A85-A623-9A109B73815F},{5FDA842A-004B-42B4-A611-B93C2C69667E},{490B1410-D231-46B0-B5FA-60017B21AB14},{B702C2D1-1C72-EB11-A812-000D3A374668},{468F3FD9-BE92-EE11-BE37-0022483D5EE0},{30CE6879-6B7A-E211-8976-00155D89AC0C},{AAD628C6-F0DD-4D34-B0ED-9A78F9C23A20},{E88CA999-0B16-4AE9-B6A9-9EDC840D42D8},{E5D893D1-2B1F-46E5-8EA4-25562567CCCE},{1EDAC89F-2337-E811-8135-000D3AF71628},{0DDA4FB7-84BC-E011-B85E-00155D8A2749},{19487F2F-8405-4D59-8F8B-4EDA98D4F302},{E8AC8D63-47BA-E011-B85E-00155D8A2749},{B2529A68-5F90-E011-95AE-00155D9CFA02},{31E76B45-BFE7-447E-B4B5-50DC393BCDBE},{1D482328-AB23-486B-B241-26603D367F4D},{FCF02D37-524A-4332-8AC7-497EF6B739F9},{89939D86-F073-42BA-BFC4-DA7999C78825}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f29fb9a1-174a-401c-92f7-279054bf0109}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Proposed Alternative Enforcement Action" languagecode="1033" />
+                        </labels>
+                        <control id="ts_rateinspectorrecommendation" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_rateinspectorrecommendation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c355715d-cc19-44de-864b-a4263931d8a3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Justification for Proposed Alternative Enforcement Action" languagecode="1033" />
+                        </labels>
+                        <control id="ts_rateenforcementjustification" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_rateenforcementjustification" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="RATE_manager_review" id="2dd106b0-dcdf-4ea1-82b9-152ab188c428" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
+                  <labels>
+                    <label description="RATE Manager Review" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{395a8f6f-2286-4484-8da4-5eb037aaed55}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a2e92826-434b-42df-aff0-b3d79b84b7b4}" locklevel="0" colspan="1" rowspan="1" visible="true">
+                        <labels>
+                          <label description="RATE Manager Decision" languagecode="1033" />
+                        </labels>
+                        <control id="ts_ratemanagerdecision" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_ratemanagerdecision" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{93a698fa-9778-4859-9799-050bf8115132}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="RATE Manager Alternative Recommendation" languagecode="1033" />
+                        </labels>
+                        <control id="ts_ratemanageralternativerecommendation" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_ratemanageralternativerecommendation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c88d04b5-8673-4a26-8670-d48a830c9793}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="RATE Manager Enforcement Justification" languagecode="1033" />
+                        </labels>
+                        <control id="ts_ratemanagerenforcementjustification" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_ratemanagerenforcementjustification" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="10%">
+              <sections>
+                <section name="_section_144" id="c8eb61cc-5760-4866-9e16-5a9e0a6f3e7c" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="11" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{ba5e0f0b-e200-478b-9a3d-2420181f20ff}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{2fd23acf-7882-447d-bfe3-332606c37883}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{cf9f9406-1e69-4676-b6fe-77f135ad23cc}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{55527fb8-d8f3-41b7-a1f2-c1027f440743}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{18cdd97a-5ebc-4bce-b52c-aac99434cd98}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{3c914959-ef10-442f-a597-6b3ce5b7e0c1}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{511fe005-4b9b-4bc0-b210-4720a723ce7e}" locklevel="0" colspan="1" rowspan="1" visible="false">
+              <labels>
+                <label description="Enforcement Recommendation" languagecode="1033" />
+              </labels>
+              <control id="header_ts_rateenforcementrecommendation" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_rateenforcementrecommendation" disabled="false" />
+            </cell>
+            <cell id="{86f7f4c1-3ab7-4f77-b957-3f8ecbc2e3e6}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Status Reason" languagecode="1033" />
+                <label description="Raison du statut" languagecode="1036" />
+              </labels>
+              <control id="header_statuscode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statuscode" disabled="false" />
+            </cell>
+            <cell id="{5d86dce0-28bd-4dc5-97be-1687684201a0}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{9b3596e4-ea0c-4d2d-b435-d2be38baf307}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{70be435b-d193-4241-b4a2-a916bec86ead}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9510b787-6551-4bfb-830e-d27a683589cd}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{5515f135-028e-4798-978b-0b4bd6a45304}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <formLibraries>
+        <Library name="ts_/js/Common.js" libraryUniqueId="{8d9dc240-c552-3cd4-2a6c-a6b111b259a3}" />
+        <Library name="ts_/js/Infraction.js" libraryUniqueId="{d6c02ed9-5c2b-444e-a7ea-0825238e0a8e}" />
+      </formLibraries>
+      <events>
+        <event name="onchange" application="false" active="false" attribute="ts_ratespecificnoncompliancehistory">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATESpecificComplianceHistoryOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{8efe8ad7-7628-472c-82fb-d697d8b718ea}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{fdc8224d-c11f-4b3e-8517-796d19542e08}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rategeneralnoncompliancehistory">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{6b2baf62-b32b-4608-8381-017a827011ae}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rateactualorpotentialharm">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{0699041b-6ffa-41e5-a29a-9c03e684ff04}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rateintentionality">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{3d9f4e65-c69b-4f93-a676-85e807d760dc}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rateeconomicbenefit">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{f7c8dd85-4b86-4478-8002-0264da23d06b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rateresponsibility">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{66715b12-b12e-4f3c-960d-34d18187db8b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_ratemitigationofharm">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{63d2fb4d-c0e9-4168-84e0-4257dc362d92}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_ratepreventingrecurrence">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{baffaf58-5cce-4592-8b51-3c48176a033d}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_ratecooperation">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{47e70796-936d-4265-a34c-1108a87b8312}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_ratepreviousenforcementmechanism">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{48998ddb-3aae-426d-bca7-13a0e39375fe}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_acceptraterecommendation">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.AcceptRATERecommendationOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{648246f5-759f-4074-8547-48f3d87a0679}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rateapprovingteam">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.approvingRATETeamsOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{1a49c807-27dd-4e1a-8ce6-aa773dcbacab}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rateinspectorrecommendation">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEInspectorRecommendationOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{824d6432-a3c1-4739-b4c1-b9450d349457}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_ratemanagerdecision">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEManagerDecisionOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{a2c5b281-ae8c-4848-8c60-fd2acb357c81}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_ratemanageralternativerecommendation">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEManagerAlternativeRecommendationOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{7ced6aaf-3a60-41ca-8aac-a97b08c398bf}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_issueaddressedonsite">
+          <Handlers>
+            <Handler functionName="ROM.Finding.issueAddressedOnSiteOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{52b6d6db-d805-48a1-b3c3-43bd9b4b24e6}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.onLoad" libraryName="ts_/js/Infraction.js" handlerUniqueId="{03308089-72ac-4966-b4da-6bceaf59cb43}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.onSave" libraryName="ts_/js/Infraction.js" handlerUniqueId="{03b526c7-6669-4ad6-8fcd-7dd2d254a05f}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

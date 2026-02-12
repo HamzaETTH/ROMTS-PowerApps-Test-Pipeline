@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{97761063-8d60-ef11-bfe4-0022483dbc2c}" Name="[Work Order] update ts_businessunit" Description="This is a manually triggered flow that is used to set the Business Unit (ts_businessunit) of Work Orders that have a null Business Unit (ts_businessunit)&#xA;&#xA;Since it is a manually triggered flow it doesn't always have to be on." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JsonFileName>/Workflows/WorkOrderupdatets_businessunit-97761063-8D60-EF11-BFE4-0022483DBC2C.json</JsonFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>5</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>1.0.0.153</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <PrimaryEntity>none</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="[Work Order] update ts_businessunit" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description languagecode="1033" description="This is a manually triggered flow that is used to set the Business Unit (ts_businessunit) of Work Orders that have a null Business Unit (ts_businessunit)&#xA;&#xA;Since it is a manually triggered flow it doesn't always have to be on." />
+  </Descriptions>
+</Workflow>

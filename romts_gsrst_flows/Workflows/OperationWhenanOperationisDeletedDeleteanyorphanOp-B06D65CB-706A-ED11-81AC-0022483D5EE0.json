@@ -1,0 +1,106 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_an_Operation_is_Deleted": {
+          "metadata": {
+            "operationMetadataId": "80884897-afe9-4f30-bdbf-00c1571d48a9"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 2,
+              "subscriptionRequest/entityname": "ovs_operation",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "List_Operation_Activities_with_no_Operation": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "4c81b64b-3cd7-437b-95d5-8372dbe3dbc8"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_operationactivities",
+              "fetchXml": "<fetch>\n  <entity name=\"ts_operationactivity\">\n    <attribute name=\"ts_operationactivityid\" />\n    <filter>\n      <condition attribute=\"ts_operation\" operator=\"null\">\n      </condition>\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_Operation_Activity": {
+          "foreach": "@outputs('List_Operation_Activities_with_no_Operation')?['body/value']",
+          "actions": {
+            "Delete_Operation_Activity": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "2bb3266b-cdf1-4079-b4b8-6c9f0293d6e9"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "DeleteRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_operationactivities",
+                  "recordId": "@items('Apply_to_Operation_Activity')?['ts_operationactivityid']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_Operation_Activities_with_no_Operation": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "39e9e1ec-9c86-49ca-bbff-0e4e9e095819"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

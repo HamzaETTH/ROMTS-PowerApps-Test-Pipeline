@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{7e7fd8b1-8514-43e2-82e1-3a62319d6886}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{9b6a8eee-e8e2-41fc-874c-bd79e2bad5f5}" IsUserDefined="1" name="tab_general">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section showlabel="true" showbar="false" IsUserDefined="0" id="{6f882f32-8aa2-4b11-aaba-01b1d2f5db5c}">
+                  <labels>
+                    <label description="Operation" languagecode="1033" />
+                    <label description="Opération" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{c0eea5bf-669f-45d5-9aba-575c63165eb9}" visible="false">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Name" languagecode="1036" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b1959fe3-dfbe-4f45-b9aa-ac65ca25d41c}" visible="false">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3ce5944f-0405-4e7e-848f-399ca48011e6}" locklevel="1" colspan="1" rowspan="1" showlabel="false">
+                        <labels>
+                          <label description="Operation" languagecode="1033" />
+                          <label description="Opération" languagecode="1036" />
+                        </labels>
+                        <control id="ts_operation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{d762e640-67be-44bb-91fc-5f40c01cea5e}" colspan="1" rowspan="1" showlabel="false">
+                        <labels>
+                          <label description="Operation" languagecode="1033" />
+                          <label description="Opération" languagecode="1036" />
+                        </labels>
+                        <control id="QuickviewControl1661273241898" classid="{5C5600E0-1D6E-4205-A272-BE80DA87FD42}" datafieldname="ts_operation">
+                          <parameters>
+                            <DisplayAsCustomer360Tile>false</DisplayAsCustomer360Tile>
+                            <QuickForms>&lt;QuickFormIds&gt;&lt;QuickFormId entityname="ovs_operation"&gt;99b2585e-0023-ed11-9db2-002248ae441f&lt;/QuickFormId&gt;&lt;/QuickFormIds&gt;</QuickForms>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_7" id="befac2b2-56d7-4ef6-99ee-c2339d114e79" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Work Order" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{ef9fef93-9407-4f47-9136-743e5285b72a}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6fbe2930-1a0b-45c7-824c-e29f1ba2c43b}" locklevel="1" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Closed on Date (most recent WO)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_closedondatemostrecentwo" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_closedondatemostrecentwo" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_5" id="93204870-b8f8-44fb-8c29-68c01fcc42a7" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Stakeholder" languagecode="1033" />
+                    <label description="Client" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{4b61dcae-43bd-4c32-b3db-8a274c23362d}" locklevel="0" colspan="1" rowspan="1" showlabel="false">
+                        <labels>
+                          <label description="Stakeholder" languagecode="1033" />
+                          <label description="Client" languagecode="1036" />
+                        </labels>
+                        <control id="ts_stakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_stakeholder" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_4" id="29606c74-c21c-4e12-9435-22a2cf6eb496" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Site" languagecode="1033" />
+                    <label description="Site" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{e2036401-2b11-4eba-a243-c86a3c3654cf}" locklevel="0" colspan="1" rowspan="1" showlabel="false">
+                        <labels>
+                          <label description="Site" languagecode="1033" />
+                          <label description="Site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{1240255c-291d-4747-bd84-fcf4948fa6dc}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="New QV control 1661270364423" languagecode="1033" />
+                          <label description="Site" languagecode="1036" />
+                        </labels>
+                        <control id="QuickviewControl1661270364423" classid="{5C5600E0-1D6E-4205-A272-BE80DA87FD42}" datafieldname="ts_site">
+                          <parameters>
+                            <DisplayAsCustomer360Tile>false</DisplayAsCustomer360Tile>
+                            <QuickForms>&lt;QuickFormIds&gt;&lt;QuickFormId entityname="msdyn_functionallocation"&gt;222e144a-fa22-ed11-9db2-002248ae429c&lt;/QuickFormId&gt;&lt;/QuickFormIds&gt;</QuickForms>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="section_team" id="4530498b-9b86-466c-9fca-ed3643a5d1ae" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
+                  <labels>
+                    <label description="Accountable Team" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{7e321897-a7e0-470a-9610-2d35aba7a411}" locklevel="0" colspan="1" rowspan="1" showlabel="false">
+                        <labels>
+                          <label description="Accountable Team" languagecode="1033" />
+                        </labels>
+                        <control id="ts_accountableteam" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_accountableteam" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="_section_58" id="4b613166-bf97-40de-b97e-bd8279381c9f" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Activity Type" languagecode="1033" />
+                    <label description="Type d’activité" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{c9cac973-20e9-4b76-bbee-608013ad21d6}" locklevel="1" colspan="1" rowspan="1" showlabel="false">
+                        <labels>
+                          <label description="Activity" languagecode="1033" />
+                          <label description="Type d’activité" languagecode="1036" />
+                        </labels>
+                        <control id="ts_activity" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_activity" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="{9b6a8eee-e8e2-41fc-874c-bd79e2bad5f5}_section_5" showlabel="true" showbar="false" locklevel="0" id="{2099820a-bb22-d633-cb58-ac452a9e2a27}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Risk Rating" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{0701b4e7-e1ab-4019-b76a-021be0e248ec}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Program Area" languagecode="1033" />
+                        </labels>
+                        <control id="ts_programarea" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_programarea" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2d323672-beb3-e107-7103-0651568bede6}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Risk Score" languagecode="1033" />
+                          <label description="Risk Score" languagecode="1036" />
+                        </labels>
+                        <control id="ts_riskscore" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_riskscore" disabled="true" uniqueid="{95379cc3-9c7e-c3e0-0ee0-d38141e05d95}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="risk_scores_tab" id="e5311c39-4334-4c4e-b9ce-779458c80388" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Risk Scores" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_3_section_operation_activity_risk_scores" id="a43fb5c3-6786-4c19-94ee-ca2e088627ae" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Operation Activity Risk Scores" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{f273ee89-7a92-47e1-ab62-9db0cc14c9b7}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="Risk Scores" languagecode="1033" />
+                          <label description="Scores de risque des activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>false</EnableChartPicker>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <TargetEntityType>ts_operationactivityriskscores</TargetEntityType>
+                            <ViewId>{6B480ABC-BB22-4D39-A755-3C7123E7093A}</ViewId>
+                            <ViewIds>{6B480ABC-BB22-4D39-A755-3C7123E7093A}</ViewIds>
+                            <RelationshipName>ts_operationactivityriskscores_OperationActivity_ts_operationactivity</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="related_wos_tab" id="f4261537-2265-4f3d-9555-c588ad8d1f6b" IsUserDefined="0" locklevel="0" showlabel="true" visible="false">
+          <labels>
+            <label description="Related Work Orders" languagecode="1033" />
+            <label description="Ordres de travail associés" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" id="eec47a6d-4565-4a76-b4a8-f2a74a684387" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Work Orders" languagecode="1033" />
+                    <label description="Ordres de travail" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{8dbc939b-5be7-4208-a7ad-b115b960c064}" showlabel="false" colspan="1" auto="false" rowspan="10">
+                        <labels>
+                          <label description="OperationActivityRelatedWOView" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_OperationActivityRelatedWOView" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/OperationActivityRelatedWOView.html</Url>
+                            <PassParameters>true</PassParameters>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <WebResourceId>{50AE8902-9861-EF11-BFE3-6045BD5E96B8}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{af11c90c-ceb3-4182-a9c5-ae287b63c585}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{330a8f1b-c46d-4e63-99df-f5f88d53ac99}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{123b15ad-79a1-4f0b-97b9-dcacf1f45109}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{046d81c5-2921-47ce-b7a4-c0d5db20f001}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{30cb6e24-6cf2-400a-8644-82e2f49ee3e4}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Operational Status" languagecode="1033" />
+                <label description="Statut opérationnel" languagecode="1036" />
+              </labels>
+              <control id="header_ts_operationalstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_operationalstatus" disabled="false" />
+            </cell>
+            <cell id="{2dc1ba05-df2a-4aa0-ac78-d736a82c768a}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Status" languagecode="1033" />
+                <label description="Status" languagecode="1036" />
+              </labels>
+              <control id="header_ts_plannedstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_plannedstatus" disabled="false" />
+            </cell>
+            <cell id="{4aa040b6-33b1-402d-904c-b5fb91944a46}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{9b033337-b468-4fb8-9734-26bbd541986b}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{799f045a-5214-43a7-b3f4-53e9d2aff37e}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{c3047942-337a-420b-977e-af7634dd5586}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d528f757-f917-46e6-9839-d349c507cf8b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <formLibraries>
+        <Library name="ts_/js/OperationActivity.js" libraryUniqueId="{d834f6bf-d9e0-4bf1-b2bd-3835bdccb86c}" />
+        <Library name="ts_/js/utils/SubGridFetchXmlModifier.js" libraryUniqueId="{78fe35cb-c972-4a22-8d76-6342072f376b}" />
+        <Library name="ts_/js/Common.js" libraryUniqueId="{b1d2bd11-5ff6-4956-a079-72e55daea2f5}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.OperationActivity.onLoad" libraryName="ts_/js/OperationActivity.js" handlerUniqueId="{fc52ccc8-87ca-499e-baf4-4b1fc5631d17}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ownerid">
+          <Handlers>
+            <Handler functionName="ROM.OperationActivity.ownerOnChange" libraryName="ts_/js/OperationActivity.js" handlerUniqueId="{fd3b4769-06f9-4440-9093-0a284f6290e6}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

@@ -1,0 +1,172 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "a1bef884-ac3d-43e2-9e77-ba0bcf8908aa"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "ovs_operationtype",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ovs_name, ovs_operationtypenameenglish, ovs_operationtypenamefrench"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_a_row_by_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "97fe063c-132e-4025-8d82-affaf33fbb3d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "businessunits",
+              "recordId": "@triggerOutputs()?['body/_owningbusinessunit_value']",
+              "$select": "name"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Condition": {
+          "actions": {
+            "List_rows": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "c947250e-a5d5-42b8-83bd-b805c4079100"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ovs_operations",
+                  "fetchXml": "<fetch version=\"1.0\" mapping=\"logical\" distinct=\"true\">\n  <entity name=\"ovs_operation\">\n    <attribute name=\"ovs_name\" />\n    <attribute name=\"ovs_operationid\" />\n    <attribute name=\"ovs_operationtypeid\" />\n    <attribute name=\"ts_site\" />\n    <attribute name=\"ts_stakeholder\" />\n    <attribute name=\"ts_operationnameenglish\" />\n    <attribute name=\"ts_operationnamefrench\" />\n   <filter>\n      <condition attribute=\"ovs_operationtypeid\" operator=\"eq\" value=\"@{triggerOutputs()?['body/ovs_operationtypeid']}\" />\n    </filter>\n    <link-entity name=\"businessunit\" from=\"businessunitid\" to=\"owningbusinessunit\" link-type=\"inner\" alias=\"b\">\n      <filter>\n        <condition attribute=\"name\" operator=\"begins-with\" value=\"Intermodal\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each": {
+              "foreach": "@outputs('List_rows')?['body/value']",
+              "actions": {
+                "Compose_new_english_name": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "556382ce-72b4-4186-96c4-11ca4853bdbc"
+                  },
+                  "type": "Compose",
+                  "inputs": "@concat( trim(first(split(items('Apply_to_each')?['ts_operationnameenglish'], '|'))), ' | ', if( empty(triggerOutputs()?['body/ovs_operationtypenameenglish']), triggerOutputs()?['body/ovs_name'], triggerOutputs()?['body/ovs_operationtypenameenglish'] ), ' | ', trim(split(items('Apply_to_each')?['ts_operationnameenglish'], '|')[2]) )"
+                },
+                "Compose_new_french_name": {
+                  "runAfter": {
+                    "Compose_new_english_name": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "919993f5-c14c-47cd-b35e-b41b2bcc0b22"
+                  },
+                  "type": "Compose",
+                  "inputs": "@concat( trim(first(split(items('Apply_to_each')?['ts_operationnamefrench'], '|'))), ' | ', if( empty(triggerOutputs()?['body/ovs_operationtypenamefrench']), triggerOutputs()?['body/ovs_name'], triggerOutputs()?['body/ovs_operationtypenamefrench'] ), ' | ', trim(split(items('Apply_to_each')?['ts_operationnamefrench'], '|')[2]) ) "
+                },
+                "Update_a_row": {
+                  "runAfter": {
+                    "Compose_new_french_name": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "24b2e18f-ae52-4048-92e4-f4ebeff66f0e"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ovs_operations",
+                      "recordId": "@items('Apply_to_each')?['ovs_operationid']",
+                      "item/ts_operationnameenglish": "@outputs('Compose_new_english_name')",
+                      "item/ts_operationnamefrench": "@outputs('Compose_new_french_name')"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "List_rows": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "6def1f0b-91b7-4c55-ad80-4e463c228ecf"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Get_a_row_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "startsWith": [
+              "@outputs('Get_a_row_by_ID')?['body/name']",
+              "Intermodal"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e8c39954-b2a2-464f-984f-1063d49a7df7"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

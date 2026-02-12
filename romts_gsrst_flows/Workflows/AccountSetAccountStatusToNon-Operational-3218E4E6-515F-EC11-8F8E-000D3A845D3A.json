@@ -1,0 +1,108 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Recurrence": {
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "timeZone": "Eastern Standard Time",
+            "startTime": "2021-12-14T00:01:00Z",
+            "schedule": {
+              "hours": [
+                "0"
+              ],
+              "minutes": [
+                1
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "0c389b15-e5cf-4c53-b717-89f058e2817a"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "4ade50a1-daba-4e5b-a56d-d6c2bff6997c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "accounts",
+              "$filter": "ts_stakeholderstatus eq 717750000 and ts_statusstartdate le @{utcNow('yyyy-MM-dd')}"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each_2": {
+          "foreach": "@outputs('List_rows')?['body/value']",
+          "actions": {
+            "Update_a_row_2": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "97b98dfe-593b-4cbc-ba0f-30911fe096d6"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "accounts",
+                  "recordId": "@items('Apply_to_each_2')?['accountid']",
+                  "item/ts_stakeholderstatus": 717750001
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8c772bb9-1875-4035-9833-3f23c1e6745f"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

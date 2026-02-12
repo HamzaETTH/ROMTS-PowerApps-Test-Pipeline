@@ -1,0 +1,439 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Recurrence": {
+          "recurrence": {
+            "frequency": "Month",
+            "interval": 1,
+            "timeZone": "Eastern Standard Time",
+            "startTime": "2025-11-01T05:00:00Z"
+          },
+          "evaluatedRecurrence": {
+            "frequency": "Month",
+            "interval": 1,
+            "timeZone": "Eastern Standard Time",
+            "startTime": "2025-11-01T05:00:00Z"
+          },
+          "metadata": {
+            "operationMetadataId": "0ebe9145-1493-4eb8-8ba5-bbb61fbd36ac"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "1d11fdb9-0cef-433d-af3e-ca2f50cd291a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_frequencyforecastmaps",
+              "$select": "ts_target, ts_is5year, ts_currentdate, ts_fiscalyearnum,ts_frequencyforecastmapid, _ts_frequencyid_value"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows')?['body/value']",
+          "actions": {
+            "FSYear": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "99c54947-cc83-460d-a402-c328907d2f9e"
+              },
+              "type": "Compose",
+              "inputs": "@items('Apply_to_each')?['ts_fiscalyearnum']"
+            },
+            "Is_5_Year": {
+              "actions": {
+                "Get_a_row_by_ID": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "0153c0ee-3e3c-46c0-8bc6-5a5a98fac1d6"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "GetItem",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_riskfrequencies",
+                      "recordId": "@items('Apply_to_each')?['_ts_frequencyid_value']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Switch": {
+                  "runAfter": {
+                    "Get_a_row_by_ID": [
+                      "Succeeded"
+                    ]
+                  },
+                  "cases": {
+                    "Case": {
+                      "case": "1x / 3 years",
+                      "actions": {
+                        "ThirdYearStartDate": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "154e2615-b97e-4e0c-b60f-108147eee756"
+                          },
+                          "type": "Compose",
+                          "inputs": "@formatDateTime(addToTime(concat(outputs('FSYear'), '-04-01'), 1, 'Year'), 'yyyy-MM-dd')"
+                        },
+                        "ThirdYearEndDate": {
+                          "runAfter": {
+                            "ThirdYearStartDate": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "2d3f18e5-cfc2-4a21-b55b-cd567d5b5c23"
+                          },
+                          "type": "Compose",
+                          "inputs": "@formatDateTime(addToTime(concat(outputs('FSYear'), '-03-31'), 2, 'Year'), 'yyyy-MM-dd')"
+                        },
+                        "Is_Third_Year": {
+                          "actions": {
+                            "Update_a_row": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "e39b717b-7d8d-49dc-b277-78b9cef0971d"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps_1",
+                                  "operationId": "UpdateOnlyRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ts_frequencyforecastmaps",
+                                  "recordId": "@items('Apply_to_each')?['ts_frequencyforecastmapid']",
+                                  "item/ts_target": 1
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              }
+                            }
+                          },
+                          "runAfter": {
+                            "ThirdYearEndDate": [
+                              "Succeeded"
+                            ]
+                          },
+                          "else": {
+                            "actions": {
+                              "Update_a_row_2": {
+                                "runAfter": {},
+                                "metadata": {
+                                  "operationMetadataId": "5a694fde-6d1c-4a92-a556-f53f3f89841f"
+                                },
+                                "type": "OpenApiConnection",
+                                "inputs": {
+                                  "host": {
+                                    "connectionName": "shared_commondataserviceforapps_1",
+                                    "operationId": "UpdateOnlyRecord",
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                  },
+                                  "parameters": {
+                                    "entityName": "ts_frequencyforecastmaps",
+                                    "recordId": "@items('Apply_to_each')?['ts_frequencyforecastmapid']",
+                                    "item/ts_target": 0
+                                  },
+                                  "authentication": "@parameters('$authentication')"
+                                }
+                              }
+                            }
+                          },
+                          "expression": {
+                            "and": [
+                              {
+                                "greaterOrEquals": [
+                                  "@items('Apply_to_each')?['ts_currentdate']",
+                                  "@outputs('ThirdYearStartDate')"
+                                ]
+                              },
+                              {
+                                "lessOrEquals": [
+                                  "@items('Apply_to_each')?['ts_currentdate']",
+                                  "@outputs('ThirdYearEndDate')"
+                                ]
+                              }
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "f68f3f30-7197-41ef-8fd2-5513da5fada4"
+                          },
+                          "type": "If"
+                        }
+                      }
+                    },
+                    "Case_2": {
+                      "case": "1x / 2 years",
+                      "actions": {
+                        "Year_2_Start": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "0d21419b-e5e2-4304-997f-e20942110892"
+                          },
+                          "type": "Compose",
+                          "inputs": "@formatDateTime(addToTime(concat(outputs('FSYear'), '-04-01'), 0, 'Year'), 'yyyy-MM-dd')"
+                        },
+                        "Year_2_End": {
+                          "runAfter": {
+                            "Year_2_Start": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "d8b7fb67-b803-409b-a911-a6b64e857dda"
+                          },
+                          "type": "Compose",
+                          "inputs": "@formatDateTime(addToTime(concat(outputs('FSYear'), '-03-31'), 1, 'Year'), 'yyyy-MM-dd')"
+                        },
+                        "Year_4_Start": {
+                          "runAfter": {
+                            "Year_2_End": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "e54762ba-b85b-4692-94af-6d0dcaa1ca4a"
+                          },
+                          "type": "Compose",
+                          "inputs": "@formatDateTime(addToTime(concat(outputs('FSYear'), '-04-01'), 2, 'Year'), 'yyyy-MM-dd')"
+                        },
+                        "Year_4_End": {
+                          "runAfter": {
+                            "Year_4_Start": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "5b480efa-a79a-4bbb-b1f6-a874f4a396c9"
+                          },
+                          "type": "Compose",
+                          "inputs": "@formatDateTime(addToTime(concat(outputs('FSYear'), '-03-31'), 3, 'Year'), 'yyyy-MM-dd')"
+                        },
+                        "Is_it_Alternating_Year": {
+                          "actions": {
+                            "Update_a_row_3": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "3efd658a-5096-4a05-b06f-cc31e9c82962"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps_1",
+                                  "operationId": "UpdateOnlyRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ts_frequencyforecastmaps",
+                                  "recordId": "@items('Apply_to_each')?['ts_frequencyforecastmapid']",
+                                  "item/ts_target": 1
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              }
+                            }
+                          },
+                          "runAfter": {
+                            "Year_4_End": [
+                              "Succeeded"
+                            ]
+                          },
+                          "else": {
+                            "actions": {
+                              "Update_a_row_4": {
+                                "runAfter": {},
+                                "metadata": {
+                                  "operationMetadataId": "621c239e-2755-487c-b3d3-5cd5e5a046da"
+                                },
+                                "type": "OpenApiConnection",
+                                "inputs": {
+                                  "host": {
+                                    "connectionName": "shared_commondataserviceforapps_1",
+                                    "operationId": "UpdateOnlyRecord",
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                  },
+                                  "parameters": {
+                                    "entityName": "ts_frequencyforecastmaps",
+                                    "recordId": "@items('Apply_to_each')?['ts_frequencyforecastmapid']",
+                                    "item/ts_target": 0
+                                  },
+                                  "authentication": "@parameters('$authentication')"
+                                }
+                              }
+                            }
+                          },
+                          "expression": {
+                            "or": [
+                              {
+                                "and": [
+                                  {
+                                    "greaterOrEquals": [
+                                      "@items('Apply_to_each')?['ts_currentdate']",
+                                      "@outputs('Year_2_Start')"
+                                    ]
+                                  },
+                                  {
+                                    "lessOrEquals": [
+                                      "@items('Apply_to_each')?['ts_currentdate']",
+                                      "@outputs('Year_2_End')"
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "and": [
+                                  {
+                                    "greaterOrEquals": [
+                                      "@items('Apply_to_each')?['ts_currentdate']",
+                                      "@outputs('Year_4_Start')"
+                                    ]
+                                  },
+                                  {
+                                    "lessOrEquals": [
+                                      "@items('Apply_to_each')?['ts_currentdate']",
+                                      "@outputs('Year_4_End')"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "00e0dbab-9ffa-49e1-8218-b9effca18a70"
+                          },
+                          "type": "If"
+                        }
+                      }
+                    },
+                    "Case_3": {
+                      "case": "1x / 1 years",
+                      "actions": {
+                        "Update_a_row_5": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "cc00f261-8b8c-4b8e-a64d-bb3cb3e41940"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "UpdateOnlyRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ts_frequencyforecastmaps",
+                              "recordId": "@items('Apply_to_each')?['ts_frequencyforecastmapid']",
+                              "item/ts_target": 1
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      }
+                    },
+                    "Case_4": {
+                      "case": "2x / 1 year",
+                      "actions": {
+                        "Update_a_row_6": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "4e4a99c3-5e84-4456-988d-3445afd22d20"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "UpdateOnlyRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ts_frequencyforecastmaps",
+                              "recordId": "@items('Apply_to_each')?['ts_frequencyforecastmapid']",
+                              "item/ts_target": 2
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "default": {
+                    "actions": {}
+                  },
+                  "expression": "@outputs('Get_a_row_by_ID')?['body/ts_riskfrequencyenglish']",
+                  "metadata": {
+                    "operationMetadataId": "8487d30a-2d5a-4c8b-8d9b-f92414a9bbbb"
+                  },
+                  "type": "Switch"
+                }
+              },
+              "runAfter": {
+                "FSYear": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each')?['ts_is5year']",
+                  true
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "11291e99-14e0-4056-bc54-fda5864d9419"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e73831be-3053-4327-87da-602641820809"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

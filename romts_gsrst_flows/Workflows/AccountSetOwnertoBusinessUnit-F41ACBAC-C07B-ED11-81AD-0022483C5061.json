@@ -1,0 +1,132 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_an_Account_is_Created": {
+          "metadata": {
+            "operationMetadataId": "3a9f75a6-c1ae-428f-ac87-557b1588ba99"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "account",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_Business_Unit_of_Account": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "d9d66880-4b3d-41ad-8d0a-f7bce21c6fef"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "businessunits",
+              "recordId": "@triggerOutputs()?['body/_owningbusinessunit_value']",
+              "$select": "name"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Team_of_Business_Unit": {
+          "runAfter": {
+            "Get_Business_Unit_of_Account": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e12b1867-3e81-47ac-b47b-2e9d02e92ba9"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "teams",
+              "fetchXml": "<fetch>\n  <entity name=\"team\">\n    <attribute name=\"teamid\" />\n    <filter>\n      <condition attribute=\"name\" operator=\"eq\" value=\"@{outputs('Get_Business_Unit_of_Account')?['body/name']}\" />\n    </filter>\n  </entity>\n</fetch>",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_Team": {
+          "foreach": "@outputs('Get_Team_of_Business_Unit')?['body/value']",
+          "actions": {
+            "Update_a_row": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "a8f63eb9-1c01-4c6f-9c42-8427afbd8e4d"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "accounts",
+                  "recordId": "@triggerOutputs()?['body/accountid']",
+                  "item/ownerid@odata.bind": "/teams(@{items('Apply_to_Team')?['teamid']})"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_Team_of_Business_Unit": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8937aca0-4210-402e-9727-e7ba4aa8dc7e"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

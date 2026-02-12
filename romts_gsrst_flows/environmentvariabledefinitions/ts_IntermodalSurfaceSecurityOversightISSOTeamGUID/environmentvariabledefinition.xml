@@ -1,0 +1,13 @@
+<environmentvariabledefinition schemaname="ts_IntermodalSurfaceSecurityOversightISSOTeamGUID">
+  <description default="The Team guid for ISSO.">
+    <label description="The Team guid for ISSO." languagecode="1033" />
+  </description>
+  <displayname default="Intermodal Surface Security Oversight (ISSO) Team GUID">
+    <label description="Intermodal Surface Security Oversight (ISSO) Team GUID" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.20230417.1</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

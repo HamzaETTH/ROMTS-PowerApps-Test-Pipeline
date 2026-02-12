@@ -1,0 +1,316 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "6b9e0e7f-7cf8-4877-98f1-752c75fbbfe9"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_2",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "msdyn_workorderservicetask",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_servicetaskenddate,statuscode"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition_-_if_WOST_is_completed": {
+          "actions": {
+            "Get_a_row_by_ID_-_Work_Order": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "6b555cbf-69b9-49d4-a727-f4bc9546bcae"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_2",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "msdyn_workorders",
+                  "recordId": "@triggerOutputs()?['body/_msdyn_workorder_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "If_is_Site_inspection_(IBT)": {
+              "actions": {
+                "If_operation's_last_Site_inspection_(IBT)_date_is_old": {
+                  "actions": {
+                    "Update_Operation_-_Date_of_last_Risk-based": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "bce12356-1b39-4862-af94-80ea08cb5d16"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_2",
+                          "operationId": "UpdateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ovs_operations",
+                          "recordId": "@outputs('Get_a_row_by_ID_-_Work_Order')?['body/_ovs_operationid_value']",
+                          "item/ts_dateoflastriskbasedinspection": "@triggerOutputs()?['body/ts_servicetaskenddate']"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "expression": {
+                    "or": [
+                      {
+                        "equals": [
+                          "@outputs('Get_a_row_by_ID_-_Operation')?['body/ts_dateoflastriskbasedinspection']",
+                          "@null"
+                        ]
+                      },
+                      {
+                        "less": [
+                          "@outputs('Get_a_row_by_ID_-_Operation')?['body/ts_dateoflastriskbasedinspection']",
+                          "@triggerOutputs()?['body/ts_servicetaskenddate']"
+                        ]
+                      }
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "070267c0-4a69-4f43-975b-4883462039a1"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "Get_a_row_by_ID_-_Operation": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "If_is_Security_Plan_Review_(IBT)": {
+                    "actions": {
+                      "Condition_-_Operation_last_SPR_date_is_old": {
+                        "actions": {
+                          "Update_Operation_-_Date_of_last_SPR": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "98ed80f3-9ead-4341-a2bb-db8eae5e72cd"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps_2",
+                                "operationId": "UpdateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ovs_operations",
+                                "recordId": "@outputs('Get_a_row_by_ID_-_Work_Order')?['body/_ovs_operationid_value']",
+                                "item/ts_dateoflastsecurityplanreview": "@triggerOutputs()?['body/ts_servicetaskenddate']"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          }
+                        },
+                        "runAfter": {},
+                        "expression": {
+                          "or": [
+                            {
+                              "equals": [
+                                "@outputs('Get_a_row_by_ID_-_Operation')?['body/ts_dateoflastsecurityplanreview']",
+                                "@null"
+                              ]
+                            },
+                            {
+                              "less": [
+                                "@outputs('Get_a_row_by_ID_-_Operation')?['body/ts_dateoflastsecurityplanreview']",
+                                "@triggerOutputs()?['body/ts_servicetaskenddate']"
+                              ]
+                            }
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "97a34ab7-df58-4d33-8669-cd15aeb12308"
+                        },
+                        "type": "If"
+                      }
+                    },
+                    "runAfter": {},
+                    "else": {
+                      "actions": {
+                        "If_is_Comprehensive_Inspection_(IBT)": {
+                          "actions": {
+                            "Condition_-_Operation_Date_of_Comprehensive_inspection_is_old": {
+                              "actions": {
+                                "Update_Operation_-_Date_of_last_Comprehensive": {
+                                  "runAfter": {},
+                                  "metadata": {
+                                    "operationMetadataId": "75532faf-9015-4cee-b4b8-d7027dec2754"
+                                  },
+                                  "type": "OpenApiConnection",
+                                  "inputs": {
+                                    "host": {
+                                      "connectionName": "shared_commondataserviceforapps_2",
+                                      "operationId": "UpdateRecord",
+                                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                    },
+                                    "parameters": {
+                                      "entityName": "ovs_operations",
+                                      "recordId": "@outputs('Get_a_row_by_ID_-_Work_Order')?['body/_ovs_operationid_value']",
+                                      "item/ts_dateoflastcomprehensiveinspection": "@triggerOutputs()?['body/ts_servicetaskenddate']"
+                                    },
+                                    "authentication": "@parameters('$authentication')"
+                                  }
+                                }
+                              },
+                              "runAfter": {},
+                              "expression": {
+                                "or": [
+                                  {
+                                    "equals": [
+                                      "@outputs('Get_a_row_by_ID_-_Operation')?['body/ts_dateoflastcomprehensiveinspection']",
+                                      "@null"
+                                    ]
+                                  },
+                                  {
+                                    "less": [
+                                      "@outputs('Get_a_row_by_ID_-_Operation')?['body/ts_dateoflastcomprehensiveinspection']",
+                                      "@triggerOutputs()?['body/ts_servicetaskenddate']"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "e33234f9-f888-4001-a995-2054f983c386"
+                              },
+                              "type": "If"
+                            }
+                          },
+                          "runAfter": {},
+                          "expression": {
+                            "equals": [
+                              "@outputs('Get_a_row_by_ID_-_Work_Order')?['body/_msdyn_primaryincidenttype_value']",
+                              "2ece6fca-7e4b-ef11-accd-002248d57e7b"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "c30583f4-7feb-4935-9e75-c0c674f2f0f2"
+                          },
+                          "type": "If"
+                        }
+                      }
+                    },
+                    "expression": {
+                      "equals": [
+                        "@outputs('Get_a_row_by_ID_-_Work_Order')?['body/_msdyn_primaryincidenttype_value']",
+                        "49c59aa0-511a-ec11-b6e7-000d3a09ce95"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "d4ad6511-9af6-4929-b95b-5065c6bd0528"
+                    },
+                    "type": "If"
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@outputs('Get_a_row_by_ID_-_Work_Order')?['body/_msdyn_primaryincidenttype_value']",
+                  "4dc59aa0-511a-ec11-b6e7-000d3a09ce95"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "3bbd1008-43ec-449a-89fa-2fcd70a519fb"
+              },
+              "type": "If"
+            },
+            "Get_a_row_by_ID_-_Operation": {
+              "runAfter": {
+                "Get_a_row_by_ID_-_Work_Order": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "418a5752-81f0-4b02-8130-268513fc4efe"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_2",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ovs_operations",
+                  "recordId": "@outputs('Get_a_row_by_ID_-_Work_Order')?['body/_ovs_operationid_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/statuscode']",
+                  918640002
+                ]
+              },
+              {
+                "not": {
+                  "equals": [
+                    "@triggerOutputs()?['body/ts_servicetaskenddate']",
+                    "@null"
+                  ]
+                }
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6b875a5f-f068-4da8-b039-078ddfa8c3dd"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

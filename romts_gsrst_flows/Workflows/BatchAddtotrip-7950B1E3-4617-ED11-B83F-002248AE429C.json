@@ -1,0 +1,649 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "01240899-9c36-4a6d-93ee-f8896207dbfd"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_2",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ts_tripinspectionbatchadd",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Initialize_workorder_array": {
+          "runAfter": {
+            "Initialize_variable_count": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "557e8144-9b12-49a1-a1de-b06fa0844cf9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "workorders",
+                "type": "array",
+                "value": "@split(variables('inspections'),',')"
+              }
+            ]
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@variables('workorders')",
+          "actions": {
+            "Condition_if_work_order_does_not_belongs_to_a_trip": {
+              "actions": {
+                "Increment_variable": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "13286c93-f845-4976-a35e-c90e804781cb"
+                  },
+                  "type": "IncrementVariable",
+                  "inputs": {
+                    "name": "Count",
+                    "value": 1
+                  }
+                },
+                "Add_a_new_row_to_Trip_Inspection": {
+                  "runAfter": {
+                    "Increment_variable": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "6354abb5-d51f-4b91-acea-5413e76a89dd"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_2",
+                      "operationId": "CreateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_tripinspections",
+                      "item/ts_inspection@odata.bind": "/msdyn_workorders(@{items('Apply_to_each')})",
+                      "item/ts_trip@odata.bind": "/ts_trips(@{triggerOutputs()?['body/_ts_trip_value']})"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_a_row_by_ID": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Append_to_string_variable": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "2f834645-b230-4d4b-8aa0-5e8197402bc5"
+                    },
+                    "type": "AppendToStringVariable",
+                    "inputs": {
+                      "name": "workordersintrip",
+                      "value": "@concat(variables('newline'),outputs('Get_a_row_by_ID')?['body/msdyn_name'])"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@length(outputs('List_rows')?['body/value'])",
+                  0
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "da768c5c-2a65-401e-a60d-fd080a207b41"
+              },
+              "type": "If"
+            },
+            "List_rows": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "0a60dec7-ea90-4300-ae3f-b4beae30e86a"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_2",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_tripinspections",
+                  "$filter": "_ts_inspection_value eq '@{items('Apply_to_each')}'"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Get_a_row_by_ID": {
+              "runAfter": {
+                "List_rows": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "34b37c75-1aa4-4433-b3f7-fd53fe97f2e7"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_2",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "msdyn_workorders",
+                  "recordId": "@items('Apply_to_each')",
+                  "$select": "msdyn_name"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0cbc4f53-a6cc-4cfd-bfa3-79c3304d4838"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable_inspections": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "5886f0fd-f43e-4611-95a5-468481ecf5cc"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "inspections",
+                "type": "string",
+                "value": "@triggerOutputs()?['body/ts_inspections']"
+              }
+            ]
+          }
+        },
+        "Condition_user_lang_setting": {
+          "actions": {
+            "Condition": {
+              "actions": {
+                "Add_Notification_in_French_(_not_added)": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "a69e23c7-21a8-4e8b-ab23-b6406bfe7e34"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_2",
+                      "operationId": "CreateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "appnotifications",
+                      "item/title": "Les ordres de travail suivants @{variables('newline')}n'ont pas été ajoutés:\n@{variables('workordersintrip')}  ",
+                      "item/ttlinseconds": 1200,
+                      "item/icontype": 100000003,
+                      "item/ownerid@odata.bind": "systemusers(@{triggerOutputs()?['body/_ownerid_value']})",
+                      "item/toasttype": 200000000
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Condition_3": {
+                    "actions": {
+                      "Add_Notification_in_French": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "d4cef9d0-f33f-48cb-b0dc-ef40eff63537"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_commondataserviceforapps_2",
+                            "operationId": "CreateRecord",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                          },
+                          "parameters": {
+                            "entityName": "appnotifications",
+                            "item/title": "@{variables('count')} ordre(s) de travail ajouté(s) @{variables('newline')}au voyage.",
+                            "item/ttlinseconds": 1200,
+                            "item/icontype": 100000001,
+                            "item/ownerid@odata.bind": "systemusers(@{triggerOutputs()?['body/_ownerid_value']})",
+                            "item/toasttype": 200000000
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      }
+                    },
+                    "runAfter": {},
+                    "else": {
+                      "actions": {
+                        "Add_Notification_in_French_2": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "5d86adff-d7c8-45e1-86ad-1805fed58095"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_2",
+                              "operationId": "CreateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "appnotifications",
+                              "item/title": "@{variables('count')} ordre(s) de travail ajouté(s)@{variables('newline')} au voyage.",
+                              "item/ttlinseconds": 1200,
+                              "item/icontype": 100000001,
+                              "item/ownerid@odata.bind": "systemusers(@{triggerOutputs()?['body/_ownerid_value']})",
+                              "item/toasttype": 200000000
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "Add_Notification_in_French_(_not_added)_2": {
+                          "runAfter": {
+                            "Add_Notification_in_French_2": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "aba22b5a-742a-4a3a-a0fb-40f9a6e057df"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_2",
+                              "operationId": "CreateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "appnotifications",
+                              "item/title": "Les ordres de travail suivants @{variables('newline')} n'ont pas été ajoutés:\n@{variables('workordersintrip')}",
+                              "item/icontype": 100000003,
+                              "item/ownerid@odata.bind": "systemusers(@{triggerOutputs()?['body/_ownerid_value']})",
+                              "item/toasttype": 200000000
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      }
+                    },
+                    "expression": {
+                      "equals": [
+                        "@length(variables('workordersintrip'))",
+                        0
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "99a79c33-4c03-487a-86e9-d60c9a40f90d"
+                    },
+                    "type": "If"
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@variables('count')",
+                  0
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "505585f2-8f83-476f-ba88-fd845bb4f0bf"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Apply_to_each_User_Settings": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Condition_2": {
+                "actions": {
+                  "Add_Notification_(not_added)": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "8bfb3d51-4a7f-4918-90b8-779a51b79be4"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps_2",
+                        "operationId": "CreateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "appnotifications",
+                        "item/title": "The following work orders @{variables('newline')} were not successfully added@{variables('workordersintrip')} ",
+                        "item/ttlinseconds": 1200,
+                        "item/icontype": 100000003,
+                        "item/ownerid@odata.bind": "systemusers(@{triggerOutputs()?['body/_ownerid_value']})",
+                        "item/toasttype": 200000000
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                },
+                "runAfter": {},
+                "else": {
+                  "actions": {
+                    "Condition_4": {
+                      "actions": {
+                        "Add_Notification": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "eac4b24e-3df3-4b7d-a9ba-7939f98ad02d"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_2",
+                              "operationId": "CreateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "appnotifications",
+                              "item/title": "@{variables('count')} work order(s) added to trip",
+                              "item/ttlinseconds": 1200,
+                              "item/icontype": 100000001,
+                              "item/ownerid@odata.bind": "systemusers(@{triggerOutputs()?['body/_ownerid_value']})",
+                              "item/toasttype": 200000000
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      },
+                      "runAfter": {},
+                      "else": {
+                        "actions": {
+                          "Add_Notification_2": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "cb8c4b1f-87f9-4be4-9117-58e30bc8f5a8"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps_2",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "appnotifications",
+                                "item/title": "@{variables('count')} work order(s) added to trip",
+                                "item/ttlinseconds": 1200,
+                                "item/icontype": 100000001,
+                                "item/ownerid@odata.bind": "systemusers(@{triggerOutputs()?['body/_ownerid_value']})",
+                                "item/toasttype": 200000000
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          },
+                          "Add_Notification_(not_added)_2": {
+                            "runAfter": {
+                              "Add_Notification_2": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "613d96cd-6c01-4888-958d-b0b0e6bfef00"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps_2",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "appnotifications",
+                                "item/title": "The following work orders @{variables('newline')} were not successfully added@{variables('workordersintrip')} ",
+                                "item/ttlinseconds": 1200,
+                                "item/icontype": 100000003,
+                                "item/ownerid@odata.bind": "systemusers(@{triggerOutputs()?['body/_ownerid_value']})",
+                                "item/toasttype": 200000000
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          }
+                        }
+                      },
+                      "expression": {
+                        "equals": [
+                          "@length(variables('workordersintrip'))",
+                          0
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "98a1dc60-0a68-40e5-b63f-15fb44894b88"
+                      },
+                      "type": "If"
+                    }
+                  }
+                },
+                "expression": {
+                  "equals": [
+                    "@variables('count')",
+                    0
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "470e1452-9b3b-4084-8dc6-f865d5024456"
+                },
+                "type": "If"
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@variables('userLangId')",
+              1036
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "988be322-ebdd-45c3-8619-abee255772ca"
+          },
+          "type": "If"
+        },
+        "Initialize_variable_count": {
+          "runAfter": {
+            "Initialize_variable_inspections": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "557e8144-9b12-49a1-a1de-b06fa0844cf9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "count",
+                "type": "integer",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "Initialize_variable_userLangId": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bb1ff1d7-814a-4c7c-b8fd-2686becfb61c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "userLangId",
+                "type": "integer",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "List_rows_User_Settings": {
+          "runAfter": {
+            "Initialize_variable_userLangId": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b83f4deb-ce5f-4e5e-836c-1d61bcaa3379"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_2",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "usersettingscollection",
+              "$select": "uilanguageid",
+              "$filter": "systemuserid eq '@{triggerOutputs()?['body/_createdby_value']}'"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each_User_Settings": {
+          "foreach": "@outputs('List_rows_User_Settings')?['body/value']",
+          "actions": {
+            "Condition_find_user_lang_setting_value": {
+              "actions": {
+                "Set_variable": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "0b1cc4eb-c4d2-4e5c-b6c5-1b119d8667a5"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "userLangId",
+                    "value": 1036
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each_User_Settings')?['uilanguageid']",
+                  1036
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e85b1480-5c6d-4626-b00f-7ce209025805"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "List_rows_User_Settings": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9b50f7fb-adf3-47a9-9522-e5813a153e25"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_workordersintrip": {
+          "runAfter": {
+            "Initialize_workorder_array": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1c746622-95aa-4f2a-8496-424fcfce12c0"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "workordersintrip",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Initialize_workordersintrip": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "318ef272-3850-4c4b-9961-b9e7a0f0e42a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "newline",
+                "type": "string",
+                "value": "  \n"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

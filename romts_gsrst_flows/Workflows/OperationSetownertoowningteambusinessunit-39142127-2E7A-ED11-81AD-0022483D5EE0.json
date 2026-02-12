@@ -1,0 +1,133 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added": {
+          "metadata": {
+            "operationMetadataId": "c122047f-d016-4f42-934c-34b96f99ac2e"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ovs_operation",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_Business_Unit_of_Operation": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "5322f7b0-0539-4711-afa9-ced71761bd7a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "businessunits",
+              "recordId": "@triggerOutputs()?['body/_owningbusinessunit_value']",
+              "$select": "name"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Team_of_Business_Unit": {
+          "runAfter": {
+            "Get_Business_Unit_of_Operation": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b25db4ba-6431-460d-a792-28b366f5053e"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "teams",
+              "$select": "teamid",
+              "fetchXml": "<fetch>\n  <entity name=\"team\">\n    <attribute name=\"teamid\" />\n    <filter>\n      <condition attribute=\"name\" operator=\"eq\" value=\"@{outputs('Get_Business_Unit_of_Operation')?['body/name']}\" />\n    </filter>\n  </entity>\n</fetch>",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_Team": {
+          "foreach": "@outputs('Get_Team_of_Business_Unit')?['body/value']",
+          "actions": {
+            "Update_Owner_Team": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "a62ef951-430f-4ead-8959-e0ecc59ca29b"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ovs_operations",
+                  "recordId": "@triggerOutputs()?['body/ovs_operationid']",
+                  "item/ownerid@odata.bind": "/teams(@{items('Apply_to_Team')?['teamid']})"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_Team_of_Business_Unit": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "67de6112-efe3-46bb-bc81-8b894f197649"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

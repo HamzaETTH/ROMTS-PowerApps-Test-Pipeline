@@ -1,0 +1,372 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_SharePointROMTSGSRST"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "f685baf9-18c9-433a-82f3-955391551b92"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "User Email",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The email of the user who is uploading the file",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "RecordOwner",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The owning Business Unit",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "SharePoint Item Id",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The ItemId of the SharePoint file you want to grant Can Edit access too",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_3": {
+                  "title": "Manager Email",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The email of the users manager, set to 'no manager' if none",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2",
+                "text_3"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Switch_-_Who_is_the_Record_Owner": {
+          "runAfter": {
+            "Condition_-_Manager_email_is_not_equal_to_no_manager": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case_-_AvSec": {
+              "case": "Aviation Security",
+              "actions": {
+                "Scope_-_Try_Granting_AvSec_Access": {
+                  "actions": {
+                    "Grant_access_to_an_item_or_a_folder_-_AvSec": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "7d055771-b5ec-4133-9041-ca2289665544"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "GrantAccess"
+                        },
+                        "parameters": {
+                          "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
+                          "table": "2ce0827f-419c-4446-9d01-2770297b31a5",
+                          "id": "@variables('CreatedSharePointFileID')",
+                          "parameter/recipients": " @{variables('Users List')}",
+                          "parameter/roleValue": "role:1073741827",
+                          "parameter/sendEmail": false
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "91d56e3b-8389-45ab-a3b6-12574de5a6e9"
+                  },
+                  "type": "Scope"
+                },
+                "Scope_-_Catch_AvSec_Error": {
+                  "actions": {
+                    "Set_variable_-_AvSec_Result": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "84f77635-0a9a-45f4-9c19-11902a64608a"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "Result",
+                        "value": "Error granting access to the AvSec File - Please check the error log for [SarePoint] Grant File Access"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Scope_-_Try_Granting_AvSec_Access": [
+                      "Failed",
+                      "TimedOut"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "3873237a-29ef-4f06-bc10-f9c7f3ed6d8d"
+                  },
+                  "type": "Scope"
+                }
+              }
+            },
+            "Case_-_ISSO": {
+              "case": "Intermodal Surface Security Oversight",
+              "actions": {
+                "Scope_-_Try_Granting_ISSO_Access": {
+                  "actions": {
+                    "Grant_access_to_an_item_or_a_folder_-_ISSO": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "a533ac88-95af-48ff-b054-b37957853f41"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "GrantAccess"
+                        },
+                        "parameters": {
+                          "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
+                          "table": "57ae4d14-3c61-41be-a2b2-9e42b6346322",
+                          "id": "@variables('CreatedSharePointFileID')",
+                          "parameter/recipients": "@variables('Users List')",
+                          "parameter/roleValue": "role:1073741827",
+                          "parameter/sendEmail": false
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "b2b06f6f-e99a-422b-a5a9-630900500e79"
+                  },
+                  "type": "Scope"
+                },
+                "Scope_-_Catch_ISSO_Error": {
+                  "actions": {
+                    "Set_variable_-_ISSO_Result": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "48dbfbe3-6b31-4b32-a44b-7bd32839458d"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "Result",
+                        "value": "Error granting access to the ISSO File - Please check the error log for [SarePoint] Grant File Access"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Scope_-_Try_Granting_ISSO_Access": [
+                      "TimedOut",
+                      "Failed"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "9e5f7ce8-5f9a-4e47-945a-3f618cfe6748"
+                  },
+                  "type": "Scope"
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {
+              "Set_variable_-_Result_-_Unknown_Record_Owner": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "0a06c041-9a47-4a0f-b069-cf1b198dbd9f"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "Result",
+                  "value": "Unknown record owner, can't grant access to the file"
+                }
+              }
+            }
+          },
+          "expression": "@triggerBody()['text_1']",
+          "metadata": {
+            "operationMetadataId": "4c338975-3376-4eba-a37b-70ff6951f6c1"
+          },
+          "type": "Switch"
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Switch_-_Who_is_the_Record_Owner": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "15a07717-ee8b-4d71-ada1-7a4897428e2f"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "has_error": "@variables('Result')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "has_error": {
+                  "title": "Has Error",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable_-_Result": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "019b8dc1-aa86-4948-895e-c6e1e90b531a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Result",
+                "type": "string",
+                "value": "Grant access successful"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Users_List": {
+          "runAfter": {
+            "Initialize_variable_-_Result": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6cea3191-5a0a-4c28-9294-4290e5ebb099"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Users List",
+                "type": "string",
+                "value": "@triggerBody()['text']"
+              }
+            ]
+          }
+        },
+        "Condition_-_Manager_email_is_not_equal_to_no_manager": {
+          "actions": {
+            "Append_to_-_Users_List": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "277efbd3-a776-459b-8bc3-3cc2a494219a"
+              },
+              "type": "AppendToStringVariable",
+              "inputs": {
+                "name": "Users List",
+                "value": "; @{triggerBody()['text_3']};"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_CreatedSharePointFileID": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@triggerBody()['text_3']",
+                "@variables('NoManager')"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "17a03c40-ba93-4565-a93b-84704810d538"
+          },
+          "type": "If"
+        },
+        "Initialize_variable_-_NoManager": {
+          "runAfter": {
+            "Initialize_variable_-_Users_List": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "19faf44d-192f-49c5-af9e-269d5d0247db"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "NoManager",
+                "type": "string",
+                "value": "no manager"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_CreatedSharePointFileID": {
+          "runAfter": {
+            "Initialize_variable_-_NoManager": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4d26d7a8-631b-4d4d-b4a8-2d7cc55018fa"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "CreatedSharePointFileID",
+                "type": "integer",
+                "value": "@int(triggerBody()['text_2'])"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

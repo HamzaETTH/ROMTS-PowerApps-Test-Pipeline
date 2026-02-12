@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{7ba7fac1-1418-4335-935f-f7f8dfd73fcc}</formid>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920" solutionaction="Modified">
+      <tabs>
+        <tab name="general" verticallayout="true" id="{0840971E-E63D-4FD3-825F-44A6203D7B28}" IsUserDefined="0" expanded="true" showlabel="true" ordinalvalue="0">
+          <columns>
+            <column width="34%" id="0">
+              <sections>
+                <section name="General" showlabel="false" showbar="false" id="{DC61780B-91D3-43C4-90F8-BE6F1EACD317}" IsUserDefined="0" labelwidth="100" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{6727C94D-0CD6-4003-AE6D-484652C0A578}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Team Name" languagecode="1033" solutionaction="Added" />
+                          <label description="Nom de l’équipe" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{BF695E55-85F5-4534-8980-8932A4D18263}" ordinalvalue="10001">
+                        <labels>
+                          <label description="Business Unit" languagecode="1033" solutionaction="Added" />
+                          <label description="Division" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2248D866-7813-404D-8479-2210483745D9}" ordinalvalue="10002">
+                        <labels>
+                          <label description="Administrator" languagecode="1033" solutionaction="Added" />
+                          <label description="Administrateur" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e3dca6c4-ae67-419b-93c7-41d574042dfd}" ordinalvalue="10003">
+                        <labels>
+                          <label description="Team Type" languagecode="1033" solutionaction="Added" />
+                          <label description="Type d'équipe" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1d2365b3-98c5-4b3a-93fd-f0acbc13ff88}" ordinalvalue="10005" solutionaction="Modified">
+                        <labels>
+                          <label description="Azure AD Object Id for a group" languagecode="1033" solutionaction="Added" />
+                          <label description="ID d’objet Azure AD pour un groupe" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{19c6d20a-099d-8cd8-1465-0440147b0218}" ordinalvalue="10006" solutionaction="Modified">
+                        <labels>
+                          <label description="Membership Type" languagecode="1033" solutionaction="Added" />
+                          <label description="Type d’appartenance" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{dbc4cae2-8f3c-4aac-938c-035afcfe18ec}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10004" solutionaction="Added">
+                        <labels>
+                          <label description="Region" languagecode="1033" />
+                        </labels>
+                        <control id="ts_territory" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_territory" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="Description" showlabel="false" showbar="false" locklevel="0" id="{510EDF68-06A4-4C18-8DE1-150251BD0A19}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Top" ordinalvalue="1">
+                  <rows>
+                    <row>
+                      <cell id="{BD50EAB1-25F3-464D-ADAB-FEFAE73F6F96}" showlabel="true" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Description" languagecode="1033" solutionaction="Added" />
+                          <label description="Description" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="general_section_5" id="ee82f5ea-6da9-49c2-87bf-e2a5c22bf2b1" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="2" solutionaction="Added">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{8c1372ef-7d96-4f3a-a104-ca1168162093}" ordinalvalue="10000">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{bed7d51b-31e9-41e4-8977-44dd7b7feb7c}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10001">
+                        <labels>
+                          <label description="SharePoint Folder Name" languagecode="1033" />
+                        </labels>
+                        <control id="ts_sharepointfoldername" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_sharepointfoldername" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cccc8d2e-0725-4528-9e43-94c3a4c70c07}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10002">
+                        <labels>
+                          <label description="SharePoint Folder ID" languagecode="1033" />
+                        </labels>
+                        <control id="ts_sharepointfolderid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_sharepointfolderid" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="Operations" id="{ed5c68ae-2ed3-313c-b303-512a38ebc77b}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="1" solutionaction="Added">
+          <labels>
+            <label description="Team Operations" languagecode="1033" />
+            <label description="Opérations d'équipe" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="Operations_Section" showlabel="false" showbar="false" locklevel="0" id="{d8e97696-34c2-8a94-6ade-8ad5713d5e5b}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="280" celllabelalignment="Left" celllabelposition="Left" height="auto" ordinalvalue="0">
+                  <labels>
+                    <label description="Operations" languagecode="1033" />
+                    <label description="Opérations" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{204bee17-b936-6737-d182-46dda4145e89}" showlabel="false" colspan="1" auto="true" rowspan="4" ordinalvalue="10000">
+                        <labels>
+                          <label description="Operations (Owning Team)" languagecode="1033" />
+                          <label description="Utilisateurs" languagecode="1036" />
+                        </labels>
+                        <control id="Operations" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{979b75cb-99ae-cd9e-ea20-35d563629b52}">
+                          <parameters>
+                            <ViewId>{CCA2CAE4-216E-46B5-934E-D9112870F36F}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_ovs_operation_OPITeam_team</RelationshipName>
+                            <TargetEntityType>ovs_operation</TargetEntityType>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{CCA2CAE4-216E-46B5-934E-D9112870F36F}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>25</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="ce952112-98aa-48f3-991e-4b5f686f6861" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="2" solutionaction="Added">
+          <labels>
+            <label description="Activity Type Estimated Duration" languagecode="1033" />
+            <label description="Durée estimée de type d'activité" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_2_section_1" id="a52eebff-dbca-4239-8ef3-9e867280879a" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{3a11812c-0f7b-4562-8f51-2ec2256d2216}" colspan="1" rowspan="4" auto="true" showlabel="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="Activity Type Estimated Duration" languagecode="1033" />
+                          <label description="Utilisateurs" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="activity_type_estimated_duration" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{3B3B99B9-8936-4CD9-998F-FB2FC88C6AA2}">
+                          <parameters>
+                            <TargetEntityType>ts_teamactivitytypeestimatedduration</TargetEntityType>
+                            <ViewId>{1EF9B570-C575-434A-9E65-5BD7F4B6DCE9}</ViewId>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <IsUserView>false</IsUserView>
+                            <RecordsPerPage>12</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <ViewIds>{1EF9B570-C575-434A-9E65-5BD7F4B6DCE9}</ViewIds>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <AutoExpand>Auto</AutoExpand>
+                            <ChartGridMode>All</ChartGridMode>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RelationshipName>ts_ts_teamactivitytypeestimatedduration_Team</RelationshipName>
+                            <VisualizationId />
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_planning_avsec" id="5a0b2586-0398-4dc6-b679-7d2ddc25ed90" IsUserDefined="0" locklevel="0" showlabel="true" visible="false" ordinalvalue="3" solutionaction="Added">
+          <labels>
+            <label description="Planning" languagecode="1033" />
+            <label description="Planification" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_4_section_1" id="9380b698-b253-44c9-a1f3-08244473910b" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="true" ordinalvalue="0">
+                  <labels>
+                    <label description="Team Planning Data" languagecode="1033" />
+                    <label description="Données de planification d'équipe" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{27682f0e-e2c0-48dc-8546-94c58e8a8d84}" rowspan="4" colspan="1" auto="true" showlabel="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="New SG control 1665151860364" languagecode="1033" />
+                          <label description="Utilisateurs" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>20</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_teamplanningdata</TargetEntityType>
+                            <ViewId>{7520D906-F24E-ED11-BBA3-0022483C5061}</ViewId>
+                            <ViewIds>{BD67E89B-4BF5-4A3D-8692-A7D947739145},{7520D906-F24E-ED11-BBA3-0022483C5061}</ViewIds>
+                            <RelationshipName>ts_ts_teamplanningdata_Team_team</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_planning_isso" id="99ce95c4-0818-4737-b801-6eb3b40ef1f7" IsUserDefined="0" locklevel="0" showlabel="true" visible="false" ordinalvalue="4" solutionaction="Added">
+          <labels>
+            <label description="Planning" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_5_section_1" id="96124edb-3e9f-4260-92a0-a5131e0b6e36" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{8623527b-dd9a-ad07-d758-39e6ae79701c}" showlabel="false" colspan="1" auto="true" rowspan="6" ordinalvalue="10000">
+                        <labels>
+                          <label description="Plans (Team)" languagecode="1033" />
+                          <label description="Utilisateurs" languagecode="1036" />
+                        </labels>
+                        <control id="plans_grid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{AA7ADA65-A06B-4D7E-A568-0EF95BA71C0A}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_plan_team</RelationshipName>
+                            <TargetEntityType>ts_plan</TargetEntityType>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{AA7ADA65-A06B-4D7E-A568-0EF95BA71C0A}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{C4057CC3-270C-40D8-BAB7-4418CB323D2C}" columns="111">
+        <rows>
+          <row>
+            <cell id="{C0079CB8-5922-43C9-93ED-A52C51847C3F}" showlabel="true" locklevel="0" ordinalvalue="30002">
+              <labels>
+                <label description="Default Queue" languagecode="1033" solutionaction="Added" />
+                <label description="File d’attente par défaut" languagecode="1036" solutionaction="Added" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <events>
+        <event name="onload" application="true" active="true">
+          <Handlers solutionaction="Added">
+            <Handler functionName="ROM.Team.onLoad" libraryName="ts_/js/Team.js" handlerUniqueId="{be0a4fda-5bc4-49e9-b445-980b86c27f6b}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onrecordselect" application="false" active="false" relationship="" control="activity_type_estimated_duration" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.Team.setFieldsDisabled" libraryName="ts_/js/Team.js" handlerUniqueId="{e1c05c08-ac4d-0388-edaa-4bbe7197451c}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+      </events>
+      <footer id="{acd14d48-1a89-4395-8def-7b058599d1cc}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows>
+          <row>
+            <cell id="{87861c6f-b08d-4294-ae11-4d423426f5f6}" ordinalvalue="10000">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e5f5e3b4-a36c-4f27-b4a3-283c427fd7dd}" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d2af52b4-a98e-4990-bfc3-84ea96ba3c10}" ordinalvalue="30002">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <controlDescriptions solutionaction="Added">
+        <controlDescription forControl="{3B3B99B9-8936-4CD9-998F-FB2FC88C6AA2}">
+          <customControl id="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" formFactor="0">
+            <parameters />
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{1EF9B570-C575-434A-9E65-5BD7F4B6DCE9}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ts_teamactivitytypeestimatedduration_Team</RelationshipName>
+                <TargetEntityType>ts_teamactivitytypeestimatedduration</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{1EF9B570-C575-434A-9E65-5BD7F4B6DCE9}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{1EF9B570-C575-434A-9E65-5BD7F4B6DCE9}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ts_teamactivitytypeestimatedduration_Team</RelationshipName>
+                <TargetEntityType>ts_teamactivitytypeestimatedduration</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{1EF9B570-C575-434A-9E65-5BD7F4B6DCE9}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <Navigation solutionaction="Added">
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <formLibraries solutionaction="Added">
+        <Library name="ts_/js/Common.js" libraryUniqueId="{864116ee-0da7-72c5-2089-8c3e306429a0}" />
+        <Library name="ts_/js/Team.js" libraryUniqueId="{468d97d9-bb59-b51b-cbe7-2be8e26ce21d}" />
+      </formLibraries>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Team" languagecode="1033" />
+      <LocalizedName description="Équipe" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Updated default Team form" languagecode="1033" />
+      <Description description="Formulaire d’équipe par défaut mis à jour" languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>ts_ROMQuestionnaires</UniqueName>
+  <IntroducedVersion>1.0.20231204.2</IntroducedVersion>
+  <WebResourceId>953b9fac-1e5e-e611-80d6-00155ded156f</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents>
+    <AppModuleComponent type="1" schemaName="msdyn_workorder" />
+    <AppModuleComponent type="1" schemaName="ovs_questionnaire" />
+    <AppModuleComponent type="1" schemaName="ts_questionnaireresponse" />
+    <AppModuleComponent type="161" id="{e53b304f-839e-ee11-a568-6045bd5d6293}" />
+    <AppModuleComponent type="26" id="{38da7433-be6b-eb11-a812-000d3a841b3b}" />
+    <AppModuleComponent type="26" id="{76fac358-06fb-ed11-8f6e-0022483d7716}" />
+    <AppModuleComponent type="26" id="{fce37246-eba1-4e92-bb9d-f8cb3ec38e3f}" />
+    <AppModuleComponent type="60" id="{704d8664-78ac-eb11-8236-000d3ae8b866}" />
+    <AppModuleComponent type="62" schemaName="ts_ROMQuestionnaires" />
+  </AppModuleComponents>
+  <AppModuleRoleMaps>
+    <Role id="{158781c7-f92c-eb11-a813-000d3af3a7a7}" />
+    <Role id="{ed37675e-f72c-eb11-a813-000d3af3a7a7}" />
+    <Role id="{85e36d25-29f5-eb11-94ef-000d3af36036}" />
+    <Role id="{e4c394e4-a048-ec11-8c62-000d3ae89a77}" />
+    <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />
+    <Role id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+  </AppModuleRoleMaps>
+  <LocalizedNames>
+    <LocalizedName description="ROM Questionnaires" languagecode="1033" />
+  </LocalizedNames>
+  <appelements>
+    <appelement uniquename="new_ts_ROMQuestionnaires_canvasappid_ts_appendquestionnaireresponsetoservicetask_6789e">
+      <canvasappid>
+        <name>ts_appendquestionnaireresponsetoservicetask_6789e</name>
+      </canvasappid>
+      <iscustomizable>1</iscustomizable>
+      <name>new_ts_ROMQuestionnaires_canvasappid_ts_appendquestionnaireresponsetoservicetask_6789e</name>
+    </appelement>
+  </appelements>
+  <appsettings>
+    <appsetting settingdefinitionid.uniquename="appcopilotenabled">
+      <iscustomizable>1</iscustomizable>
+      <value>1</value>
+    </appsetting>
+    <appsetting settingdefinitionid.uniquename="ChannelAvailability">
+      <iscustomizable>1</iscustomizable>
+      <value>PowerAppsMobile</value>
+    </appsetting>
+    <appsetting settingdefinitionid.uniquename="EnableRoleBasedOfflineProfileAccess">
+      <iscustomizable>1</iscustomizable>
+      <value>true</value>
+    </appsetting>
+    <appsetting settingdefinitionid.uniquename="ServerMode">
+      <iscustomizable>1</iscustomizable>
+      <value>true</value>
+    </appsetting>
+  </appsettings>
+</AppModule>

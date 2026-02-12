@@ -1,0 +1,8 @@
+{
+  "environmentvariablevalues": {
+    "environmentvariablevalue": {
+      "iscustomizable": "1",
+      "value": "https://044e1a870d1b4c55b50cc816aeeed2.7c.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/7c869e93c1024ca695c9b35b2fadaa23/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=S-hdGvAAJpUQQQDSgG6Mwcs9GwU4RVBDxpGvDY7dGmc"
+    }
+  }
+}

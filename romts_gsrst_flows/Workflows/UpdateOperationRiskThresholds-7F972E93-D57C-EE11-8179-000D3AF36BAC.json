@@ -1,0 +1,226 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "SharePoint Flow Key (ts_SharePointFlowKey)": {
+          "defaultValue": "6u4qTO,e|[)-rY2n\\jk#Fas:,{35~d",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ts_SharePointFlowKey",
+            "description": "This key is used by the SharePointAttachFilePopUp.html web resource to connect to the Power Automate Flows that use HTTPS"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "7fd3d4c1-a669-4a12-9a50-7de92d8bd5bf"
+          },
+          "type": "Request",
+          "kind": "Http",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {}
+            },
+            "method": "POST",
+            "triggerAuthenticationType": "All"
+          }
+        }
+      },
+      "actions": {
+        "List_Risk_Thresholds": {
+          "runAfter": {
+            "Condition": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "89873700-1d30-4e32-a6fb-7304284c2bf3"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_riskcategories"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Loop_through_each_Risk_Threshold": {
+          "foreach": "@outputs('List_Risk_Thresholds')?['body/value']",
+          "actions": {
+            "List_Operations_in_Risk_Threshold_Range": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "c7cee107-29ab-4857-9dc3-c35aa1dca637"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ovs_operations",
+                  "$select": "ovs_operationid, ts_operationfrequency",
+                  "$filter": "ts_riskscore ge @{items('Loop_through_each_Risk_Threshold')?['ts_riskscoreminimum']} and ts_riskscore le @{items('Loop_through_each_Risk_Threshold')?['ts_riskscoremaximum']} and _ts_risk_value ne @{items('Loop_through_each_Risk_Threshold')?['ts_riskcategoryid']} and _ownerid_value eq 478513c3-b426-ec11-b6e6-000d3af4f86f and _ovs_operationtypeid_value eq @{items('Loop_through_each_Risk_Threshold')?['_ts_operationtype_value']}"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Loop_through_each_Operation_within_range": {
+              "foreach": "@outputs('List_Operations_in_Risk_Threshold_Range')?['body/value']",
+              "actions": {
+                "Update_a_row": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "d4817358-cb33-4388-928c-a3b2713b860c"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ovs_operations",
+                      "recordId": "@items('Loop_through_each_Operation_within_range')?['ovs_operationid']",
+                      "item/ts_operationfrequency@odata.bind": "/ts_operationfrequencies(@{items('Loop_through_each_Risk_Threshold')?['_ts_operationfrequency_value']})",
+                      "item/ts_risk@odata.bind": "/ts_riskcategories(@{items('Loop_through_each_Risk_Threshold')?['ts_riskcategoryid']})"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "List_Operations_in_Risk_Threshold_Range": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "637b1381-4ccb-4f4d-bbfa-360a1cf5970a"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "List_Risk_Thresholds": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a257cae3-c86d-41bc-aceb-cae975318f8a"
+          },
+          "type": "Foreach"
+        },
+        "Parse_JSON": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "58af3ca5-d238-4724-89bf-3a1a61891f3c"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerOutputs()['headers']",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Content-Type": {
+                  "type": "string"
+                },
+                "FlowKey": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cce5f378-e94f-4e43-b06c-2a0131ce7d04"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "FlowKey",
+                "type": "string",
+                "value": "@body('Parse_JSON')?['FlowKey']"
+              }
+            ]
+          }
+        },
+        "Condition": {
+          "actions": {},
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Terminate": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "e26d3e86-287d-44d4-a353-8b659ad4f4e9"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Failed",
+                  "runError": {
+                    "code": "401",
+                    "message": "Description: Invalid FlowKey - Security check failed"
+                  }
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@body('Parse_JSON')?['FlowKey']",
+              "@parameters('SharePoint Flow Key (ts_SharePointFlowKey)')"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7b26e566-406c-4963-bada-a7218492d6a8"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

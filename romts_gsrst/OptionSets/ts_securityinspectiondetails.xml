@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="ts_securityinspectiondetails" localizedName="SI Details" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>1.0.20220506.1</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <displaynames>
+    <displayname description="SI Details" languagecode="1033" />
+    <displayname description="Détails IS" languagecode="1036" />
+  </displaynames>
+  <Descriptions>
+    <Description description="" languagecode="1033" />
+  </Descriptions>
+  <options>
+    <option value="717750000" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Inside of the car" languagecode="1033" />
+        <label description="A l'ntérieur du wagon" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750001" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Outside of the car" languagecode="1033" />
+        <label description="A l'extérieur du wagon" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750002" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Both inside and outside of the car" languagecode="1033" />
+        <label description="À l'intérieur et à l'extérieur du wagon" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750003" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="The SI did not occur" languagecode="1033" />
+        <label description="L'IVS n'a pas eu lieu" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+  </options>
+</optionset>

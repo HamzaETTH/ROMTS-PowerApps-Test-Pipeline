@@ -1,0 +1,146 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_3": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "afb468cc-1aed-4f60-9edf-4e58ed520df6"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_3",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "account",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_stakeholderstatus"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "IF_Status_is_Non-Operational": {
+          "actions": {
+            "Add_a_post": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "c121506f-8616-411b-920a-acf9636a4623"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_3",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "posts",
+                  "item/source": 1,
+                  "item/largetext": "The status has been updated to Non-Operational",
+                  "item/text": " ",
+                  "item/type": 3,
+                  "item/regardingobjectid_account@odata.bind": "/accounts/@{triggerOutputs()?['body/accountid']}"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "else": {
+            "actions": {
+              "Add_a_post_": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "cb2829e0-2ec9-4e4a-96c4-96824c5751ad"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps_3",
+                    "operationId": "CreateRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "posts",
+                    "item/source": 1,
+                    "item/largetext": "The status has been updated to Operational",
+                    "item/text": " ",
+                    "item/type": 3,
+                    "item/regardingobjectid_account@odata.bind": "/accounts/@{triggerOutputs()?['body/accountid']}"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              },
+              "Update_a_row": {
+                "runAfter": {
+                  "Add_a_post_": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "8b2a94d4-bb2f-4f96-9272-7f4eb172348e"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps_3",
+                    "operationId": "UpdateRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "accounts",
+                    "recordId": "@triggerOutputs()?['body/accountid']",
+                    "item/ts_statusdescription": "@null",
+                    "item/ts_statusenddate": "@null",
+                    "item/ts_statusstartdate": "@null"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/ts_stakeholderstatus']",
+              717750001
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e8b3bfe2-3cd6-4740-abb3-1a87f1a112ce"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

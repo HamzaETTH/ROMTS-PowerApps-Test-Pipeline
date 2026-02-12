@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{ccd4012b-d9f5-490c-94b4-1b8f78f0868b}</formid>
+    <IntroducedVersion>8.3.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" solutionaction="Modified">
+      <tabs>
+        <tab verticallayout="true" id="{2a10e983-7cbc-4816-b8bc-9abbae0e0b9e}" IsUserDefined="1" ordinalvalue="0">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{8f0b53cf-3577-446b-8b5c-9e32f4b7cbfb}" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{2a5d1845-1f87-4456-b0bf-dd97ace3c20a}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Name" languagecode="1033" solutionaction="Added" />
+                          <label description="Nom" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3f3c8d6c-b783-4f1b-b290-7c74a47411b2}" ordinalvalue="10004" solutionaction="Modified">
+                        <labels>
+                          <label description="Owner" languagecode="1033" solutionaction="Added" />
+                          <label description="Propriétaire" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4a5498fd-a6df-4dad-bba7-e03e6fdb20e6}" locklevel="0" ordinalvalue="10001" solutionaction="Added">
+                        <labels>
+                          <label description="Asset Category Name (English)" languagecode="1033" />
+                          <label description="Catégorie d'actif (Anglais)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_assetcategorynameenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_assetcategorynameenglish" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1d1d4ee1-ae15-4f3d-91bb-82a2d5c6ef94}" locklevel="0" ordinalvalue="10002" solutionaction="Added">
+                        <labels>
+                          <label description="Asset Category Name (French)" languagecode="1033" />
+                          <label description="Catégorie d'actif (Français)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_assetcategorynamefrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_assetcategorynamefrench" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2a758eb4-2251-48fa-8c44-724e0b02a362}" locklevel="0" ordinalvalue="10003" solutionaction="Added">
+                        <labels>
+                          <label description="Asset Category Type" languagecode="1033" />
+                          <label description="Type de catégorie d'actif" languagecode="1036" />
+                        </labels>
+                        <control id="ts_assetcategorytype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_assetcategorytype" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{2942d2e0-933e-4c58-98d1-9b0b738afa82}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows />
+      </header>
+      <footer id="{448fa7e3-9063-403e-990e-62aa60417b67}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows />
+      </footer>
+      <DisplayConditions FallbackForm="true" Order="0" solutionaction="Added">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+      <LocalizedName description="Informations" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+      <Description description="Formulaire pour cette entité." languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

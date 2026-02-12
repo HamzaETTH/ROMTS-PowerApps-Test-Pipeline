@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{71bf6707-289e-eb11-b1ac-000d3ae920a6}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab id="ACBA75B7-97B6-4116-AA55-51312992B721" name="tab_1" showlabel="false" labelid="{718935e3-bfc2-4732-b562-fb035b414fa2}">
+          <labels>
+            <label description="Tab" languagecode="1033" />
+            <label description="Onglet" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section id="AD49B5BF-256F-46A8-9C75-947146172EB9" name="tab_1_column_1_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{4be73f11-924c-475e-991d-663e1d098f59}">
+                  <labels>
+                    <label description="Work Order Details" languagecode="1033" />
+                    <label description="Détails de l'ordre de travail" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{52bfa1cd-7991-484a-9c9c-b435eb303540}" locklevel="0">
+                        <labels>
+                          <label description="Work Order Number" languagecode="1033" />
+                          <label description="Numéro d'ordre de travail" languagecode="1036" />
+                        </labels>
+                        <control id="msdyn_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="msdyn_name" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c84a2664-2d9d-498d-8039-d5314745df3d}" locklevel="0">
+                        <labels>
+                          <label description="Region" languagecode="1033" />
+                          <label description="Région" languagecode="1036" />
+                        </labels>
+                        <control id="ts_region" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_region" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{39f57f71-0050-44e3-a283-409c42c9e4c2}" locklevel="0">
+                        <labels>
+                          <label description="Country" languagecode="1033" />
+                          <label description="Pays" languagecode="1036" />
+                        </labels>
+                        <control id="ts_country" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_country" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a5809ed8-be94-4465-ba94-413f62cd5df0}" locklevel="0" labelid="{863fb95f-31ad-40ee-9cc5-c92f18e01fd3}">
+                        <labels>
+                          <label description="Stakeholder" languagecode="1033" />
+                          <label description="Intervenant" languagecode="1036" />
+                        </labels>
+                        <control id="msdyn_serviceaccount" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_serviceaccount" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{79efdcbf-3ffa-4f53-975a-8f486efc54cf}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Operation Type" languagecode="1033" />
+                          <label description="Type d'opération" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_operationtypeid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_operationtypeid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{82192059-1c94-4046-bdad-7f7e97953c8c}" locklevel="0">
+                        <labels>
+                          <label description="Site" languagecode="1033" />
+                          <label description="Site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="3" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Work Order Service Task SurveyJS" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

@@ -1,0 +1,663 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_FFM_Target_is_modified": {
+          "metadata": {
+            "operationMetadataId": "44fb4e04-66c9-4e0a-9730-8995321e934f"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "ts_frequencyforecastmap",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_target"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Initialize_variable_-_Risk_Frequency_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "282873f1-7c9d-4573-b201-c07336886c3c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Risk Frequency ID",
+                "type": "string",
+                "value": "@triggerOutputs()?['body/_ts_frequencyid_value']"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Planning_Data_Target_Weight": {
+          "runAfter": {
+            "Get_a_RF_row_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0b8490ca-9563-4bfc-9374-ff2ee063e19a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Planning Data Target Weight",
+                "type": "integer"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Planning_Data_ID": {
+          "runAfter": {
+            "Initialize_variable_-_Planning_Data_Target_Weight": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8904b95d-99a7-4488-98bd-d8661fa44d10"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Planning Data ID",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "List_Planning_Data_Rows": {
+          "runAfter": {
+            "Initialize_variable_-_Planning_Data_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fc49c923-9c6a-4e52-acf7-160e3dcf41b3"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_planningdatas",
+              "$select": "_ts_fiscalyear_value, ts_closedondatemostrecentwo",
+              "fetchXml": "<fetch>\n  <entity name='ts_planningdata'>\n    <attribute name='ts_planningdataid' />\n    <attribute name='createdon' />\n    <link-entity name='ts_operationactivity' to='ts_operationactivity' from='ts_operationactivityid' alias='ts_operationactivity' link-type='inner'>\n      <attribute name='ts_operationactivityid' />\n      <link-entity name='ts_operationactivityriskscores' to='ts_operationactivityid' from='ts_operationactivity' alias='ts_operationactivityriskscores' link-type='inner'>\n        <attribute name='ts_operationactivityriskscoresid' />\n        <link-entity name='ts_riskfrequency' to='ts_riskfrequency' from='ts_riskfrequencyid' alias='ts_riskfrequency' link-type='inner'>\n          <filter>\n            <condition attribute='ts_riskfrequencyid' operator='eq' value='@{variables('Risk Frequency ID')}' />\n          </filter>\n        </link-entity>\n        <order attribute='ts_operationactivityriskscoresid' />\n      </link-entity>\n      <order attribute='ts_operationactivityid' />\n    </link-entity>\n    <order attribute='ts_planningdataid' />\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_Planning_Data_Rows')?['body/value']",
+          "actions": {
+            "Set_variable_-_Planning_Data_ID": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "4aa7bfda-2b67-4da5-b079-372d880c8bba"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Planning Data ID",
+                "value": "@items('Apply_to_each')?['ts_planningdataid']"
+              }
+            },
+            "Compose_-_Operation_Activity": {
+              "runAfter": {
+                "Set_variable_-_Planning_Data_ID": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "97a63cd6-7bf6-40a0-a5cf-cce50fe51798"
+              },
+              "type": "Compose",
+              "inputs": "@items('Apply_to_each')?['_ts_operationactivity_value']"
+            },
+            "Compose_-_Fiscal_Year": {
+              "runAfter": {
+                "Compose_-_Operation_Activity": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e808780e-d542-4aed-a550-d0635cf68d5d"
+              },
+              "type": "Compose",
+              "inputs": "@items('Apply_to_each')?['_ts_fiscalyear_value']"
+            },
+            "LastWorkOrder": {
+              "runAfter": {
+                "Compose_-_Current_Target_before_validation": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "7c54119d-4667-4d25-84f3-25c654cd9d29"
+              },
+              "type": "Compose",
+              "inputs": "@items('Apply_to_each')?['ts_closedondatemostrecentwo']"
+            },
+            "Compose_-_Current_Target_before_validation": {
+              "runAfter": {
+                "Compose_-_Fiscal_Year": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c3a329ba-d05e-43b0-9ec3-3758047fb74f"
+              },
+              "type": "Compose",
+              "inputs": "@items('Apply_to_each')?['ts_target']"
+            },
+            "Last_work_order_not_null": {
+              "actions": {
+                "Switch": {
+                  "runAfter": {},
+                  "cases": {
+                    "Case": {
+                      "case": "1x / 3 years",
+                      "actions": {
+                        "expect_next_inspection_date_-_3yr_later": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "b111487a-737c-4121-96bc-25a5c5b02e3d"
+                          },
+                          "type": "Compose",
+                          "inputs": "@formatDateTime(addToTime(outputs('LastWorkOrder'), 3, 'Year'), 'yyyy-MM-dd')"
+                        },
+                        "Condition_3": {
+                          "actions": {
+                            "Update_a_row_3": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "9eb03861-dfff-4b9b-9129-5bc0b2f37c3c"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps_1",
+                                  "operationId": "UpdateOnlyRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ts_planningdatas",
+                                  "recordId": "@items('Apply_to_each')?['ts_planningdataid']",
+                                  "item/ts_target": 0
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              }
+                            }
+                          },
+                          "runAfter": {
+                            "expect_next_inspection_date_-_3yr_later": [
+                              "Succeeded"
+                            ]
+                          },
+                          "else": {
+                            "actions": {
+                              "Condition_4": {
+                                "actions": {
+                                  "Update_a_row_4": {
+                                    "runAfter": {},
+                                    "metadata": {
+                                      "operationMetadataId": "c58128db-c75e-43d3-9c5e-f5a32d4650f8"
+                                    },
+                                    "type": "OpenApiConnection",
+                                    "inputs": {
+                                      "host": {
+                                        "connectionName": "shared_commondataserviceforapps_1",
+                                        "operationId": "UpdateOnlyRecord",
+                                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                      },
+                                      "parameters": {
+                                        "entityName": "ts_planningdatas",
+                                        "recordId": "@items('Apply_to_each')?['ts_planningdataid']",
+                                        "item/ts_target": 1
+                                      },
+                                      "authentication": "@parameters('$authentication')"
+                                    }
+                                  }
+                                },
+                                "runAfter": {},
+                                "expression": {
+                                  "or": [
+                                    {
+                                      "equals": [
+                                        "@outputs('Compose_-_Current_Target_before_validation')",
+                                        "@null"
+                                      ]
+                                    },
+                                    {
+                                      "equals": [
+                                        "@outputs('Compose_-_Current_Target_before_validation')",
+                                        0
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "metadata": {
+                                  "operationMetadataId": "c8ad38ac-e9bd-49d0-84e0-d258e32d766e"
+                                },
+                                "type": "If"
+                              }
+                            }
+                          },
+                          "expression": {
+                            "and": [
+                              {
+                                "less": [
+                                  "@outputs('Get_a_FY_row_by_ID')?['body/tc_fiscalend']",
+                                  "@outputs('expect_next_inspection_date_-_3yr_later')"
+                                ]
+                              },
+                              {
+                                "not": {
+                                  "equals": [
+                                    "@outputs('Compose_-_Current_Target_before_validation')",
+                                    "@null"
+                                  ]
+                                }
+                              },
+                              {
+                                "not": {
+                                  "equals": [
+                                    "@outputs('Compose_-_Current_Target_before_validation')",
+                                    0
+                                  ]
+                                }
+                              }
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "93a69024-1708-4987-aef5-6f0cf896be74"
+                          },
+                          "type": "If"
+                        }
+                      }
+                    },
+                    "Case_2": {
+                      "case": "1x / 2 years",
+                      "actions": {
+                        "expect_next_inspection_date_-_2_yr_later": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "eac96779-4d32-4678-96d1-2fd839a421de"
+                          },
+                          "type": "Compose",
+                          "inputs": "@formatDateTime(addToTime(outputs('LastWorkOrder'), 2, 'Year'), 'yyyy-MM-dd')"
+                        },
+                        "Condition": {
+                          "actions": {
+                            "Update_a_row": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "1fa7ddf1-8ef0-42d1-a07e-1e9875a61303"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps_1",
+                                  "operationId": "UpdateOnlyRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ts_planningdatas",
+                                  "recordId": "@items('Apply_to_each')?['ts_planningdataid']",
+                                  "item/ts_target": 0
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              }
+                            }
+                          },
+                          "runAfter": {
+                            "expect_next_inspection_date_-_2_yr_later": [
+                              "Succeeded"
+                            ]
+                          },
+                          "else": {
+                            "actions": {
+                              "Condition_2": {
+                                "actions": {
+                                  "Update_a_row_2": {
+                                    "runAfter": {},
+                                    "metadata": {
+                                      "operationMetadataId": "3ec07dd5-fecb-494c-a29a-ac3ffd9d6aac"
+                                    },
+                                    "type": "OpenApiConnection",
+                                    "inputs": {
+                                      "host": {
+                                        "connectionName": "shared_commondataserviceforapps_1",
+                                        "operationId": "UpdateOnlyRecord",
+                                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                      },
+                                      "parameters": {
+                                        "entityName": "ts_planningdatas",
+                                        "recordId": "@items('Apply_to_each')?['ts_planningdataid']",
+                                        "item/ts_target": 1
+                                      },
+                                      "authentication": "@parameters('$authentication')"
+                                    }
+                                  }
+                                },
+                                "runAfter": {},
+                                "expression": {
+                                  "or": [
+                                    {
+                                      "equals": [
+                                        "@outputs('Compose_-_Current_Target_before_validation')",
+                                        0
+                                      ]
+                                    },
+                                    {
+                                      "equals": [
+                                        "@outputs('Compose_-_Current_Target_before_validation')",
+                                        "@null"
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "metadata": {
+                                  "operationMetadataId": "29f64ae9-0867-48e3-9d40-a7d482ab45da"
+                                },
+                                "type": "If"
+                              }
+                            }
+                          },
+                          "expression": {
+                            "and": [
+                              {
+                                "less": [
+                                  "@outputs('Get_a_FY_row_by_ID')?['body/tc_fiscalend']",
+                                  "@outputs('expect_next_inspection_date_-_2_yr_later')"
+                                ]
+                              },
+                              {
+                                "not": {
+                                  "equals": [
+                                    "@outputs('Compose_-_Current_Target_before_validation')",
+                                    "@null"
+                                  ]
+                                }
+                              },
+                              {
+                                "not": {
+                                  "equals": [
+                                    "@outputs('Compose_-_Current_Target_before_validation')",
+                                    0
+                                  ]
+                                }
+                              }
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "8366b0d9-4623-42e8-800d-d3ec76db7e0c"
+                          },
+                          "type": "If"
+                        }
+                      }
+                    },
+                    "Case_3": {
+                      "case": "1x / 1 years",
+                      "actions": {
+                        "expect_next_inspection_date_-_1_yr_later": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "147658e2-0c50-4f97-8d92-ed8b7f0996f8"
+                          },
+                          "type": "Compose",
+                          "inputs": "@formatDateTime(addToTime(outputs('LastWorkOrder'), 1, 'Year'), 'yyyy-MM-dd')"
+                        },
+                        "Condition_5": {
+                          "actions": {
+                            "Update_a_row_5": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "44ff554f-5acb-4154-8f73-b5a7e13d94dd"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps_1",
+                                  "operationId": "UpdateOnlyRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ts_planningdatas",
+                                  "recordId": "@items('Apply_to_each')?['ts_planningdataid']",
+                                  "item/ts_target": 0
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              }
+                            }
+                          },
+                          "runAfter": {
+                            "expect_next_inspection_date_-_1_yr_later": [
+                              "Succeeded"
+                            ]
+                          },
+                          "else": {
+                            "actions": {
+                              "Condition_6": {
+                                "actions": {
+                                  "Update_a_row_6": {
+                                    "runAfter": {},
+                                    "metadata": {
+                                      "operationMetadataId": "5cb099a6-9d0d-43bc-97b4-692747190b07"
+                                    },
+                                    "type": "OpenApiConnection",
+                                    "inputs": {
+                                      "host": {
+                                        "connectionName": "shared_commondataserviceforapps_1",
+                                        "operationId": "UpdateOnlyRecord",
+                                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                      },
+                                      "parameters": {
+                                        "entityName": "ts_planningdatas",
+                                        "recordId": " @{items('Apply_to_each')?['ts_planningdataid']}"
+                                      },
+                                      "authentication": "@parameters('$authentication')"
+                                    }
+                                  }
+                                },
+                                "runAfter": {},
+                                "expression": {
+                                  "or": [
+                                    {
+                                      "equals": [
+                                        "@outputs('Compose_-_Current_Target_before_validation')",
+                                        "@null"
+                                      ]
+                                    },
+                                    {
+                                      "equals": [
+                                        "@outputs('Compose_-_Current_Target_before_validation')",
+                                        0
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "metadata": {
+                                  "operationMetadataId": "a65f2459-aacf-44e7-88d8-b5eb4a5354bc"
+                                },
+                                "type": "If"
+                              }
+                            }
+                          },
+                          "expression": {
+                            "and": [
+                              {
+                                "less": [
+                                  "@outputs('Get_a_FY_row_by_ID')?['body/tc_fiscalend']",
+                                  "@outputs('expect_next_inspection_date_-_1_yr_later')"
+                                ]
+                              },
+                              {
+                                "not": {
+                                  "equals": [
+                                    "@outputs('Compose_-_Current_Target_before_validation')",
+                                    "@null"
+                                  ]
+                                }
+                              },
+                              {
+                                "not": {
+                                  "equals": [
+                                    "@outputs('Compose_-_Current_Target_before_validation')",
+                                    0
+                                  ]
+                                }
+                              }
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "3fd787bf-8164-4211-9dfe-50d7d4cdbe08"
+                          },
+                          "type": "If"
+                        }
+                      }
+                    },
+                    "Case_4": {
+                      "case": "2x / 1 year",
+                      "actions": {
+                        "expect_next_inspection_date_-_6_mth_later": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "4462026a-187d-4f2e-be56-8ff972c29b74"
+                          },
+                          "type": "Compose",
+                          "inputs": "@formatDateTime(addToTime(outputs('LastWorkOrder'), 6, 'Month'), 'yyyy-MM-dd')"
+                        }
+                      }
+                    }
+                  },
+                  "default": {
+                    "actions": {}
+                  },
+                  "expression": "@outputs('Get_a_RF_row_by_ID')?['body/ts_riskfrequencyenglish']",
+                  "metadata": {
+                    "operationMetadataId": "716a0f54-4220-4f97-99f5-8f70cc4108ac"
+                  },
+                  "type": "Switch"
+                }
+              },
+              "runAfter": {
+                "Get_a_FY_row_by_ID": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "not": {
+                  "equals": [
+                    "@items('Apply_to_each')?['ts_closedondatemostrecentwo']",
+                    "@null"
+                  ]
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "484459ea-39ab-46e7-bb76-d2e82d11bae7"
+              },
+              "type": "If"
+            },
+            "Get_a_FY_row_by_ID": {
+              "runAfter": {
+                "LastWorkOrder": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "8991c554-681d-4387-af5c-9ac15c90cdc3"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "tc_tcfiscalyears",
+                  "recordId": "@items('Apply_to_each')?['_ts_fiscalyear_value']",
+                  "$select": "tc_fiscalyearnum, tc_fiscalend"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_Planning_Data_Rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1f5d97d9-d7a4-43ef-a2ea-29a297f64409"
+          },
+          "type": "Foreach"
+        },
+        "Get_a_RF_row_by_ID": {
+          "runAfter": {
+            "Initialize_variable_-_Risk_Frequency_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "43baf322-dc1e-43d4-87fa-137f5863f6da"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_riskfrequencies",
+              "recordId": "@variables('Risk Frequency ID')",
+              "$select": "ts_riskfrequencyenglish"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

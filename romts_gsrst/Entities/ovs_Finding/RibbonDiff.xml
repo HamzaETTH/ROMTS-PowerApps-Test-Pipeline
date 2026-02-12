@@ -1,0 +1,758 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <HideCustomAction HideActionId="ts.Mscrm.Form.ovs_finding.FollowButton.Hide" Location="Mscrm.Form.ovs_finding.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.Form.ovs_finding.Reports.Hide" Location="Mscrm.Form.ovs_finding.Reports" />
+    <CustomAction Id="ts.Mscrm.Form.ovs_finding.SaveAsComplete.CustomAction" Location="Mscrm.Form.ovs_finding.MainTab.Save.Controls._children" Sequence="20">
+      <CommandUIDefinition>
+        <Button Alt="$Resources:Ribbon.Form.MainTab.Save.SaveAsComplete" Command="Mscrm.SavePrimaryActivityAsComplete" Id="Mscrm.Form.ovs_finding.SaveAsComplete" Image32by32="/_imgs/ribbon/SaveAsCompleted_32.png" Image16by16="/_imgs/ribbon/MarkAsComplete_16.png" LabelText="$Resources:Ribbon.Form.MainTab.Save.SaveAsComplete" Sequence="20" TemplateAlias="o1" ToolTipTitle="$Resources:Ribbon.Form.MainTab.Save.SaveAsComplete" ToolTipDescription="$Resources(EntityDisplayName):Ribbon.Tooltip.SaveAsComplete" ModernImage="SaveAsComplete" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ovs_finding.Delete.Hide" Location="Mscrm.HomepageGrid.ovs_finding.Delete" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ovs_finding.FollowButton.Hide" Location="Mscrm.HomepageGrid.ovs_finding.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ovs_finding.RefreshButton.Hide" Location="Mscrm.HomepageGrid.ovs_finding.RefreshButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ovs_finding.RunReport.Hide" Location="Mscrm.HomepageGrid.ovs_finding.RunReport" />
+    <CustomAction Id="ts.Mscrm.OpenRecordItem.Mscrm.SubGrid.ovs_finding.MainTab.Management.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="28">
+      <CommandUIDefinition>
+        <Button Command="Mscrm.OpenRecordItem" Id="Mscrm.OpenRecordItem" Sequence="28" TemplateAlias="o1" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.Mscrm.SubGrid.ovs_finding.AddExistingStandard.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="30">
+      <CommandUIDefinition>
+        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="Mscrm.AddExistingRecordFromSubGridStandard" Id="Mscrm.SubGrid.ovs_finding.AddExistingStandard" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="30" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipDescription" ModernImage="AddExisting" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.AddNewStandard.Hide" Location="Mscrm.SubGrid.ovs_finding.AddNewStandard" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.FollowButton.Hide" Location="Mscrm.SubGrid.ovs_finding.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.NewRecord.Hide" Location="Mscrm.SubGrid.ovs_finding.NewRecord" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.RunReport.Hide" Location="Mscrm.SubGrid.ovs_finding.RunReport" />
+    <CustomAction Id="ts.ovs_finding.AssignCorrectiveAction.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="8">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ovs_finding.AssignCorrectiveAction.Alt" Command="ts.ovs_finding.AssignCorrectiveAction" Id="ts.ovs_finding.AssignCorrectiveAction" Image32by32="$webresource:Service/_imgs/ribbon/Assign_32.png" Image16by16="$webresource:Service/_imgs/ribbon/Assign_16.png" LabelText="$LocLabels:ts.ovs_finding.AssignCorrectiveAction.LabelText" Sequence="8" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.AssignCorrectiveAction.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.AssignCorrectiveAction.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.CustomAction" Location="Mscrm.Form.ovs_finding.MainTab.Save.Controls._children" Sequence="7">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.Alt" Command="ts.ovs_finding.unlockNCAT" CommandValueId="ts.ovs.finding.resetAssessmentTool" Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool" LabelText="$LocLabels:ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.LabelText" Sequence="7" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ovs_finding.CopyResult.Button.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="12">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ovs_finding.CopyResult.Button.Alt" Command="ts.ovs_finding.CopyResult.Command" Id="ts.ovs_finding.CopyResult.Button" LabelText="$LocLabels:ts.ovs_finding.CopyResult.Button.LabelText" Sequence="12" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.CopyResult.Button.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.CopyResult.Button.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ovs_finding.CreateReport.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="14">
+      <CommandUIDefinition>
+        <FlyoutAnchor Alt="$LocLabels:ts.ovs_finding.CreateReport.Alt" Command="ts.ovs_finding.CreateReport" Id="ts.ovs_finding.CreateReport" Image16by16="$webresource:dev1_/images/runreport16.png" Image32by32="$webresource:dev1_/images/runreport16.png" LabelText="$LocLabels:ts.ovs_finding.CreateReport.LabelText" Sequence="14" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.CreateReport.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.CreateReport.ToolTipDescription">
+          <Menu Id="ts.ovs_finding.CreateReport.Menu">
+            <MenuSection Id="ts.ovs_finding.Section12.Section" Sequence="5" DisplayMode="Menu16">
+              <Controls Id="ts.ovs_finding.Section12.Section.Controls">
+                <Button Alt="$LocLabels:ts.ovs_finding.FindingsReport.Alt" Command="ts.ovs_finding.FindingsReport" Id="ts.ovs_finding.FindingsReport" Image32by32="$webresource:dev1_/images/runreport16.png" Image16by16="$webresource:dev1_/images/runreport16.png" LabelText="$LocLabels:ts.ovs_finding.FindingsReport.LabelText" Sequence="10" ToolTipTitle="$LocLabels:ts.ovs_finding.FindingsReport.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.FindingsReport.ToolTipDescription" />
+              </Controls>
+            </MenuSection>
+          </Menu>
+        </FlyoutAnchor>
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ovs_finding.EnforcementAction.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="5">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ovs_finding.EnforcementAction.Alt" Command="ts.ovs_finding.EnforcementAction" Id="ts.ovs_finding.EnforcementAction" Image32by32="" Image16by16="" LabelText="$LocLabels:ts.ovs_finding.EnforcementAction.LabelText" Sequence="5" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.EnforcementAction.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.EnforcementAction.ToolTipDescription" ModernImage="" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ovs_finding.ResetAssessmentTool.CustomAction" Location="Mscrm.Form.ovs_finding.MainTab.Save.Controls._children" Sequence="4">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ovs_finding.ResetAssessmentTool.Alt" Command="ts.ovs_finding.unlockRATE" CommandValueId="ts.ovs.finding.resetAssessmentTool" Id="ts.ovs_finding.ResetAssessmentTool" LabelText="$LocLabels:ts.ovs_finding.ResetAssessmentTool.LabelText" Sequence="4" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.ResetAssessmentTool.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.ResetAssessmentTool.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ovs_finding.TSISMarkComplete.Form.CustomAction" Location="Mscrm.Form.ovs_finding.MainTab.Save.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.Alt" Command="ts.ovs_finding.TSISMarkComplete.Form.Command" Id="ts.ovs_finding.TSISMarkComplete.Form" Image32by32="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_32.png" Image16by16="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_16.png" LabelText="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.ToolTipDescription" ModernImage="SaveAsComplete" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.AddExistingRecordFromSubGridAssociated">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="ts.ovs_finding.isAdmin" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AddExisting" />
+        <DisplayRule Id="Mscrm.ShowForManyToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.AppendPrimary" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.AppendToSelected" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.AddExistingRecordFromSubGridStandard">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="Mscrm.IsRelationshipEnabledInMocaOffline" />
+        <EnableRule Id="ts.ovs_finding.isAdmin" />
+        <EnableRule Id="ts.ovs_finding.HideInCaseFrom" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AddExisting" />
+        <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.CanWriteSelected" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridStandard" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.AddNewRecordFromSubGridStandard">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="ts.ovs_finding.isAdmin" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.CreateSelectedEntityPermission" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.HideAddNewForChildEntities" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Open.addNewFromSubGridStandard" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.Form.Deactivate">
+      <EnableRules>
+        <EnableRule Id="Mscrm.CanWritePrimary" />
+        <EnableRule Id="ts.ovs_finding.isSystemOrBusinessAdmins" />
+        <EnableRule Id="ts.ovs_finding.isadminormanager" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWritePrimary" />
+        <DisplayRule Id="Mscrm.PrimaryIsActive" />
+        <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode" />
+        <DisplayRule Id="Mscrm.PrimaryIsNotActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Deactivate.deactivatePrimaryRecord" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.HomepageGrid.Deactivate">
+      <EnableRules>
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="ts.ovs_finding.isSystemOrBusinessAdmins" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWriteSelected" />
+        <DisplayRule Id="Mscrm.SelectedEntityHasStatecode" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Deactivate.deactivateRecords" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedControl" />
+          <CrmParameter Value="SelectedControlSelectedItemReferences" />
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.NewRecordFromGrid">
+      <EnableRules>
+        <EnableRule Id="Mscrm.IsValidForHierarchyView" />
+        <EnableRule Id="Mscrm.IsValidForHierarchyPageInUC" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="Mscrm.PrimaryIsNotActivityHomePageGrid" />
+        <EnableRule Id="ts.ovs_finding.isAdmin" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CreateSelectedEntityPermission" />
+        <DisplayRule Id="Mscrm.ShowForNonRelationshipBoundGrids" />
+        <DisplayRule Id="Mscrm.HideNewForChildEntities" />
+        <DisplayRule Id="Mscrm.HideAddressEntities" />
+        <DisplayRule Id="Mscrm.SelectedEntityIsNotBPFEntity" />
+        <DisplayRule Id="Mscrm.IsNotActivityPointer" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Open.openNewRecord" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.OpenRecordItem">
+      <EnableRules>
+        <EnableRule Id="ts.ovs_finding.alwaysFalse" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="openRecord" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="FirstSelectedItemId" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.SavePrimaryActivityAsComplete">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AvailableOnForm" />
+        <EnableRule Id="Mscrm.CanSavePrimary" />
+        <EnableRule Id="Mscrm.ReadPrimaryPermission" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.PrimaryIsActivity" />
+        <DisplayRule Id="Mscrm.CanSavePrimaryEntityType" />
+        <DisplayRule Id="ts.ovs_findingMarkCompleted.DisplayRule" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="SaveAsComplete" Library="$webresource:ovs_/js/FindingRibbon.js" />
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_finding.AssignCorrectiveAction">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="ts.ovs_finding.PrimaryIsEnforcementAction" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="AssignCorrectiveAction" Library="$webresource:ovs_/js/Finding.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_finding.CopyResult.Command">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="copyEnforcementActionToolResults" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_finding.CreateReport">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions />
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_finding.EnforcementAction">
+      <EnableRules>
+        <EnableRule Id="ts.ovs_finding.SelectionCountNon" />
+        <EnableRule Id="ts.ovs_finding.PrimaryIsWorkspaceOrIncident" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="createEnforcementAction" Library="$webresource:ovs_/js/Finding.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_finding.FindingsReport">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="FindingsReport" Library="$webresource:ovs_/js/Finding.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_finding.TSISMarkComplete.Form.Command">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="ts.ovs_finding.ShowMarkComplete" />
+        <DisplayRule Id="ts.ovs_findingMarkCompleted.DisplayRule" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="markComplete" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_finding.unlockNCAT">
+      <EnableRules>
+        <EnableRule Id="ts.ovs_finding.isAdmin" />
+        <EnableRule Id="ts.ovs_finding.acceptNCATRecommendationIsNotNull" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="unlockNCAT" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_finding.unlockRATE">
+      <EnableRules>
+        <EnableRule Id="ts.ovs_finding.isSystemAdmin" />
+        <EnableRule Id="ts.ovs_finding.acceptRATERecommendationIsNotNull" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="unlockRATE" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules>
+      <DisplayRule Id="Mscrm.AddExisting">
+        <ReferencingAttributeRequiredRule Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendPrimary">
+        <EntityPrivilegeRule PrivilegeType="Append" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendSelected">
+        <EntityPrivilegeRule PrivilegeType="Append" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendToPrimary">
+        <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendToSelected">
+        <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.CanSavePrimaryEntityType">
+        <OrRule>
+          <Or>
+            <EntityPrivilegeRule PrivilegeType="Create" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+          </Or>
+          <Or>
+            <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+          </Or>
+        </OrRule>
+        <EntityPrivilegeRule PrivilegeType="Read" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.CanWritePrimary">
+        <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.CanWriteSelected">
+        <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.CreateSelectedEntityPermission">
+        <EntityPrivilegeRule PrivilegeType="Create" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.HideAddNewForChildEntities">
+        <OrRule>
+          <Or>
+            <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="IsChildEntity" PropertyValue="false" />
+          </Or>
+          <Or>
+            <RelationshipTypeRule AppliesTo="SelectedEntity" AllowCustomRelationship="false" />
+          </Or>
+        </OrRule>
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.HideAddressEntities">
+        <EntityRule EntityName="customeraddress" AppliesTo="SelectedEntity" Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.HideNewForChildEntities">
+        <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="IsChildEntity" PropertyValue="false" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.IsNotActivityPointer">
+        <EntityRule EntityName="activitypointer" AppliesTo="SelectedEntity" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="HasStateCode" PropertyValue="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsActive">
+        <FormStateRule State="Existing" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsActivity">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsNotActivity">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="false" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.SelectedEntityHasStatecode">
+        <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="HasStateCode" PropertyValue="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.SelectedEntityIsNotBPFEntity">
+        <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="IsBPFEntity" PropertyValue="false" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowForManyToManyGrids">
+        <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="ManyToMany" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowForNonRelationshipBoundGrids">
+        <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="NoRelationship" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowForOneToManyGrids">
+        <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="OneToMany" />
+      </DisplayRule>
+      <DisplayRule Id="ts.ovs_finding.ShowMarkComplete">
+        <OrRule>
+          <Or>
+            <ValueRule Field="ts_findingtype" Value="717750002" />
+          </Or>
+          <Or>
+            <ValueRule Field="ts_findingtype" Value="717750001" />
+          </Or>
+        </OrRule>
+      </DisplayRule>
+      <DisplayRule Id="ts.ovs_findingMarkCompleted.DisplayRule">
+        <ValueRule Field="statuscode" Value="717750002" InvertResult="true" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="Mscrm.AppendToPrimary">
+        <RecordPrivilegeRule PrivilegeType="AppendTo" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.AvailableOnForm">
+        <EntityRule AppliesTo="PrimaryEntity" Context="Form" Default="false" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.CanSavePrimary">
+        <OrRule>
+          <Or>
+            <RecordPrivilegeRule PrivilegeType="Create" AppliesTo="PrimaryEntity" />
+            <FormStateRule State="Create" />
+          </Or>
+          <Or>
+            <RecordPrivilegeRule PrivilegeType="Write" AppliesTo="PrimaryEntity" />
+            <FormStateRule State="Existing" />
+          </Or>
+        </OrRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.CanWritePrimary">
+        <RecordPrivilegeRule PrivilegeType="Write" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.EntityFormIsEnabled">
+        <FormStateRule State="Disabled" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline">
+        <CustomRule FunctionName="XrmCore.Rules.Online.IsEntityAvailableForUserInMocaOffline" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsRelationshipEnabledInMocaOffline">
+        <CustomRule FunctionName="XrmCore.Rules.Online.IsRelationshipEnabledInMocaOffline" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsValidForHierarchyPageInUC">
+        <CustomRule FunctionName="XrmCore.Rules.HierarchyView.isValidForHierarchyPageInUC" Library="$webresource:Main_system_library.js" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsValidForHierarchyView">
+        <CustomRule FunctionName="XrmCore.Rules.HierarchyView.isValidForHierarchyView" Library="$webresource:Main_system_library.js" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.PrimaryIsNotActivityHomePageGrid">
+        <CustomRule FunctionName="XrmCore.Rules.Enabled.PrimaryIsNotActivityHomePageGrid" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.ReadPrimaryPermission">
+        <RecordPrivilegeRule PrivilegeType="Read" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.SelectionCountAtLeastOne">
+        <SelectionCountRule Minimum="1" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.VisualizationPaneNotMaximized">
+        <OrRule>
+          <Or>
+            <CommandClientTypeRule Type="Modern" />
+          </Or>
+          <Or>
+            <CustomRule FunctionName="Mscrm.GridCommandActions.disableButtonsWhenChartMaximized" Library="/_static/_common/scripts/CommandBarActions.js">
+              <CrmParameter Value="SelectedControl" />
+            </CustomRule>
+          </Or>
+        </OrRule>
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.acceptNCATRecommendationIsNotNull">
+        <CustomRule FunctionName="acceptNCATRecommendationIsNotNull" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.acceptRATERecommendationIsNotNull">
+        <CustomRule FunctionName="acceptRATERecommendationIsNotNull" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.alwaysFalse">
+        <CustomRule FunctionName="isNaN" Library="$webresource:ovs_/js/FindingRibbon.js" Default="false" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.HideInCaseFrom">
+        <EntityRule EntityName="incident" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.isAdmin">
+        <CustomRule FunctionName="isSystemAdministrator" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false" InvertResult="false" />
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.isadminormanager">
+        <OrRule>
+          <Or>
+            <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+              <StringParameter Value="System Administrator" />
+            </CustomRule>
+          </Or>
+          <Or>
+            <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+              <StringParameter Value="ROM - Manager" />
+            </CustomRule>
+          </Or>
+        </OrRule>
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.isSystemAdmin">
+        <CustomRule FunctionName="isSystemAdministrator" Library="$webresource:ovs_/js/FindingRibbon.js" />
+        <OrRule>
+          <Or>
+            <CustomRule FunctionName="isAvSecBusinessUnit" Library="$webresource:ovs_/js/FindingRibbon.js" />
+          </Or>
+          <Or>
+            <CustomRule FunctionName="isTCBusinessUnit" Library="$webresource:ovs_/js/FindingRibbon.js" />
+          </Or>
+        </OrRule>
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.isSystemOrBusinessAdmins">
+        <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+          <StringParameter Value="System Administrator|ROM - Business Admin" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.NCATFactorsHaveValues">
+        <CustomRule FunctionName="NCATFactorsHaveValues" Library="$webresource:ts_/js/FindingRibbon" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.PrimaryIsEnforcementAction">
+        <EntityRule EntityName="ts_enforcementaction" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="false" />
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.PrimaryIsIncident">
+        <EntityRule EntityName="incident" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="false" />
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.PrimaryIsWorkspaceOrIncident">
+        <OrRule>
+          <Or>
+            <EntityRule EntityName="msdyn_workorderservicetask" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="false" />
+          </Or>
+          <Or>
+            <EntityRule EntityName="incident" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="false" />
+          </Or>
+        </OrRule>
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.SelectionCountNon">
+        <SelectionCountRule AppliesTo="PrimaryEntity" Default="true" />
+      </EnableRule>
+    </EnableRules>
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="ts.ovs_finding.AssignCorrectiveAction.Alt">
+      <Titles>
+        <Title description="Assign corrective action" languagecode="1033" />
+        <Title description="Désigner une mesure corrective" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.AssignCorrectiveAction.LabelText">
+      <Titles>
+        <Title description="Assign corrective action" languagecode="1033" />
+        <Title description="Désigner une mesure corrective" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.AssignCorrectiveAction.ToolTipDescription">
+      <Titles>
+        <Title description="Assign corrective action" languagecode="1033" />
+        <Title description="Désigner une mesure corrective" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.AssignCorrectiveAction.ToolTipTitle">
+      <Titles>
+        <Title description="Assign corrective action" languagecode="1033" />
+        <Title description="Désigner une mesure corrective" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.Alt">
+      <Titles>
+        <Title description="Unlock NCAT" languagecode="1033" />
+        <Title description="Déverrouiller l’OENC" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.LabelText">
+      <Titles>
+        <Title description="Unlock NCAT" languagecode="1033" />
+        <Title description="Déverrouiller l’OENC" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.ToolTipDescription">
+      <Titles>
+        <Title description="Unlock NCAT" languagecode="1033" />
+        <Title description="Déverrouiller l’OENC" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.ToolTipTitle">
+      <Titles>
+        <Title description="Unlock NCAT" languagecode="1033" />
+        <Title description="Déverrouiller l’OENC" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.CopyResult.Button.Alt">
+      <Titles>
+        <Title description="Apply Result" languagecode="1033" />
+        <Title description="Appliquez les résultats" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.CopyResult.Button.LabelText">
+      <Titles>
+        <Title description="Apply Result" languagecode="1033" />
+        <Title description="Appliquez les résultats" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.CopyResult.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Apply Result" languagecode="1033" />
+        <Title description="Appliquez les résultats" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.CopyResult.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Apply Result" languagecode="1033" />
+        <Title description="Appliquez les résultats" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.CreateReport.Alt">
+      <Titles>
+        <Title description="Create Report" languagecode="1033" />
+        <Title description="Créer un rapport" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.CreateReport.LabelText">
+      <Titles>
+        <Title description="Create Report" languagecode="1033" />
+        <Title description="Créer un rapport" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.CreateReport.ToolTipDescription">
+      <Titles>
+        <Title description="Create Report" languagecode="1033" />
+        <Title description="Créer un rapport" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.CreateReport.ToolTipTitle">
+      <Titles>
+        <Title description="Create Report" languagecode="1033" />
+        <Title description="Créer un rapport" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.EnforcementAction.Alt">
+      <Titles>
+        <Title description="Create an Action" languagecode="1033" />
+        <Title description="Créer une d'exécution" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.EnforcementAction.LabelText">
+      <Titles>
+        <Title description="Create an Action" languagecode="1033" />
+        <Title description="Créer une d'exécution" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.EnforcementAction.ToolTipDescription">
+      <Titles>
+        <Title description="Create an Action" languagecode="1033" />
+        <Title description="Créer une d'exécution" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.EnforcementAction.ToolTipTitle">
+      <Titles>
+        <Title description="Create an Action" languagecode="1033" />
+        <Title description="Créer une d'exécution" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.FindingsReport.Alt">
+      <Titles>
+        <Title description="Findings Report" languagecode="1033" />
+        <Title description="Rapport de constatations" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.FindingsReport.LabelText">
+      <Titles>
+        <Title description="Findings Report" languagecode="1033" />
+        <Title description="Rapport de constatations" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.FindingsReport.ToolTipDescription">
+      <Titles>
+        <Title description="Findings Report" languagecode="1033" />
+        <Title description="Rapport de constatations" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.FindingsReport.ToolTipTitle">
+      <Titles>
+        <Title description="Findings Report" languagecode="1033" />
+        <Title description="Rapport de constatations" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.ResetAssessmentTool.Alt">
+      <Titles>
+        <Title description="Unlock RATE" languagecode="1033" />
+        <Title description="Unlock RATE (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.ResetAssessmentTool.LabelText">
+      <Titles>
+        <Title description="Unlock RATE" languagecode="1033" />
+        <Title description="Unlock RATE (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.ResetAssessmentTool.ToolTipDescription">
+      <Titles>
+        <Title description="Unlock RATE" languagecode="1033" />
+        <Title description="Unlock RATE (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.ResetAssessmentTool.ToolTipTitle">
+      <Titles>
+        <Title description="Unlock RATE" languagecode="1033" />
+        <Title description="Unlock RATE (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.TSISMarkComplete.Form.Alt">
+      <Titles>
+        <Title description="Mark Complete" languagecode="1033" />
+        <Title description="Marquer comme terminé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.TSISMarkComplete.Form.LabelText">
+      <Titles>
+        <Title description="Mark Complete" languagecode="1033" />
+        <Title description="Marquer comme terminé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.TSISMarkComplete.Form.ToolTipDescription">
+      <Titles>
+        <Title description="Mark Complete" languagecode="1033" />
+        <Title description="Marquer comme terminé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.TSISMarkComplete.Form.ToolTipTitle">
+      <Titles>
+        <Title description="Mark Complete" languagecode="1033" />
+        <Title description="Marquer comme terminé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

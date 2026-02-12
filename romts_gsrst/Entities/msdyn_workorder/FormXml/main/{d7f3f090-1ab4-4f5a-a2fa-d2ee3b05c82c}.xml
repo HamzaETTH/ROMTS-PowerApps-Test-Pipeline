@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{d7f3f090-1ab4-4f5a-a2fa-d2ee3b05c82c}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form shownavigationbar="true" showImage="false" maxWidth="1900" headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{b8e326ee-5c21-4a18-ba55-e3b56966c249}" IsUserDefined="1" locklevel="0" showlabel="true" expanded="true" name="{b8e326ee-5c21-4a18-ba55-e3b56966c249}" labelid="{de50bddc-acff-4340-9d92-37f3831347ce}" ordinalvalue="0">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section showlabel="true" showbar="false" IsUserDefined="0" id="{d5928953-2a00-4c1b-9306-3b875ccab7d5}" name="{d5928953-2a00-4c1b-9306-3b875ccab7d5}" columns="11" locklevel="0" labelwidth="150" celllabelalignment="Left" celllabelposition="Left" labelid="{68f86005-70d0-4d74-8ebd-507dc3c193f9}" height="auto" layout="varwidth" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{8d95a164-4ed4-4b25-868c-9774a58c98e6}" locklevel="0" colspan="1" rowspan="1" showlabel="false" labelid="{f8ba6e47-7678-4326-a7c3-36268791928e}" ordinalvalue="10013" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{4b73d40e-6e1e-0873-9b35-7a1989d2028d}" showlabel="true" locklevel="0" ordinalvalue="20012" solutionaction="Modified" />
+                      <cell id="{e10ce18c-c41b-b7cb-0093-594e412513cd}" showlabel="false" locklevel="0" ordinalvalue="10015" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{2478beaa-e3a5-4386-b026-0b548f6d278a}" locklevel="0" colspan="1" rowspan="1" labelid="{2e16426f-f5cb-4ee2-8113-7ad6c8f89d61}" ordinalvalue="20014" solutionaction="Modified" />
+                      <cell id="{b0458baa-092e-481f-920c-6352a7f7e9db}" locklevel="0" colspan="1" rowspan="1" showlabel="false" labelid="{cd916134-e8f5-43d7-8675-b28ce24920a6}" ordinalvalue="10017" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{1e261643-6cd4-029b-394b-10c2a8b6a97d}" showlabel="true" locklevel="0" colspan="2" ordinalvalue="10019" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{51a8ccdd-c5e4-486b-bc8e-22d3949c7f88}" colspan="2" rowspan="1" labelid="{9f6a616c-aedc-40f0-ba1a-4c6603340275}" ordinalvalue="10020" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{46c20a40-3107-2480-a864-11439e2c7ab0}" showlabel="true" locklevel="0" colspan="2" visible="false" ordinalvalue="10021" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{19e9571e-a25a-468a-bd9d-7f356a02771a}" ordinalvalue="20016" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a586fe41-bdf6-4bfe-aca2-30f61c01f231}" ordinalvalue="20018" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="{b8e326ee-5c21-4a18-ba55-e3b56966c249}_section_7" showlabel="true" showbar="false" locklevel="0" id="{b0a21f4e-5e7d-4c34-abb6-74b76752d198}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" labelid="{a36a6e4f-aef0-43e4-a163-456040d6f785}" ordinalvalue="3">
+                  <rows>
+                    <row>
+                      <cell id="{b12ab246-d373-4565-ac0b-3c131bffb5d6}" showlabel="false" locklevel="0" labelid="{db12326b-8722-4570-9070-9df10cebd2b2}" ordinalvalue="10002">
+                        <control id="msdyn_mapcontrol" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="msdyn_mapcontrol" disabled="false" uniqueid="{8B67AE03-1701-54D2-09BE-35295876CA8A}" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{99e484e1-77db-4446-94fe-e57bdce74bf8}" columns="111" labelwidth="250" celllabelalignment="Left" celllabelposition="Top">
+        <rows>
+          <row>
+            <cell id="{7cba3350-994c-4129-a1ae-0780ef0c36cb}" locklevel="0" colspan="1" rowspan="1" labelid="{f547d29b-df4c-44b3-bc36-735e4027607a}" showlabel="true" ordinalvalue="20001" solutionaction="Modified" />
+            <cell id="{a123b6e3-b8cd-403e-8d33-92c0d759b0e6}" showlabel="false" labelid="{465e0af8-f635-47e4-999b-3126057f77f8}" ordinalvalue="20001" solutionaction="Removed" />
+            <cell id="{429501a9-d311-47e4-9b27-f81d9c3e6758}" showlabel="false" labelid="{7c7798e9-b4b0-4153-b0ec-e17fa00bfb00}" ordinalvalue="30002" solutionaction="Removed" />
+          </row>
+          <row>
+            <cell id="{7655cf90-f4d5-4a15-9cea-3a8c20dcb21d}" locklevel="0" colspan="1" rowspan="1" labelid="{8758f164-6293-44af-9fb8-97b2ead28017}" ordinalvalue="30002" solutionaction="Modified" />
+            <cell id="{3fd12a98-5cd6-44c5-b740-238851ddbfc5}" ordinalvalue="20004" solutionaction="Removed" />
+            <cell id="{4a91ffe5-5979-4227-b17b-7207f54c1923}" ordinalvalue="30005" solutionaction="Removed" />
+          </row>
+          <row>
+            <cell id="{d16db84f-cf51-4089-9982-24c72eb3d164}" ordinalvalue="10000" solutionaction="Added">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <controlDescriptions>
+        <controlDescription forControl="{8B67AE03-1701-54D2-09BE-35295876CA8A}" solutionaction="Modified">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}">
+            <parameters>
+              <datafieldname>msdyn_mapcontrol</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Map.MapControl">
+            <parameters>
+              <value>msdyn_mapcontrol</value>
+              <mapSourceSwitch isGroup="true" static="true">CoordinatesGroup</mapSourceSwitch>
+              <latitude>msdyn_latitude</latitude>
+              <longitude>msdyn_longitude</longitude>
+              <addressEditableSwitch isGroup="true" static="true">isAddressEditableNoGroup</addressEditableSwitch>
+              <isStatic type="Enum" static="true">Yes</isStatic>
+              <showGetDirectionsButton type="Enum" static="true">No</showGetDirectionsButton>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Map.MapControl">
+            <parameters>
+              <value>msdyn_mapcontrol</value>
+              <mapSourceSwitch isGroup="true" static="true">CoordinatesGroup</mapSourceSwitch>
+              <latitude>msdyn_latitude</latitude>
+              <longitude>msdyn_longitude</longitude>
+              <addressEditableSwitch isGroup="true" static="true">isAddressEditableNoGroup</addressEditableSwitch>
+              <isStatic type="Enum" static="true">Yes</isStatic>
+              <showGetDirectionsButton type="Enum" static="true">No</showGetDirectionsButton>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Map.MapControl">
+            <parameters>
+              <value>msdyn_mapcontrol</value>
+              <mapSourceSwitch isGroup="true" static="true">CoordinatesGroup</mapSourceSwitch>
+              <latitude>msdyn_latitude</latitude>
+              <longitude>msdyn_longitude</longitude>
+              <addressEditableSwitch isGroup="true" static="true">isAddressEditableNoGroup</addressEditableSwitch>
+              <isStatic type="Enum" static="true">Yes</isStatic>
+              <showGetDirectionsButton type="Enum" static="true">No</showGetDirectionsButton>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <DisplayConditions FallbackForm="true" Order="11" solutionaction="Modified" />
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Work Order Light (preview)" languagecode="1033" />
+      <LocalizedName description="Ordre de travail léger (version préliminaire)" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+      <Description description="Formulaire pour cette entité." languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

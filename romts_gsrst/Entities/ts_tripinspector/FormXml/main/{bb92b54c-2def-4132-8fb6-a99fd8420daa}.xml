@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{bb92b54c-2def-4132-8fb6-a99fd8420daa}</formid>
+    <IntroducedVersion>1.0.20220719.2</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{5fb7d5df-7968-4f40-9198-87a934fcb633}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{71098fd0-ddd9-4166-ba07-a206a8d7fec3}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{eebffe85-995a-4914-a6bf-2b9e56908c89}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Name" languagecode="1036" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" uniqueid="{3496add7-30ad-109c-daa4-3153c721652e}" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{afb699bd-354b-4cdf-bc2a-dd8305f8fe88}" showlabel="true" locklevel="1" visible="false">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" uniqueid="{be073840-35b0-cba5-8a62-410b2ea09c0e}" disabled="false">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e0699813-688b-288a-e2a3-b29028d26605}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Trip" languagecode="1033" />
+                          <label description="Voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_trip" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_trip" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6c6c96dc-a062-13a9-6ca5-49b445392cd2}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Inspector" languagecode="1033" />
+                          <label description="Inspecteur" languagecode="1036" />
+                        </labels>
+                        <control id="ts_inspector" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_inspector" disabled="false" uniqueid="{97340443-b74a-94d5-330b-0cddb20a8aa4}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{BDEEA953-79CD-EC11-A7B5-002248AD8DB2}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5150de8e-1d5c-00bb-d31c-5c6ae80e30d9}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Primary Inspector" languagecode="1033" />
+                          <label description="Inspecteur Principal" languagecode="1036" />
+                        </labels>
+                        <control id="ts_primaryinspector" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_primaryinspector" disabled="false" uniqueid="{b9606a55-6873-460a-c228-18a5c8926002}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions>
+        <controlDescription forControl="{b9606a55-6873-460a-c228-18a5c8926002}">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_primaryinspector</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_primaryinspector</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_primaryinspector</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_primaryinspector</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

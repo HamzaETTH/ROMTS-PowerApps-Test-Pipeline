@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{49dcadfa-64f7-ee11-a1fe-002248af3597}" Name="[Legislation] Upload Legislations for a New Legislation Source" Description="This flow is used by Administrators to upload Legislations for a Legislation Source using Excel" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JsonFileName>/Workflows/LegislationUploadLegislationsforaNewLegislationSou-49DCADFA-64F7-EE11-A1FE-002248AF3597.json</JsonFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>5</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>1.0.0.131</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <BillingContext>[{"id":"ovs_ROM","type":"UnifiedApp","metadata":{"displayName":"ROM"}}]</BillingContext>
+  <PrimaryEntity>none</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="[Legislation] Upload Legislations for a New Legislation Source" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description languagecode="1033" description="This flow is used by Administrators to upload Legislations for a Legislation Source using Excel" />
+  </Descriptions>
+</Workflow>

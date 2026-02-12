@@ -1,0 +1,258 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "84d29699-1a23-49c1-912a-e3dd7fad2cc6"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "msdyn_workorder",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_state"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition": {
+          "actions": {
+            "List_rows_-_Trip_inspections": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f3fd9fc3-e251-4eec-80d5-2f691eb67fd6"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_tripinspections",
+                  "$filter": "_ts_inspection_value eq '@{triggerOutputs()?['body/msdyn_workorderid']}'"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each": {
+              "foreach": "@outputs('List_rows_-_Trip_inspections')?['body/value']",
+              "actions": {
+                "List_rows_-_Trip_inspectors": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "9b57a3f0-4a74-4267-a227-d9600e8c0242"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "ListRecords",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_tripinspectors",
+                      "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"ts_tripinspector\">\n    <attribute name=\"ts_tripinspectorid\" />\n    <attribute name=\"createdon\" />\n    <attribute name=\"ts_trip\" />\n    <attribute name=\"ts_primaryinspector\" />\n    <attribute name=\"ts_inspector\" />\n    <order attribute=\"ts_primaryinspector\" descending=\"true\" />\n    <order attribute=\"createdon\" descending=\"false\" />\n    <filter type=\"and\">\n      <condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />\n      <condition attribute=\"ts_trip\" operator=\"eq\" uiname=\"Trip2\" uitype=\"ts_trip\" value=\"@{items('Apply_to_each')?['_ts_trip_value']}\" />\n    </filter>\n  </entity>\n</fetch>"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Apply_to_each_trip_inspectors": {
+                  "foreach": "@outputs('List_rows_-_Trip_inspectors')?['body/value']",
+                  "actions": {
+                    "Condition_to_set_WO_owner": {
+                      "actions": {
+                        "Set_variable": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "73e1b74a-6588-488a-8547-4f8158337068"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "FirstItem",
+                            "value": false
+                          }
+                        },
+                        "Update_WO_set_owner_to_primary_inspector": {
+                          "runAfter": {
+                            "Set_variable": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "43b0616d-6c51-46b1-94e2-ce11aa209c22"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "UpdateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "msdyn_workorders",
+                              "recordId": "@triggerOutputs()?['body/msdyn_workorderid']",
+                              "item/ownerid@odata.bind": "/systemusers(@{items('Apply_to_each_trip_inspectors')?['_ts_inspector_value']})"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "Perform_a_bound_action_add_primary_inspector_to_team_": {
+                          "runAfter": {
+                            "Update_WO_set_owner_to_primary_inspector": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "b983c059-85fa-431e-abde-e036a68fd749"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "PerformBoundAction",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "systemusers",
+                              "actionName": "Microsoft.Dynamics.CRM.AddUserToRecordTeam",
+                              "recordId": "@items('Apply_to_each_trip_inspectors')?['_ts_inspector_value']",
+                              "item/Record": "/msdyn_workorders(@{triggerOutputs()?['body/msdyn_workorderid']})",
+                              "item/TeamTemplate/teamtemplateid": "bddf1d45-706d-ec11-8f8e-0022483da5aa"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      },
+                      "runAfter": {},
+                      "else": {
+                        "actions": {
+                          "Perform_a_bound_action_add_user_to_team": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "b983c059-85fa-431e-abde-e036a68fd749"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps_1",
+                                "operationId": "PerformBoundAction",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "systemusers",
+                                "actionName": "Microsoft.Dynamics.CRM.AddUserToRecordTeam",
+                                "recordId": "@items('Apply_to_each_trip_inspectors')?['_ts_inspector_value']",
+                                "item/Record": "/msdyn_workorders(@{triggerOutputs()?['body/msdyn_workorderid']})",
+                                "item/TeamTemplate/teamtemplateid": "bddf1d45-706d-ec11-8f8e-0022483da5aa"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          }
+                        }
+                      },
+                      "expression": {
+                        "equals": [
+                          "@variables('FirstItem')",
+                          true
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "5596c8fe-b257-461a-8948-2020d86d9fca"
+                      },
+                      "type": "If"
+                    }
+                  },
+                  "runAfter": {
+                    "List_rows_-_Trip_inspectors": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "ee867cd3-a7bf-49c0-a171-4634a09ddded"
+                  },
+                  "type": "Foreach"
+                }
+              },
+              "runAfter": {
+                "List_rows_-_Trip_inspections": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "0d8f5696-c2f2-4bb0-8600-d942d83e791d"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/ts_state']",
+              717750001
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0877cbed-e010-4fdd-875b-da960688fd26"
+          },
+          "type": "If"
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "461104c5-c752-4e4f-8ebc-d8bf1fb8d832"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "FirstItem",
+                "type": "boolean",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

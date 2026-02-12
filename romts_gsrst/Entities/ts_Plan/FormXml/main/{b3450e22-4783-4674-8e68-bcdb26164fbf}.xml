@@ -1,0 +1,818 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{b3450e22-4783-4674-8e68-bcdb26164fbf}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
+      <tabs>
+        <tab verticallayout="true" id="{fc9c31f0-faa2-4e05-ab8c-616876e20bd1}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{bc0aa5b6-bbb7-4974-bda1-b85d2c797a42}" columns="1">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{67db77c7-82cd-4b4f-917f-6db7564f6dcb}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Name" languagecode="1036" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" uniqueid="{569542b5-7d11-4529-34b7-66c262387d90}" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{00fd557b-34fb-444e-a311-afa53e12ccfe}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{9f577a3f-78a8-43ae-953c-aa877633b4be}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{44b9a3e5-8683-44e0-b42c-424aad6b22d5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Team" languagecode="1033" />
+                          <label description="Team" languagecode="1036" />
+                        </labels>
+                        <control id="ts_team" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_team" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cf06c250-fbce-41f1-9212-91d7025f339a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Fiscal Year" languagecode="1033" />
+                          <label description="Fiscal Year" languagecode="1036" />
+                        </labels>
+                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e45c6cfb-af8f-4d0d-981e-d6a7863be3c8}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                          <label description="Plan Status" languagecode="1036" />
+                        </labels>
+                        <control id="ts_planstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_planstatus" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_5" id="6b56ee56-c793-4636-a0fc-6d097a930b07" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="111" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{11e0922a-c7e2-488a-92ea-e8282263f22a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Total Planned Activities" languagecode="1033" />
+                          <label description="Total des activités planifiées" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedactivityfiscalyear" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_plannedactivityfiscalyear" disabled="true" />
+                      </cell>
+                      <cell id="{5fce3024-09aa-4173-b074-a82929302450}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Total Estimated Hours" languagecode="1033" />
+                          <label description="Total des heures estimées" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimateddurationfiscalyear" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_estimateddurationfiscalyear" disabled="true" />
+                      </cell>
+                      <cell id="{e8e6956f-3f66-42f7-83a8-f6046a4e44ff}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Total Estimated Cost" languagecode="1033" />
+                          <label description="Coût estimé totale" languagecode="1036" />
+                        </labels>
+                        <control id="ts_totalestimatedcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ts_totalestimatedcost" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{34260602-6d8a-7453-545d-c01295c82322}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Total Unplanned Activity" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedactivityfiscalyear" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedactivityfiscalyear" disabled="true" uniqueid="{0886a83b-5a87-4d00-9c5d-0a9190ea201d}" />
+                      </cell>
+                      <cell id="{19ab2282-0449-e61a-87e7-a33038556036}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{9e8820e6-c54b-a2e9-adc8-c5beb73da9d2}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="{fc9c31f0-faa2-4e05-ab8c-616876e20bd1}_section_3" showlabel="false" showbar="false" locklevel="0" id="{ba87b3cb-0177-767e-b96e-22d6d7be3571}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Inspector Hours" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{513b9948-9d3a-b0e3-d414-cb3d3ea9c9d7}" showlabel="false" colspan="1" auto="false" rowspan="22">
+                        <labels>
+                          <label description="Plan Inspector Hours (Plan)" languagecode="1033" />
+                        </labels>
+                        <control id="suggested_inspectorhours_grid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{e84e83a8-0040-e054-43d3-e1016969be11}">
+                          <parameters>
+                            <ViewId>{4611204D-36B6-4B08-8FEF-06C5E0E0D71F}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_planinspectorhours_plan</RelationshipName>
+                            <TargetEntityType>ts_planinspectorhours</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{4611204D-36B6-4B08-8FEF-06C5E0E0D71F}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>20</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="{fc9c31f0-faa2-4e05-ab8c-616876e20bd1}_section_2" showlabel="false" showbar="false" locklevel="0" id="{caec7dea-c12c-045d-c44c-cdeb5d91bb2d}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" height="auto">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{c7064329-6218-1437-905b-32634794893a}" showlabel="false" colspan="1" rowspan="4" auto="true">
+                        <labels>
+                          <label description="Suggested Inspections (Plan)" languagecode="1033" />
+                          <label description="Suggested Inspections" languagecode="1036" />
+                        </labels>
+                        <control id="suggested_inspections_grid" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" indicationOfSubgrid="true" uniqueid="{85954262-821e-a6e0-393e-59b0e692cde5}">
+                          <parameters>
+                            <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
+                            <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>100</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_3" id="05fd3679-ee80-4caf-8bd5-17130da02149" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Fiscal Quarters" languagecode="1033" />
+            <label description="Trimestres fiscaux" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_3_section_1" id="3e11e2f1-37d9-458b-9000-6b28328fbbca" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1111" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{2897889e-418b-4955-b8e3-2fe7555afb29}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{838a73e9-ac0a-40e5-9e89-3228f9776496}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{4cd6a55e-5f6a-42a1-bf54-ad7a78802153}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{d3919a75-305d-41e9-9841-c241a9b414c2}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{aab9163e-3ed1-41bc-80af-955e6b7a9e97}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Activity Q1" languagecode="1033" />
+                          <label description="Activités prévues Q1" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedactivityq1" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_plannedactivityq1" disabled="true" />
+                      </cell>
+                      <cell id="{85684b8c-fc7b-4b42-a6fa-adad0dff30cc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Activity Q2" languagecode="1033" />
+                          <label description="Activités prévues Q2" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedactivityq2" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_plannedactivityq2" disabled="true" />
+                      </cell>
+                      <cell id="{bd360032-8a59-43f1-9709-89685fa7d576}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Activity Q3" languagecode="1033" />
+                          <label description="Activités prévues Q3" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedactivityq3" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_plannedactivityq3" disabled="true" />
+                      </cell>
+                      <cell id="{f70cf450-d905-4614-ad4b-051c6eab4c48}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Activity Q4" languagecode="1033" />
+                          <label description="Activités prévues Q4" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedactivityq4" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_plannedactivityq4" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b74b0ed0-199e-4bf6-9701-d3c0d17c1f9c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Hours Q1" languagecode="1033" />
+                          <label description="Heures planifiées Q1" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimateddurationq1" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_estimateddurationq1" disabled="true" />
+                      </cell>
+                      <cell id="{f7e5fec4-f84d-47f6-87ae-c6021d486eea}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Hours Q2" languagecode="1033" />
+                          <label description="Heures planifiées Q2" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimateddurationq2" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_estimateddurationq2" disabled="true" />
+                      </cell>
+                      <cell id="{11fe7329-20b7-4a73-ae6b-12cd6c009772}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Hours Q3" languagecode="1033" />
+                          <label description="Heures planifiées Q3" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimateddurationq3" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_estimateddurationq3" disabled="true" />
+                      </cell>
+                      <cell id="{93439ba4-1176-4170-8221-d690b7be49e2}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Hours Q4" languagecode="1033" />
+                          <label description="Heures planifiées Q4" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimateddurationq4" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_estimateddurationq4" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4cba1b30-0920-055c-eaee-89ee29ddb125}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Unplanned Activity Q1" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedactivityq1" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedactivityq1" disabled="false" uniqueid="{b863b664-be7a-4a9c-99b7-2ae9c3bd3b32}" />
+                      </cell>
+                      <cell id="{0701c1be-3737-bb27-b6ed-70a266a6317b}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Unplanned Activity Q2" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedactivityq2" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedactivityq2" disabled="false" uniqueid="{b19c5a2a-0c0b-b178-26e5-49b2965d1ac4}" />
+                      </cell>
+                      <cell id="{2293dbc5-d799-0d4a-d1ba-be07ecc81d1b}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Unplanned Activity Q3" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedactivityq3" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedactivityq3" disabled="false" uniqueid="{b0a55e37-0e92-c8d7-4bbc-2e22c0324a66}" />
+                      </cell>
+                      <cell id="{637c343c-6d2c-3e70-431d-979dd16a1555}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Unplanned Activity Q4" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedactivityq4" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedactivityq4" disabled="false" uniqueid="{558a1871-6e91-76c2-4258-a56178e71a4d}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8bbd6dc2-e268-0797-139e-a541aadd88b8}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Unplanned Hours Q1" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedhoursq1" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedhoursq1" disabled="false" />
+                      </cell>
+                      <cell id="{96d553ec-964b-b521-1a5b-9905c7781782}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Unplanned Hours Q2" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedhoursq2" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedhoursq2" disabled="false" />
+                      </cell>
+                      <cell id="{24225639-5e92-deae-8bed-db0d4b3a0616}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Unplanned Hours Q3" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedhoursq3" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedhoursq3" disabled="false" />
+                      </cell>
+                      <cell id="{bd292781-c0c2-5bb7-18ce-8ccbab21076c}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Unplanned Hours Q4" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedhoursq4" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedhoursq4" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_work_orders" id="ea004c18-2f88-45b3-b4dd-360e68f7f949" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Work Orders" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" id="7fb9f180-27d8-4796-bf03-d66318071143" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{ddea4e79-1956-48ae-8bed-df444f59fe3f}" rowspan="23" colspan="1" auto="false" showlabel="true">
+                        <labels>
+                          <label description="New SG control 1695669872676" languagecode="1033" />
+                          <label description="Ordres de travail" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" uniqueid="{b96100e0-a1dc-2ea1-bbba-976698e129e0}">
+                          <parameters>
+                            <RecordsPerPage>20</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>true</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>msdyn_workorder</TargetEntityType>
+                            <ViewId>{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F}</ViewId>
+                            <RelationshipName>ts_msdyn_workorder_plan_ts_plan</RelationshipName>
+                            <VisualizationId>{5472FF64-C30F-EB11-A813-000D3AF3A7A7}</VisualizationId>
+                            <ViewIds>{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F},{D928C332-8C65-43FC-95B2-5DF41D2FA558},{FFE40A64-495B-EB11-A812-000D3A84DB40}</ViewIds>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <IsUserView>false</IsUserView>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <IsUserChart>false</IsUserChart>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_supporting_inspections" id="{e70d90cc-c1ae-7504-1610-0d557bd38807}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Supporting Inspections" languagecode="1033" />
+            <label description="les inspections de souteins" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_4_section_1" showlabel="false" showbar="false" locklevel="0" id="{46051063-4662-2a7e-e0bc-d02ba0c7db55}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{c8bd43a4-d671-a81b-6aa3-3a288b7591cc}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="Plan Inspector Hours" languagecode="1033" />
+                          <label description="Plan Inspection Support Regions" languagecode="1036" />
+                        </labels>
+                        <control id="subgrid_supporting_inspections" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{68b85a3e-9259-c6c5-390e-92e7b591a120}">
+                          <parameters>
+                            <ViewId>{E95A3BDF-6A94-EE11-BE37-0022483C5061}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName />
+                            <TargetEntityType>ts_planinspectionsupportregion</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{33AF1CAB-AA59-4325-880F-5CC64EF4937C},{E95A3BDF-6A94-EE11-BE37-0022483C5061}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <events>
+            <event name="tabstatechange" application="false" active="false">
+              <Handlers>
+                <Handler functionName="ROM.Plan.SubGridFilterExecution" libraryName="ts_/js/Plan.js" handlerUniqueId="{262b98ce-c437-9aec-ad58-1c59a23dd65b}" enabled="true" parameters="" passExecutionContext="true" />
+              </Handlers>
+            </event>
+          </events>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions>
+        <controlDescription forControl="{85954262-821e-a6e0-393e-59b0e692cde5}">
+          <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}">
+            <parameters>
+              <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+              <IsUserView>false</IsUserView>
+              <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
+              <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+              <AutoExpand>Auto</AutoExpand>
+              <EnableQuickFind>false</EnableQuickFind>
+              <EnableViewPicker>false</EnableViewPicker>
+              <ViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewIds>
+              <EnableJumpBar>false</EnableJumpBar>
+              <ChartGridMode>All</ChartGridMode>
+              <VisualizationId />
+              <IsUserChart>false</IsUserChart>
+              <EnableChartPicker>true</EnableChartPicker>
+              <RecordsPerPage>100</RecordsPerPage>
+              <HeaderColorCode>#F3F3F3</HeaderColorCode>
+            </parameters>
+          </customControl>
+          <customControl name="MscrmControls.Grid.GridControl" formFactor="-1">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_inspector">
+                    <DefaultViewId>{E88CA999-0B16-4AE9-B6A9-9EDC840D42D8}</DefaultViewId>
+                    <DependentAttributeType>msdyn_incidenttype</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>true</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_trip">
+                    <DefaultViewId>{60E375E4-E57F-4E62-A11A-A5551B9BC36C}</DefaultViewId>
+                    <DependentAttributeType>territory</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
+                <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="Microsoft.PowerApps.PowerAppsOneGrid">
+            <parameters>
+              <data-set name="Items">
+                <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_inspector">
+                    <DefaultViewId>{E88CA999-0B16-4AE9-B6A9-9EDC840D42D8}</DefaultViewId>
+                    <DependentAttributeType>msdyn_incidenttype</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>true</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_trip">
+                    <DefaultViewId>{60E375E4-E57F-4E62-A11A-A5551B9BC36C}</DefaultViewId>
+                    <DependentAttributeType>systemuser</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
+                <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</FilteredViewIds>
+              </data-set>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <DisableChildItemsEditing static="true" type="Enum">no</DisableChildItemsEditing>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <EnableSorting static="true" type="Enum">yes</EnableSorting>
+              <EnableGrouping static="true" type="Enum">yes</EnableGrouping>
+              <EnableAggregation static="true" type="Enum">yes</EnableAggregation>
+              <EnableColumnMoving static="true" type="Enum">no</EnableColumnMoving>
+              <EnableMultipleSelection static="true" type="Enum">yes</EnableMultipleSelection>
+              <EnableRangeSelection static="true" type="Enum">yes</EnableRangeSelection>
+              <EnableJumpBar static="true" type="Enum">no</EnableJumpBar>
+              <EnablePagination static="true" type="Enum">no</EnablePagination>
+              <EnableDropdownColor static="true" type="Enum">no</EnableDropdownColor>
+              <EnableStatusIcons static="true" type="Enum">yes</EnableStatusIcons>
+              <EnableTypeIcons static="true" type="Enum">no</EnableTypeIcons>
+              <NavigationTypesAllowed static="true" type="Enum">all</NavigationTypesAllowed>
+              <ReflowBehavior static="true" type="Enum">Reflow</ReflowBehavior>
+              <ShowAvatar static="true" type="Enum">yes</ShowAvatar>
+              <ShowFooter static="true" type="Enum">yes</ShowFooter>
+              <ShowColumnHeaders static="true" type="Enum">yes</ShowColumnHeaders>
+              <ContextualLookupColumnFilters static="true" type="Enum">yes</ContextualLookupColumnFilters>
+              <LookupFilterBeginsWith static="true" type="Enum">no</LookupFilterBeginsWith>
+              <DateTimeFormat static="true" type="Enum">none</DateTimeFormat>
+              <DateOnlyFormat static="true" type="Enum">none</DateOnlyFormat>
+              <EnableStatusColumn static="true" type="Enum">yes</EnableStatusColumn>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="Microsoft.PowerApps.PowerAppsOneGrid">
+            <parameters>
+              <data-set name="Items">
+                <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_inspector">
+                    <DefaultViewId>{E88CA999-0B16-4AE9-B6A9-9EDC840D42D8}</DefaultViewId>
+                    <DependentAttributeType>msdyn_incidenttype</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>true</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_trip">
+                    <DefaultViewId>{60E375E4-E57F-4E62-A11A-A5551B9BC36C}</DefaultViewId>
+                    <DependentAttributeType>systemuser</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
+                <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</FilteredViewIds>
+              </data-set>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <DisableChildItemsEditing static="true" type="Enum">no</DisableChildItemsEditing>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <EnableSorting static="true" type="Enum">yes</EnableSorting>
+              <EnableGrouping static="true" type="Enum">yes</EnableGrouping>
+              <EnableAggregation static="true" type="Enum">yes</EnableAggregation>
+              <EnableColumnMoving static="true" type="Enum">no</EnableColumnMoving>
+              <EnableMultipleSelection static="true" type="Enum">yes</EnableMultipleSelection>
+              <EnableRangeSelection static="true" type="Enum">yes</EnableRangeSelection>
+              <EnableJumpBar static="true" type="Enum">no</EnableJumpBar>
+              <EnablePagination static="true" type="Enum">no</EnablePagination>
+              <EnableDropdownColor static="true" type="Enum">no</EnableDropdownColor>
+              <EnableStatusIcons static="true" type="Enum">yes</EnableStatusIcons>
+              <EnableTypeIcons static="true" type="Enum">no</EnableTypeIcons>
+              <NavigationTypesAllowed static="true" type="Enum">all</NavigationTypesAllowed>
+              <ReflowBehavior static="true" type="Enum">Reflow</ReflowBehavior>
+              <ShowAvatar static="true" type="Enum">yes</ShowAvatar>
+              <ShowFooter static="true" type="Enum">yes</ShowFooter>
+              <ShowColumnHeaders static="true" type="Enum">yes</ShowColumnHeaders>
+              <ContextualLookupColumnFilters static="true" type="Enum">yes</ContextualLookupColumnFilters>
+              <LookupFilterBeginsWith static="true" type="Enum">no</LookupFilterBeginsWith>
+              <DateTimeFormat static="true" type="Enum">none</DateTimeFormat>
+              <DateOnlyFormat static="true" type="Enum">none</DateOnlyFormat>
+              <EnableStatusColumn static="true" type="Enum">yes</EnableStatusColumn>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="Microsoft.PowerApps.PowerAppsOneGrid">
+            <parameters>
+              <data-set name="Items">
+                <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_inspector">
+                    <DefaultViewId>{E88CA999-0B16-4AE9-B6A9-9EDC840D42D8}</DefaultViewId>
+                    <DependentAttributeType>msdyn_incidenttype</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>true</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_trip">
+                    <DefaultViewId>{60E375E4-E57F-4E62-A11A-A5551B9BC36C}</DefaultViewId>
+                    <DependentAttributeType>systemuser</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
+                <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</FilteredViewIds>
+              </data-set>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <DisableChildItemsEditing static="true" type="Enum">no</DisableChildItemsEditing>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <EnableSorting static="true" type="Enum">yes</EnableSorting>
+              <EnableGrouping static="true" type="Enum">yes</EnableGrouping>
+              <EnableAggregation static="true" type="Enum">yes</EnableAggregation>
+              <EnableColumnMoving static="true" type="Enum">no</EnableColumnMoving>
+              <EnableMultipleSelection static="true" type="Enum">yes</EnableMultipleSelection>
+              <EnableRangeSelection static="true" type="Enum">yes</EnableRangeSelection>
+              <EnableJumpBar static="true" type="Enum">no</EnableJumpBar>
+              <EnablePagination static="true" type="Enum">no</EnablePagination>
+              <EnableDropdownColor static="true" type="Enum">no</EnableDropdownColor>
+              <EnableStatusIcons static="true" type="Enum">yes</EnableStatusIcons>
+              <EnableTypeIcons static="true" type="Enum">no</EnableTypeIcons>
+              <NavigationTypesAllowed static="true" type="Enum">all</NavigationTypesAllowed>
+              <ReflowBehavior static="true" type="Enum">Reflow</ReflowBehavior>
+              <ShowAvatar static="true" type="Enum">yes</ShowAvatar>
+              <ShowFooter static="true" type="Enum">yes</ShowFooter>
+              <ShowColumnHeaders static="true" type="Enum">yes</ShowColumnHeaders>
+              <ContextualLookupColumnFilters static="true" type="Enum">yes</ContextualLookupColumnFilters>
+              <LookupFilterBeginsWith static="true" type="Enum">no</LookupFilterBeginsWith>
+              <DateTimeFormat static="true" type="Enum">none</DateTimeFormat>
+              <DateOnlyFormat static="true" type="Enum">none</DateOnlyFormat>
+              <EnableStatusColumn static="true" type="Enum">yes</EnableStatusColumn>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <header id="{11b7f9fa-d97e-461d-b376-615a81208613}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{e9ce8157-2989-4873-8540-024d210f5aa9}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9cbbda0f-1d93-4684-810c-b14693a00ef0}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{694c8e01-b3ca-4e23-bbdc-647d72149579}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a230372a-e2a6-47f0-9aa7-bfe48a9ca180}" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{5c6578c3-13f6-4f08-80a0-397543b523c6}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{7db5b0a2-9e36-4fdd-80d4-f2e71fda42b3}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{af3b1551-e37d-4398-af68-f78268051824}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a361e9f2-ea42-4d24-ab4a-98c99dc1a0bf}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <formLibraries>
+        <Library name="ts_/js/Common.js" libraryUniqueId="{3861eb66-05a2-57a6-616d-7eeb6ad3b5b8}" />
+        <Library name="ts_/js/Plan.js" libraryUniqueId="{b000c881-59d7-22b6-349a-ce2480dce832}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.Plan.onLoad" libraryName="ts_/js/Plan.js" handlerUniqueId="{8437a809-cc07-352b-5d60-9b9e3d470533}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onrecordselect" application="false" active="false" relationship="" control="suggested_inspections_grid">
+          <Handlers>
+            <Handler functionName="ROM.Plan.lockSuggestedInspectionEditableGridFields" libraryName="ts_/js/Plan.js" handlerUniqueId="{3d101559-6a91-3253-cba3-21553dceedc8}" enabled="true" parameters="[&quot;ts_stakeholder&quot;, &quot;ts_operationtype&quot;, &quot;ts_site&quot;, &quot;ts_activitytype&quot;, &quot;ts_riskthreshold&quot;]" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_trip" relationship="" control="suggested_inspections_grid">
+          <Handlers>
+            <Handler functionName="ROM.Plan.validateTripOnChange" libraryName="ts_/js/Plan.js" handlerUniqueId="{87831c6c-c768-02bb-6c10-1a0b493a0e99}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

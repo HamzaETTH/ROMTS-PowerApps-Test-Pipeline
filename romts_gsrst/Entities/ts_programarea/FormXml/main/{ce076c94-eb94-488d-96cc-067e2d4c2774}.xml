@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{ce076c94-eb94-488d-96cc-067e2d4c2774}</formid>
+    <IntroducedVersion>1.0.20240731.2</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{e964a30e-85e4-4fcd-bb31-ade813ae3c33}" IsUserDefined="1" name="{e964a30e-85e4-4fcd-bb31-ade813ae3c33}" locklevel="0" expanded="true" showlabel="true">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{29e2c64c-8ad2-4ff0-ac24-ec36529b55f1}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{156dce29-304d-4c56-ae3f-a155473c223c}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3ae82a2c-c0d7-2845-5dde-5be2a0531b97}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Program Area (EN)" languagecode="1033" />
+                          <label description="Domaine de programme (EN)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_programareaen" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_programareaen" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{790453c9-0344-a648-cce3-3541bad3eb56}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Program Area (FR)" languagecode="1033" />
+                          <label description="Domaine de programme (FR)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_programareafr" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_programareafr" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="{e964a30e-85e4-4fcd-bb31-ade813ae3c33}_section_2" showlabel="false" showbar="false" locklevel="0" id="{8ea39552-6bc8-54b1-ebcd-94cc57c5239a}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{39d6390b-12e8-4633-6bc8-d03cb9db1284}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b029913c-da8e-4408-abd9-c4d9d1ebcc5c}" showlabel="true" rowspan="15" auto="false" colspan="1">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-c143-495e-a496-c962e5b4488e}" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_EntityRisk" id="0765b5f0-ff20-49b1-b1a5-28e247ffe464" IsUserDefined="0" locklevel="0" showlabel="true" contenttype="cardSections">
+          <labels>
+            <label description="Risk" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" id="7d50699e-3b10-4bc3-9ebb-775389fd0a9d" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{659a4d61-eec6-4dcc-b3d1-eccc877e33d9}" rowspan="4" colspan="1" auto="true" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1732566170536" languagecode="1033" />
+                          <label description="Risques de l'entité" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_entityrisk</TargetEntityType>
+                            <ViewId>{F852F2DE-C6D6-49C0-B209-B0F8A9CDCFE5}</ViewId>
+                            <ViewIds>{F852F2DE-C6D6-49C0-B209-B0F8A9CDCFE5}</ViewIds>
+                            <RelationshipName>ts_EntityRisk_ts_programarea_ts_programarea</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{6f785980-3b8e-4cbc-869b-ee274b0adf34}" columns="111">
+        <rows>
+          <row>
+            <cell id="{63479ba0-9c4a-4613-a648-207b0941c0fc}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{bd037c34-dc7b-9677-59a8-28679308bdd4}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Status" languagecode="1033" />
+                <label description="Statut" languagecode="1036" />
+              </labels>
+              <control id="header_statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+            </cell>
+            <cell id="{b69e181a-8c65-c1ed-878e-851533baadca}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <footer id="{341470be-b2c8-4094-a520-bee2c5076c69}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{bf6ef57f-c106-41b4-8809-cea56f4c342b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e606a7f4-6571-42ba-8570-3d868d04b9e8}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a266d339-b2b1-4c8c-a8ab-e2d5b7c4782b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

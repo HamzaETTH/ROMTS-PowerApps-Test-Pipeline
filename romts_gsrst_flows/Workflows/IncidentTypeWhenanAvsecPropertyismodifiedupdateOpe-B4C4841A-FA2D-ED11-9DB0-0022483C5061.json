@@ -1,0 +1,389 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_an_Activity_Type_Property_is_Modified": {
+          "metadata": {
+            "operationMetadataId": "ac3ec652-1556-42fb-b646-64fa0f738e62"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "msdyn_incidenttype",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_domesticflights,ts_internationalflights,ts_transborderflights,ts_internationalprogramsbranchipb,ts_cateringandstores,ts_onestopsecurityoss,ts_aircargo,ts_mail,ts_aviationsecuritytraining,ts_opi,ts_unattendedaircraft,ts_remainovernightron"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "List_Related_Operation_Activities": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "70168b57-7466-48e4-b05f-247c58b20dbe"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_operationactivities",
+              "$filter": "_ts_activity_value eq @{triggerOutputs()?['body/msdyn_incidenttypeid']} and _ts_operation_value ne null"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_Related_Operation_Activities')?['body/value']",
+          "actions": {
+            "Get_Operation": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "399e0b0c-573c-482a-978d-7f565e113019"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ovs_operations",
+                  "recordId": "@items('Apply_to_each')?['_ts_operation_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Condition": {
+              "actions": {
+                "Set_Operation_Activity_to_Operational": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "e7d529c9-bae4-4c3e-8f90-cb5e909e58ac"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_operationactivities",
+                      "recordId": "@items('Apply_to_each')?['ts_operationactivityid']",
+                      "item/ts_operationalstatus": 717750000
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_Site_of_Operation": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Set_Operation_Activity_to_Non-Operational": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "b1891af7-9a83-4870-93d3-4e947e981053"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps_1",
+                        "operationId": "UpdateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "ts_operationactivities",
+                        "recordId": "@items('Apply_to_each')?['ts_operationactivityid']",
+                        "item/ts_operationalstatus": 717750001
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "or": [
+                  {
+                    "and": [
+                      {
+                        "equals": [
+                          "@outputs('Get_Operation')?['body/ts_internationalflights']",
+                          true
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "@triggerOutputs()?['body/ts_internationalflights']",
+                          true
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "and": [
+                      {
+                        "equals": [
+                          "@outputs('Get_Operation')?['body/ts_transborderflights']",
+                          true
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "@triggerOutputs()?['body/ts_transborderflights']",
+                          true
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "and": [
+                      {
+                        "not": {
+                          "equals": [
+                            "@outputs('Get_Site_of_Operation')?['body/_ts_country_value']",
+                            "208ef8a1-8e75-eb11-a812-000d3af3fac7"
+                          ]
+                        }
+                      },
+                      {
+                        "equals": [
+                          "@triggerOutputs()?['body/ts_internationalprogramsbranchipb']",
+                          true
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "and": [
+                      {
+                        "equals": [
+                          "@outputs('Get_Operation')?['body/ts_cateringandstores']",
+                          true
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "@triggerOutputs()?['body/ts_cateringandstores']",
+                          true
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "and": [
+                      {
+                        "equals": [
+                          "@outputs('Get_Operation')?['body/ts_oss']",
+                          true
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "@triggerOutputs()?['body/ts_onestopsecurityoss']",
+                          true
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "and": [
+                      {
+                        "equals": [
+                          "@outputs('Get_Operation')?['body/ts_cargo']",
+                          true
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "@triggerOutputs()?['body/ts_aircargo']",
+                          true
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "and": [
+                      {
+                        "equals": [
+                          "@outputs('Get_Operation')?['body/ts_mail']",
+                          true
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "@triggerOutputs()?['body/ts_mail']",
+                          true
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "and": [
+                      {
+                        "equals": [
+                          "@outputs('Get_Operation')?['body/ts_aviationsecuritytraining']",
+                          true
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "@triggerOutputs()?['body/ts_aviationsecuritytraining']",
+                          true
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "and": [
+                      {
+                        "equals": [
+                          "@outputs('Get_Operation')?['body/ts_opi']",
+                          true
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "@triggerOutputs()?['body/ts_opi']",
+                          true
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "or": [
+                      {
+                        "and": [
+                          {
+                            "equals": [
+                              "@outputs('Get_Operation')?['body/ts_domesticflights']",
+                              true
+                            ]
+                          },
+                          {
+                            "equals": [
+                              "@triggerOutputs()?['body/ts_domesticflights']",
+                              true
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "and": [
+                          {
+                            "equals": [
+                              "@outputs('Get_Operation')?['body/ts_unattendedaircraft']",
+                              true
+                            ]
+                          },
+                          {
+                            "equals": [
+                              "@triggerOutputs()?['body/ts_unattendedaircraft']",
+                              true
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "and": [
+                          {
+                            "equals": [
+                              "@outputs('Get_Operation')?['body/ts_ron']",
+                              true
+                            ]
+                          },
+                          {
+                            "equals": [
+                              "@triggerOutputs()?['body/ts_remainovernightron']",
+                              true
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "50b1ca48-f506-44a2-a175-0795a24b0e74"
+              },
+              "type": "If"
+            },
+            "Get_Site_of_Operation": {
+              "runAfter": {
+                "Get_Operation": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c0d85fde-319e-4516-a8b5-45b6f80b3f2b"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "msdyn_functionallocations",
+                  "recordId": "@outputs('Get_Operation')?['body/_ts_site_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_Related_Operation_Activities": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "66e58a43-c669-4bcc-8435-72be0fe8da94"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

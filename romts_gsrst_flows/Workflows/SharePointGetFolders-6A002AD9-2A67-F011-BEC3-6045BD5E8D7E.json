@@ -1,0 +1,346 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_2d435"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "SharePoint Flow Key (ts_SharePointFlowKey)": {
+          "defaultValue": "6u4qTO,e|[)-rY2n\\jk#Fas:,{35~d",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ts_SharePointFlowKey",
+            "description": "This key is used by the SharePointAttachFilePopUp.html web resource to connect to the Power Automate Flows that use HTTPS"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "530a40cf-f462-49a1-9f8f-497b2b1ba5aa"
+          },
+          "type": "Request",
+          "kind": "Http",
+          "inputs": {
+            "method": "GET",
+            "triggerAuthenticationType": "All"
+          }
+        }
+      },
+      "actions": {
+        "Parse_JSON": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "c9e32cec-959b-4b20-b5a7-c0c2d7765caa"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerOutputs()['headers']",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Content-Type": {
+                  "type": "string"
+                },
+                "FlowKey": {
+                  "type": "string"
+                },
+                "UsersEmail": {
+                  "type": "string"
+                },
+                "BusinessUnitId": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable_-_flowKey": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b864f4c1-bad0-4fa6-9571-c3763cf9018a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "flowKey",
+                "type": "string",
+                "value": "@body('Parse_JSON')?['FlowKey']"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_usersEmail": {
+          "runAfter": {
+            "Initialize_variable_-_flowKey": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "61d8e825-c60d-4979-9ff4-9d5a258b1a19"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "usersEmail",
+                "type": "string",
+                "value": "@body('Parse_JSON')?['UsersEmail']"
+              }
+            ]
+          }
+        },
+        "Condition": {
+          "actions": {
+            "Scope_-_Try_Getting_Teams": {
+              "actions": {
+                "List_rows_-_Teams": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "f5dea6a0-8ccd-4a92-9fa0-7694de685bf4"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "ListRecords",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "teams",
+                      "fetchXml": "<fetch>\n  <entity name='team'>\n    <order attribute='name' descending='false' />\n    <filter type='and'>\n      <condition attribute='ts_territory' operator='not-null' />\n      <condition attribute='teamtype' operator='eq' value='0' />\n<condition attribute='ts_sharepointfoldername' operator='not-null' />\n<condition attribute='ts_sharepointfolderid' operator='not-null' />\n    </filter>\n<link-entity name=\"businessunit\" from=\"businessunitid\" to=\"businessunitid\" alias=\"bu\">\n            <filter>\n                <condition attribute='businessunitid' operator='eq' value='@{variables('businessUnitId')}'/>\n            </filter>\n        </link-entity>\n    <link-entity name='teammembership' from='teamid' to='teamid' visible='false' intersect='true'>\n      <link-entity name='systemuser' from='systemuserid' to='systemuserid' alias='ai'>\n        <filter type='and'>\n          <condition attribute='domainname' operator='eq' value='@{variables('usersEmail')}' />\n        </filter>\n      </link-entity>\n    </link-entity>\n  </entity>\n</fetch>"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Response_-_Users'_Teams": {
+                  "runAfter": {
+                    "Condition_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "038c8a32-21d4-41b3-9917-02e9f1db493e"
+                  },
+                  "type": "Response",
+                  "kind": "Http",
+                  "inputs": {
+                    "statusCode": 200,
+                    "body": {
+                      "value": "@variables('result')"
+                    }
+                  }
+                },
+                "Condition_2": {
+                  "actions": {
+                    "List_rows": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "54cccabb-5671-44c5-9ddf-8281e8600873"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "ListRecords",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "teams",
+                          "fetchXml": "<fetch>\n  <entity name='team'>\n    <order attribute='name' descending='false' />\n    <filter type='and'>    \n      <condition attribute='teamtype' operator='eq' value='0' />\n<condition attribute='ts_sharepointfoldername' operator='not-null' />\n<condition attribute='ts_sharepointfolderid' operator='not-null' />\n    </filter>\n    <link-entity name='teammembership' from='teamid' to='teamid' visible='false' intersect='true'>\n      <link-entity name='systemuser' from='systemuserid' to='systemuserid' alias='ai'>\n        <filter type='and'>\n          <condition attribute='domainname' operator='eq' value='@{variables('usersEmail')}' />\n        </filter>\n      </link-entity>\n    </link-entity>\n  </entity>\n</fetch>\n"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Set_variable": {
+                      "runAfter": {
+                        "List_rows": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "253bed40-82e8-40d8-96bb-20442ff8b129"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "result",
+                        "value": "@outputs('List_rows')?['body/value']"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "List_rows_-_Teams": [
+                      "Succeeded"
+                    ]
+                  },
+                  "else": {
+                    "actions": {
+                      "Set_variable_2": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "6d612396-addb-48ca-9fa1-3dbcc421b48f"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "result",
+                          "value": "@outputs('List_rows_-_Teams')?['body/value']"
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "equals": [
+                      "@length(outputs('List_rows_-_Teams')?['body/value'])",
+                      0
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "cd076cbf-3c43-489f-8761-2fcc33d20ede"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "cf2d71c1-91c3-4216-9809-10cb54d69174"
+              },
+              "type": "Scope"
+            },
+            "Scope_-_Error_Try_Getting_Teams": {
+              "actions": {
+                "Response_-_Error": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "e0c0ce8e-d60c-498f-a391-bbc15f23e8d0"
+                  },
+                  "type": "Response",
+                  "kind": "Http",
+                  "inputs": {
+                    "statusCode": 400,
+                    "body": "Can't get users' teams"
+                  }
+                }
+              },
+              "runAfter": {
+                "Scope_-_Try_Getting_Teams": [
+                  "Failed",
+                  "Skipped",
+                  "TimedOut"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "8cb6690d-c421-4362-b2fd-3e4357aa8f49"
+              },
+              "type": "Scope"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_result": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Response_-_Failed": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "b58db259-1247-4b90-93c0-ff4bb8b2e3c7"
+                },
+                "type": "Response",
+                "kind": "Http",
+                "inputs": {
+                  "statusCode": 200,
+                  "body": "Invalid"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@variables('flowKey')",
+              "@parameters('SharePoint Flow Key (ts_SharePointFlowKey)')"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3b5605ca-2148-4bab-968c-338279f084a7"
+          },
+          "type": "If"
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Initialize_variable_-_usersEmail": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f675d86f-49f4-4e9e-86f9-b4f3aa7a16b1"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "businessUnitId",
+                "type": "string",
+                "value": "@body('Parse_JSON')?['BusinessUnitId']"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_result": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8d2078d9-87a5-45f5-8c4a-deb0af5b24b8"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "result",
+                "type": "array"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

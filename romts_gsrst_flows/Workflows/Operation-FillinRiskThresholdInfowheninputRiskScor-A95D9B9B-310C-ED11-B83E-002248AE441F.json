@@ -1,0 +1,113 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "1196b304-a8f8-48bb-ac8b-782971bfe002"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_2",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ovs_operation",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_riskscore",
+              "subscriptionRequest/filterexpression": "ts_riskscore ne null"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "List_Risk_Threshold_in_range": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "d665d0f2-0547-443c-becb-6b80b1f72bfe"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_2",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_riskcategories",
+              "$filter": "_ts_operationtype_value eq @{triggerOutputs()?['body/_ovs_operationtypeid_value']} and ts_riskscoreminimum le @{triggerOutputs()?['body/ts_riskscore']} and ts_riskscoremaximum ge @{triggerOutputs()?['body/ts_riskscore']}",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_Risk_Threshold": {
+          "foreach": "@outputs('List_Risk_Threshold_in_range')?['body/value']",
+          "actions": {
+            "Update_Operation": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "72ad148a-82a6-407e-9905-565e2f74666c"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_2",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ovs_operations",
+                  "recordId": "@triggerOutputs()?['body/ovs_operationid']",
+                  "item/ts_interval": "@items('Apply_to_Risk_Threshold')?['ts_interval']",
+                  "item/ts_frequency": "@items('Apply_to_Risk_Threshold')?['ts_frequency']",
+                  "item/ts_operationfrequency@odata.bind": "/ts_operationfrequencies(@{items('Apply_to_Risk_Threshold')?['_ts_operationfrequency_value']})",
+                  "item/ts_risk@odata.bind": "/ts_riskcategories(@{items('Apply_to_Risk_Threshold')?['ts_riskcategoryid']})"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_Risk_Threshold_in_range": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "724571e5-ea70-47cd-a83a-0a8dcf5207dc"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

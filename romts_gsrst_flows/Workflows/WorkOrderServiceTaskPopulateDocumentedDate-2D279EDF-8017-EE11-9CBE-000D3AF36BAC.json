@@ -1,0 +1,204 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "75404d25-2acb-4e3d-baf2-6b4fbf828161"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "msdyn_workorderservicetask",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_servicetaskenddate,statuscode"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition_for_updating_WOST": {
+          "actions": {
+            "Condition_2": {
+              "actions": {
+                "Update_WOST_row": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "ab28e067-83f7-4da7-8319-57b4dcd23714"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorderservicetasks",
+                      "recordId": "@triggerOutputs()?['body/msdyn_workorderservicetaskid']",
+                      "item/ts_documenteddate": "@utcNow()"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "equals": [
+                  "@triggerOutputs()?['body/ts_documenteddate']",
+                  "@null"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a84ed285-8b91-444e-9137-99de2b23a8ad"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {},
+          "expression": {
+            "or": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/statuscode']",
+                  918640002
+                ]
+              },
+              {
+                "not": {
+                  "equals": [
+                    "@triggerOutputs()?['body/ts_servicetaskenddate']",
+                    "@null"
+                  ]
+                }
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8e72ceb0-5cf1-4a80-857f-fc4319c449ad"
+          },
+          "type": "If"
+        },
+        "Condition_for_updating_WO_": {
+          "actions": {
+            "Get_a_row_by_ID": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "6ff42b26-0e18-4ac3-a846-9790aaa1304f"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "msdyn_workorders",
+                  "recordId": "@triggerOutputs()?['body/_msdyn_workorder_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Condition": {
+              "actions": {
+                "Update_WO_row": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "9d3b4c44-7185-4da3-91ca-9019def78c70"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorders",
+                      "recordId": "@triggerOutputs()?['body/_msdyn_workorder_value']",
+                      "item/ts_documenteddate": "@utcNow()"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_a_row_by_ID": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "equals": [
+                  "@outputs('Get_a_row_by_ID')?['body/ts_documenteddate']",
+                  "@null"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "2015c806-7ee2-4cfb-b5db-655a569ec8f3"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Condition_for_updating_WOST": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/statuscode']",
+                  918640002
+                ]
+              },
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/ts_mandatory']",
+                  "@true"
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e613d880-9c6b-4b3f-942b-f80c89ba3f77"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

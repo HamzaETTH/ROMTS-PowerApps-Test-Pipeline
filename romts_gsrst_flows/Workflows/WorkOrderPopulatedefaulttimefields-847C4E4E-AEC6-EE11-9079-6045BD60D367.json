@@ -1,0 +1,138 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "98806513-bfd2-49e4-92e4-accd94a7d3ec"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "msdyn_workorder",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition": {
+          "actions": {
+            "Get_a_row_by_ID": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "919d45db-8ed0-4b6b-a2f4-dae6cdc29229"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "msdyn_incidenttypes",
+                  "recordId": "@triggerOutputs()?['body/_msdyn_primaryincidenttype_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Update_a_row": {
+              "runAfter": {
+                "Get_a_row_by_ID": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "cac5d2d1-b15e-486d-aae5-34f717ad3c6a"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "msdyn_workorders",
+                  "recordId": "@triggerOutputs()?['body/msdyn_workorderid']",
+                  "item/ts_conductingoversight": "@outputs('Get_a_row_by_ID')?['body/ts_conductingoversight']",
+                  "item/ts_preparationtime": "@outputs('Get_a_row_by_ID')?['body/ts_preparationtime']",
+                  "item/ts_woreportinganddocumentation": "@outputs('Get_a_row_by_ID')?['body/ts_reportinganddocumentation']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/ts_preparationtime']",
+                  "@null"
+                ]
+              },
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/ts_conductingoversight']",
+                  "@null"
+                ]
+              },
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/ts_woreportinganddocumentation']",
+                  "@null"
+                ]
+              },
+              {
+                "not": {
+                  "equals": [
+                    "@triggerOutputs()?['body/_msdyn_primaryincidenttype_value']",
+                    "@null"
+                  ]
+                }
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9e80fab4-8e98-4b91-82e0-37daea1a8602"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,643 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{6f157fec-1d27-464f-a848-f221e46fc3d5}</formid>
+    <IntroducedVersion>1.0.20220711.1</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
+      <tabs>
+        <tab verticallayout="true" id="{6149c9cd-3d20-407b-afa7-f39428d1ceb0}" IsUserDefined="1" name="Trip_General">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="Trip_General_section_3" id="cebe8fdd-c6f4-4959-a842-70542e395e09" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="11" labelwidth="115">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{266c38db-4464-49f2-9b44-6de09198e600}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{58b0370c-5eb1-48e4-8f84-54e74576ae6a}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6d3b7c91-cf3f-49ee-9b32-097375ab3f0f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="ID Number" languagecode="1033" />
+                          <label description="Numéro d'identification" languagecode="1036" />
+                        </labels>
+                        <control id="ts_id" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_id" disabled="true" />
+                      </cell>
+                      <cell id="{009a6097-3adb-542b-be70-ee176d9ed2e8}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Total Estimated Duration" languagecode="1033" />
+                          <label description="Durée totale estimée pour le voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimatedduration" classid="{AA987274-CE4E-4271-A803-66164311A958}" datafieldname="ts_estimatedduration" disabled="true" uniqueid="{0aaba1d7-94b2-5433-b40e-01ad4c2bace3}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3e78e95f-428e-4777-84f1-768df55a3ffa}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Trip Name" languagecode="1033" />
+                          <label description="Nom du voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" uniqueid="{22c37012-6100-0c34-c0bc-2b8e7c0e6936}" disabled="false" />
+                      </cell>
+                      <cell id="{296c2b17-b7e6-4490-6ab9-dcbd50473363}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Estimated Travel Time" languagecode="1033" />
+                          <label description="Durée estimée du voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimatedtraveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_estimatedtraveltime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{dab9d578-0c88-850c-3295-9ca9e8838333}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Fiscal Year" languagecode="1033" />
+                        </labels>
+                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false">
+                          <parameters>
+                            <DependentAttributeName>ts_trip.ts_plannedfiscalquarter</DependentAttributeName>
+                            <DependentAttributeType>tc_tcfiscalquarter</DependentAttributeType>
+                            <FilterRelationshipName>tc_TCFiscalQuarter_TCFiscalYear</FilterRelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{953c6864-5bee-a524-140a-6c83297eed00}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Actual Travel Time" languagecode="1033" />
+                          <label description="Temps de voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_traveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_traveltime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{54150742-b5e5-d362-edb9-ee86c3eab652}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Fiscal Quarter" languagecode="1033" />
+                          <label description="Trimestre financier prévu" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedfiscalquarter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_plannedfiscalquarter" disabled="false" uniqueid="{3521299c-5755-663d-a7cd-03a1800dc23a}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{72CCA668-4E5D-4AB1-AFEF-9B00703A5C41}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <DependentAttributeName>ts_trip.ts_fiscalyear</DependentAttributeName>
+                            <DependentAttributeType>tc_tcfiscalyear</DependentAttributeType>
+                            <FilterRelationshipName>tc_TCFiscalQuarter_TCFiscalYear</FilterRelationshipName>
+                            <AvailableViewIds>{D036C837-0C99-4546-A03D-79C69B876CE4},{52C9CBFD-B62E-ED11-9DB0-0022483C5061},{829E958E-9938-EB11-A813-000D3AF3FC19},{3E6CAA4E-67B1-4363-AAD7-09723F312C52},{72CCA668-4E5D-4AB1-AFEF-9B00703A5C41}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{e2e8b91d-0a93-a93c-ba5d-5bb9adb209a0}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Estimated Cost" languagecode="1033" />
+                          <label description="Coût estimé" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimatedcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ts_estimatedcost" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{55ad3b1e-9c11-4d34-b51d-a10f29ef3ead}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{ea6707eb-9bd9-7aba-857b-c85acde8caa9}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Actual Cost" languagecode="1033" />
+                          <label description="Coût effectif du voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_actualcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ts_actualcost" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7173c8c5-fdbb-417a-b10c-6a14f1ad70b2}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Program" languagecode="1033" />
+                          <label description="Programme" languagecode="1036" />
+                        </labels>
+                        <control id="ts_program" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_program" disabled="false" />
+                      </cell>
+                      <cell id="{030846d4-250d-1425-4dbb-83ca3b2183da}" showlabel="true" locklevel="0" rowspan="2" colspan="1">
+                        <labels>
+                          <label description="Cost Explanation" languagecode="1033" />
+                          <label description="Explication du coût" languagecode="1036" />
+                        </labels>
+                        <control id="ts_costexplanation" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_costexplanation" disabled="false" uniqueid="{03ee029e-a5b6-9716-3601-385c6e76c38a}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{370ac28f-6fc4-43a2-941d-070a129cee9f}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5b56e060-1dfb-4af8-b68f-25b6122feadd}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Region" languagecode="1033" />
+                          <label description="Région" languagecode="1036" />
+                        </labels>
+                        <control id="ts_region" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_region" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{f23ac62b-cb3c-4162-bd35-18b55469a1a9}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section showlabel="true" showbar="false" IsUserDefined="0" id="{c9ccd5ec-318d-4ed3-b8f6-7d600e0d3bb0}" name="Region" columns="1">
+                  <labels>
+                    <label description="Associated Records" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{30de25f3-23d9-4ecd-831b-b7a0e19a70c6}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Modified By" languagecode="1033" />
+                          <label description="Modifié par" languagecode="1036" />
+                        </labels>
+                        <control id="modifiedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="modifiedby" disabled="false" uniqueid="{8ab90760-3364-7ba9-53d3-79e71b1274de}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ef50c4da-2459-4f77-8e44-56e24d983672}" showlabel="true" locklevel="1" visible="false">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" uniqueid="{d4570c59-1758-a94b-720d-701b9670a4ec}" disabled="false">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6cace660-2cca-2dc7-921e-b7ee2edb11ad}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Planned Cost of Trip" languagecode="1033" />
+                          <label description="Coût planifié du voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ts_plannedcost" disabled="false" uniqueid="{79a74c3a-48c2-83d1-73ca-a05c7c765662}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{bcd3fe9a-2d0b-4e11-b937-ab3092d10d5b}" rowspan="6" colspan="1" auto="false" showlabel="true">
+                        <labels>
+                          <label description="Work Orders" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Work_Orders" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_trip_msdyn_workorder_trip</RelationshipName>
+                            <TargetEntityType>msdyn_workorder</TargetEntityType>
+                            <ViewId>{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F}</ViewId>
+                            <ViewIds>{70518E86-6EC4-ED11-B596-0022482D11ED},{7C4BF420-C476-EF11-AC20-6045BD5E7A93},{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F}</ViewIds>
+                            <VisualizationId>{5472FF64-C30F-EB11-A813-000D3AF3A7A7}</VisualizationId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{acc35eb1-e990-169a-50a5-1c4a6ecb0e08}" showlabel="true" colspan="1" auto="false" rowspan="7">
+                        <labels>
+                          <label description="Inspections" languagecode="1033" />
+                          <label description="Ordres de travail" languagecode="1036" />
+                        </labels>
+                        <control id="Inspections" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{d90a9e15-46a2-cd08-0b39-b36760dcc532}">
+                          <parameters>
+                            <ViewId>{27A63941-35CC-41F4-845B-42C05B0C492C}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_ts_trip_ts_tripinspection_trip</RelationshipName>
+                            <TargetEntityType>ts_tripinspection</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{27A63941-35CC-41F4-845B-42C05B0C492C}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{a36e29d3-dac5-4e26-b9e7-4b0b574ea3ed}" userspacer="true" showlabel="false" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{41505d13-e0b6-e632-bb85-1c787716e5a2}" showlabel="true" colspan="1" auto="false" rowspan="7">
+                        <labels>
+                          <label description="Inspectors" languagecode="1033" />
+                          <label description="Inspecteurs de voyage" languagecode="1036" />
+                        </labels>
+                        <control id="Inspectors" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{54abd7bb-7a1e-2e36-5653-c89d2064ede5}">
+                          <parameters>
+                            <ViewId>{657C5C94-E718-ED11-B83F-002248AE441F}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_ts_trip_ts_tripinspector_trip</RelationshipName>
+                            <TargetEntityType>ts_tripinspector</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{2BEBB4A4-801B-41EC-BEB2-4B84EBC95716},{657C5C94-E718-ED11-B83F-002248AE441F}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="Trip_Interations" id="5c865c3c-a8bd-4198-b6cc-9710476843c7" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Interactions" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="tab_5_section_1" id="79fa9773-16a3-4dfd-832b-63d92d304955" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Timeline" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{4eef4069-f575-4175-b397-ffe01c6895b0}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{d53e59d8-9912-47a5-898c-c83df8e44a92}" rowspan="15" colspan="1">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-C143-495E-A496-C962E5B4488E}" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="tab_5_section_2" id="5bc11fb1-3d66-472c-86fb-8f7e548dc810" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Contacts" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{a2c238b6-8264-4c63-87b2-1a1fdd09bc21}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{e51c3da7-2d4c-441f-8c0d-84c9466bcbce}" rowspan="4" colspan="1" auto="false" showlabel="true">
+                        <labels>
+                          <label description="Contacts" languagecode="1033" />
+                          <label description="Coordonnées" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_trip_Contact_Contact</RelationshipName>
+                            <TargetEntityType>contact</TargetEntityType>
+                            <ViewId>{1D31951F-F9D4-EB11-BACC-000D3A0C9D04}</ViewId>
+                            <ViewIds>{1D31951F-F9D4-EB11-BACC-000D3A0C9D04}</ViewIds>
+                            <VisualizationId>{E365462F-1DB9-46A8-928D-BEAB1A7A2375}</VisualizationId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="trip_document_tab" id="{28243310-d6b9-130e-2546-2abe9be6b850}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Documents" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="67%">
+              <sections>
+                <section name="tab_2_section_1" showlabel="false" showbar="false" locklevel="0" id="{3939ae62-8bb7-5377-36e4-402cc978a21e}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell rowspan="1" id="{76f405b6-2c29-4fa4-ab6c-7df738521542}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{199dedc4-43b9-6066-ab34-8d5c2de69569}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="Trip Inspections" languagecode="1033" />
+                          <label description="Inspections de voyage" languagecode="1036" />
+                        </labels>
+                        <control id="TripFiles" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{3407E68C-3F63-EC11-8F8E-000D3A847292}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_ts_file_ts_trip</RelationshipName>
+                            <TargetEntityType>ts_file</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{3407E68C-3F63-EC11-8F8E-000D3A847292}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <RelationshipRoleOrdinal>2</RelationshipRoleOrdinal>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section name="trip_document_section" showlabel="false" showbar="false" locklevel="0" id="{43c71748-0462-5363-520c-5e2b71753609}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{d7b36d6d-d602-9458-6a38-924c148a4093}" showlabel="false" locklevel="0">
+                        <labels>
+                          <label description="Trip Name" languagecode="1033" />
+                          <label description="Nom du voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_name" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_name" disabled="false" uniqueid="{2952a5d4-0631-5b10-03ec-3921380c18de}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions>
+        <controlDescription forControl="{2952a5d4-0631-5b10-03ec-3921380c18de}">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}">
+            <parameters>
+              <datafieldname>ts_name</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>ts_name</record>
+              <entityName static="true" type="SingleLine.Text">Trip</entityName>
+              <appName static="true" type="SingleLine.Text">ts_romdocumentcentretrip_f80bd</appName>
+              <appId static="true" type="SingleLine.Text">7d5241ea-56c7-4646-a531-a14590393747</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>ts_name</record>
+              <entityName static="true" type="SingleLine.Text">Trip</entityName>
+              <appName static="true" type="SingleLine.Text">ts_romdocumentcentretrip_f80bd</appName>
+              <appId static="true" type="SingleLine.Text">7d5241ea-56c7-4646-a531-a14590393747</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>ts_name</record>
+              <entityName static="true" type="SingleLine.Text">Trip</entityName>
+              <appName static="true" type="SingleLine.Text">ts_romdocumentcentretrip_f80bd</appName>
+              <appId static="true" type="SingleLine.Text">7d5241ea-56c7-4646-a531-a14590393747</appId>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <header id="{55438250-03be-4091-9216-98c7ebe18399}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{0619bede-0fab-4d71-ac08-9cd3916860c7}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{cc1d76e1-257b-47d6-9a3c-82dbc671a16b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{2c436c5a-2a54-405d-9a72-bd7077a10c2a}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{40231d58-d1aa-44f9-a216-a2dfa92f9d06}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{51ac0b21-b3bd-4393-ac05-3b487e9e4b96}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{4df7ecfd-03c1-4095-aed9-e8432adb5e70}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{bc203af6-7997-4556-9e6b-1dbf5db379ac}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{0df94cd7-736f-41fd-8045-3b78dca1f738}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <formLibraries>
+        <Library name="ts_/js/Common.js" libraryUniqueId="{15d24c6e-5636-44e1-4907-56448d58a22d}" />
+        <Library name="ts_/js/Trip.js" libraryUniqueId="{98082915-db41-42ec-4080-6d8d39dc8c9a}" />
+        <Library name="ts_/js/AttachFile.js" libraryUniqueId="{5e5e288d-9a5d-489e-8f97-3416ed5b750c}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.Trip.onLoad" libraryName="ts_/js/Trip.js" handlerUniqueId="{b7964ba0-a778-d9ec-3930-452c330869cd}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{6d6a4c8c-618f-424d-a5ce-c1bb01478e99}" enabled="true" parameters="&quot;trip_document_tab&quot;, &quot;trip_document_section&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_program">
+          <Handlers>
+            <Handler functionName="ROM.Trip.onProgramChange" libraryName="ts_/js/Trip.js" handlerUniqueId="{425c3386-069d-4559-9edb-7664d7cd5e48}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+      <LocalizedName description="Information" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+      <Description description="A form for this entity." languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

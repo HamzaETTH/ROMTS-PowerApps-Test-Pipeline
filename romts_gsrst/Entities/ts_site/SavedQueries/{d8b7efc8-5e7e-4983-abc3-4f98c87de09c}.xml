@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{d8b7efc8-5e7e-4983-abc3-4f98c87de09c}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_siteid">
+          <cell name="ts_name" width="300" />
+          <cell name="ts_parentfunctionallocation" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_region" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_sitestatus" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_site">
+          <attribute name="ts_name" />
+          <order attribute="ts_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_region" />
+          <attribute name="ts_parentfunctionallocation" />
+          <attribute name="ts_sitestatus" />
+          <attribute name="ts_siteid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20240620.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Sites" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

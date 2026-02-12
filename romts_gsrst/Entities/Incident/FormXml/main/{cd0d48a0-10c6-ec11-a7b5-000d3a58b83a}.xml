@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{cd0d48a0-10c6-ec11-a7b5-000d3a58b83a}</formid>
+    <IntroducedVersion>9.1.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form enablerelatedinformation="false" shownavigationbar="true" hasmargin="false" headerdensity="HighWithControls" showinformselector="true">
+      <tabs showlabels="true">
+        <tab name="general" verticallayout="true" id="{564b9a08-4626-46f5-8bd8-3d31e17a8873}" IsUserDefined="0" labelid="{9d6e9f7c-5fb8-47a7-8d84-a6f1b8c14d4c}" ordinalvalue="0">
+          <columns>
+            <column width="50%" id="0">
+              <sections>
+                <section name="general_section_10" id="86e13dba-d7c9-43a5-a930-41b6d0695dbe" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="4">
+                  <labels>
+                    <label description="New Section" languagecode="1036" solutionaction="Modified" />
+                  </labels>
+                </section>
+              </sections>
+            </column>
+            <column width="50%" id="1">
+              <sections>
+                <section name="copilot_summary_section" id="d69ee1db-30a5-38d5-8041-851ad392a201" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false" ordinalvalue="0">
+                  <labels>
+                    <label description="Copilot Summary Section" languagecode="1036" solutionaction="Modified" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{871010b3-ca77-756a-a200-61bc40c2ca3d}" colspan="1" rowspan="1" visible="false" showlabel="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="Copilot Summary" languagecode="1036" solutionaction="Modified" />
+                        </labels>
+                        <control id="traversedpath" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="traversedpath" disabled="false" uniqueid="{55056116-B59C-8C3E-C6CC-0D76DE8B76A7}" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <controlDescriptions>
+        <controlDescription forControl="{4CD4BEF5-DCB7-4276-B324-4E4F3DCF4DCB}" solutionaction="Modified">
+          <customControl id="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+            <parameters />
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.SlaTimer.SlaTimerControl">
+            <parameters>
+              <data-set name="dataSetGrid_1">
+                <TargetEntityType>slakpiinstance</TargetEntityType>
+                <ViewId>{0696602a-b187-4baf-8c12-3395ac7fd454}</ViewId>
+                <IsUserView>false</IsUserView>
+                <EnableViewPicker>false</EnableViewPicker>
+                <RelationshipName />
+                <FilteredViewIds />
+              </data-set>
+              <Update_Frequency type="Enum" static="true">30</Update_Frequency>
+              <EnableNegativeTimer type="Enum" static="true">0</EnableNegativeTimer>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.SlaTimer.SlaTimerControl">
+            <parameters>
+              <data-set name="dataSetGrid_1">
+                <TargetEntityType>slakpiinstance</TargetEntityType>
+                <ViewId>{0696602a-b187-4baf-8c12-3395ac7fd454}</ViewId>
+                <IsUserView>false</IsUserView>
+                <EnableViewPicker>false</EnableViewPicker>
+                <RelationshipName />
+                <FilteredViewIds />
+              </data-set>
+              <Update_Frequency type="Enum" static="true">30</Update_Frequency>
+              <EnableNegativeTimer type="Enum" static="true">0</EnableNegativeTimer>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.SlaTimer.SlaTimerControl">
+            <parameters>
+              <data-set name="dataSetGrid_1">
+                <TargetEntityType>slakpiinstance</TargetEntityType>
+                <ViewId>{0696602a-b187-4baf-8c12-3395ac7fd454}</ViewId>
+                <IsUserView>false</IsUserView>
+                <EnableViewPicker>false</EnableViewPicker>
+                <RelationshipName />
+                <FilteredViewIds />
+              </data-set>
+              <Update_Frequency type="Enum" static="true">30</Update_Frequency>
+              <EnableNegativeTimer type="Enum" static="true">0</EnableNegativeTimer>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{55056116-B59C-8C3E-C6CC-0D76DE8B76A7}" solutionaction="Modified">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}">
+            <parameters>
+              <datafieldname>traversedpath</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.CSIntelligence.CopilotCaseSummaryControl">
+            <parameters>
+              <CaseSummary>traversedpath</CaseSummary>
+              <IncidentId>incidentid</IncidentId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.CSIntelligence.CopilotCaseSummaryControl">
+            <parameters>
+              <CaseSummary>traversedpath</CaseSummary>
+              <IncidentId>incidentid</IncidentId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.CSIntelligence.CopilotCaseSummaryControl">
+            <parameters>
+              <CaseSummary>traversedpath</CaseSummary>
+              <IncidentId>incidentid</IncidentId>
+            </parameters>
+          </customControl>
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" solutionaction="Added">
+            <parameters>
+              <datafieldname>traversedpath</datafieldname>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <footer id="{87f48bb0-8611-4251-b5a3-189a97be8c9d}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows />
+      </footer>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Enhanced full case form" languagecode="1033" />
+      <LocalizedName description="Formulaire d’incident complet amélioré" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Enhanced full case form" languagecode="1033" />
+      <Description description="Formulaire d’incident complet amélioré" languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

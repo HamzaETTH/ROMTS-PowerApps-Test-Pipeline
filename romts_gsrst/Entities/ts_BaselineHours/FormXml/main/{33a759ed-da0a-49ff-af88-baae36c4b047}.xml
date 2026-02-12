@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{33a759ed-da0a-49ff-af88-baae36c4b047}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
+      <tabs>
+        <tab verticallayout="true" id="{c681c3ce-d57f-4804-8c5d-5cd7178b4a1c}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{2d2480f5-c25d-4f97-ab0f-fe4dd7dc03ca}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{2535bce8-780d-45ae-91e5-8e5aad15fdf1}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{da425262-cee7-4fee-8873-6a7570ae98fd}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="English Name" languagecode="1033" />
+                          <label description="Nom englais" languagecode="1036" />
+                        </labels>
+                        <control id="ts_englishname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_englishname" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{795d07ef-b0c4-4708-9134-5ea9b69857a8}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="French Name" languagecode="1033" />
+                          <label description="Nom français" languagecode="1036" />
+                        </labels>
+                        <control id="ts_frenchname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_frenchname" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a3b64de9-f0b4-49ad-b152-7a4554991a71}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Team" languagecode="1033" />
+                          <label description="Équipe" languagecode="1036" />
+                        </labels>
+                        <control id="ts_team" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_team" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{476c320f-ef68-40b5-a3b2-001ece88cd7b}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_3" id="f15e99b5-8ed4-47bb-bdee-c792b067d7ff" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1111" labelwidth="115">
+                  <labels>
+                    <label description="Hours" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{8851fdde-fe39-450a-a927-6adc6264bb8d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Q1" languagecode="1033" />
+                          <label description="Planifié T1" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedq1" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_plannedq1" disabled="false" />
+                      </cell>
+                      <cell id="{85378243-984e-4de1-82ec-26b6f3c75b8f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Q2" languagecode="1033" />
+                          <label description="Planifié T2" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedq2" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_plannedq2" disabled="false" />
+                      </cell>
+                      <cell id="{2a81613b-6c02-472c-9a4a-ae55afeb3263}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Q3" languagecode="1033" />
+                          <label description="Planifié T3" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedq3" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_plannedq3" disabled="false" />
+                      </cell>
+                      <cell id="{894171e4-a8d6-411d-b746-73633c1abdcc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Q4" languagecode="1033" />
+                          <label description="Planifié T4" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedq4" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_plannedq4" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ed2cffe0-dc99-4335-b5c6-1ff15d555bfe}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Unplanned Q1" languagecode="1033" />
+                          <label description="Non planifié T1" languagecode="1036" />
+                        </labels>
+                        <control id="ts_unplannedq1" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_unplannedq1" disabled="false" />
+                      </cell>
+                      <cell id="{9a689dc1-e061-4e12-9aba-818a0e107b1e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Unplanned Q2" languagecode="1033" />
+                          <label description="Non planifié T2" languagecode="1036" />
+                        </labels>
+                        <control id="ts_unplannedq2" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_unplannedq2" disabled="false" />
+                      </cell>
+                      <cell id="{0d00f718-1f01-46ad-a7b0-630fe44cc764}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Unplanned Q3" languagecode="1033" />
+                          <label description="Non planifié T3" languagecode="1036" />
+                        </labels>
+                        <control id="ts_unplannedq3" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_unplannedq3" disabled="false" />
+                      </cell>
+                      <cell id="{ca9fba1a-5e2f-4606-bd95-efa09d0c3c66}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Unplanned Q4" languagecode="1033" />
+                          <label description="Non planifié T4" languagecode="1036" />
+                        </labels>
+                        <control id="ts_unplannedq4" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_unplannedq4" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f7c6a590-e55e-4097-a50b-cc589ec23245}" userspacer="true" showlabel="false" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{b27cdc88-ca6d-4039-b44b-dfdd87aab39b}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{7370d27f-d894-4986-89bf-c390426d6deb}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{02448d0a-c5bd-42e2-8fef-f0b5c7c8e814}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{17799391-eaf4-4e15-9b74-7b742ce52bb9}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Total Hours" languagecode="1033" />
+                          <label description="Heures totales" languagecode="1036" />
+                        </labels>
+                        <control id="ts_totalhours" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_totalhours" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{5c84afeb-abaf-4cc7-a2a5-8a18c208adca}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{d3af4a69-1241-4bda-afe9-aa7c09dcdf53}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{3d5c9c34-4c26-4220-ae04-35906ab6466e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{0539e5e1-f615-4473-a4f2-a0880c29c75d}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{11e8ed16-0fc4-4e16-a116-b0cb73f3590f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{af6e35d0-752e-44da-870c-4fdc011cecf1}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{f3d00a17-9c67-49e4-83c1-23ec4c02b980}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{ac81a398-ad18-4e87-bf7f-9cdd1a3f3e1a}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{56a72e61-afc7-4e52-aac8-7ea90f03e75e}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{c9b2efc0-cca6-4be3-9bf9-785fba5886ed}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{8dd45586-4067-44ba-a1e7-b1198d1347b5}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

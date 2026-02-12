@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form shownavigationbar="true" showImage="false" maxWidth="1920" headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{40a372e3-f5da-4468-abde-1a9085310a5f}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{b0b394e7-c1f3-4ce2-9c95-d78a49737dad}" height="auto">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{5aacc12d-4a4c-4e3c-91b1-9266abdce5f0}" visible="false">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a8c375a6-c356-6bd4-e9a9-469bd4db81b7}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Case" languagecode="1033" />
+                          <label description="Cas" languagecode="1036" />
+                        </labels>
+                        <control id="ts_caseid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_caseid" disabled="true" uniqueid="{b1c7cb20-a493-c752-8a89-216962393dbb}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{9AC51863-58C7-49A0-ADCC-AFD9A4C3EE59}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2bb93980-4c39-6745-bc29-a6e5e39bc0ea}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Work Order Type" languagecode="1033" />
+                        </labels>
+                        <control id="ts_workordertypeid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_workordertypeid" disabled="false" uniqueid="{396ad869-1453-0639-4ca1-9e83bbdeddde}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{8F0514CA-D271-46CC-B531-41791C56949A}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3dc33681-e02a-9720-ebdc-558827ee898e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Region" languagecode="1033" />
+                        </labels>
+                        <control id="ts_regionid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_regionid" disabled="true" uniqueid="{848a92a2-903b-b1c8-e4d8-c3d4ad5e6794}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{AD81B2CA-9789-4465-8C56-94C10830A6ED}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8538e49e-9482-50bd-71b9-e51ba074727c}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Country" languagecode="1033" />
+                          <label description="Pays" languagecode="1036" />
+                        </labels>
+                        <control id="ts_countryid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_countryid" disabled="true" uniqueid="{e6d0ec42-2409-9cc6-4edb-e76b4348c7a1}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{F03304AB-1C4B-4922-8270-5A134BD054A9}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7c124add-edea-49c9-b572-7849ee3c3b9d}" locklevel="0">
+                        <labels>
+                          <label description="Operation Type" languagecode="1033" />
+                          <label description="Type d'opération" languagecode="1036" />
+                        </labels>
+                        <control id="ts_ovs_operationtype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_ovs_operationtype" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2948b9a2-5647-439c-5982-7693ab2806d3}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Stakeholder" languagecode="1033" />
+                          <label description="Intervenant" languagecode="1036" />
+                        </labels>
+                        <control id="ts_stakeholderid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_stakeholderid" disabled="true" uniqueid="{9da199ea-d2e0-ddcc-25a9-c84036d3aa92}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{85e5d1d9-423d-1d81-bc7a-769c57c36e92}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Site" languagecode="1033" />
+                        </labels>
+                        <control id="ts_siteid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_siteid" disabled="true" uniqueid="{121ecc03-5e81-6a0a-672d-2d90d6942750}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c87955b7-e134-3005-7e6e-ea34db9d3d8d}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Functional Location" languagecode="1033" />
+                        </labels>
+                        <control id="ts_functionallocationid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_functionallocationid" disabled="true" uniqueid="{8e314800-0d46-abb8-0a22-2c9769698485}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <FilterRelationshipName>msdyn_FunctionalLocation_ParentFunctional</FilterRelationshipName>
+                            <DependentAttributeName>ts_workordercreationwizard.ts_siteid</DependentAttributeName>
+                            <DependentAttributeType>msdyn_functionallocation</DependentAttributeType>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b9c483d4-b67c-b4d8-b5ce-11d482935ccb}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Operation" languagecode="1033" />
+                          <label description="Opération" languagecode="1036" />
+                        </labels>
+                        <control id="ts_operationid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operationid" disabled="true" uniqueid="{112d0206-9109-415d-eb3e-3a3e8b53376c}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{FD2FDA4C-4B7F-4A68-A2CB-C1E1C6A31C8F}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d72668bd-9305-4a7c-a11d-954c59c00cf7}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b63db109-5083-ba70-d43c-8aac6b375daa}" showlabel="true" colspan="1" auto="true" rowspan="5">
+                        <labels>
+                          <label description="Activity Types" languagecode="1033" />
+                          <label description="Work Order Activity Types" languagecode="1036" />
+                        </labels>
+                        <control id="ActivityTypes" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" indicationOfSubgrid="true" uniqueid="{8c9bec44-8882-a1e8-de85-0de1135e1ea2}">
+                          <parameters>
+                            <ViewId>{89FDEA24-0896-4C90-8E34-0847E03FF106}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_ts_workordercreationwizard_ts_workorderac</RelationshipName>
+                            <TargetEntityType>ts_workorderactivitytype</TargetEntityType>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{89FDEA24-0896-4C90-8E34-0847E03FF106}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>30</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions>
+        <controlDescription forControl="{8c9bec44-8882-a1e8-de85-0de1135e1ea2}">
+          <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="0">
+            <parameters>
+              <ViewId>{89FDEA24-0896-4C90-8E34-0847E03FF106}</ViewId>
+              <IsUserView>false</IsUserView>
+              <RelationshipName>ts_ts_workordercreationwizard_ts_workorderac</RelationshipName>
+              <TargetEntityType>ts_workorderactivitytype</TargetEntityType>
+              <AutoExpand>Auto</AutoExpand>
+              <EnableQuickFind>false</EnableQuickFind>
+              <EnableViewPicker>false</EnableViewPicker>
+              <ViewIds>{89FDEA24-0896-4C90-8E34-0847E03FF106}</ViewIds>
+              <EnableJumpBar>false</EnableJumpBar>
+              <ChartGridMode>All</ChartGridMode>
+              <VisualizationId />
+              <IsUserChart>false</IsUserChart>
+              <EnableChartPicker>true</EnableChartPicker>
+              <RecordsPerPage>30</RecordsPerPage>
+              <HeaderColorCode>#F3F3F3</HeaderColorCode>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{89FDEA24-0896-4C90-8E34-0847E03FF106}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ts_workordercreationwizard_ts_workorderac</RelationshipName>
+                <TargetEntityType>ts_workorderactivitytype</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{89FDEA24-0896-4C90-8E34-0847E03FF106}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{89FDEA24-0896-4C90-8E34-0847E03FF106}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ts_workordercreationwizard_ts_workorderac</RelationshipName>
+                <TargetEntityType>ts_workorderactivitytype</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{89FDEA24-0896-4C90-8E34-0847E03FF106}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <formLibraries>
+        <Library name="ts_/js/WorkOrderCreationWizard.js" libraryUniqueId="{35e12a2e-00c4-b45c-ca38-014590388d95}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderCreationWizard.onLoad" libraryName="ts_/js/WorkOrderCreationWizard.js" handlerUniqueId="{85e9c288-0abd-6412-c00c-d361ee04630c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_workordertypeid">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderCreationWizard.workOrderTypeOnChange" libraryName="ts_/js/WorkOrderCreationWizard.js" handlerUniqueId="{b68aa208-52ae-0b34-9c70-1c01ab7da8a4}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_stakeholderid">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderCreationWizard.stakeholderOnChange" libraryName="ts_/js/WorkOrderCreationWizard.js" handlerUniqueId="{42ccd974-a481-6d48-d6aa-b39708bb3868}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_siteid">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderCreationWizard.siteOnChange" libraryName="ts_/js/WorkOrderCreationWizard.js" handlerUniqueId="{0b6e6366-1d4d-25db-1ddb-5b2dca112b10}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_functionallocationid">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderCreationWizard.functionalLocationOnChange" libraryName="ts_/js/WorkOrderCreationWizard.js" handlerUniqueId="{a32294b6-4021-e972-71c4-4046745191ad}" enabled="false" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_regionid">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderCreationWizard.regionOnChange" libraryName="ts_/js/WorkOrderCreationWizard.js" handlerUniqueId="{b657112b-53eb-2d33-80b1-7946a172b0e5}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_countryid">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderCreationWizard.countryOnChange" libraryName="ts_/js/WorkOrderCreationWizard.js" handlerUniqueId="{a709c6a8-0c26-2865-2ac2-32825254e321}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_operationtypeid">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderCreationWizard.operationTypeOnChange" libraryName="ts_/js/WorkOrderCreationWizard.js" handlerUniqueId="{913d8da2-1ddd-5314-1d32-5a7cca358575}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_ovs_operationtype">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderCreationWizard.operationTypeOnChange" libraryName="ts_/js/WorkOrderCreationWizard.js" handlerUniqueId="{6742bfc0-cd22-46c1-adca-35a43f87a7ae}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <header id="{5838b54c-e694-4cf5-b25c-026f68c310d0}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{338ca193-118b-4af0-a4f4-6627b7708ae8}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{feee7fda-f002-49c0-b3aa-9396ee8ca6cd}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{01fc18f2-02f5-49d8-8efe-ea051749bcf6}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{46c9fcc5-5a36-4b5c-b083-a745e5135b9b}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{f033bd02-cf5e-4af0-9756-89f97261dff1}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{2e544775-4bce-4510-a91d-98efdfd5c858}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{0c6390ed-68d9-41e5-87f4-f09dc7e5fd63}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

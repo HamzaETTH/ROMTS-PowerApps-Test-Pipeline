@@ -1,0 +1,296 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_-_Operation_Activity_Risk_Scores": {
+          "metadata": {
+            "operationMetadataId": "decea254-b46a-4c8d-9acd-3559ec2930f5"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ts_operationactivityriskscores",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_riskfrequency"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "When the Operation Activity Risk Score gets a Risk Frequency"
+        }
+      },
+      "actions": {
+        "Initialize_variable_-_Risk_Frequency_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "95483eb8-6b84-49b6-89ce-f208d60886d9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Risk Frequency ID",
+                "type": "string",
+                "value": "@triggerOutputs()?['body/_ts_riskfrequency_value']"
+              }
+            ]
+          }
+        },
+        "Condition_-_The_Risk_Frequency_is_not_empty": {
+          "actions": {
+            "Terminate_-_No_Risk_Frequency_Found": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "e8457e9e-df6c-4899-9b5f-bfaa2154b3e4"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Cancelled"
+              },
+              "description": "Terminate the flow since we don't want to do anything without a Risk Frequency"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_Planning_Data_ID": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@variables('Risk Frequency ID')",
+              ""
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0e6dd16f-23dc-4be1-b1a1-347a00fc29ef"
+          },
+          "type": "If",
+          "description": "Make sure we have a Risk Frequency"
+        },
+        "Initialize_variable_-_Operation_Activity_Risk_Scores_ID": {
+          "runAfter": {
+            "Initialize_variable_-_Risk_Frequency_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "19ae77e6-e64b-44ca-9f91-16dd165b3d93"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Operation Activity Risk Scores ID",
+                "type": "string",
+                "value": "@{triggerBody()?['ts_operationactivityriskscoresid']}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Fiscal_Year_ID": {
+          "runAfter": {
+            "Initialize_variable_-_Operation_Activity_Risk_Scores_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bd5c1abb-106b-4c60-a6de-16ad9972036b"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Fiscal Year ID",
+                "type": "string",
+                "value": "@triggerOutputs()?['body/_ts_fiscalyear_value']"
+              }
+            ]
+          }
+        },
+        "Get_a_row_by_ID_-_Risk_Frequencies": {
+          "runAfter": {
+            "Condition_-_The_Risk_Frequency_is_not_empty": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c7b04cc9-8e40-41fd-94f4-65f783fec784"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_riskfrequencies",
+              "recordId": "@variables('Risk Frequency ID')"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Get the Risk Frequency that is being used in the Operation Activity Risk Score"
+        },
+        "Initialize_variable_-_Planning_Data_Target_Weight": {
+          "runAfter": {
+            "Initialize_variable_-_Fiscal_Year_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b1b58297-78ce-4bfb-af49-2d26e45d1a6c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Planning Data Target Weight",
+                "type": "integer",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "Set_variable_-_Planning_Data_Target_Weight": {
+          "runAfter": {
+            "Get_a_row_by_ID_-_Risk_Frequencies": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ed5937f3-8edf-438a-8fc5-ff434f37d5a6"
+          },
+          "type": "SetVariable",
+          "inputs": {
+            "name": "Planning Data Target Weight",
+            "value": "@outputs('Get_a_row_by_ID_-_Risk_Frequencies')?['body/ts_planningdatatargetweight']"
+          },
+          "description": "Get the Planning Data Target Weight that will be used to set as the Planning Data Target"
+        },
+        "List_rows_-_Planning_Data": {
+          "runAfter": {
+            "Set_variable_-_Planning_Data_Target_Weight": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9e7cbdf4-df2e-4237-968b-277e09cd51a9"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_planningdatas",
+              "fetchXml": "<fetch xmlns:generator=\"MarkMpn.SQL4CDS\">\n  <entity name=\"ts_planningdata\">\n    <attribute name=\"ts_planningdataid\" />\n    <link-entity name=\"ts_operationactivity\" to=\"ts_operationactivity\" from=\"ts_operationactivityid\" alias=\"ts_operationactivity\" link-type=\"inner\">\n      <link-entity name=\"ts_operationactivityriskscores\" to=\"ts_operationactivityid\" from=\"ts_operationactivity\" alias=\"ts_operationactivityriskscores\" link-type=\"inner\">\n        <filter>\n          <condition attribute=\"ts_operationactivityriskscoresid\" operator=\"eq\" value=\"@{variables('Operation Activity Risk Scores ID')}\" />\n        </filter>\n      </link-entity>\n    </link-entity>\n    <filter>\n      <condition attribute=\"ts_fiscalyear\" operator=\"eq\" value=\"@{variables('Fiscal Year ID')}\" />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Get all the Planning Data records that are related to the Operation Activity Risk Score"
+        },
+        "Apply_to_each_-_Planning_Data": {
+          "foreach": "@outputs('List_rows_-_Planning_Data')?['body/value']",
+          "actions": {
+            "Set_variable_-_Planning_Data_ID": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "66687c52-d925-459f-a66f-d2e406fa5232"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Planning Data ID",
+                "value": "@items('Apply_to_each_-_Planning_Data')?['ts_planningdataid']"
+              }
+            },
+            "Update_a_row_-_Planning_Data": {
+              "runAfter": {
+                "Set_variable_-_Planning_Data_ID": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e65244e8-15db-4f79-addf-f87fe875a62c"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_planningdatas",
+                  "recordId": "@variables('Planning Data ID')",
+                  "item/ts_target": "@variables('Planning Data Target Weight')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows_-_Planning_Data": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "814ef4ec-f83d-4779-8a12-55f79eff2822"
+          },
+          "type": "Foreach",
+          "description": "For each Planning Data record, update the Target with the Planning Data Target Weight that is from Risk Frequency"
+        },
+        "Initialize_variable_-_Planning_Data_ID": {
+          "runAfter": {
+            "Initialize_variable_-_Planning_Data_Target_Weight": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "951974db-f27d-4bf5-bd8f-cdc0c1e63254"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Planning Data ID",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

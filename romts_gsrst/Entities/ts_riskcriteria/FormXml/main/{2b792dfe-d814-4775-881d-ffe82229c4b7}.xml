@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{2b792dfe-d814-4775-881d-ffe82229c4b7}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{cc7a8057-53b1-4e6d-8d74-96a737664646}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{79d2369b-3b85-426f-abee-9fb3266a091b}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{cc37efb5-4b6c-49a7-a4bc-550c189bd67c}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b4387e2d-fbd4-4b15-9fe0-ee7f13d7a08f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="English Text" languagecode="1033" />
+                        </labels>
+                        <control id="ts_englishtext" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_englishtext" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7c2227ae-f679-4452-a444-92a0a9e03c67}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="French Text" languagecode="1033" />
+                        </labels>
+                        <control id="ts_frenchtext" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_frenchtext" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3c0a2d0a-7a35-4fa2-929e-a031fba65aa0}" locklevel="0" colspan="1" rowspan="6">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                        </labels>
+                        <control id="ts_description" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_description" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="option_section" id="bad97173-6011-4ee9-aaff-4e1ccf809717" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Options" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{005bdb5d-135f-4203-a92e-6d353cc2f136}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="Risk Criteria Options" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_Options" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_riskcriteriaoption</TargetEntityType>
+                            <ViewId>{B3507CD3-891E-4BE5-9F54-66AEC64641E3}</ViewId>
+                            <ViewIds>{B3507CD3-891E-4BE5-9F54-66AEC64641E3}</ViewIds>
+                            <RelationshipName>ts_riskcriteriaoption_riskcriteria</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{d0b5bbaf-7fe2-4b31-8c4a-ed31ed585c7d}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{374b49e7-fe31-4672-a56f-969152f97068}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9ffc0e76-bba8-48ae-a09a-abcef54bbdb9}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{3cf231d2-6659-4839-9c6d-6cb43dd5c2fa}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{7daf3f9c-b835-4588-9913-6b9cdadb6c33}" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{c790538a-a292-4ba5-8c26-360d64ee49aa}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{33547ee6-1121-4d62-9124-b7baa738d0b6}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{c2bf0c1f-7c69-4a60-b82c-9d80fa184b60}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a83b805f-c212-4b2d-9297-dd1765473e4f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{c9481231-e438-eb11-a813-000d3af3fc19}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" preview="1" icon="1">
+        <row name="result" id="msdyn_workorderservicetaskid">
+          <cell name="msdyn_name" width="100" />
+          <cell name="msdyn_workorder" width="100" />
+          <cell name="ovs_caseid" width="100" />
+          <cell name="msdyn_tasktype" width="192" />
+          <cell name="msdyn_inspectiontaskresult" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="msdyn_workorderservicetask">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_inspectiontaskresult" />
+          <attribute name="msdyn_workorder" />
+          <attribute name="ovs_caseid" />
+          <filter type="and">
+            <condition attribute="msdyn_inspectiontaskresult" operator="eq" value="192350001" />
+          </filter>
+          <attribute name="msdyn_workorderservicetaskid" />
+          <attribute name="msdyn_tasktype" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Failed Inspection - Work Order Service Task View" languagecode="1033" />
+      <LocalizedName description="Inspection échouée - vue des tâches de service d'ordre de travail" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Inspection - Used on Work Order and Work Order Incident forms" languagecode="1033" />
+      <Description description="Inspection - Utilisé pour remplir les ordres de travail et les formulaires d'incident relatifs aux ordres de travail" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

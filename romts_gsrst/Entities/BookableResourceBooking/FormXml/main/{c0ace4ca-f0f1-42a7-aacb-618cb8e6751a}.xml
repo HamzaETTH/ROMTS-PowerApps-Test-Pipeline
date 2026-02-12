@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{c0ace4ca-f0f1-42a7-aacb-618cb8e6751a}</formid>
+    <IntroducedVersion>8.8.15.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form shownavigationbar="false" showImage="false" maxWidth="1900">
+      <tabs>
+        <tab name="fstab_general" id="{c651b8b5-66da-8413-49a2-73b097cbc82e}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="0">
+          <columns>
+            <column width="50%" id="0">
+              <sections>
+                <section name="fstab_general_section_copilot" showlabel="false" showbar="false" locklevel="0" id="{d1bd254e-c3b0-cb95-d130-a1030d116572}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{5623a3bd-5523-9408-d23a-01e29db489d5}" showlabel="false" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Quick note actions" languagecode="1033" solutionaction="Modified" />
+                          <label description="Actions rapides pour les notes" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="fstab_fieldservice" id="{137bdbe3-b858-9164-bc90-c5754e390378}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" visible="false" ordinalvalue="1">
+          <columns>
+            <column width="50%" id="1">
+              <sections>
+                <section name="fstab_fieldservice_section_others" showlabel="false" showbar="false" locklevel="0" id="{d0731d71-e1d9-11b2-c4be-a9ddd876d06c}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <rows />
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="fstab_customer" id="{5a90d174-e75d-d431-43dd-61e86cc62618}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" labelid="{5590e957-aed0-46ca-8424-4e710c260489}" ordinalvalue="2">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="fstab_report_section_travel" showlabel="false" showbar="false" locklevel="0" id="{4374231a-c3db-c08e-75ab-c6ce4c088c5c}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" labelid="{6ea78a4e-fa37-4432-babc-0294d831f4f1}" ordinalvalue="1">
+                  <rows>
+                    <row>
+                      <cell id="{eca84169-4c31-42f7-b499-fd3236f84f91}" showlabel="true" locklevel="0" labelid="{cee89e0a-b4bd-48d1-ab53-3ffae147356e}" ordinalvalue="10000">
+                        <control id="msdyn_milestraveled" classid="{0D2C745A-E5A8-4C8F-BA63-C6D3BB604660}" datafieldname="msdyn_milestraveled" disabled="false" uniqueid="{9E365D18-0B9C-9C88-E446-EA47AAB20097}" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{ac46cbef-0f19-4dec-a56b-d2dc598371ec}" columns="111">
+        <rows />
+      </header>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Booking and Work Order" languagecode="1033" />
+      <LocalizedName description="Ordre de travail et réservation" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="This mobile optimized form combines Booking and Work Order used by field service technicians." languagecode="1033" />
+      <Description description="Ce formulaire optimisé pour le mobile combine la réservation et l’ordre de travail utilisés par les techniciens du service après-vente." languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

@@ -1,0 +1,733 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{64d20526-38ee-460c-8440-a92a20241616}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{f2d5c488-cbf5-4d50-9f54-03dd4e2b3cc0}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{327c7294-4860-4823-a62b-c22206d4d5f2}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{e9f6ea55-1006-4f9b-92bf-0463c52e0214}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{697d112d-2e95-4a25-8667-c39cd43cb533}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Operation" languagecode="1033" />
+                          <label description="Operation" languagecode="1036" />
+                        </labels>
+                        <control id="ts_operation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operation" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d08d31a8-ab6a-4e67-886d-78ab2ad7de11}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Risk Criteria Score" languagecode="1033" />
+                          <label description="Risk Criteria Score" languagecode="1036" />
+                        </labels>
+                        <control id="ts_riskcriteriascore" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_riskcriteriascore" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a5a900ce-7376-4402-b8e0-3c4cc1ba926a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Discretionary Score" languagecode="1033" />
+                          <label description="Discretionary Score" languagecode="1036" />
+                        </labels>
+                        <control id="ts_discretionaryscore" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_discretionaryscore" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2f46444a-b72d-445c-b4dd-6001ab66e517}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Risk Score" languagecode="1033" />
+                          <label description="Risk Score" languagecode="1036" />
+                        </labels>
+                        <control id="ts_riskscore" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_riskscore" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b7ea397e-4817-4d3f-9f47-34abc270c3ce}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Risk Threshold" languagecode="1033" />
+                          <label description="Risk Threshold French" languagecode="1036" />
+                        </labels>
+                        <control id="ts_riskthresholdfrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_riskthresholdfrench" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b0948682-1c23-483c-8711-5556aea41b91}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Risk Threshold" languagecode="1033" />
+                          <label description="Risk Threshold English" languagecode="1036" />
+                        </labels>
+                        <control id="ts_riskthresholdenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_riskthresholdenglish" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b9bc0191-91a4-4e9f-bf18-53de01818c4c}" locklevel="0" colspan="1" rowspan="16" visible="false">
+                        <labels>
+                          <label description="Calculation Log" languagecode="1033" />
+                          <label description="Calculation Log" languagecode="1036" />
+                        </labels>
+                        <control id="ts_calculationlog" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_calculationlog" disabled="true" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{eed02e6f-9d48-4ae3-967a-7aaa38a41d78}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Last Submission Date" languagecode="1033" />
+                          <label description="Date de la dernière soumission" languagecode="1036" />
+                        </labels>
+                        <control id="ts_lastsubmissiondate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_lastsubmissiondate" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="risk_criteria_section" id="5dd79e6a-a1c0-44be-88be-98042a7a07d2" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Risk Criteria" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{05892543-9df9-4885-bd12-3d3aa26ff2fc}" rowspan="13" colspan="1" auto="false" showlabel="true">
+                        <labels>
+                          <label description="Risk Criteria" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_Risk_Criteria_Responses" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{521cefd1-ecb1-4c97-82af-220d3790e9b1}">
+                          <parameters>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>false</EnableChartPicker>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <TargetEntityType>ts_riskcriteriaresponse</TargetEntityType>
+                            <ViewId>{9383400D-4DC4-4362-A105-E5DFCD334B17}</ViewId>
+                            <ViewIds>{9383400D-4DC4-4362-A105-E5DFCD334B17}</ViewIds>
+                            <RelationshipName>ts_riskcriteriaresponse_operationriskassessm</RelationshipName>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <IsUserView>false</IsUserView>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{b986a89b-a0e2-4dd4-b5fe-5da845aaa626}" rowspan="13" colspan="1" auto="false" showlabel="true">
+                        <labels>
+                          <label description="Discretionary Factors" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_Discretionary_Factor_Responses" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{56ff0729-d92f-4404-8f09-faceb1827a35}">
+                          <parameters>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_discretionaryfactorresponse</TargetEntityType>
+                            <ViewId>{E04E4752-707F-4385-97B5-7E9C2CEE2A51}</ViewId>
+                            <ViewIds>{E04E4752-707F-4385-97B5-7E9C2CEE2A51}</ViewIds>
+                            <RelationshipName>ts_discretionaryresponse_riskassessment</RelationshipName>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <IsUserView>false</IsUserView>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="863fb153-44cd-4366-b896-a1c60af7682c" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Site Assessment" languagecode="1033" />
+            <label description="Évaluation du site  " languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="tab_2_section_5" id="de256376-f565-4548-9fbb-e68d32174293" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{ab66d57b-c57e-47c9-994f-6878b9543a2f}" locklevel="0" colspan="1" rowspan="10" auto="false">
+                        <labels>
+                          <label description="Site Information and Operating Profile" languagecode="1033" />
+                          <label description="Information sur le site et profil des opérations" languagecode="1036" />
+                        </labels>
+                        <control id="ts_siteinformationandoperatingprofile" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_siteinformationandoperatingprofile" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{9e410ccc-cdf2-47b6-9444-96a1dac0bd6e}" locklevel="0" colspan="1" rowspan="10" auto="false">
+                        <labels>
+                          <label description="Access Control" languagecode="1033" />
+                          <label description="Contrôle des accès" languagecode="1036" />
+                        </labels>
+                        <control id="ts_accesscontrol" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_accesscontrol" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{f2f20e71-7302-4e55-8b43-a22814f6e3b3}" locklevel="0" colspan="1" rowspan="10" auto="false">
+                        <labels>
+                          <label description="Perimeter Security" languagecode="1033" />
+                          <label description="Sûreté du périmètre" languagecode="1036" />
+                        </labels>
+                        <control id="ts_perimetersecurity" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_perimetersecurity" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{b4368261-c065-408a-a559-846ef55105ca}" locklevel="0" colspan="1" rowspan="10" auto="false">
+                        <labels>
+                          <label description="Security Vulnerabilities" languagecode="1033" />
+                          <label description="Vulnérabilités en matière de sûreté" languagecode="1036" />
+                        </labels>
+                        <control id="ts_securityvulnerabilities" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_securityvulnerabilities" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="_section_778" id="ad804ad3-c95e-4095-9a15-5692e8b8d3e2" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{bf1d0d5b-a0e2-49ff-a773-1259f22b9c4b}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Site Assessment Guidance" languagecode="1033" />
+                          <label description="Guide d'évaluation du sites" languagecode="1036" />
+                        </labels>
+                        <control id="ts_siteassessmentguidance" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_siteassessmentguidance" uniqueid="{89475146-bf38-4ba9-a263-b8a45ccc1b40}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_2_section_5" id="fceccbc8-d883-468a-8aa6-e63ca7fb0055" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="true">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell rowspan="24" id="{28da9356-f8ce-479a-b03c-327b29b462a7}" showlabel="false" colspan="1" auto="true">
+                        <labels>
+                          <label description="ts_/html/SiteAssessmentGuidance.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_siteAssessmentGuide" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/SiteAssessmentGuidance.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{9b94cd87-b747-f011-877a-0022483e8967}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{f488e46d-7b35-4927-bc3d-6b51c58bc9f9}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{14d4dc21-1a91-42b7-8577-b2bd90fee213}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{1e467034-9ba5-43c2-b969-e9b87ca53552}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{b4f6d2c6-e763-4d7d-ae52-318682a750ac}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{ba5ee7fc-d17b-4989-b800-b1d00145f967}" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{06e953e9-0331-4a6b-b15e-d47f58a7dada}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{4c04ca48-b369-4141-995c-4133cbc0816f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{ed6ee994-1361-4262-95fb-a8829bc6dfcb}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{2b7b1513-6bb1-49e4-9a88-b3a469c984a6}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <controlDescriptions>
+        <controlDescription forControl="{521cefd1-ecb1-4c97-82af-220d3790e9b1}">
+          <customControl id="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" formFactor="0">
+            <parameters />
+          </customControl>
+          <customControl name="Microsoft.PowerApps.PowerAppsOneGrid" formFactor="-1">
+            <parameters>
+              <data-set name="Items">
+                <ViewId>{9383400D-4DC4-4362-A105-E5DFCD334B17}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_riskcriteriaresponse" viewId="{9383400d-4dc4-4362-a105-e5dfcd334b17}" attributeName="ts_riskcriteriaoption">
+                    <DefaultViewId>{9FC1EA51-517A-4955-BCFB-F681B9B74807}</DefaultViewId>
+                    <FilterRelationshipName>ts_riskcriteriaoption_riskcriteria</FilterRelationshipName>
+                    <DependentAttributeName>ts_riskcriteriaresponse.ts_riskcriteria</DependentAttributeName>
+                    <DependentAttributeType>ts_riskcriteria</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_riskcriteriaresponse_operationriskassessm</RelationshipName>
+                <TargetEntityType>ts_riskcriteriaresponse</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{9383400D-4DC4-4362-A105-E5DFCD334B17}</FilteredViewIds>
+              </data-set>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <EnableSorting static="true" type="Enum">yes</EnableSorting>
+              <EnableGrouping static="true" type="Enum">no</EnableGrouping>
+              <EnableAggregation static="true" type="Enum">no</EnableAggregation>
+              <EnableMultipleSelection static="true" type="Enum">yes</EnableMultipleSelection>
+              <EnableRangeSelection static="true" type="Enum">yes</EnableRangeSelection>
+              <EnableJumpBar static="true" type="Enum">no</EnableJumpBar>
+              <EnablePagination static="true" type="Enum">no</EnablePagination>
+              <EnableDropdownColor static="true" type="Enum">no</EnableDropdownColor>
+              <EnableStatusIcons static="true" type="Enum">yes</EnableStatusIcons>
+              <EnableTypeIcons static="true" type="Enum">no</EnableTypeIcons>
+              <NavigationTypesAllowed static="true" type="Enum">all</NavigationTypesAllowed>
+              <ReflowBehavior static="true" type="Enum">Reflow</ReflowBehavior>
+              <ShowAvatar static="true" type="Enum">yes</ShowAvatar>
+              <ShowFooter static="true" type="Enum">yes</ShowFooter>
+              <ShowColumnHeaders static="true" type="Enum">yes</ShowColumnHeaders>
+              <EnableStatusColumn static="true" type="Enum">yes</EnableStatusColumn>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{9383400D-4DC4-4362-A105-E5DFCD334B17}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_riskcriteriaresponse" viewId="{9383400D-4DC4-4362-A105-E5DFCD334B17}" attributeName="ts_riskcriteriaoption">
+                    <DefaultViewId>{9FC1EA51-517A-4955-BCFB-F681B9B74807}</DefaultViewId>
+                    <FilterRelationshipName>ts_riskcriteriaoption_riskcriteria</FilterRelationshipName>
+                    <DependentAttributeName>ts_riskcriteriaresponse.ts_riskcriteria</DependentAttributeName>
+                    <DependentAttributeType>ts_riskcriteria</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_riskcriteriaresponse_operationriskassessm</RelationshipName>
+                <TargetEntityType>ts_riskcriteriaresponse</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{9383400D-4DC4-4362-A105-E5DFCD334B17}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{9383400D-4DC4-4362-A105-E5DFCD334B17}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_riskcriteriaresponse" viewId="{9383400D-4DC4-4362-A105-E5DFCD334B17}" attributeName="ts_riskcriteriaoption">
+                    <DefaultViewId>{9FC1EA51-517A-4955-BCFB-F681B9B74807}</DefaultViewId>
+                    <FilterRelationshipName>ts_riskcriteriaoption_riskcriteria</FilterRelationshipName>
+                    <DependentAttributeName>ts_riskcriteriaresponse.ts_riskcriteria</DependentAttributeName>
+                    <DependentAttributeType>ts_riskcriteria</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_riskcriteriaresponse_operationriskassessm</RelationshipName>
+                <TargetEntityType>ts_riskcriteriaresponse</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{9383400D-4DC4-4362-A105-E5DFCD334B17}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{56ff0729-d92f-4404-8f09-faceb1827a35}">
+          <customControl id="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" formFactor="0">
+            <parameters />
+          </customControl>
+          <customControl name="Microsoft.PowerApps.PowerAppsOneGrid" formFactor="-1">
+            <parameters>
+              <data-set name="Items">
+                <ViewId>{E04E4752-707F-4385-97B5-7E9C2CEE2A51}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_discretionaryfactorresponse" viewId="{e04e4752-707f-4385-97b5-7e9c2cee2a51}" attributeName="ts_discretionaryfactoroption">
+                    <DefaultViewId>{1854CE4B-7644-45D8-85FA-9F31E90500E8}</DefaultViewId>
+                    <FilterRelationshipName>ts_discretionaryoption_discretionaryfactor</FilterRelationshipName>
+                    <DependentAttributeName>ts_discretionaryfactorresponse.ts_discretionaryfactor</DependentAttributeName>
+                    <DependentAttributeType>ts_discretionaryfactor</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_discretionaryresponse_riskassessment</RelationshipName>
+                <TargetEntityType>ts_discretionaryfactorresponse</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{E04E4752-707F-4385-97B5-7E9C2CEE2A51}</FilteredViewIds>
+              </data-set>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <EnableSorting static="true" type="Enum">yes</EnableSorting>
+              <EnableGrouping static="true" type="Enum">yes</EnableGrouping>
+              <EnableAggregation static="true" type="Enum">no</EnableAggregation>
+              <EnableMultipleSelection static="true" type="Enum">yes</EnableMultipleSelection>
+              <EnableRangeSelection static="true" type="Enum">yes</EnableRangeSelection>
+              <EnableJumpBar static="true" type="Enum">no</EnableJumpBar>
+              <EnablePagination static="true" type="Enum">no</EnablePagination>
+              <EnableDropdownColor static="true" type="Enum">no</EnableDropdownColor>
+              <EnableStatusIcons static="true" type="Enum">yes</EnableStatusIcons>
+              <EnableTypeIcons static="true" type="Enum">no</EnableTypeIcons>
+              <NavigationTypesAllowed static="true" type="Enum">all</NavigationTypesAllowed>
+              <ReflowBehavior static="true" type="Enum">Reflow</ReflowBehavior>
+              <ShowAvatar static="true" type="Enum">yes</ShowAvatar>
+              <ShowFooter static="true" type="Enum">yes</ShowFooter>
+              <ShowColumnHeaders static="true" type="Enum">yes</ShowColumnHeaders>
+              <EnableStatusColumn static="true" type="Enum">yes</EnableStatusColumn>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{E04E4752-707F-4385-97B5-7E9C2CEE2A51}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_discretionaryfactorresponse" viewId="{E04E4752-707F-4385-97B5-7E9C2CEE2A51}" attributeName="ts_discretionaryfactoroption">
+                    <DefaultViewId>{1854CE4B-7644-45D8-85FA-9F31E90500E8}</DefaultViewId>
+                    <FilterRelationshipName>ts_discretionaryoption_discretionaryfactor</FilterRelationshipName>
+                    <DependentAttributeName>ts_discretionaryfactorresponse.ts_discretionaryfactor</DependentAttributeName>
+                    <DependentAttributeType>ts_discretionaryfactor</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_discretionaryresponse_riskassessment</RelationshipName>
+                <TargetEntityType>ts_discretionaryfactorresponse</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{E04E4752-707F-4385-97B5-7E9C2CEE2A51}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{E04E4752-707F-4385-97B5-7E9C2CEE2A51}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_discretionaryfactorresponse" viewId="{E04E4752-707F-4385-97B5-7E9C2CEE2A51}" attributeName="ts_discretionaryfactoroption">
+                    <DefaultViewId>{1854CE4B-7644-45D8-85FA-9F31E90500E8}</DefaultViewId>
+                    <FilterRelationshipName>ts_discretionaryoption_discretionaryfactor</FilterRelationshipName>
+                    <DependentAttributeName>ts_discretionaryfactorresponse.ts_discretionaryfactor</DependentAttributeName>
+                    <DependentAttributeType>ts_discretionaryfactor</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_discretionaryresponse_riskassessment</RelationshipName>
+                <TargetEntityType>ts_discretionaryfactorresponse</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{E04E4752-707F-4385-97B5-7E9C2CEE2A51}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{89475146-bf38-4ba9-a263-b8a45ccc1b40}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_siteassessmentguidance</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_siteassessmentguidance</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_siteassessmentguidance</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_siteassessmentguidance</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_siteassessmentguidance</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <formLibraries>
+        <Library name="ts_/js/OperationRiskAssessmentRibbon.js" libraryUniqueId="{db021818-8b63-5ed6-91a1-0ab8a83be68c}" />
+        <Library name="ts_/js/OperationRiskAssessment.js" libraryUniqueId="{e2b4cff1-a27a-4b6b-a2f2-0ad02becfbc3}" />
+      </formLibraries>
+      <events>
+        <event name="onrecordselect" application="false" active="false" relationship="" control="Subgrid_Risk_Criteria_Responses">
+          <Handlers>
+            <Handler functionName="openSubgridRowInSideFormOnRecordSelect" libraryName="ts_/js/OperationRiskAssessmentRibbon.js" handlerUniqueId="{8ceeed36-6d19-2e7e-5c35-964bd8ba4348}" enabled="false" parameters="&quot;ts_riskcriteriaresponse&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onrecordselect" application="false" active="false" relationship="" control="Subgrid_Discretionary_Factor_Responses">
+          <Handlers>
+            <Handler functionName="openSubgridRowInSideFormOnRecordSelect" libraryName="ts_/js/OperationRiskAssessmentRibbon.js" handlerUniqueId="{b3c699ad-4d97-5b29-66e6-c34235c437ac}" enabled="false" parameters="&quot;ts_discretionaryfactorresponse&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.OperationRiskAssessment.onLoad" libraryName="ts_/js/OperationRiskAssessment.js" handlerUniqueId="{57b2ea39-f85f-4253-bab8-d39c347ddc94}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.OperationRiskAssessment.hideSiteAssessmentGuidance" libraryName="ts_/js/OperationRiskAssessmentRibbon.js" handlerUniqueId="{0792537a-4f77-4db8-9cc7-18170dd4fd4b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_siteassessmentguidance">
+          <Handlers>
+            <Handler functionName="ROM.OperationRiskAssessment.hideSiteAssessmentGuidance" libraryName="ts_/js/OperationRiskAssessmentRibbon.js" handlerUniqueId="{8acb4282-2b13-4b61-bba3-71cfa62de4ef}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

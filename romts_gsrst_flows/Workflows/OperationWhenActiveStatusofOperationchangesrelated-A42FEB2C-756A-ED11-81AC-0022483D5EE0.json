@@ -1,0 +1,109 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_an_Operation_Status_is_Updated": {
+          "metadata": {
+            "operationMetadataId": "afbc6d05-2959-4101-bf64-344a9bbc3000"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "ovs_operation",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "statecode, statuscode"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "List_related_Operation_Activities": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "84b19435-02ab-4091-8adc-b0caaf8441e2"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_operationactivities",
+              "fetchXml": "<fetch>\n  <entity name=\"ts_operationactivity\">\n    <attribute name=\"ts_operationactivityid\" />\n    <filter>\n      <condition attribute=\"ts_operation\" operator=\"eq\" value=\"@{triggerOutputs()?['body/ovs_operationid']}\">\n      </condition>\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each_Operation_Activity": {
+          "foreach": "@outputs('List_related_Operation_Activities')?['body/value']",
+          "actions": {
+            "Update_statecode_and_statuscode_to_match": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ec23d1b0-d98e-4bbb-90a8-919565884f85"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_operationactivities",
+                  "recordId": "@items('Apply_to_each_Operation_Activity')?['ts_operationactivityid']",
+                  "item/statecode": "@triggerOutputs()?['body/statecode']",
+                  "item/statuscode": "@items('Apply_to_each_Operation_Activity')?['statuscode']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_related_Operation_Activities": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "418d4157-bdd3-494e-8c92-39299807c6ee"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

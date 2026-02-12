@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>ts_bulkaddadditionalinspectors_1936a</Name>
+  <AppVersion>2023-06-26T18:22:40Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.23062.17.0</CreatedByClientVersion>
+  <MinClientVersion>3.23062.17.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"450","primaryDeviceHeight":"550","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","publisherVersion":"3.23062.17","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20230505T170731Z-3.23044.15.0"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+  <DisplayName>Add Additional Inspectors</DisplayName>
+  <Description xsi:nil="true"></Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher xsi:nil="true"></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{"f9a55e4e-f0f2-4dfd-9846-d30262a519c9":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1636/1.0.1636.3297/logicflows/icon.png","dataSources":["[WorkOrder]AddAdditionalInspectors"],"dependencies":["f349d8f3-2044-4c8a-8e86-4b85678ee681"],"dependents":[],"parameterHints":{"workflowName":{"value":"e73b5659-072c-46a5-9b95-69ea59417abc"},"workflowEntityId":{"value":"d50a1ece-a2d4-ed11-a7c7-0022483d7716"},"f349d8f3-2044-4c8a-8e86-4b85678ee681":{"value":"shared_commondataserviceforapps"}},"parameterHintsV2":{"workflowName":{"value":"e73b5659-072c-46a5-9b95-69ea59417abc"},"workflowEntityId":{"value":"d50a1ece-a2d4-ed11-a7c7-0022483d7716"},"shared_commondataserviceforapps":{"value":"f349d8f3-2044-4c8a-8e86-4b85678ee681"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"f349d8f3-2044-4c8a-8e86-4b85678ee681":{"id":"/providers/microsoft.powerapps/apis/shared_commondataserviceforapps","displayName":"Microsoft Dataverse","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1641/1.0.1641.3326/commondataserviceforapps/icon.png","dataSources":[],"dependencies":[],"dependents":["f9a55e4e-f0f2-4dfd-9846-d30262a519c9"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Premium"}}</ConnectionReferences>
+  <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified"}},"dataSources":{"Users":{"entitySetName":"systemusers","logicalName":"systemuser"}},"components":[{"componentName":"WebResource","identifier":"ovs_/resx/AddAdditionalInspectors","identifierType":"LogicalName"}]}}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>2</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"dependencyid":"d50a1ece-a2d4-ed11-a7c7-0022483d7716","componenttype":29,"componenttypeplatformname":"Workflow"},{"logicalname":"systemuser","componenttype":1},{"dependencyid":"","logicalname":"ovs_/resx/AddAdditionalInspectors","componenttype":61,"componenttypeplatformname":"WebResource"}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/ts_bulkaddadditionalinspectors_1936a_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/ts_bulkaddadditionalinspectors_1936a_DocumentUri.msapp</DocumentUri>
+</CanvasApp>

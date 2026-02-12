@@ -1,0 +1,323 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_": {
+          "metadata": {
+            "operationMetadataId": "4c3e1742-5bef-4a0d-9774-3263e844a09e"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ts_tripinspection",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_a_row_by_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "c8c644a2-edcd-4682-98fe-7a2a4f98918a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_trips",
+              "recordId": "@triggerOutputs()?['body/_ts_trip_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_rows": {
+          "runAfter": {
+            "Get_a_row_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "83c123b6-b2d9-439e-83b7-d1a2e1996e24"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_tripinspections",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"ts_tripinspection\">\n    <filter type=\"and\">\n      <condition attribute=\"ts_trip\" operator=\"eq\"  value=\"@{triggerOutputs()?['body/_ts_trip_value']}\" />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_variable_RecordCount": {
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4b481b3b-02d8-4f62-897b-cb945699093e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "RecordCount",
+                "type": "integer",
+                "value": "@length(outputs('List_rows')?['body/value'])"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_PlannedCost": {
+          "runAfter": {
+            "Initialize_variable_RecordCount": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cae99861-c314-4696-be81-c1b1f0fec817"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "PlannedCost",
+                "type": "float",
+                "value": "@outputs('Get_a_row_by_ID')?['body/ts_plannedcost']"
+              }
+            ]
+          }
+        },
+        "Condition": {
+          "actions": {
+            "Apply_to_each_2": {
+              "foreach": "@outputs('List_rows')?['body/value']",
+              "actions": {
+                "Get_a_row_by_ID_-_WO": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "5d142516-c4c5-4ad5-8d64-fc4f40ca0d1c"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "GetItem",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorders",
+                      "recordId": "@items('Apply_to_each_2')?['_ts_inspection_value']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Condition_3": {
+                  "actions": {
+                    "Update_Work_Order": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "0b01b452-d954-49c8-835e-504c0c5ec413"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "UpdateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "msdyn_workorders",
+                          "recordId": "@items('Apply_to_each_2')?['_ts_inspection_value']",
+                          "item/ovs_FiscalQuarter@odata.bind": "/tc_tcfiscalquarters(@{outputs('Get_a_row_by_ID')?['body/_ts_plannedfiscalquarter_value']})",
+                          "item/ts_plannedcost": "@div(variables('PlannedCost'), variables('RecordCount'))"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Get_a_row_by_ID_-_WO": [
+                      "Succeeded"
+                    ]
+                  },
+                  "else": {
+                    "actions": {
+                      "Update_Work_Order_2": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "0b01b452-d954-49c8-835e-504c0c5ec413"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_commondataserviceforapps_1",
+                            "operationId": "UpdateRecord",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                          },
+                          "parameters": {
+                            "entityName": "msdyn_workorders",
+                            "recordId": "@items('Apply_to_each_2')?['_ts_inspection_value']",
+                            "item/ts_plannedcost": "@div(variables('PlannedCost'), variables('RecordCount'))"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "equals": [
+                      "@outputs('Get_a_row_by_ID_-_WO')?['body/_ovs_fiscalquarter_value']",
+                      "@null"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "867663d2-5f4f-43b1-aa8f-33de8fe9a528"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "9b7674ee-0af6-4c2d-a73f-925bfb0c81a6"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Condition_2": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Apply_to_each_3": {
+                "foreach": "@outputs('List_rows')?['body/value']",
+                "actions": {
+                  "Update_Work_Order_3": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "0b01b452-d954-49c8-835e-504c0c5ec413"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps_1",
+                        "operationId": "UpdateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "msdyn_workorders",
+                        "recordId": "@items('Apply_to_each_3')?['_ts_inspection_value']",
+                        "item/ts_plannedcost": "@div(variables('PlannedCost'), variables('RecordCount'))"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                },
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "9b7674ee-0af6-4c2d-a73f-925bfb0c81a6"
+                },
+                "type": "Foreach"
+              }
+            }
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@outputs('Get_a_row_by_ID')?['body/_ts_plannedfiscalquarter_value']",
+                "@null"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "07695d68-6e08-490a-bd41-a5429be75260"
+          },
+          "type": "If"
+        },
+        "Condition_2": {
+          "actions": {
+            "Set_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "4f9b9e39-7adb-4a4c-a196-7d4233607084"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "PlannedCost",
+                "value": 0
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_PlannedCost": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@variables('PlannedCost')",
+              "@null"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "860c35bc-c83a-49e4-907d-f82e8b92d4de"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

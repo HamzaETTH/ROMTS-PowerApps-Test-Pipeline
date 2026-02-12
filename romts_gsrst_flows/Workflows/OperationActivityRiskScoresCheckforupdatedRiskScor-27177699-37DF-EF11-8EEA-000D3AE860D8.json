@@ -1,0 +1,112 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Recurrence": {
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "timeZone": "Eastern Standard Time",
+            "startTime": "2025-01-30T15:00:00Z",
+            "schedule": {
+              "hours": [
+                "2"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "e963e7ff-f01e-47a2-a8ca-ddd4900e416f"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "List_rows_-_Get_Operation_Activity_Risk_Scores": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "4cc539f2-379b-40eb-be0b-a0a1f0c99699"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_operationactivityriskscoreses",
+              "fetchXml": "<fetch xmlns:generator=\"MarkMpn.SQL4CDS\">\n  <entity name=\"ts_operationactivityriskscores\">\n    <attribute name=\"ts_operationactivityriskscoresid\" />\n    <attribute name=\"ts_calculatedriskscore\" />\n    <filter>\n      <condition attribute=\"ts_calculatedriskscore\" operator=\"ne\" valueof=\"ts_riskscoretrigger\" />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Gets the Operation Activity Risk Scores where: ts_calculatedriskscore is not equal to ts_riskscoretrigger",
+          "runtimeConfiguration": {
+            "paginationPolicy": {
+              "minimumItemCount": 100000
+            }
+          }
+        },
+        "Apply_to_each_-_Update_the_Risk_Score_Trigger_with_the_Risk_Score": {
+          "foreach": "@outputs('List_rows_-_Get_Operation_Activity_Risk_Scores')?['body/value']",
+          "actions": {
+            "Update_a_row_-_Operation_Activity_Risk_Scores": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "7e0b6e19-617b-42f8-a52b-955d9dfdb6db"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_operationactivityriskscoreses",
+                  "recordId": "@items('Apply_to_each_-_Update_the_Risk_Score_Trigger_with_the_Risk_Score')?['ts_operationactivityriskscoresid']",
+                  "item/ts_riskscoretrigger": "@items('Apply_to_each_-_Update_the_Risk_Score_Trigger_with_the_Risk_Score')?['ts_calculatedriskscore']"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "description": "Take each result and update the ts_riskscoretrigger with the value that is in ts_calculatedriskscore.  This will mark the record as updated and not trigger  [Operation Activity Risk Scores] Update Risk Rating the next time this scheduled flow runs."
+            }
+          },
+          "runAfter": {
+            "List_rows_-_Get_Operation_Activity_Risk_Scores": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "336d7f46-17c6-41ac-8764-68a2a6c24aa0"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

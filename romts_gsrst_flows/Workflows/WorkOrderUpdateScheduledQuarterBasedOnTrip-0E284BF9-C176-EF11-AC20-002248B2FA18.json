@@ -1,0 +1,144 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "4a4645de-7c96-41be-bbcb-3780d1570d49"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "msdyn_workorder",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_trip"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition": {
+          "actions": {
+            "Get_a_row_by_ID_-_Trip": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "a8f89827-5e6c-4971-86a2-8b5410c7783d"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_trips",
+                  "recordId": "@triggerOutputs()?['body/_ts_trip_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Condition_-_WO_Planned_Quarter_is_not_equal_to_Trip": {
+              "actions": {
+                "Update_a_row": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "739ffe87-3c61-4a8c-a417-149beda0c319"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorders",
+                      "recordId": "@triggerOutputs()?['body/msdyn_workorderid']",
+                      "item/ovs_RevisedQuarterId@odata.bind": "/tc_tcfiscalquarters(@{outputs('Get_a_row_by_ID_-_Trip')?['body/_ts_plannedfiscalquarter_value']})"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_a_row_by_ID_-_Trip": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "and": [
+                  {
+                    "not": {
+                      "equals": [
+                        "@outputs('Get_a_row_by_ID_-_Trip')?['body/_ts_plannedfiscalquarter_value']",
+                        "@null"
+                      ]
+                    }
+                  },
+                  {
+                    "not": {
+                      "equals": [
+                        "@outputs('Get_a_row_by_ID_-_Trip')?['body/_ts_plannedfiscalquarter_value']",
+                        "@triggerOutputs()?['body/_ovs_revisedquarterid_value']"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "88a4c966-ceb4-41ba-84e5-0730a4c3897c"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {},
+          "expression": {
+            "not": {
+              "equals": [
+                "@triggerOutputs()?['body/_ts_trip_value']",
+                "@null"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "e67c3612-2a39-4918-a385-ed1939355356"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

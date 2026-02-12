@@ -1,0 +1,128 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "0e19ba62-e482-4a08-bf05-f3a53a3d9a87"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "e5ec26b1-dd3f-4b76-9276-a66eca99a9ae"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_operationactivityriskscoreses",
+              "fetchXml": "<fetch xmlns:generator='MarkMpn.SQL4CDS' top='5000'>\n  <entity name='ts_operationactivityriskscores'>\n    <attribute name='ts_operationactivityriskscoresid' />\n    <filter>\n      <condition attribute='ts_riskscoreribbontrigger' operator='null' />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          },
+          "description": "Retrieve 5000 Operation Activity Risk Scores where the ts_riskscoreribbontrigger is null.  So basically we are retrieving the records where the manual recalculate button hasn't been pressed yet."
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows')?['body/value']",
+          "actions": {
+            "Update_a_row": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "065f6600-eb5b-4414-bf7f-2f1581c9032b"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_operationactivityriskscoreses",
+                  "recordId": "@items('Apply_to_each')?['ts_operationactivityriskscoresid']"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Delay": {
+              "runAfter": {
+                "Update_a_row": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "bb7fa1b4-e3e6-4386-a1d0-a3bd8f4feef0"
+              },
+              "type": "Wait",
+              "inputs": {
+                "interval": {
+                  "count": 5,
+                  "unit": "Second"
+                }
+              },
+              "description": "Add a delay to let the [Operation Activity Risk Scores] Recalculate Risk Rating flow complete"
+            }
+          },
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2e9e683a-baca-40d5-b967-8231966e7c4b"
+          },
+          "type": "Foreach",
+          "description": "All we are doing is updating the one column to trigger the [Operation Activity Risk Scores] Recalculate Risk Rating flow for that record"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

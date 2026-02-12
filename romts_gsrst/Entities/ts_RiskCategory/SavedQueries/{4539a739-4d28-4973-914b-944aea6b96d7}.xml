@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{4539a739-4d28-4973-914b-944aea6b96d7}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_riskcategoryid">
+          <cell name="ts_riskcategoryen" width="100" />
+          <cell name="ts_riskcategoryfr" width="100" />
+          <cell name="ts_operationtype" width="100" />
+          <cell name="ts_operationfrequency" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_interval" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_frequency" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_riskscoreminimum" width="100" />
+          <cell name="ts_riskscoremaximum" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_riskcategory">
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_riskcategoryen" />
+          <attribute name="ts_riskcategoryfr" />
+          <attribute name="ts_operationtype" />
+          <attribute name="ts_interval" />
+          <attribute name="ts_frequency" />
+          <attribute name="ts_riskscoreminimum" />
+          <attribute name="ts_riskscoremaximum" />
+          <attribute name="ts_operationfrequency" />
+          <attribute name="ts_riskcategoryid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Risk Thresholds" languagecode="1033" />
+      <LocalizedName description="Seuil de risque actifs" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

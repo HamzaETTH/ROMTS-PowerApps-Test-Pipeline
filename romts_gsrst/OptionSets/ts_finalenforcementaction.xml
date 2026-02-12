@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="ts_finalenforcementaction" localizedName="Final Enforcement Action" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>1.0.20220303.1</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <displaynames>
+    <displayname description="Final Enforcement Action" languagecode="1033" />
+    <displayname description="Mesure d’application finale" languagecode="1036" />
+  </displaynames>
+  <Descriptions>
+    <Description description="" languagecode="1033" />
+  </Descriptions>
+  <options>
+    <option value="717750000" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Nil" languagecode="1033" />
+        <label description="Aucun" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750001" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Verbal Warning" languagecode="1033" />
+        <label description="Avertissement verbal" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750002" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Written Warning" languagecode="1033" />
+        <label description="Avertissement écrit" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750003" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="AMP (Level 1 – 20% of Maximum)" languagecode="1033" />
+        <label description="SAP (Niveau 1 – 20 % du maximum)" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750004" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="AMP (Level 2 – 50% of Maximum)" languagecode="1033" />
+        <label description="SAP (Niveau 2 – 50 % du maximum)" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750005" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="AMP (Level 3 – 100% of Maximum)" languagecode="1033" />
+        <label description="SAP (Niveau 3 – 100 % du maximum)" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750006" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Suspension of CAD" languagecode="1033" />
+        <label description="Suspension du DAC" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750007" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Cancellation of CAD" languagecode="1033" />
+        <label description="Annulation du DAC" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750008" IsHidden="0">
+      <labels>
+        <label description="Referral to REU" languagecode="1033" />
+        <label description="Renvoi à l'URAL" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+    <option value="717750009" IsHidden="0">
+      <labels>
+        <label description="Not Applicable" languagecode="1033" />
+        <label description="Non applicable" languagecode="1036" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
+      </Descriptions>
+    </option>
+  </options>
+</optionset>

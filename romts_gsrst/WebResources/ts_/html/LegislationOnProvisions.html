@@ -1,0 +1,64 @@
+﻿<html>
+<head>
+    <title>Provision Render</title>
+    <script src="../js/buildlegislationtext.js"></script>
+</head>
+<body style="overflow-wrap: break-word;">
+    <div id="div1"></div>
+    <script language="javascript">
+        var globalContext = parent.Xrm.Utility.getGlobalContext();
+        var langId = globalContext.userSettings.languageId;
+        var _ParentRecordId = globalContext.getQueryStringParameters().id.replace("{", "").replace("}", "");
+        var provisionText = "";
+        var highlightedElement = null; // Variable to hold the reference to the highlighted element
+
+        // Retrieve parent record to get the qm_tylegislationsourceid_value
+        parent.Xrm.WebApi.online.retrieveRecord("qm_rclegislation", _ParentRecordId, "?$select=_qm_tylegislationsourceid_value").then(function (parentResult) {
+            if (parentResult) {
+                var _qm_tylegislationsourceid_value = parentResult["_qm_tylegislationsourceid_value"];
+
+                // Retrieve child provisions
+                parent.Xrm.WebApi.online.retrieveMultipleRecords("qm_rclegislation","?$select=qm_rclegislationid,qm_name,qm_legislationlbl,qm_legislationetxt,qm_legislationftxt,_qm_tylegislationtypeid_value,_qm_rcparentlegislationid_value,statecode&$filter=_qm_tylegislationsourceid_value eq " + _qm_tylegislationsourceid_value + "&$orderby=ts_ordernbr").then(async function (results) {
+                    if (results.entities.length > 0) {
+                        // Use Promise.all to ensure all provisions are processed before finalizing
+                        await Promise.all(
+                            results.entities.map(async function (childRecord) {
+                                let provisionText = await buildLegislationText(childRecord, langId);
+                                let span = document.createElement("span");
+                                span.innerHTML = provisionText + "<br><br>";
+
+                                // determine if it is the legislation that we have selected
+                                if (childRecord.qm_rclegislationid.toUpperCase() === _ParentRecordId.toUpperCase()) {
+                                    // Do nothing to make it highlight
+                                    highlightedElement = span; // Store the reference to the highlighted element
+                                } else {
+                                    // Remove the <mark> tag which highlights the text
+                                    span.innerHTML = span.innerHTML.replace(/<mark>(.*?)<\/mark>/g, '$1');
+                                }
+
+                                document.getElementById("div1").appendChild(span);
+                            })
+                        );
+
+                        // Scroll to the highlighted element after all provisions are rendered
+                        if (highlightedElement) {
+                            setTimeout(() => {
+                                const rect = highlightedElement.getBoundingClientRect();
+                                const elementTop = rect.top + window.scrollY; // Calculate absolute position
+                                window.scrollTo({
+                                    top: elementTop, // Scroll to top of the element
+                                    behavior: "smooth"
+                                });
+                            }, 100); // Delay to ensure rendering is complete
+                        }
+                    }
+                }).catch(function (error) {
+                    console.error("Error retrieving child records:", error);
+                });
+            }
+        }).catch(function (error) {
+            console.error("Error retrieving parent record:", error);
+        });
+    </script>
+</body>
+</html>

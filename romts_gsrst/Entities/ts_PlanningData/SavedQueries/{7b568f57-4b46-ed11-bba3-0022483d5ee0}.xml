@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{7b568f57-4b46-ed11-bba3-0022483d5ee0}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_planningdataid">
+          <cell name="ts_stakeholder" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_activitytype" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_closedondatemostrecentwo" width="135" />
+          <cell name="ts_target" width="68" />
+          <cell name="ts_plannedq1" width="60" />
+          <cell name="ts_plannedq2" width="60" />
+          <cell name="ts_plannedq3" width="60" />
+          <cell name="ts_plannedq4" width="60" />
+          <cell name="ts_plannedwo" width="75" />
+          <cell name="ts_variance" width="77" />
+          <cell name="ts_teamestimatedduration" width="91" />
+          <cell name="ts_site" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_operationactivity" width="112" />
+          <cell name="ts_operationtype" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_bac7198b333e4c7c87f259827ab829f0.ts_subsite" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_planningdetail" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_details" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="ts_planningdata">
+          <attribute name="ts_stakeholder" />
+          <attribute name="ts_operationtype" />
+          <attribute name="ts_site" />
+          <attribute name="ts_activitytype" />
+          <attribute name="ts_target" />
+          <attribute name="ts_teamestimatedduration" />
+          <attribute name="ts_plannedq1" />
+          <attribute name="ts_plannedq2" />
+          <attribute name="ts_plannedq3" />
+          <attribute name="ts_plannedq4" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="ts_operationactivityisactive" operator="eq" value="1" />
+            <filter type="or">
+              <condition attribute="ts_operationactivityisoperational" operator="eq" value="1" />
+              <condition attribute="ts_operationactivity" operator="null" />
+            </filter>
+            <filter type="or">
+              <condition attribute="ts_keephidden" operator="eq" value="0" />
+              <condition attribute="ts_keephidden" operator="null" />
+            </filter>
+          </filter>
+          <link-entity alias="a_bac7198b333e4c7c87f259827ab829f0" name="ovs_operation" to="ts_operation" from="ovs_operationid" link-type="outer" visible="false">
+            <attribute name="ts_subsite" />
+          </link-entity>
+          <attribute name="ts_plannedwo" />
+          <attribute name="ts_variance" />
+          <attribute name="ts_planningdetail" />
+          <attribute name="ts_details" />
+          <attribute name="ts_planningdataid" />
+          <attribute name="ts_closedondatemostrecentwo" />
+          <attribute name="ts_operationactivity" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20221003.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Team Planning Data" languagecode="1033" />
+      <LocalizedName description="Données de planification d'équipe" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

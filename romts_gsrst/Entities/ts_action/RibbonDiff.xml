@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <HideCustomAction HideActionId="ts.Mscrm.Form.ts_action.FollowButton.Hide" Location="Mscrm.Form.ts_action.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.Form.ts_action.Reports.Hide" Location="Mscrm.Form.ts_action.Reports" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_action.FollowButton.Hide" Location="Mscrm.HomepageGrid.ts_action.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_action.RefreshButton.Hide" Location="Mscrm.HomepageGrid.ts_action.RefreshButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_action.RunReport.Hide" Location="Mscrm.HomepageGrid.ts_action.RunReport" />
+    <CustomAction Id="ts.Mscrm.OpenRecordItem.Mscrm.SubGrid.ts_action.MainTab.Management.CustomAction" Location="Mscrm.SubGrid.ts_action.MainTab.Management.Controls._children" Sequence="28">
+      <CommandUIDefinition>
+        <Button Command="Mscrm.OpenRecordItem" Id="Mscrm.OpenRecordItem" Sequence="28" TemplateAlias="o1" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_action.AddNewStandard.Hide" Location="Mscrm.SubGrid.ts_action.AddNewStandard" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_action.FollowButton.Hide" Location="Mscrm.SubGrid.ts_action.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_action.NewRecord.Hide" Location="Mscrm.SubGrid.ts_action.NewRecord" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_action.RunReport.Hide" Location="Mscrm.SubGrid.ts_action.RunReport" />
+    <CustomAction Id="ts.ts_action.Documents.Button.CustomAction" Location="Mscrm.Form.ts_action.MainTab.Save.Controls._children" Sequence="55">
+      <CommandUIDefinition>
+        <Button Command="ts.ts_action.Documents.Command" Id="ts.ts_action.Documents.Button" LabelText="$LocLabels:ts.ts_action.Documents.Button.LabelText" Sequence="55" TemplateAlias="o2" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.Form.Deactivate">
+      <EnableRules>
+        <EnableRule Id="Mscrm.CanWritePrimary" />
+        <EnableRule Id="ts.ts_action.isadminormanager" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWritePrimary" />
+        <DisplayRule Id="Mscrm.PrimaryIsActive" />
+        <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode" />
+        <DisplayRule Id="Mscrm.PrimaryIsNotActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Deactivate.deactivatePrimaryRecord" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.OpenRecordItem">
+      <EnableRules>
+        <EnableRule Id="ts.ts_action.alwaysFalse" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="openRecord" Library="$webresource:ts_/js/ActionRibbon.js">
+          <CrmParameter Value="FirstSelectedItemId" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ts_action.Documents.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="OpenFileUploadPage" Library="$webresource:ts_/js/AttachFile.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="PrimaryControlId" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules>
+      <DisplayRule Id="Mscrm.CanWritePrimary">
+        <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="HasStateCode" PropertyValue="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsActive">
+        <FormStateRule State="Existing" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsNotActivity">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="false" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="Mscrm.CanWritePrimary">
+        <RecordPrivilegeRule PrivilegeType="Write" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="ts.ts_action.alwaysFalse">
+        <CustomRule FunctionName="isNaN" Library="$webresource:ts_/js/ActionRibbon.js" Default="false" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.ts_action.isadminormanager">
+        <OrRule>
+          <Or>
+            <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+              <StringParameter Value="ROM - Manager" />
+            </CustomRule>
+          </Or>
+          <Or>
+            <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+              <StringParameter Value="System Administrator" />
+            </CustomRule>
+          </Or>
+        </OrRule>
+      </EnableRule>
+    </EnableRules>
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="ts.ts_action.Documents.Button.LabelText">
+      <Titles>
+        <Title description="Documents" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

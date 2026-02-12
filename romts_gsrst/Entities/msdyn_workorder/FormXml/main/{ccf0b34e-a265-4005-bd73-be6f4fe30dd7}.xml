@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{ccf0b34e-a265-4005-bd73-be6f4fe30dd7}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{b8e326ee-5c21-4a18-ba55-e3b56966c249}" IsUserDefined="1" locklevel="0" showlabel="true" expanded="true" name="maintab" labelid="{7821e300-78b9-4b05-934c-a3e2b042c5ea}" ordinalvalue="0">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{b14f3e67-e51b-4b3e-bb7f-a9cf0cf8dc17}" name="{b14f3e67-e51b-4b3e-bb7f-a9cf0cf8dc17}" columns="1" locklevel="0" labelwidth="150" celllabelalignment="Left" celllabelposition="Left" labelid="{26296d0e-a21f-4ab8-81be-c46b04808d88}" height="auto" ordinalvalue="0">
+                  <labels>
+                    <label description="RÉSUMÉ" languagecode="1036" solutionaction="Modified" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{f2825019-b250-4660-be28-9050d964bfc0}" showlabel="false" locklevel="0" ordinalvalue="10006">
+                        <control id="servicetask" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{4F4446E2-39AF-4EA3-8C9B-0E16FD748441}" isunbound="true" disabled="false" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{192c9f40-f514-468e-90f8-768bca54364f}" showlabel="false" locklevel="0" ordinalvalue="10007">
+                        <control id="product" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{B72A209E-F27F-408D-8C5E-3755E9638B46}" isunbound="true" disabled="false" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f44acd23-14cd-4e77-84d6-847a7cda9f20}" showlabel="false" locklevel="0" ordinalvalue="10008">
+                        <control id="service" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{9FC91788-21AE-4482-B132-9B18BE13F311}" isunbound="true" disabled="false" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{140469a3-8a80-4182-8c33-d9c5a6ca409a}" columns="111" labelwidth="250" celllabelalignment="Left" celllabelposition="Top">
+        <rows>
+          <row>
+            <cell id="{b1786184-5da9-6240-7b3d-00c8d12c8ccd}" showlabel="false" labelid="{f0f26372-425d-4171-8306-d3d5f66f621f}" ordinalvalue="10000" solutionaction="Removed" />
+            <cell id="{921c8227-5c83-c960-0596-cd6a688a0165}" showlabel="false" labelid="{7e7f50ec-64d9-4aa6-972f-37a2eb9dc64b}" ordinalvalue="20001" solutionaction="Removed" />
+            <cell id="{1a9d8b11-ad7a-20db-e1b8-b0706047b279}" showlabel="false" labelid="{142258b5-bb35-4e9c-8639-fcb227b9b3f1}" ordinalvalue="30002" solutionaction="Removed" />
+          </row>
+        </rows>
+      </header>
+      <footer id="{b743cb67-34ea-47df-aab3-2fdb4c844011}" columns="111" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+        <rows>
+          <row>
+            <cell id="{b9da0ee8-8b87-4905-59a5-d68d89218953}" showlabel="false" ordinalvalue="10000" solutionaction="Removed" />
+            <cell id="{673482e6-157e-41ea-31c9-d5cbdc3c5ab3}" showlabel="false" ordinalvalue="20001" solutionaction="Removed" />
+            <cell id="{9e51788d-68b6-bc28-6250-ab951b6b72b9}" showlabel="false" ordinalvalue="30002" solutionaction="Removed" />
+          </row>
+        </rows>
+      </footer>
+      <controlDescriptions>
+        <controlDescription forControl="{4F4446E2-39AF-4EA3-8C9B-0E16FD748441}" solutionaction="Modified">
+          <customControl formFactor="0" name="msdyn_FS.ServiceTaskCreate">
+            <parameters>
+              <TaskData type="SingleLine.Text">msdyn_address1</TaskData>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="msdyn_FS.ServiceTaskCreate">
+            <parameters>
+              <TaskData type="SingleLine.Text">msdyn_address1</TaskData>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="msdyn_FS.ServiceTaskCreate">
+            <parameters>
+              <TaskData type="SingleLine.Text">msdyn_address1</TaskData>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{B72A209E-F27F-408D-8C5E-3755E9638B46}" solutionaction="Modified">
+          <customControl formFactor="0" name="msdyn_MsrcmControls.FieldService.ProductCreate">
+            <parameters>
+              <ProductData type="SingleLine.Text">msdyn_address1</ProductData>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="msdyn_MsrcmControls.FieldService.ProductCreate">
+            <parameters>
+              <ProductData type="SingleLine.Text">msdyn_address1</ProductData>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="msdyn_MsrcmControls.FieldService.ProductCreate">
+            <parameters>
+              <ProductData type="SingleLine.Text">msdyn_address1</ProductData>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{9FC91788-21AE-4482-B132-9B18BE13F311}" solutionaction="Modified">
+          <customControl formFactor="0" name="msdyn_MsrcmControls.FieldService.ServiceCreate">
+            <parameters>
+              <ServiceData type="SingleLine.Text">msdyn_address1</ServiceData>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="msdyn_MsrcmControls.FieldService.ServiceCreate">
+            <parameters>
+              <ServiceData type="SingleLine.Text">msdyn_address1</ServiceData>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="msdyn_MsrcmControls.FieldService.ServiceCreate">
+            <parameters>
+              <ServiceData type="SingleLine.Text">msdyn_address1</ServiceData>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <DisplayConditions FallbackForm="false" Order="10" solutionaction="Modified" />
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Work Order Create" languagecode="1033" />
+      <LocalizedName description="Création d’un ordre de travail" languagecode="1036" />
+    </LocalizedNames>
+  </systemform>
+</forms>

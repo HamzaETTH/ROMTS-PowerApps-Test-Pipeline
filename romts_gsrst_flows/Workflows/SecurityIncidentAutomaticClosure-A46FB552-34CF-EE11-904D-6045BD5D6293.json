@@ -1,0 +1,161 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "cc75f05d-09ed-4846-8db8-3c7d5ff51b5d"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ts_securityincident",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_tcomssubcategoryenglish"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Initialize_variable_TCOM_value": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "8be4e00b-f86a-4b9b-9620-fe52e3f1eccb"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "TCOMSubCategoryValue",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Condition_TCOM_Sub_Category_has_value": {
+          "actions": {
+            "Set_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "2be6d227-cc12-43c1-b181-d120473bab1a"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "TCOMSubCategoryValue",
+                "value": "@{toLower(triggerOutputs()?['body/ts_tcomssubcategoryenglish'])}"
+              }
+            },
+            "Condition_Matched": {
+              "actions": {
+                "Update_a_row_2": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "6177d50f-c9a5-43bb-ad55-4741af5bcfff"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_securityincidents",
+                      "recordId": "@triggerOutputs()?['body/ts_securityincidentid']",
+                      "item/ts_recordstatus": 741130002
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Set_variable": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "contains": [
+                  "@variables('TCOMMatchString')",
+                  "@variables('TCOMSubCategoryValue')"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "7826bde4-8aca-4322-a30e-58a742ce3afd"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_Match_String": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@triggerOutputs()?['body/ts_tcomssubcategoryenglish']",
+                "@null"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "1248d76a-dbb1-4234-8d59-25a9304ae6a2"
+          },
+          "type": "If"
+        },
+        "Initialize_variable_Match_String": {
+          "runAfter": {
+            "Initialize_variable_TCOM_value": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a1966a6e-d5b6-421d-b804-86ecf3b74c5d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "TCOMMatchString",
+                "type": "string",
+                "value": "@{toLower('Unruly passenger (no escalation)|CATSA 100% screening contingencies|Prohibited items intercepted by CATSA|Prohibited Weapon Intercepted by CATSA|Escort Required Temporary Pass Holder  – no escalation|Calls regarding security alarms at Transport Canada Facilities and Satellite Offices.|Missed Screening of US Designated flight by CATSA.  – no escalation|NON-PASSENGER Refusal to be Screened  – no escalation|Calls regarding Air Cargo Explosive Detection Dog Handler Teams (EDDHT)|Remote Piloted Aircraft (RPAS)')}"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

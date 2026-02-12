@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26014.145" OrganizationSchemaType="Full" CRMServerServiceabilityVersion="9.2.26014.00145">
+  <Entities />
+  <Roles />
+  <Workflows />
+  <FieldSecurityProfiles />
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <connectionreferences>
+    <connectionreference connectionreferencelogicalname="new_sharedcommondataserviceforapps_95661">
+      <connectionreferencedisplayname>Microsoft Dataverse</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedoffice365_484e0">
+      <connectionreferencedisplayname>Office 365 Outlook</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedoffice365_93acb">
+      <connectionreferencedisplayname>Office 365 Outlook</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedsharepointonline_2906c">
+      <connectionreferencedisplayname>SharePoint</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedsharepointonline_72708">
+      <connectionreferencedisplayname>SharePoint - RomService-ServiceGSR</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <description>Used for connecting to the ISSO and AvSec Document Libraries</description>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedsharepointonline_bdaec">
+      <connectionreferencedisplayname>SharePoint</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_1ROMTSGSRSTFlowsOffice365Groups">
+      <connectionreferencedisplayname>1-ROMTS-GSRST-Flows-Office365Groups</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365groups</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_DataverseROMTSGSRST">
+      <connectionreferencedisplayname>1-ROMTS-GSRST-Dataverse</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <description>Use this Dataverse connection for Power Automate Flows and Canvas Apps/Pages</description>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_ROMTSGSRSTFlowsContentConversion">
+      <connectionreferencedisplayname>1-ROMTS-GSRST-Flows-ContentConversion</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_conversionservice</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_ROMTSGSRSTFlowsDataverse">
+      <connectionreferencedisplayname>1-ROMTS-GSRST-Flows-Dataverse</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <description>Use this Dataverse connection for Power Automate Flows and Canvas Apps/Pages</description>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_ROMTSGSRSTFlowsExcelOnlineBusiness">
+      <connectionreferencedisplayname>1-ROMTS-GSRST-Flows-ExcelOnlineBusiness</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness</connectorid>
+      <description>Used for connecting to Excel Files in Power Automate</description>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_ROMTSGSRSTFlowsOneDriveForBusiness">
+      <connectionreferencedisplayname>1-ROMTS-GSRST-Flows-OneDriveForBusiness</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_ROMTSGSRSTFlowsOutlook">
+      <connectionreferencedisplayname>1-ROMTS-GSRST-Flows-Outlook</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <description>Used for connecting to Outlook with the Service Account</description>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_ROMTSGSRSTFlowsSharePoint">
+      <connectionreferencedisplayname>1-ROMTS-GSRST-Flows-SharePoint</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <description>Use this connection for Power Automate Flows and Canvas Apps/Pages</description>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_ROMTSGSRSTFlowsWordOnlineBusiness">
+      <connectionreferencedisplayname>1-ROMTS-GSRST-Flows-WordOnlineBusiness</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedapprovals_d3862">
+      <connectionreferencedisplayname>Approvals romts_gsrst_flows-d3862</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_approvals</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataservice_4c9a2">
+      <connectionreferencedisplayname>Microsoft Dataverse (legacy) romts_gsrst_flows-4c9a2</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataservice</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_13f1d">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst_flows-13f1d</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_1a8ca">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst-1a8ca</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_2d435">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst_flows-2d435</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_32e9e">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst_flows-32e9e</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_64721">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst_flows-64721</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_65cbb">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst_flows-65cbb</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_65fb7">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst_flows-65fb7</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_6867e">
+      <connectionreferencedisplayname>Microsoft Dataverse</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_81d95">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst_flows-81d95</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_86ec4">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst_flows-86ec4</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_a39fb">
+      <connectionreferencedisplayname>Microsoft Dataverse JonasSolution-a39fb</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_ab028">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst-ab028</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_b5356">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst_flows-b5356</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_ba7f4">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst_flows-ba7f4</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedcommondataserviceforapps_c585a">
+      <connectionreferencedisplayname>Microsoft Dataverse romts_gsrst_flows-c585a</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedconversionservice_d0118">
+      <connectionreferencedisplayname>Content Conversion romts_gsrst_flows-d0118</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_conversionservice</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedexcelonlinebusiness_15434">
+      <connectionreferencedisplayname>Excel Online (Business) romts_gsrst_flows-15434</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedexcelonlinebusiness_2181a">
+      <connectionreferencedisplayname>Excel Online (Business) romts_gsrst_flows-2181a</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedexcelonlinebusiness_b4933">
+      <connectionreferencedisplayname>Excel Online (Business) romts_gsrst_flows-b4933</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedoffice365_1cf4d">
+      <connectionreferencedisplayname>Office 365 Outlook romts_gsrst_flows-1cf4d</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedoffice365_2ff0d">
+      <connectionreferencedisplayname>Office 365 Outlook romts_gsrst_flows-2ff0d</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedoffice365_8ab5a">
+      <connectionreferencedisplayname>Office 365 Outlook romts_gsrst_flows-8ab5a</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedoffice365groups_158ff">
+      <connectionreferencedisplayname>Office 365 Groups romts_gsrst_flows-158ff</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365groups</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedoffice365groups_4ceb8">
+      <connectionreferencedisplayname>Office 365 Groups JonasSolution-4ceb8</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365groups</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedoffice365groups_9c1f2">
+      <connectionreferencedisplayname>Office 365 Groups romts_gsrst_flows-9c1f2</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365groups</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedoffice365groups_bed90">
+      <connectionreferencedisplayname>Office 365 Groups romts_gsrst_flows-bed90</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365groups</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedonedriveforbusiness_7411c">
+      <connectionreferencedisplayname>OneDrive for Business romts_gsrst_flows-7411c</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedonedriveforbusiness_b17f9">
+      <connectionreferencedisplayname>OneDrive for Business romts_gsrst_flows-b17f9</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedonedriveforbusiness_d2e1a">
+      <connectionreferencedisplayname>OneDrive for Business romts_gsrst_flows-d2e1a</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedpowerappsforadmins_b1081">
+      <connectionreferencedisplayname>Power Apps for Admins romts_gsrst_flows-b1081</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_powerappsforadmins</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedpowerappsforadmins_c0e95">
+      <connectionreferencedisplayname>Power Apps for Admins romts_gsrst_flows-c0e95</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_powerappsforadmins</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedpowerappsforadmins_f664e">
+      <connectionreferencedisplayname>Power Apps for Admins romts_gsrst_flows-f664e</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_powerappsforadmins</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedsharepointonline_d406e">
+      <connectionreferencedisplayname>SharePoint romts_gsrst_flows-d406e</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedsharepointonline_ef0dc">
+      <connectionreferencedisplayname>SharePoint romts_gsrst_flows-ef0dc</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedteams_5cdf7">
+      <connectionreferencedisplayname>Microsoft Teams JonasSolution-5cdf7</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_teams</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedwordonlinebusiness_58be2">
+      <connectionreferencedisplayname>Word Online (Business) romts_gsrst_flows-58be2</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedwordonlinebusiness_6b623">
+      <connectionreferencedisplayname>Word Online (Business) romts_gsrst_flows-6b623</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_sharedwordonlinebusiness_a94f9">
+      <connectionreferencedisplayname>Word Online (Business) romts_gsrst_flows-a94f9</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ts_SharePointROMTSGSRST">
+      <connectionreferencedisplayname>1-ROMTS-GSRST-SharePoint</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <description>Use this connection for Power Automate Flows and Canvas Apps/Pages</description>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+  </connectionreferences>
+  <Languages>
+    <Language>1033</Language>
+    <Language>1036</Language>
+  </Languages>
+</ImportExportXml>

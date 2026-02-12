@@ -1,0 +1,226 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "2af04ed8-60ce-4d82-bf94-64dd93391b88"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ts_securityincident",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_locationtype"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition": {
+          "actions": {
+            "Switch_": {
+              "runAfter": {},
+              "cases": {
+                "Case_-_Yard": {
+                  "case": 717750000,
+                  "actions": {}
+                },
+                "Case_-Station": {
+                  "case": 717750001,
+                  "actions": {
+                    "Update_Site_field_5": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "eab9e6b9-705f-4cca-b47b-a2c20ca710c4"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "UpdateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ts_securityincidents",
+                          "recordId": "@triggerOutputs()?['body/ts_securityincidentid']",
+                          "item/ts_Site@odata.bind": "/msdyn_functionallocations(bfff30ab-31c3-ed11-b597-000d3af4f43d)"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  }
+                },
+                "Case_-_Crossings": {
+                  "case": 717750002,
+                  "actions": {
+                    "Update_Site_field_6": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "c110eb49-1e48-4be4-912f-3ee374ce93d9"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "UpdateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ts_securityincidents",
+                          "recordId": "@triggerOutputs()?['body/ts_securityincidentid']",
+                          "item/ts_Site@odata.bind": "/msdyn_functionallocations(bfff30ab-31c3-ed11-b597-000d3af4f43d)"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  }
+                },
+                "Case_-_Mile_Marker": {
+                  "case": 717750003,
+                  "actions": {
+                    "Update_Site_field_7": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "7d6d6d91-0796-4f0e-af65-1973e6ad78d7"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "UpdateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ts_securityincidents",
+                          "recordId": "@triggerOutputs()?['body/ts_securityincidentid']",
+                          "item/ts_Site@odata.bind": "/msdyn_functionallocations(bfff30ab-31c3-ed11-b597-000d3af4f43d)"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  }
+                },
+                "Case_-_Non-Rail_Location": {
+                  "case": 717750004,
+                  "actions": {
+                    "Update_Site_field_8": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "2618a5ed-5ce1-4cbc-9773-f1c815a8b102"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "UpdateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ts_securityincidents",
+                          "recordId": "@triggerOutputs()?['body/ts_securityincidentid']",
+                          "item/ts_Site@odata.bind": "/msdyn_functionallocations(bfff30ab-31c3-ed11-b597-000d3af4f43d)"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  }
+                },
+                "Case_-_Unknown": {
+                  "case": 741130001,
+                  "actions": {
+                    "Update_a_row_2": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "6c08cca6-a6b6-4a91-b599-539019cfa70b"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "UpdateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ts_securityincidents",
+                          "recordId": "@triggerOutputs()?['body/ts_securityincidentid']",
+                          "item/ts_Site@odata.bind": "/msdyn_functionallocations(bfff30ab-31c3-ed11-b597-000d3af4f43d)"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  }
+                }
+              },
+              "default": {
+                "actions": {}
+              },
+              "expression": "@triggerOutputs()?['body/ts_locationtype']",
+              "metadata": {
+                "operationMetadataId": "95a63c2e-e7c7-4698-b969-c02c2479d34c"
+              },
+              "type": "Switch"
+            }
+          },
+          "runAfter": {},
+          "expression": {
+            "and": [
+              {
+                "not": {
+                  "equals": [
+                    "@triggerOutputs()?['body/ts_locationtype']",
+                    "@null"
+                  ]
+                }
+              },
+              {
+                "not": {
+                  "equals": [
+                    "@triggerOutputs()?['body/ts_mode']",
+                    717750001
+                  ]
+                }
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "756a86d5-b6d1-4ba3-b519-b341fa250fbd"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{45678d29-f57d-4a63-ba50-4fd5d2327b27}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_prescribedfrequencyoverrideid">
+          <cell name="ts_name" width="300" />
+          <cell name="ts_riskfrequency" width="216" />
+          <cell name="ts_prescribedfrequencyclass2" width="216" />
+          <cell name="ts_prescribedfrequencyclass3" width="216" />
+          <cell name="ts_fiscalyear" width="103" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_prescribedfrequencyoverride">
+          <attribute name="ts_prescribedfrequencyoverrideid" />
+          <attribute name="ts_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_riskfrequency" />
+          <attribute name="ts_prescribedfrequencyclass2" />
+          <attribute name="ts_prescribedfrequencyclass3" />
+          <attribute name="ts_fiscalyear" />
+          <order attribute="ts_fiscalyear" descending="true" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Prescribed Frequency Overrides" languagecode="1033" />
+      <LocalizedName description="Remplacements de fréquences prescrites actifs" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

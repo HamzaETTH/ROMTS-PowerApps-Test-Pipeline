@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{e0d97cdc-4c20-4e03-bc2a-6dbc6cb1d2c2}</formid>
+    <IntroducedVersion>3.2.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form maxWidth="1900">
+      <tabs>
+        <tab id="{afce4319-ecf7-4a68-ad9e-4aad745704d0}" name="tab_1" showlabel="false" ordinalvalue="0">
+          <columns>
+            <column width="33%" id="0">
+              <sections>
+                <section id="{aab723d1-623e-4d29-9fa5-c82034e6177d}" name="tab_1_column_1_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <labels>
+                    <label description="GENERAL" languagecode="1033" solutionaction="Modified" />
+                    <label description="RÉSUMÉ" languagecode="1036" solutionaction="Modified" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{556ab731-1769-78de-e765-25e0eec875e0}" showlabel="true" locklevel="0" ordinalvalue="10009" solutionaction="Modified">
+                        <labels>
+                          <label description="Work Order Summary" languagecode="1033" solutionaction="Added" />
+                          <label description="Résumé de l'ordre de travail" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{11c33c97-687b-5965-3dec-640ea1ab5d63}" showlabel="true" locklevel="0" ordinalvalue="10007" solutionaction="Modified">
+                        <labels>
+                          <label description="Stakeholder" languagecode="1033" solutionaction="Added" />
+                          <label description="Intervenant" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                        <control id="msdyn_serviceaccount" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_serviceaccount" disabled="true" uniqueid="{4e15a600-da1e-661c-eb6b-81b9a1321e6c}" solutionaction="Modified">
+                          <parameters solutionaction="Added">
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{8965DC8D-460A-EB11-A813-000D3AF3A7A7}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <AvailableViewIds>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5c33016b-8c2a-ac66-74e7-b8dc9c794451}" showlabel="true" locklevel="0" ordinalvalue="10002" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{7232020d-eb5d-7eb2-700b-ebe747a2c857}" showlabel="true" locklevel="0" ordinalvalue="10006" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{2ea29d80-ee09-8473-6b1b-d0605cd17b49}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10011" solutionaction="Modified">
+                        <labels>
+                          <label description="Reported By Contact" languagecode="1033" solutionaction="Added" />
+                          <label description="Signalé par (contact)" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7270a5cb-14eb-2046-c418-e8d17c82c069}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10012" solutionaction="Modified">
+                        <labels>
+                          <label description="Opportunity" languagecode="1033" solutionaction="Added" />
+                          <label description="Opportunité" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{65be8b63-b931-61c0-b761-c288554c4732}" showlabel="true" locklevel="0" ordinalvalue="10000" solutionaction="Added">
+                        <labels>
+                          <label description="Record Status" languagecode="1033" />
+                          <label description="État du système" languagecode="1036" />
+                        </labels>
+                        <control id="msdyn_systemstatus" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="msdyn_systemstatus" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d345a949-2a07-513c-595d-504409e6d4b3}" showlabel="true" locklevel="0" ordinalvalue="10001" solutionaction="Added">
+                        <labels>
+                          <label description="Work Order Type" languagecode="1033" />
+                          <label description="Type d'ordre de travail" languagecode="1036" />
+                        </labels>
+                        <control id="msdyn_workordertype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_workordertype" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{8F0514CA-D271-46CC-B531-41791C56949A}</DefaultViewId>
+                            <AvailableViewIds>{88536F02-3C15-456A-8419-350767CCD053},{35E9D617-27B4-4A9C-8BE9-4EF13A0D9851},{8F0514CA-D271-46CC-B531-41791C56949A}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4b7767c2-c606-826a-63aa-a3aaaab05a6b}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10002" solutionaction="Added">
+                        <labels>
+                          <label description="Service Territory" languagecode="1033" />
+                          <label description="Région" languagecode="1036" />
+                        </labels>
+                        <control id="msdyn_serviceterritory" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_serviceterritory" disabled="true" uniqueid="{17793498-90b9-05b1-b2b1-00b8ee604a1e}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{AD81B2CA-9789-4465-8C56-94C10830A6ED}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{413dd5cb-bb0e-4803-bf8f-fcd4683caa3e}" locklevel="0" ordinalvalue="10003" solutionaction="Added">
+                        <labels>
+                          <label description="Region" languagecode="1033" />
+                          <label description="Région" languagecode="1036" />
+                        </labels>
+                        <control id="ts_region" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_region" disabled="true">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4e5de087-a6ff-4e0b-a345-55cacf95b862}" locklevel="0" visible="false" ordinalvalue="10004" solutionaction="Added">
+                        <labels>
+                          <label description="Country" languagecode="1033" />
+                          <label description="Pays" languagecode="1036" />
+                        </labels>
+                        <control id="ts_country" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_country" disabled="true">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{2670AB65-5FE1-441F-B0E1-B2056E6AA402}</DefaultViewId>
+                            <AvailableViewIds>{2670AB65-5FE1-441F-B0E1-B2056E6AA402},{F03304AB-1C4B-4922-8270-5A134BD054A9},{BA5148DA-164F-46F5-93F4-744239F0CA2C}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0424ff40-bd09-4bcc-966d-3fa7348f48bd}" locklevel="0" ordinalvalue="10005" solutionaction="Added">
+                        <labels>
+                          <label description="Operation Type" languagecode="1033" />
+                          <label description="Type d'opération" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_assetcategory" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_assetcategory" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{E02E567A-81A7-EB11-9442-000D3A8410DC}</DefaultViewId>
+                            <AvailableViewIds>{91DEB2CD-5411-4171-AE61-D76C31D09E76},{1794A477-40F3-4AC9-8EA6-24DC63F40221},{AE86AD4A-B5DA-467F-9C10-6F98D289CDB8},{E02E567A-81A7-EB11-9442-000D3A8410DC}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d8e8e3a2-4d13-4a43-9791-98288496c24e}" locklevel="0" ordinalvalue="10008" solutionaction="Added">
+                        <labels>
+                          <label description="Site" languagecode="1033" />
+                          <label description="Site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="true">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c89a8715-4a20-47c6-a59e-d52037159f09}" locklevel="0" ordinalvalue="10010" solutionaction="Added">
+                        <labels>
+                          <label description="Operation" languagecode="1033" />
+                          <label description="Opération" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_operationid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_operationid" disabled="true">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%" id="1">
+              <sections>
+                <section id="{8e34fbe3-aeb9-4722-a33f-04b93cc510ba}" name="tab_1_column_2_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" locklevel="0" labelwidth="220" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <labels>
+                    <label description="ACTIVITY DETAILS" languagecode="1033" solutionaction="Modified" />
+                    <label description="DÉTAILS DE L'ACTIVITÉ" languagecode="1036" solutionaction="Modified" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{6d23c732-d166-6364-b8e1-23ec3867107c}" showlabel="true" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Activity Type" languagecode="1033" solutionaction="Added" />
+                          <label description="Type d'activité" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                        <control id="msdyn_primaryincidenttype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_primaryincidenttype" disabled="false">
+                          <parameters solutionaction="Added">
+                            <DisableMru>true</DisableMru>
+                            <DefaultViewId>{82E357FE-4361-E111-AC14-000C2959F9B8}</DefaultViewId>
+                            <AvailableViewIds>{467A8F92-753B-485E-8BA9-13DE8B7CB3A7},{82E357FE-4361-E111-AC14-000C2959F9B8}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{39c01c57-5894-7858-b54b-6e81b89e5148}" showlabel="true" locklevel="0" ordinalvalue="10001">
+                        <labels>
+                          <label description="Activity Description" languagecode="1033" solutionaction="Added" />
+                          <label description="Description de l'activité" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                        <control id="msdyn_primaryincidentdescription" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="msdyn_primaryincidentdescription" disabled="true" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6a77c130-4407-c1e0-8bec-24311c981924}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10003" solutionaction="Modified">
+                        <labels>
+                          <label description="Primary Incident Customer Asset" languagecode="1033" solutionaction="Added" />
+                          <label description="Actif client principal de l'incident" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c89bed8a-3990-081b-ca41-b2834cc394d7}" showlabel="true" locklevel="0" ordinalvalue="10002" solutionaction="Modified">
+                        <labels>
+                          <label description="Estimated Duration" languagecode="1033" solutionaction="Added" />
+                          <label description="Durée estimée" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                        <control id="msdyn_primaryincidentestimatedduration" classid="{AA987274-CE4E-4271-A803-66164311A958}" datafieldname="msdyn_primaryincidentestimatedduration" disabled="true" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d345a949-2a07-513c-595d-504409e6d4b3}" showlabel="true" locklevel="0" ordinalvalue="10004" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{566aed54-206c-1d22-68cd-e223491e9757}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10004" solutionaction="Modified">
+                        <labels>
+                          <label description="IoT Alert" languagecode="1033" solutionaction="Added" />
+                          <label description="Alerte IoT" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c551d050-ae07-0b83-d3e4-c37b8ac97972}" showlabel="true" locklevel="0" ordinalvalue="10006" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{c81890d9-46d8-66b0-d9cb-c0aa2ac724e5}" showlabel="true" locklevel="0" ordinalvalue="10005" solutionaction="Modified">
+                        <labels>
+                          <label description="Trade" languagecode="1033" solutionaction="Added" />
+                          <label description="Métier" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%" id="2">
+              <sections>
+                <section id="{75a280ba-d601-47a0-85e8-e8fd9ae43ce8}" name="tab_1_column_3_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" locklevel="0" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{0ce48407-640e-8411-241a-888346699be7}" showlabel="true" locklevel="0" ordinalvalue="10001" solutionaction="Modified">
+                        <labels>
+                          <label description="Priority" languagecode="1033" solutionaction="Added" />
+                          <label description="Priorité" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{65be8b63-b931-61c0-b761-c288554c4732}" showlabel="true" locklevel="0" ordinalvalue="10001" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{e51bab75-61a3-c799-648d-a9e611a629b0}" showlabel="true" locklevel="0" ordinalvalue="10003" solutionaction="Modified">
+                        <labels>
+                          <label description="Substatus" languagecode="1033" solutionaction="Added" />
+                          <label description="Sous-statut" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4b7767c2-c606-826a-63aa-a3aaaab05a6b}" showlabel="true" locklevel="0" ordinalvalue="10003" solutionaction="Removed" />
+                    </row>
+                    <row>
+                      <cell id="{36abee44-5115-ea77-117e-13bec77b8885}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10004" solutionaction="Modified">
+                        <labels>
+                          <label description="Price List" languagecode="1033" solutionaction="Added" />
+                          <label description="Tarifs" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c551d050-ae07-0b83-d3e4-c37b8ac97972}" showlabel="true" locklevel="0" ordinalvalue="10000" solutionaction="Added">
+                        <labels>
+                          <label description="Case" languagecode="1033" />
+                          <label description="Cas" languagecode="1036" />
+                        </labels>
+                        <control disabled="true" id="msdyn_servicerequest" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_servicerequest" uniqueid="{a56382ac-1a35-a9d6-b088-6c7a08d9ec4b}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{9AC51863-58C7-49A0-ADCC-AFD9A4C3EE59}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{28c4ccdb-f967-49fd-b234-1489f74a5e58}" locklevel="0" ordinalvalue="10002" solutionaction="Added">
+                        <labels>
+                          <label description="Category" languagecode="1033" />
+                          <label description="Catégorie" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_rational" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_rational" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <formLibraries>
+        <Library name="ts_/js/WorkOrderQuickCreate.js" libraryUniqueId="{15edb4d1-c006-ea3a-4930-d80835b61a61}" solutionaction="Added" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderQuickCreate.onLoad" libraryName="ts_/js/WorkOrderQuickCreate.js" handlerUniqueId="{a922b406-41eb-47e1-a9ce-33d41858ee64}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="2" solutionaction="Added" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_region" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderQuickCreate.regionOnChange" libraryName="ts_/js/WorkOrderQuickCreate.js" handlerUniqueId="{baf5738a-4f9c-4fe0-9149-b4e1c6961e97}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ovs_assetcategory" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderQuickCreate.operationTypeOnChange" libraryName="ts_/js/WorkOrderQuickCreate.js" handlerUniqueId="{0602ff38-dfea-4398-82c2-65ffcb7d99fe}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_workordertype" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderQuickCreate.workOrderTypeOnChange" libraryName="ts_/js/WorkOrderQuickCreate.js" handlerUniqueId="{aa768546-86a8-4a58-8bc6-1329c449f13b}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+      </events>
+      <DisplayConditions FallbackForm="false" Order="1" solutionaction="Modified" />
+      <controlDescriptions solutionaction="Added" />
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Quick Create Work Order" languagecode="1033" />
+      <LocalizedName description="Création rapide d'ordre de travail" languagecode="1036" />
+    </LocalizedNames>
+  </systemform>
+</forms>

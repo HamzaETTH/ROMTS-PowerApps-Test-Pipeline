@@ -1,0 +1,533 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "2437fb87-e806-42a7-9bae-6fd10073b821"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_teams": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1736c50b-dc59-4cab-9ea9-a0de6c8c9dd3"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "teams",
+              "fetchXml": "<fetch>\n  <entity name=\"team\">\n    <attribute name=\"name\" />\n    <attribute name=\"teamid\" />\n    <attribute name=\"businessunitid\" />\n    <attribute name=\"ts_territory\" />\n    <filter>\n      <condition attribute=\"teamtype\" operator=\"eq\" value=\"0\" />\n    </filter>\n    <filter type=\"or\">\n      <condition attribute=\"name\" operator=\"like\" value=\"ISSO |%\" />\n      <condition attribute=\"name\" operator=\"like\" value=\"AVSEC |%\" />\n    </filter>\n    <link-entity name=\"businessunit\" from=\"businessunitid\" to=\"businessunitid\" link-type=\"inner\" alias=\"bu\">\n      <attribute name=\"name\" />\n      <filter type=\"or\">\n        <condition attribute=\"name\" operator=\"like\" value=\"Aviation%\" />\n        <condition attribute=\"name\" operator=\"like\" value=\"Intermodal%\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Initialize_team_BU_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "981df8e0-9546-4ae9-a7d5-265f19600e8f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "teambusinessUnit",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "List_Activity_type": {
+          "runAfter": {
+            "List_teams": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fb546573-a9b1-4049-ab49-889afd954d62"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "msdyn_incidenttypes",
+              "$select": "msdyn_name, msdyn_incidenttypeid, ts_international, ts_domestic",
+              "fetchXml": "<fetch>\n  <entity name=\"msdyn_incidenttype\">\n    <attribute name=\"msdyn_name\" />\n    <attribute name=\"msdyn_incidenttypeid\" />\n    <attribute name=\"ts_international\" />\n    <attribute name=\"ts_domestic\" />\n    <link-entity name=\"businessunit\" from=\"businessunitid\" to=\"owningbusinessunit\" link-type=\"inner\" alias=\"bu\">\n      <attribute name=\"name\" />\n      <filter type=\"or\">\n        <condition attribute=\"name\" operator=\"like\" value=\"Aviation%\" />\n        <condition attribute=\"name\" operator=\"like\" value=\"Intermodal%\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Apply_to_each_team": {
+          "foreach": "@outputs('List_teams')?['body/value']",
+          "actions": {
+            "Set_teamBusinessUnit_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "bad672cc-23c1-4377-809d-6813062c0c5d"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "teambusinessUnit",
+                "value": "@items('Apply_to_each_team')?['bu.name']"
+              }
+            },
+            "Apply_to_each_Activity_Type": {
+              "foreach": "@outputs('List_Activity_type')?['body/value']",
+              "actions": {
+                "Starts_with_Business_Unit_name_(Is_regional_team)": {
+                  "actions": {
+                    "Check_if_there's_an_existing_team_activity_type_estimated_duration": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "5958445b-a4d2-4ea3-aa58-d4d391cdc25b"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "ListRecords",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ts_teamactivitytypeestimateddurations",
+                          "$filter": "(_ts_team_value eq @{items('Apply_to_each_team')?['teamid']} and _ts_activitytype_value eq @{items('Apply_to_each_Activity_Type')?['msdyn_incidenttypeid']}) and (ts_Team/teamid ne null) and (ts_ActivityType/msdyn_incidenttypeid ne null)",
+                          "$top": 1,
+                          "$expand": "ts_Team($select=_ts_territory_value),ts_ActivityType($select=ts_domestic,ts_international)"
+                        },
+                        "authentication": {
+                          "type": "Raw",
+                          "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                        }
+                      }
+                    },
+                    "If_none_exist": {
+                      "actions": {
+                        "If_Activity_Type_applies_to_Team_Region_2": {
+                          "actions": {
+                            "Add_a_new_row_2": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "72076991-1a4e-4d22-a40a-63313301e2b5"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps_1",
+                                  "operationId": "CreateRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ts_teamactivitytypeestimateddurations",
+                                  "item/ts_name": "@{items('Apply_to_each_team')?['name']} - @{items('Apply_to_each_Activity_Type')?['msdyn_name']} default estimated duration",
+                                  "item/ts_ActivityType@odata.bind": "msdyn_incidenttypes/@{items('Apply_to_each_Activity_Type')?['msdyn_incidenttypeid']}",
+                                  "item/ts_Team@odata.bind": "teams/@{items('Apply_to_each_team')?['teamid']}"
+                                },
+                                "authentication": {
+                                  "type": "Raw",
+                                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                                }
+                              }
+                            }
+                          },
+                          "runAfter": {},
+                          "expression": {
+                            "or": [
+                              {
+                                "and": [
+                                  {
+                                    "equals": [
+                                      "@items('Apply_to_each_Activity_Type')?['ts_international']",
+                                      true
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@items('Apply_to_each_team')?['_ts_territory_value']",
+                                      "3bf0fa88-150f-eb11-a813-000d3af3a7a7"
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "and": [
+                                  {
+                                    "equals": [
+                                      "@items('Apply_to_each_Activity_Type')?['ts_domestic']",
+                                      true
+                                    ]
+                                  },
+                                  {
+                                    "not": {
+                                      "equals": [
+                                        "@items('Apply_to_each_team')?['_ts_territory_value']",
+                                        "3bf0fa88-150f-eb11-a813-000d3af3a7a7"
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "0c3502e1-a2d4-48c8-8696-46b50549552e"
+                          },
+                          "type": "If"
+                        }
+                      },
+                      "runAfter": {
+                        "Check_if_there's_an_existing_team_activity_type_estimated_duration": [
+                          "Succeeded"
+                        ]
+                      },
+                      "else": {
+                        "actions": {
+                          "See_if_status_update_is_needed_based_on_region": {
+                            "foreach": "@outputs('Check_if_there''s_an_existing_team_activity_type_estimated_duration')?['body/value']",
+                            "actions": {
+                              "Set_variable_2": {
+                                "runAfter": {},
+                                "metadata": {
+                                  "operationMetadataId": "70572bd1-7c38-4629-9b92-4dbdc02533da"
+                                },
+                                "type": "SetVariable",
+                                "inputs": {
+                                  "name": "Debug",
+                                  "value": "International: @{items('See_if_status_update_is_needed_based_on_region')?['ts_activitytype/ts_international']}\nDomestic: @{items('See_if_status_update_is_needed_based_on_region')?['ts_activitytype/ts_domestic']}\nRegion: @{items('Apply_to_each_team')?['_ts_territory_value']}\nTeam: @{items('Apply_to_each_team')?['name']}"
+                                }
+                              },
+                              "If_Activity_Type_applies_to_Team_Region": {
+                                "actions": {
+                                  "if_Record_is_Inactive": {
+                                    "actions": {
+                                      "Activate_the_Team_Activity_Type_Estimated_Duration_2": {
+                                        "runAfter": {},
+                                        "metadata": {
+                                          "operationMetadataId": "ba412f3e-34cb-4592-8400-cb878e2a6482"
+                                        },
+                                        "type": "OpenApiConnection",
+                                        "inputs": {
+                                          "host": {
+                                            "connectionName": "shared_commondataserviceforapps_1",
+                                            "operationId": "UpdateRecord",
+                                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                          },
+                                          "parameters": {
+                                            "entityName": "ts_teamactivitytypeestimateddurations",
+                                            "recordId": "@items('See_if_status_update_is_needed_based_on_region')?['ts_teamactivitytypeestimateddurationid']",
+                                            "item/statecode": 0,
+                                            "item/statuscode": 1
+                                          },
+                                          "authentication": {
+                                            "type": "Raw",
+                                            "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "runAfter": {},
+                                    "expression": {
+                                      "equals": [
+                                        "@items('See_if_status_update_is_needed_based_on_region')?['statecode']",
+                                        1
+                                      ]
+                                    },
+                                    "metadata": {
+                                      "operationMetadataId": "a87a5ef1-cbf5-4e83-a1a7-34969b95030c"
+                                    },
+                                    "type": "If"
+                                  }
+                                },
+                                "runAfter": {
+                                  "Set_variable_2": [
+                                    "Succeeded"
+                                  ]
+                                },
+                                "else": {
+                                  "actions": {
+                                    "If_Record_is_Active": {
+                                      "actions": {
+                                        "Deactivate_the_Team_Activity_Type_Estimated_Duration": {
+                                          "runAfter": {},
+                                          "metadata": {
+                                            "operationMetadataId": "1d7fc1cc-b1c2-454e-a09f-96cc78c7fe2d"
+                                          },
+                                          "type": "OpenApiConnection",
+                                          "inputs": {
+                                            "host": {
+                                              "connectionName": "shared_commondataserviceforapps_1",
+                                              "operationId": "UpdateRecord",
+                                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                            },
+                                            "parameters": {
+                                              "entityName": "ts_teamactivitytypeestimateddurations",
+                                              "recordId": "@items('See_if_status_update_is_needed_based_on_region')?['ts_teamactivitytypeestimateddurationid']",
+                                              "item/statecode": 1,
+                                              "item/statuscode": 2
+                                            },
+                                            "authentication": {
+                                              "type": "Raw",
+                                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "runAfter": {},
+                                      "expression": {
+                                        "equals": [
+                                          "@items('See_if_status_update_is_needed_based_on_region')?['statecode']",
+                                          0
+                                        ]
+                                      },
+                                      "metadata": {
+                                        "operationMetadataId": "c679c437-1ecb-4011-a6c5-5a3a210cdea6"
+                                      },
+                                      "type": "If"
+                                    }
+                                  }
+                                },
+                                "expression": {
+                                  "or": [
+                                    {
+                                      "and": [
+                                        {
+                                          "equals": [
+                                            "@items('See_if_status_update_is_needed_based_on_region')?['ts_activitytype/ts_international']",
+                                            true
+                                          ]
+                                        },
+                                        {
+                                          "equals": [
+                                            "@items('Apply_to_each_team')?['_ts_territory_value']",
+                                            "3bf0fa88-150f-eb11-a813-000d3af3a7a7"
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "and": [
+                                        {
+                                          "equals": [
+                                            "@items('See_if_status_update_is_needed_based_on_region')?['ts_activitytype/ts_domestic']",
+                                            true
+                                          ]
+                                        },
+                                        {
+                                          "not": {
+                                            "equals": [
+                                              "@items('Apply_to_each_team')?['_ts_territory_value']",
+                                              "3bf0fa88-150f-eb11-a813-000d3af3a7a7"
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "metadata": {
+                                  "operationMetadataId": "a65f8af6-c0ca-4f3e-9e9f-dbf4a4fd9aa8"
+                                },
+                                "type": "If"
+                              }
+                            },
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "4f52e0f2-911a-47c1-ae5d-e2f9ba653906"
+                            },
+                            "type": "Foreach"
+                          }
+                        }
+                      },
+                      "expression": {
+                        "equals": [
+                          "@length(outputs('Check_if_there''s_an_existing_team_activity_type_estimated_duration')?['body/value'])",
+                          0
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "b0ba65b5-a37f-49d0-9450-13e6b3c88d89"
+                      },
+                      "type": "If"
+                    }
+                  },
+                  "runAfter": {},
+                  "expression": {
+                    "equals": [
+                      "@startsWith(String(items('Apply_to_each_Activity_Type')?['bu.name']), variables('businessUnitStartsWith'))",
+                      true
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "0280acc9-bf07-44bd-908f-fa4f548edbf3"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "If_team_BU_starts_with_Aviation": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "60aaf399-69a5-4548-8168-b241a6630465"
+              },
+              "type": "Foreach"
+            },
+            "If_team_BU_starts_with_Aviation": {
+              "actions": {
+                "Set_businessUnitStartWith_value_to_Aviation": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "a56a09ed-4ab2-4574-a8ad-d20755cafcfa"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "businessUnitStartsWith",
+                    "value": "Aviation"
+                  }
+                }
+              },
+              "runAfter": {
+                "Set_teamBusinessUnit_variable": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Set_businessUnitStartWith_value_to_Intermodal": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "8cc046c9-fe04-4df3-a7f5-5369c67dfb3b"
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "businessUnitStartsWith",
+                      "value": "Intermodal"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "startsWith": [
+                  "@items('Apply_to_each_team')?['bu.name']",
+                  "Aviation"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "0280acc9-bf07-44bd-908f-fa4f548edbf3"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "List_Activity_type": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e764a168-e6e5-439d-99d5-ed8dd5f42d0e"
+          },
+          "type": "Foreach",
+          "runtimeConfiguration": {
+            "concurrency": {
+              "repetitions": 1
+            }
+          }
+        },
+        "Initialize_BU_filter_variable": {
+          "runAfter": {
+            "Initialize_team_BU_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5313108d-baaf-45d6-951a-524443321e0f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "businessUnitStartsWith",
+                "type": "string",
+                "value": " "
+              }
+            ]
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Initialize_BU_filter_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ff552541-ef4b-4fd3-a3aa-3ca58b74e373"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Debug",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,345 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_an_Email_row_is_added_or_modified": {
+          "metadata": {
+            "operationMetadataId": "ac531b47-81c1-4378-b9ef-f0cbaef3b1bc"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "email",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filterexpression": "_regardingobjectid_value ne null"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "conditions": []
+        }
+      },
+      "actions": {
+        "If_the_Email_is_Regarding_a_Case": {
+          "actions": {
+            "Get_Case_of_Email": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "bd6ac5b7-f7e0-42a0-8d8b-759a953b1f66"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "incidents",
+                  "recordId": "@triggerOutputs()?['body/_regardingobjectid_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "List_Work_Orders_of_Case": {
+              "runAfter": {
+                "Get_Case_of_Email": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c49a61a5-38c2-44d9-ad4a-d1fb11d10d80"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "msdyn_workorders",
+                  "$filter": "_msdyn_servicerequest_value eq @{outputs('Get_Case_of_Email')?['body/incidentid']}",
+                  "$orderby": "createdon asc",
+                  "$top": 2
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "For_each_Work_Order": {
+              "foreach": "@outputs('List_Work_Orders_of_Case')?['body/value']",
+              "actions": {
+                "List_first_WOST_of_Work_Order": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "cdc78e81-ecd6-4091-a8b5-18dbe712f8d7"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "ListRecords",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorderservicetasks",
+                      "$filter": "statecode eq 0",
+                      "$orderby": "createdon asc",
+                      "$top": 1
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Increment_variable": {
+                  "runAfter": {
+                    "If_Index_is_0": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "995a0b2f-0f5c-49ce-92ea-4eb6c4618e01"
+                  },
+                  "type": "IncrementVariable",
+                  "inputs": {
+                    "name": "Work Order Index",
+                    "value": 1
+                  }
+                },
+                "If_Index_is_0": {
+                  "actions": {
+                    "Set_Inspection_Type_1": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "bb64b17e-f4fe-4270-b87b-3103b804c2be"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "Inspection Type 1",
+                        "value": "@items('For_each_Work_Order')?['_msdyn_primaryincidenttype_value']"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "List_first_WOST_of_Work_Order": [
+                      "Succeeded"
+                    ]
+                  },
+                  "else": {
+                    "actions": {
+                      "Set_Inspection_Type_2": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "1ce52b45-3d9b-4163-bcd0-989c1e2ef0f9"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "Inspection Type 2",
+                          "value": "@items('For_each_Work_Order')?['_msdyn_primaryincidenttype_value']"
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "equals": [
+                      "@variables('Work Order Index')",
+                      0
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "3029f215-ec05-46f8-b92d-55033b6d488b"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "List_Work_Orders_of_Case": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "f73e75d5-f110-4c3b-8dbe-c5a867b6c102"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Initialize_Work_Order_Index_variable": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/_regardingobjectid_type']",
+              "incidents"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "54b08d08-aba1-4c1d-942d-bde8c89f96c4"
+          },
+          "type": "If"
+        },
+        "Initialize_Inspection_Type_1_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "b942fb9e-a71d-49dd-9c66-fa5c003ae613"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Inspection Type 1",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_Inspection_Type_2_variable": {
+          "runAfter": {
+            "Initialize_Inspection_Type_1_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "340d3e8f-6dbf-4000-9674-96100b085617"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Inspection Type 2",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_Date_of_Inspection_1_variable": {
+          "runAfter": {
+            "Initialize_Inspection_Type_2_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c8d91856-b99c-48c9-93c4-00e3ac0e1e34"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Date of Inspection 1",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_Date_of_Inspection_2_variable": {
+          "runAfter": {
+            "Initialize_Date_of_Inspection_1_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "38451acc-e43f-466e-931e-7b28e56afa8e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Date of Inspection 2",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_Additional_Inspectors_1_variable": {
+          "runAfter": {
+            "Initialize_Date_of_Inspection_2_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b467c330-31a2-4183-bb9d-6382bebd3a8f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Additional Inspectors 1",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_Additional_Inspectors_2_variable": {
+          "runAfter": {
+            "Initialize_Additional_Inspectors_1_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3357106c-4d7f-44c6-8193-3ce0afd2b93a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Additional Inspectors 2",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_Work_Order_Index_variable": {
+          "runAfter": {
+            "Initialize_Additional_Inspectors_2_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b985518c-40b5-4251-a035-fb71fc999df8"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Work Order Index",
+                "type": "integer",
+                "value": 0
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

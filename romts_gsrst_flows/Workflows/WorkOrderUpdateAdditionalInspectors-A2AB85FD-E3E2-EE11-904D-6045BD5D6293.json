@@ -1,0 +1,111 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "96adbd22-1c6a-4bf6-85fe-f8d31087e78d"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "msdyn_workorder",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filterexpression": "_ts_suggestedinspection_value ne null"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "conditions": []
+        }
+      },
+      "actions": {
+        "List_Users": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "7b77622e-bd83-4f63-b338-461c859d0a0d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "fetchXml": "<fetch>\n  <entity name=\"systemuser\">\n    <attribute name=\"systemuserid\" />\n    <link-entity name=\"ts_ts_suggestedinspection_systemuser\" from=\"systemuserid\" to=\"systemuserid\" intersect=\"true\">\n      <filter>\n        <condition attribute=\"ts_suggestedinspectionid\" operator=\"eq\" value=\"@{triggerOutputs()?['body/_ts_suggestedinspection_value']}\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_Users')?['body/value']",
+          "actions": {
+            "Perform_a_bound_action": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "7a6cf310-e019-45c2-ac03-a09a2709bb5b"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "PerformBoundAction",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "systemusers",
+                  "actionName": "Microsoft.Dynamics.CRM.AddUserToRecordTeam",
+                  "recordId": "@items('Apply_to_each')?['systemuserid']",
+                  "item/Record": "/msdyn_workorders(@{triggerOutputs()?['body/msdyn_workorderid']})",
+                  "item/TeamTemplate/teamtemplateid": "bddf1d45-706d-ec11-8f8e-0022483da5aa"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_Users": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4ef3372b-1182-4b30-a53c-993978e09309"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,553 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsOutlook"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "f3ff6322-6c78-4b1e-b8b8-a4ec81982317"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ovs_finding",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_ncatmanager,ts_ratemanager",
+              "subscriptionRequest/filterexpression": "(_ts_ncatmanager_value ne null) or (_ts_ratemanager_value ne null)"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Initialize_ROM_app_id_variable": {
+          "runAfter": {
+            "IF_NCAT_has_changed": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "458a4c87-fe8f-4ee1-ac89-172573042a57"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "romAppId",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Get_a_row_by_ID": {
+          "runAfter": {
+            "Initialize_ROM_app_id_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "725eafb1-47ae-43ba-aa7a-e0ca5e6f1fe9"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ovs_findings",
+              "recordId": "@triggerOutputs()?['body/ovs_findingid']",
+              "$select": "ovs_findingid"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_ROM_app_id": {
+          "runAfter": {
+            "Get_a_row_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b1c30881-4596-4f24-8924-7e3580119f85"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "appmodules",
+              "$select": "uniquename, appmoduleid",
+              "$filter": "uniquename eq 'ovs_ROM'",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('Get_ROM_app_id')?['body/value']",
+          "actions": {
+            "Set_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "915ce55c-4ef9-4ea0-93a2-8424108f0252"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "romAppId",
+                "value": "@items('Apply_to_each')?['appmoduleid']"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_ROM_app_id": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f57fea09-203f-4979-b9bc-5c91a173ed1b"
+          },
+          "type": "Foreach"
+        },
+        "URL": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d5631f9e-d57b-4797-bcb6-1f8dd69ccaad"
+          },
+          "type": "Compose",
+          "inputs": "@outputs('Get_a_row_by_ID')?['body/@odata.id']"
+        },
+        "Initialize_and_set_finding_URL_variable": {
+          "runAfter": {
+            "URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0289837e-3c12-4350-b2a5-cfda5bd2e03b"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "findingURL",
+                "type": "string",
+                "value": "https://@{uriHost(outputs('URL'))}/main.aspx?appid=@{variables('romAppId')}&amp;pagetype=entityrecord&amp;etn=ovs_finding&amp;id=@{triggerOutputs()?['body/ovs_findingid']}"
+              }
+            ]
+          }
+        },
+        "Get_full_name_of_whoever_last_modified_the_finding_(inspector)": {
+          "runAfter": {
+            "Initialize_and_set_finding_URL_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cf8975ac-2ade-42d1-92a2-b80e3e8e95f2"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@triggerOutputs()?['body/_modifiedby_value']",
+              "$select": "fullname, internalemailaddress"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Condition": {
+          "actions": {
+            "Send_an_email_(V2)_(french)": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "b59bde43-f382-4175-a0ab-49f2bff20729"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_office365_1",
+                  "operationId": "SendEmailV2",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                },
+                "parameters": {
+                  "emailMessage/To": "@variables('managerEmail')",
+                  "emailMessage/Subject": "Constatation @{triggerOutputs()?['body/ovs_finding']} recommandation @{if(equals(variables('valueModified'),'NCAT'),'de l’Outil d’évaluation de la non-conformité','RATE')} rejetée par @{outputs('Get_full_name_of_whoever_last_modified_the_finding_(inspector)')?['body/fullname']}",
+                  "emailMessage/Body": "<p>La recommandation  @{if(equals(variables('valueModified'),'NCAT'),'de l’Outil d’évaluation de la non-conformité','RATE')}<strong> @{triggerOutputs()?['body/ovs_finding']}</strong> a été rejetée par <strong> @{outputs('Get_full_name_of_whoever_last_modified_the_finding_(inspector)')?['body/fullname']}</strong> et a besoin d'être passée en revue.<br>\n<br>\n<a href=\"@{variables('findingURL')}\">Cliquer ici pour évaluer la constatation </a><br>\n</p>\n\n---\n\n<p>The finding <strong> @{triggerOutputs()?['body/ovs_finding']}</strong> @{if(equals(variables('valueModified'),'NCAT'),'NCAT','RATE')} recommendation was rejected by <strong> @{outputs('Get_full_name_of_whoever_last_modified_the_finding_(inspector)')?['body/fullname']}</strong> and needs to be reviewed.<br>\n<br>\n<a href=\"@{variables('findingURL')}\">Click here to review the finding</a><br>\n</p>",
+                  "emailMessage/From": "RomService-ServiceGSR@tc.gc.ca",
+                  "emailMessage/ReplyTo": "@outputs('Get_full_name_of_whoever_last_modified_the_finding_(inspector)')?['body/internalemailaddress']",
+                  "emailMessage/Importance": "Normal"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "IF_valueModified_is_RATE_then_set_email_and_language": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Send_an_email_(V2)_(english)": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "b59bde43-f382-4175-a0ab-49f2bff20729"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_office365_1",
+                    "operationId": "SendEmailV2",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                  },
+                  "parameters": {
+                    "emailMessage/To": "@variables('managerEmail')",
+                    "emailMessage/Subject": "Finding @{triggerOutputs()?['body/ovs_finding']} @{if(equals(variables('valueModified'),'NCAT'),'NCAT','RATE')} recommendation was rejected by @{outputs('Get_full_name_of_whoever_last_modified_the_finding_(inspector)')?['body/fullname']}",
+                    "emailMessage/Body": "<p>The finding <strong> @{triggerOutputs()?['body/ovs_finding']}</strong> @{if(equals(variables('valueModified'),'NCAT'),'NCAT','RATE')} recommendation was rejected by <strong> @{outputs('Get_full_name_of_whoever_last_modified_the_finding_(inspector)')?['body/fullname']}</strong> and needs to be reviewed.<br>\n<br>\n\n<a href=\"@{variables('findingURL')}\">Click here to review the finding</a><br>\n</p>\n\n---\n\n<p>La recommandation @{if(equals(variables('valueModified'),'NCAT'),'de l’Outil d’évaluation de la non-conformité','RATE')}<strong> @{triggerOutputs()?['body/ovs_finding']}</strong> a été rejetée par <strong> @{outputs('Get_full_name_of_whoever_last_modified_the_finding_(inspector)')?['body/fullname']}</strong> et a besoin d'être passée en revue.<br>\n<br>\n<a href=\"@{variables('findingURL')}\">Cliquer ici pour évaluer la constatation </a><br>\n</p>",
+                    "emailMessage/From": "RomService-ServiceGSR@tc.gc.ca",
+                    "emailMessage/ReplyTo": "@outputs('Get_full_name_of_whoever_last_modified_the_finding_(inspector)')?['body/internalemailaddress']",
+                    "emailMessage/Importance": "Normal"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@variables('managerLanguage')",
+              1036
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4c1c4cfd-5c6e-43ec-b354-018a59e705b0"
+          },
+          "type": "If"
+        },
+        "IF_NCAT_has_changed": {
+          "actions": {
+            "Set_valueModified_to_\"NCAT\"": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "8baeee78-c78b-476e-bbbd-74d283120726"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "valueModified",
+                "value": "NCAT"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_valueModified_to_track_whether_RATE_OR_NCAT_has_changed": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Set_valueModified_to_\"RATE\"": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "efba7d97-757d-4461-a489-bce8791b3928"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "valueModified",
+                  "value": "RATE"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/ts_acceptncatrecommendation']",
+              717750001
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "06ce2838-b3b0-41ff-9fcd-785bda01d6b2"
+          },
+          "type": "If"
+        },
+        "Initialize_valueModified_to_track_whether_RATE_OR_NCAT_has_changed": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "e61721dd-e01c-411c-b1f4-081365183511"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "valueModified",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_managerEmail": {
+          "runAfter": {
+            "Get_full_name_of_whoever_last_modified_the_finding_(inspector)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7e862e74-e367-4c32-a1ad-a0327ae932d7"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "managerEmail",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "IF_valueModified_is_RATE_then_set_email_and_language": {
+          "actions": {
+            "Get_RATE_manager_email": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "1ad47a3a-ea9d-4c34-8f11-7e013f7c004f"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "systemusers",
+                  "recordId": "@triggerOutputs()?['body/_ts_ratemanager_value']",
+                  "$select": "internalemailaddress"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Get_RATE_manager_language": {
+              "runAfter": {
+                "Get_RATE_manager_email": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "f46b3365-4d7c-41b5-94d7-159d7262b2fc"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "usersettingscollection",
+                  "recordId": "@triggerOutputs()?['body/_ts_ratemanager_value']",
+                  "$select": "uilanguageid"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Set_managersEmails_to_RATE_manager_email": {
+              "runAfter": {
+                "Get_RATE_manager_language": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5a06a047-3840-4cd0-9011-569d26da46f7"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "managerEmail",
+                "value": "@outputs('Get_RATE_manager_email')?['body/internalemailaddress']"
+              }
+            },
+            "Set_managerLanguage_to_RATE_manager_language": {
+              "runAfter": {
+                "Set_managersEmails_to_RATE_manager_email": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "066ad392-5630-4ad0-b1c0-e1f4bf76e907"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "managerLanguage",
+                "value": "@outputs('Get_RATE_manager_language')?['body/uilanguageid']"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_managerLanguage": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Get_NCAT_manager_email": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "1ad47a3a-ea9d-4c34-8f11-7e013f7c004f"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps_1",
+                    "operationId": "GetItem",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "systemusers",
+                    "recordId": "@triggerOutputs()?['body/_ts_ncatmanager_value']",
+                    "$select": "internalemailaddress"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              },
+              "Get_NCAT_manager_language": {
+                "runAfter": {
+                  "Get_NCAT_manager_email": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "440d233d-c124-497c-98c7-d54d915bd419"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps_1",
+                    "operationId": "GetItem",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "usersettingscollection",
+                    "recordId": "@triggerOutputs()?['body/_ts_ncatmanager_value']",
+                    "$select": "uilanguageid"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              },
+              "Set_managersEmails_to_NCAT_manager_email": {
+                "runAfter": {
+                  "Get_NCAT_manager_language": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "f182b06a-4663-44e0-9fa1-b9b7e61feab6"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "managerEmail",
+                  "value": "@outputs('Get_NCAT_manager_email')?['body/internalemailaddress']"
+                }
+              },
+              "Set_managerLanguage_to_NCAT_manager_language": {
+                "runAfter": {
+                  "Set_managersEmails_to_NCAT_manager_email": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "43a67f23-fc12-4e61-973d-838559895079"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "managerLanguage",
+                  "value": "@outputs('Get_NCAT_manager_language')?['body/uilanguageid']"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@variables('valueModified')",
+              "RATE"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c31c558e-c683-45db-be5d-732426b565fc"
+          },
+          "type": "If"
+        },
+        "Initialize_managerLanguage": {
+          "runAfter": {
+            "Initialize_managerEmail": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0d14ae9d-60c0-4020-a569-3723b7239918"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "managerLanguage",
+                "type": "integer"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

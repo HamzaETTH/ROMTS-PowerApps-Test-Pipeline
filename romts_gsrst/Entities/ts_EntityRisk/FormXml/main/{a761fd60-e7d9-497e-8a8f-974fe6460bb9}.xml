@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{a761fd60-e7d9-497e-8a8f-974fe6460bb9}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{f6045db8-365f-4d5d-971f-9eb098ed0131}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{4a288768-c75f-4cfa-8d8e-bede12173902}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{b5ec9963-a4c3-4e21-9e2d-a422f97a75fd}" visible="false" showlabel="true">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{223bd321-c81b-4823-bd4f-ff20c1bc617f}" visible="false">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2718e76e-e013-4c66-8e49-9514bf8a9242}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
+                        <labels>
+                          <label description="Fiscal Year" languagecode="1033" />
+                          <label description="Année fiscale" languagecode="1036" />
+                        </labels>
+                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false" uniqueid="{79354946-c074-c78b-6718-d94b21c80e1e}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{C2B848E9-8D49-4972-8E80-06A8B98802A1}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a09f6932-c7df-4e65-b947-8a0a7faeea9c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Risk Score" languagecode="1033" />
+                          <label description="Score de risque" languagecode="1036" />
+                        </labels>
+                        <control id="ts_riskscore" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_riskscore" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{56ad6ffe-4834-4a1c-b30b-3dfd5f878bce}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Weighted Risk Score" languagecode="1033" />
+                          <label description="Score de risque pondéré" languagecode="1036" />
+                        </labels>
+                        <control id="ts_weightedriskscore" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_weightedriskscore" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{738363a4-4c15-460a-a623-bd0c54533431}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Calculated Risk Score" languagecode="1033" />
+                          <label description="Score de risque calculé" languagecode="1036" />
+                        </labels>
+                        <control id="ts_calculatedriskscore" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_calculatedriskscore" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f00b75a3-02a1-4efe-924b-11167aec60a7}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Entity Name" languagecode="1033" />
+                          <label description="Nom de l'entité" languagecode="1036" />
+                        </labels>
+                        <control id="ts_entityname" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_entityname" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6ba5c8da-d15e-4771-a47b-3bc77f65c1d3}" locklevel="0" colspan="1" rowspan="1" visible="true">
+                        <labels>
+                          <label description="Prescribed Frequency Override" languagecode="1033" />
+                        </labels>
+                        <control id="ts_prescribedfrequencyoverride" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_prescribedfrequencyoverride" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a86b8578-4290-4004-b2fe-33788bf9507d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Site Class" languagecode="1033" />
+                        </labels>
+                        <control id="ts_siteclass" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_siteclass" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c9a2f216-b3d2-48e7-901f-e8aaa828504e}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Uses Risk Application Activity Type" languagecode="1033" />
+                        </labels>
+                        <control id="ts_usesriskapplicationactivitytype" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="ts_usesriskapplicationactivitytype" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cf246a4c-2a66-4f74-970f-a9d01fd3241b}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Uses Risk Application Operation" languagecode="1033" />
+                        </labels>
+                        <control id="ts_usesriskapplicationoperation" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="ts_usesriskapplicationoperation" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c1ce9073-e0f1-4410-bda8-234c1450520b}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Risk Application Operation Type" languagecode="1033" />
+                        </labels>
+                        <control id="ts_riskapplicationoperationtype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_riskapplicationoperationtype" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{76fa396b-ebcd-4cd1-9f54-32a05237ab5a}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Entity ID" languagecode="1033" />
+                          <label description="ID de l'entité" languagecode="1036" />
+                        </labels>
+                        <control id="ts_entityid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_entityid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{746e163e-d7a7-45ca-92f3-050b71d27479}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Uses Risk Application Operation Type" languagecode="1033" />
+                        </labels>
+                        <control id="ts_usesriskapplicationoperationtype" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="ts_usesriskapplicationoperationtype" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2d5f45ac-6293-417d-b21c-f2609c9ac535}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Uses Risk Application Program Area" languagecode="1033" />
+                        </labels>
+                        <control id="ts_usesriskapplicationprogramarea" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="ts_usesriskapplicationprogramarea" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{880fbd0f-e4d1-4412-a3ba-7615475aa6de}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Uses Risk Application Site" languagecode="1033" />
+                        </labels>
+                        <control id="ts_usesriskapplicationsite" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="ts_usesriskapplicationsite" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{25d27b3b-8938-4a0a-97d8-605fc6f9e85c}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Uses Risk Application Stakeholder" languagecode="1033" />
+                        </labels>
+                        <control id="ts_usesriskapplicationstakeholder" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="ts_usesriskapplicationstakeholder" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="Operation_Activity_Risk_Scores_ActivityType" id="7df5559f-8f4a-4c05-8195-33f87527243d" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="true">
+                  <labels>
+                    <label description="Operation Activity Risk Scores" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{68d720a8-ad50-471c-ad97-56c777922881}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1748454910494" languagecode="1033" />
+                          <label description="Scores de risque des activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="ActivityType" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_operationactivityriskscores_ActivityTypeEntityRisk_ts_entityrisk</RelationshipName>
+                            <TargetEntityType>ts_operationactivityriskscores</TargetEntityType>
+                            <ViewId>{2D34F592-953C-F011-B4CC-002248B2E1CA}</ViewId>
+                            <ViewIds>{6B480ABC-BB22-4D39-A755-3C7123E7093A},{2D34F592-953C-F011-B4CC-002248B2E1CA}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{62c00c4c-0964-4de2-9e13-75fbc4639591}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1748454933894" languagecode="1033" />
+                          <label description="Scores de risque des activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Operation" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_operationactivityriskscores_OperationEntityRisk_ts_entityrisk</RelationshipName>
+                            <TargetEntityType>ts_operationactivityriskscores</TargetEntityType>
+                            <ViewId>{274425AD-953C-F011-B4CC-6045BD5E8D7E}</ViewId>
+                            <ViewIds>{6B480ABC-BB22-4D39-A755-3C7123E7093A},{274425AD-953C-F011-B4CC-6045BD5E8D7E}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{3d986782-708c-4ba4-9fef-e4483ba196c9}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1748454951790" languagecode="1033" />
+                          <label description="Scores de risque des activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="OperationType" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_operationactivityriskscores_OperationTypeEntityRisk_ts_entityrisk</RelationshipName>
+                            <TargetEntityType>ts_operationactivityriskscores</TargetEntityType>
+                            <ViewId>{D61B2CD1-953C-F011-B4CC-6045BD5E8D7E}</ViewId>
+                            <ViewIds>{6B480ABC-BB22-4D39-A755-3C7123E7093A},{D61B2CD1-953C-F011-B4CC-6045BD5E8D7E}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{dbdb55d1-7ab0-4cf1-9ff5-c78aff15e8d3}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1748454962519" languagecode="1033" />
+                          <label description="Scores de risque des activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="ProgramArea" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_operationactivityriskscores_ProgramAreaEntityRisk_ts_entityrisk</RelationshipName>
+                            <TargetEntityType>ts_operationactivityriskscores</TargetEntityType>
+                            <ViewId>{FDD02D71-953C-F011-B4CC-6045BD5E8D7E}</ViewId>
+                            <ViewIds>{6B480ABC-BB22-4D39-A755-3C7123E7093A},{FDD02D71-953C-F011-B4CC-6045BD5E8D7E}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{4184d821-a7ef-4504-9037-47c100c4389c}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1748455210208" languagecode="1033" />
+                          <label description="Scores de risque des activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Site" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_operationactivityriskscores_SiteEntityRisk_ts_entityrisk</RelationshipName>
+                            <TargetEntityType>ts_operationactivityriskscores</TargetEntityType>
+                            <ViewId>{AF03BB4E-933C-F011-B4CC-6045BD5E8D7E}</ViewId>
+                            <ViewIds>{6B480ABC-BB22-4D39-A755-3C7123E7093A},{AF03BB4E-933C-F011-B4CC-6045BD5E8D7E}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{10d8f5b8-a1e8-471b-a57b-e81b1125a6e5}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1748455188617" languagecode="1033" />
+                          <label description="Scores de risque des activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Stakeholder" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_operationactivityriskscores_StakeholderEntityRisk_ts_entityrisk</RelationshipName>
+                            <TargetEntityType>ts_operationactivityriskscores</TargetEntityType>
+                            <ViewId>{1FB3FCC2-933C-F011-B4CC-002248B2E1CA}</ViewId>
+                            <ViewIds>{6B480ABC-BB22-4D39-A755-3C7123E7093A},{1FB3FCC2-933C-F011-B4CC-002248B2E1CA}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{c0257f4b-d348-4853-a611-319668c92a1d}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{ee3033cb-7a73-4f0a-8aad-be402635787b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{7c22a00a-71e9-4662-b52d-2f4474146ce0}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{f8b4297c-dba4-48f9-a12f-939c12d9239c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9cedd8fd-5cee-45ae-8e95-c3c82c85c318}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+            <cell id="{679f6aac-ccc2-45b0-a98b-3dcef8a06f1e}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Status" languagecode="1033" />
+                <label description="Statut" languagecode="1036" />
+              </labels>
+              <control id="header_statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{a10be082-e895-4c7c-986c-251dd2538ce8}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{f1d86ea6-73c2-4431-8c8d-416d99bc278c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{6a901297-473a-430b-9a54-078b8b9c8c8e}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{bb4dcd4c-5a58-4e76-8764-dc5bfb924c30}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <formLibraries>
+        <Library name="ts_/js/EntityRisk.js" libraryUniqueId="{ba6ddf4c-03e3-41bb-bdc0-c8def1e5f670}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.EntityRisk.onLoad" libraryName="ts_/js/EntityRisk.js" handlerUniqueId="{5c131190-53dc-4462-bb6f-f3f6c5be7c3d}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.EntityRisk.showOperationActivityRiskScore" libraryName="ts_/js/EntityRisk.js" handlerUniqueId="{e9383934-1a84-4b2f-ae35-deda9b1c65d5}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.EntityRisk.onSave" libraryName="ts_/js/EntityRisk.js" handlerUniqueId="{80ffa413-0392-4a0f-8967-5996e2758f74}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_fiscalyear">
+          <Handlers>
+            <Handler functionName="ROM.EntityRisk.fiscalYearOnChange" libraryName="ts_/js/EntityRisk.js" handlerUniqueId="{ddc4095d-d538-4634-8e51-3000f3743c1b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_riskscore">
+          <Handlers>
+            <Handler functionName="ROM.EntityRisk.riskScoreOnChange" libraryName="ts_/js/EntityRisk.js" handlerUniqueId="{570b93ad-0837-4aa4-b2ba-6874cf0f548c}" enabled="false" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

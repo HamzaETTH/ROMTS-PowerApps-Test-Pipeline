@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{4e0d2f7c-f88d-4cac-8675-dd818999e051}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_questionresponseid">
+          <cell name="ts_name" width="126" />
+          <cell name="ts_questionnumber" width="140" />
+          <cell name="ts_questiontextenglish" width="300" />
+          <cell name="ts_findingtype" width="116" />
+          <cell name="ts_msdyn_workorderservicetask" width="183" />
+          <cell name="ts_workorder" width="107" />
+          <cell name="ts_questionnaire" width="119" />
+          <cell name="ts_response" width="100" />
+          <cell name="ts_details" width="100" />
+          <cell name="createdon" width="105" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_questionresponse">
+          <attribute name="ts_questionresponseid" />
+          <attribute name="ts_name" />
+          <attribute name="ts_findingtype" />
+          <attribute name="ts_questionnaire" />
+          <attribute name="ts_msdyn_workorderservicetask" />
+          <attribute name="ts_questiontextenglish" />
+          <attribute name="ts_response" />
+          <attribute name="ts_details" />
+          <attribute name="createdon" />
+          <order attribute="createdon" descending="true" />
+          <attribute name="ts_questionnumber" />
+          <attribute name="ts_workorder" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Question Responses" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,162 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_Team_Planning_Data_is_Deleted": {
+          "metadata": {
+            "operationMetadataId": "8091e3dc-198b-412f-8383-335fe8d774b9"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 2,
+              "subscriptionRequest/entityname": "ts_teamplanningdata",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "List_all_Planning_Data_with_null_Team_Planning_Data": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "40b93eee-19e7-4d02-9e95-dbadbf100a0e"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_planningdatas",
+              "fetchXml": "<fetch>\n  <entity name=\"ts_planningdata\">\n    <filter>\n      <condition attribute=\"ts_teamplanningdata\" operator=\"null\" />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each_Planning_Data": {
+          "foreach": "@outputs('List_all_Planning_Data_with_null_Team_Planning_Data')?['body/value']",
+          "actions": {
+            "Delete_the_Planning_Data": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "47b20a92-013d-4053-95c0-5b0b379173f9"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "DeleteRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_planningdatas",
+                  "recordId": "@items('Apply_to_each_Planning_Data')?['ts_planningdataid']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_all_Planning_Data_with_null_Team_Planning_Data": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "660396b2-3c98-4b1e-a0f7-96ab13860e7b"
+          },
+          "type": "Foreach"
+        },
+        "List_Orphan_Team_Planning_Inspector_Hours": {
+          "runAfter": {
+            "Apply_to_each_Planning_Data": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "25bbb181-f94a-4fa6-a97b-3c35475f41bf"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_teamplanninginspectorhourses",
+              "fetchXml": "<fetch>\n  <entity name=\"ts_teamplanninginspectorhours\">\n    <filter>\n      <condition attribute=\"ts_teamplanningdata\" operator=\"null\" />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each_Inspector_Hours": {
+          "foreach": "@outputs('List_Orphan_Team_Planning_Inspector_Hours')?['body/value']",
+          "actions": {
+            "Delete_a_row": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "e9d12cb2-12c1-40bd-aade-4359b13d0967"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "DeleteRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_teamplanninginspectorhourses",
+                  "recordId": "@items('Apply_to_each_Inspector_Hours')?['ts_teamplanninginspectorhoursid']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_Orphan_Team_Planning_Inspector_Hours": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "886aa530-d1b7-4f45-aa03-131d0a7f216c"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{dad96780-df57-4065-be71-be696eebd997}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{4425a7c2-1d3e-4bb7-9586-e73ae1a863d4}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Résumé" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{b0f6c7ca-c184-48f6-836d-8c9eaff8b65c}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Résumé" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{178d189c-3d90-4c31-9d9e-627352606a9a}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ovs_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{74e7d0f7-e89e-488e-997f-1d7c0f89e193}" locklevel="0">
+                        <labels>
+                          <label description="Operation Type Name (English)" languagecode="1033" />
+                          <label description="Nom du type d'opération (anglais)" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_operationtypenameenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ovs_operationtypenameenglish" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ee9a2a5e-4623-4711-878a-42b3f4b4121b}" locklevel="0">
+                        <labels>
+                          <label description="Operation Type Name (French)" languagecode="1033" />
+                          <label description="Nom du type d'opération (français)" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_operationtypenamefrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ovs_operationtypenamefrench" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3b5a075a-1d0b-4578-b1a0-645970460060}" locklevel="0">
+                        <labels>
+                          <label description="Regulated" languagecode="1033" />
+                          <label description="Règlementé" languagecode="1036" />
+                        </labels>
+                        <control id="ts_regulated" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_regulated" disabled="false" uniqueid="{54a35da4-5d09-4250-b2f8-64c0e1f0c66f}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1ee0254e-e6f8-4b76-ae5d-b846c045ceac}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="e7d41e35-fdff-4b8a-8838-872b270edcf9" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Operations" languagecode="1033" />
+            <label description="Opérations" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" id="7f2278d8-6f43-4ab7-a534-11e688132825" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Operations" languagecode="1033" />
+                    <label description="Opérations" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{f791b24d-cb26-4fb8-9b3b-683ab48c8434}" rowspan="4" colspan="1" auto="true" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1660920383234" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>12</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ovs_operation</TargetEntityType>
+                            <ViewId>{CCA2CAE4-216E-46B5-934E-D9112870F36F}</ViewId>
+                            <ViewIds>{CCA2CAE4-216E-46B5-934E-D9112870F36F}</ViewIds>
+                            <RelationshipName>ovs_ovs_operationtype_ovs_operation</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_Risk" id="84a5dd72-42eb-4687-a03b-7b7f956254d6" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Risk" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_3_section_1" id="9fdbd44a-0052-4fec-813a-19d75c1ea770" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Risk Criteria" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{f1ca4d1e-1794-4096-8e83-8066894710a2}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{d6c2cbc9-4923-4142-b7f4-32c1ba6c853b}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="Operations" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_Risk_Criteria" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_riskcriteria</TargetEntityType>
+                            <ViewId>{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}</ViewId>
+                            <ViewIds>{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}</ViewIds>
+                            <RelationshipName>ts_riskcriteria_ovs_operationtype</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{0062a0d1-9ac6-422d-b68f-f979b020250a}" rowspan="4" colspan="1" auto="false">
+                        <labels>
+                          <label description="Operations" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_DiscretionaryFactorGroupings" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_discretionaryfactorgrouping</TargetEntityType>
+                            <ViewId>{27CC3812-53E7-40A4-9F53-721D53ED5B59}</ViewId>
+                            <ViewIds>{27CC3812-53E7-40A4-9F53-721D53ED5B59}</ViewIds>
+                            <RelationshipName>ts_discretionarygrouping_operationtype</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{e6e3b4d1-0cfa-452d-bf58-f1d27bf4f1c3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Risk Application" languagecode="1033" />
+                        </labels>
+                        <control id="ts_riskapplication" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="ts_riskapplication" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{2d22c3bd-0369-45f1-be97-bd7321a4cb47}" rowspan="4" colspan="1" auto="false" showlabel="true">
+                        <labels>
+                          <label description="Entity Risk" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_EntityRisk" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_entityrisk</TargetEntityType>
+                            <ViewId>{F852F2DE-C6D6-49C0-B209-B0F8A9CDCFE5}</ViewId>
+                            <ViewIds>{F852F2DE-C6D6-49C0-B209-B0F8A9CDCFE5}</ViewIds>
+                            <RelationshipName>ts_EntityRisk_ovs_operationtype_ovs_operationtype</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{c498a9f6-c213-47ff-8ea2-7edb8f735a44}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{948c6ad4-27a0-46e1-8781-61db3231e7c3}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{711bc0b0-f8fb-4092-b44b-0d6c71811b78}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d5ae35c2-f75f-43b9-9638-a06aef76aba4}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{310ad6e0-5f44-4a5c-9000-59a46f42b6da}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{8b74faae-aff3-40fa-abf6-bd2fb4edee02}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{8ff3aaa1-6a92-498f-948b-218bca6defd7}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{fed17854-d920-4221-a565-3f30ad227568}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <controlDescriptions>
+        <controlDescription forControl="{54a35da4-5d09-4250-b2f8-64c0e1f0c66f}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_regulated</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_regulated</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_regulated</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_regulated</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <Navigation>
+        <NavBar>
+          <NavBarByRelationshipItem RelationshipName="ovs_ovs_operationtype_ovs_operation" Sequence="10000" Area="Info" Id="nav_ovs_ovs_operationtype_ovs_operation" Show="false">
+            <Titles>
+              <Title LCID="1033" Text="Operations" />
+            </Titles>
+          </NavBarByRelationshipItem>
+        </NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <formLibraries>
+        <Library name="ts_/js/OperationType.js" libraryUniqueId="{aaee469b-bca2-45d3-9adb-757a77ae904e}" />
+        <Library name="ts_/js/Common.js" libraryUniqueId="{7ec3dba8-09d2-4af9-9328-23a90b218e53}" />
+      </formLibraries>
+      <events>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.OperationType.onSave" libraryName="ts_/js/OperationType.js" handlerUniqueId="{35744b96-93fb-45a6-a60b-88807970ddf1}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.OperationType.onLoad" libraryName="ts_/js/OperationType.js" handlerUniqueId="{dbb89bb5-064b-4cc3-913b-3dd461aa08f2}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+      <LocalizedName description="Information" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+      <Description description="Formulaire pour cette entité." languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

@@ -1,0 +1,180 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "43c3583e-5549-4c5d-a780-1263604c40a0"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_all_Operation_Activities": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "2e7c01e1-a647-4890-b7f1-904dca3e26ce"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_operationactivities"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          },
+          "runtimeConfiguration": {
+            "paginationPolicy": {
+              "minimumItemCount": 100000
+            }
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_all_Operation_Activities')?['body/value']",
+          "actions": {
+            "Get_Operation_of_Operation_Activity": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d6d0b521-c4b2-4519-8457-3e8240f2eeb0"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ovs_operations",
+                  "recordId": "@items('Apply_to_each')?['_ts_operation_value']"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Get_Incident_Type_of_Operation_Activity": {
+              "runAfter": {
+                "Get_Operation_of_Operation_Activity": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c0097dd2-6002-46e2-8786-19869f0f8189"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "msdyn_incidenttypes",
+                  "recordId": "@items('Apply_to_each')?['_ts_activity_value']"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "If_Name_is_\"Operation_Activity\"": {
+              "actions": {
+                "Update_Name_fields_of_Operation_Activity": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "6b0773f4-8bc9-4e2d-8e40-fb7a667113da"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_operationactivities",
+                      "recordId": "@items('Apply_to_each')?['ts_operationactivityid']",
+                      "item/ts_englishname": "@{outputs('Get_Operation_of_Operation_Activity')?['body/ovs_name']} | @{outputs('Get_Incident_Type_of_Operation_Activity')?['body/ovs_incidenttypenameenglish']}",
+                      "item/ts_frenchname": "@{outputs('Get_Operation_of_Operation_Activity')?['body/ovs_name']} | @{outputs('Get_Incident_Type_of_Operation_Activity')?['body/ovs_incidenttypenamefrench']}"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_Incident_Type_of_Operation_Activity": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each')?['ts_name']",
+                  "Operation Activity"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "cbb32ffe-b9f1-4d7d-b1ce-219414f02d2f"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "List_all_Operation_Activities": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cd2daf9f-31c6-4fdf-a85e-9f13f654617c"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

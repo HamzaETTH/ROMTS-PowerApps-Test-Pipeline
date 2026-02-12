@@ -1,0 +1,739 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added_-_Entity_Risk": {
+          "metadata": {
+            "operationMetadataId": "74f6b56d-6557-4971-9d4b-a5eb44e23935"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ts_entityrisk",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "conditions": [
+            {
+              "expression": "@equals(triggerOutputs()?['body/ts_runpowerautomateflow'], true)"
+            }
+          ]
+        }
+      },
+      "actions": {
+        "Switch_-_Entity_Name": {
+          "runAfter": {
+            "Initialize_variable_-_Current_Operation_Activity_Risk_Score": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case_-_Activity_Type": {
+              "case": 741130005,
+              "actions": {
+                "Set_variable_-_Selected_Operation_Activity_Lookup_-_Activity_Type": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "39ac9a7b-5666-40b7-bf2d-6ffa5299d928"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Selected Operation Activity Lookup",
+                    "value": "_ts_activity_value"
+                  }
+                }
+              }
+            },
+            "Case_-_Operation": {
+              "case": 741130001,
+              "actions": {
+                "Set_variable_-_Selected_Operation_Activity_Lookup_-_Operation": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "6241d904-0292-4bcc-afb5-4368c45e74d9"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Selected Operation Activity Lookup",
+                    "value": "_ts_operation_value"
+                  }
+                }
+              }
+            },
+            "Case_-_Operation_Type": {
+              "case": 741130002,
+              "actions": {
+                "Set_variable_-_Selected_Operation_Activity_Lookup_-_Operation_Type": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "ca5bd839-8bae-44d4-acf1-634559fdab4a"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Selected Operation Activity Lookup",
+                    "value": "_ts_operationtype_value"
+                  }
+                }
+              }
+            },
+            "Case_-_Program_Area": {
+              "case": 741130000,
+              "actions": {
+                "Set_variable_-_Selected_Operation_Activity_Lookup_-_Program_Area": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "204ecb23-4ab4-4f92-a012-ec1543c48b30"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Selected Operation Activity Lookup",
+                    "value": "_ts_programarea_value"
+                  }
+                }
+              }
+            },
+            "Case_-_Site": {
+              "case": 741130003,
+              "actions": {
+                "Set_variable_-_Selected_Operation_Activity_Lookup_-_Site": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "2a7a0fba-d157-4145-8447-6c01c0c5956a"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Selected Operation Activity Lookup",
+                    "value": "_ts_site_value"
+                  }
+                }
+              }
+            },
+            "Case_-_Stakeholder": {
+              "case": 741130004,
+              "actions": {
+                "Set_variable_-_Selected_Operation_Activity_Lookup_-_Stakeholder": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "723bc56b-8373-4714-9863-8da5791b8a3d"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Selected Operation Activity Lookup",
+                    "value": "_ts_stakeholder_value"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {
+              "Terminate_-_Failed_-_Entity_Name_-_ts_entityname_was_not_found": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "619c4071-48ed-4118-ad46-de056140b108"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Failed",
+                  "runError": {
+                    "code": "404",
+                    "message": "Entity Name - ts_entityname was not found."
+                  }
+                }
+              }
+            }
+          },
+          "expression": "@triggerOutputs()?['body/ts_entityname']",
+          "metadata": {
+            "operationMetadataId": "b321e2ff-5b8b-4fe6-9cc1-4fe6ee3d49a7"
+          },
+          "type": "Switch"
+        },
+        "Initialize_variable_-_Operation_Activity_Lookup_Query": {
+          "runAfter": {
+            "Initialize_variable_-_Selected_Operation_Activity_Lookup": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ee9a791d-34e8-47f5-a43c-057ba6a602b3"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Operation Activity Lookup Query",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Selected_Operation_Activity_Lookup": {
+          "runAfter": {
+            "Update_a_row_-_Entity_Risk": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a7c639d5-8403-4561-82f3-a907a289a780"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Selected Operation Activity Lookup",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Set_variable_-_Operation_Activity_Lookup_Query": {
+          "runAfter": {
+            "Switch_-_Entity_Name": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e5d85401-452c-4a4d-8ea9-5624538db664"
+          },
+          "type": "SetVariable",
+          "inputs": {
+            "name": "Operation Activity Lookup Query",
+            "value": "ts_operationalstatus eq 717750000 and @{variables('Selected Operation Activity Lookup')} eq @{triggerOutputs()?['body/ts_entityid']}"
+          }
+        },
+        "List_rows_-_Operation_Activity": {
+          "runAfter": {
+            "Set_variable_-_Operation_Activity_Lookup_Query": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c33de8f0-87aa-45bb-a97b-d1f4281934a1"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_operationactivities",
+              "$select": "ts_operationactivityid,ts_name",
+              "$filter": "@variables('Operation Activity Lookup Query')"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "This is configured so that we can retrieve 5000 or more records.",
+          "runtimeConfiguration": {
+            "paginationPolicy": {
+              "minimumItemCount": 100000
+            }
+          }
+        },
+        "Apply_to_each_-_Operation_Activity": {
+          "foreach": "@outputs('List_rows_-_Operation_Activity')?['body/value']",
+          "actions": {
+            "List_rows_-_Operation_Activity_Risk_Scores": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "3d6838d5-b1bd-4bb8-853a-49d7bdfb09e4"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_operationactivityriskscoreses",
+                  "fetchXml": "<fetch>\n  <entity name=\"ts_operationactivityriskscores\">\n    <attribute name=\"ts_operationactivityriskscoresid\" />\n    <filter>\n      <condition attribute=\"ts_operationactivity\" operator=\"eq\" value=\"@{items('Apply_to_each_-_Operation_Activity')?['ts_operationactivityid']}\" />\n      <condition attribute=\"ts_fiscalyear\" operator=\"eq\" value=\"@{triggerOutputs()?['body/_ts_fiscalyear_value']}\" />\n    </filter>\n  </entity>\n</fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runtimeConfiguration": {
+                "paginationPolicy": {
+                  "minimumItemCount": 100000
+                }
+              }
+            },
+            "Condition_-_Do_we_have_any_Operation_Activity_Risk_Scores": {
+              "actions": {
+                "Switch_-_Entity_Name_-_Yes": {
+                  "runAfter": {
+                    "Apply_to_each_-_Operation_Activity_Risk_Score": [
+                      "Succeeded"
+                    ]
+                  },
+                  "cases": {
+                    "Case_-_Activity_Type": {
+                      "case": 741130005,
+                      "actions": {
+                        "Update_a_row_-_Activity_Type": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "9e7e7193-c2b2-4b4b-89b7-82cfdeb07778"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "UpdateOnlyRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ts_operationactivityriskscoreses",
+                              "recordId": "@variables('Current Operation Activity Risk Score')",
+                              "item/ts_ActivityTypeEntityRisk@odata.bind": "/ts_entityrisks(@{triggerOutputs()?['body/ts_entityriskid']})"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      }
+                    },
+                    "Case_-_Operation": {
+                      "case": 741130001,
+                      "actions": {
+                        "Update_a_row_-_Operation": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "ac0b6525-92ac-471a-851b-7cb70e53749e"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "UpdateOnlyRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ts_operationactivityriskscoreses",
+                              "recordId": "@variables('Current Operation Activity Risk Score')",
+                              "item/ts_OperationEntityRisk@odata.bind": "/ts_entityrisks(@{triggerOutputs()?['body/ts_entityriskid']})"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      }
+                    },
+                    "Case_-_Operation_Type": {
+                      "case": 741130002,
+                      "actions": {
+                        "Update_a_row_-_Operation_Type": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "732773b9-b719-43d8-b244-8729a8cc9044"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "UpdateOnlyRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ts_operationactivityriskscoreses",
+                              "recordId": "@variables('Current Operation Activity Risk Score')",
+                              "item/ts_OperationTypeEntityRisk@odata.bind": "/ts_entityrisks(@{triggerOutputs()?['body/ts_entityriskid']})"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      }
+                    },
+                    "Case_-_Program_Area": {
+                      "case": 741130000,
+                      "actions": {
+                        "Update_a_row_-_Program_Area": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "78b6509a-4da4-4742-a7a7-db06f245f688"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "UpdateOnlyRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ts_operationactivityriskscoreses",
+                              "recordId": "@variables('Current Operation Activity Risk Score')",
+                              "item/ts_ProgramAreaEntityRisk@odata.bind": "/ts_entityrisks(@{triggerOutputs()?['body/ts_entityriskid']})"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      }
+                    },
+                    "Case_-_Site": {
+                      "case": 741130003,
+                      "actions": {
+                        "Update_a_row_-_Site_Risk": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "91eec22b-72ac-48c1-a700-c9dfc1022d47"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "UpdateOnlyRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ts_operationactivityriskscoreses",
+                              "recordId": "@variables('Current Operation Activity Risk Score')",
+                              "item/ts_SiteEntityRisk@odata.bind": "/ts_entityrisks(@{triggerOutputs()?['body/ts_entityriskid']})"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      }
+                    },
+                    "Case_-_Stakeholder": {
+                      "case": 741130004,
+                      "actions": {
+                        "Update_a_row_-_Stakeholder": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "8f65c101-a99a-4c27-9395-e312ab4f50e2"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "UpdateOnlyRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ts_operationactivityriskscoreses",
+                              "recordId": "@variables('Current Operation Activity Risk Score')",
+                              "item/ts_StakeholderEntityRisk@odata.bind": "/ts_entityrisks(@{triggerOutputs()?['body/ts_entityriskid']})"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "default": {
+                    "actions": {}
+                  },
+                  "expression": "@triggerOutputs()?['body/ts_entityname']",
+                  "metadata": {
+                    "operationMetadataId": "31d69de9-d2db-4300-8b55-2598cdf6581a"
+                  },
+                  "type": "Switch"
+                },
+                "Apply_to_each_-_Operation_Activity_Risk_Score": {
+                  "foreach": "@outputs('List_rows_-_Operation_Activity_Risk_Scores')?['body/value']",
+                  "actions": {
+                    "Set_variable": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "39bfebd6-bf3e-475b-9107-0bdba7ac8bcb"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "Current Operation Activity Risk Score",
+                        "value": "@items('Apply_to_each_-_Operation_Activity_Risk_Score')?['ts_operationactivityriskscoresid']"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "a7966a49-42df-416e-b71c-a67f1d3bdc96"
+                  },
+                  "type": "Foreach"
+                }
+              },
+              "runAfter": {
+                "List_rows_-_Operation_Activity_Risk_Scores": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Switch_-_Entity_Name_-_No": {
+                    "runAfter": {},
+                    "cases": {
+                      "Case_-_Activity_Type": {
+                        "case": 741130005,
+                        "actions": {
+                          "Add_a_new_row_-_Activity_Type": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "33022359-3754-4e12-9e08-a19edfa45af3"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps_1",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ts_operationactivityriskscoreses",
+                                "item/ts_FiscalYear@odata.bind": "/tc_tcfiscalyears(@{triggerOutputs()?['body/_ts_fiscalyear_value']})",
+                                "item/ts_name": "@items('Apply_to_each_-_Operation_Activity')?['ts_name']",
+                                "item/ts_OperationActivity@odata.bind": "/ts_operationactivities(@{items('Apply_to_each_-_Operation_Activity')?['ts_operationactivityid']})",
+                                "item/ts_ActivityTypeEntityRisk@odata.bind": "/ts_entityrisks(@{triggerOutputs()?['body/ts_entityriskid']})",
+                                "item/ts_riskapplication": false
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          }
+                        }
+                      },
+                      "Case_-_Operation": {
+                        "case": 741130001,
+                        "actions": {
+                          "Add_a_new_row_-_Operation": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "f73bdb76-8621-4546-ba6d-6415fbf660c9"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps_1",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ts_operationactivityriskscoreses",
+                                "item/ts_FiscalYear@odata.bind": "/tc_tcfiscalyears(@{triggerOutputs()?['body/_ts_fiscalyear_value']})",
+                                "item/ts_name": "@items('Apply_to_each_-_Operation_Activity')?['ts_name']",
+                                "item/ts_OperationActivity@odata.bind": "/ts_operationactivities(@{items('Apply_to_each_-_Operation_Activity')?['ts_operationactivityid']})",
+                                "item/ts_OperationEntityRisk@odata.bind": "/ts_entityrisks(@{triggerOutputs()?['body/ts_entityriskid']})",
+                                "item/ts_riskapplication": false
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          }
+                        }
+                      },
+                      "Case_-_Operation_Type": {
+                        "case": 741130002,
+                        "actions": {
+                          "Add_a_new_row_-_Operation_Type": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "ebb901f1-3e54-4cbd-83ee-7f83791955bd"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps_1",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ts_operationactivityriskscoreses",
+                                "item/ts_FiscalYear@odata.bind": "/tc_tcfiscalyears(@{triggerOutputs()?['body/_ts_fiscalyear_value']})",
+                                "item/ts_name": "@items('Apply_to_each_-_Operation_Activity')?['ts_name']",
+                                "item/ts_OperationActivity@odata.bind": "/ts_operationactivities(@{items('Apply_to_each_-_Operation_Activity')?['ts_operationactivityid']})",
+                                "item/ts_OperationTypeEntityRisk@odata.bind": "/ts_entityrisks(@{triggerOutputs()?['body/ts_entityriskid']})",
+                                "item/ts_riskapplication": false
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          }
+                        }
+                      },
+                      "Case_-_Program_Area": {
+                        "case": 741130000,
+                        "actions": {
+                          "Add_a_new_row_-_Program_Area": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "081aac93-87ef-438a-a20f-938f7026b5b2"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps_1",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ts_operationactivityriskscoreses",
+                                "item/ts_FiscalYear@odata.bind": "/tc_tcfiscalyears(@{triggerOutputs()?['body/_ts_fiscalyear_value']})",
+                                "item/ts_name": "@items('Apply_to_each_-_Operation_Activity')?['ts_name']",
+                                "item/ts_OperationActivity@odata.bind": "/ts_operationactivities(@{items('Apply_to_each_-_Operation_Activity')?['ts_operationactivityid']})",
+                                "item/ts_ProgramAreaEntityRisk@odata.bind": "/ts_entityrisks(@{triggerOutputs()?['body/ts_entityriskid']})",
+                                "item/ts_riskapplication": false
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          }
+                        }
+                      },
+                      "Case_-_Site": {
+                        "case": 741130003,
+                        "actions": {
+                          "Add_a_new_row_-_Site": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "40f9c473-628a-4637-8862-c69ba10fb0ba"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps_1",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ts_operationactivityriskscoreses",
+                                "item/ts_FiscalYear@odata.bind": "/tc_tcfiscalyears(@{triggerOutputs()?['body/_ts_fiscalyear_value']})",
+                                "item/ts_name": "@items('Apply_to_each_-_Operation_Activity')?['ts_name']",
+                                "item/ts_OperationActivity@odata.bind": "/ts_operationactivities(@{items('Apply_to_each_-_Operation_Activity')?['ts_operationactivityid']})",
+                                "item/ts_SiteEntityRisk@odata.bind": "/ts_entityrisks(@{triggerOutputs()?['body/ts_entityriskid']})",
+                                "item/ts_riskapplication": false
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          }
+                        }
+                      },
+                      "Case_-_Stakeholder": {
+                        "case": 741130004,
+                        "actions": {
+                          "Add_a_new_row_-_Stakeholder": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "a98afd25-bbe8-48ec-bae3-238e3c5295cd"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps_1",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ts_operationactivityriskscoreses",
+                                "item/ts_FiscalYear@odata.bind": "/tc_tcfiscalyears(@{triggerOutputs()?['body/_ts_fiscalyear_value']})",
+                                "item/ts_name": "@items('Apply_to_each_-_Operation_Activity')?['ts_name']",
+                                "item/ts_OperationActivity@odata.bind": "/ts_operationactivities(@{items('Apply_to_each_-_Operation_Activity')?['ts_operationactivityid']})",
+                                "item/ts_StakeholderEntityRisk@odata.bind": "/ts_entityrisks(@{triggerOutputs()?['body/ts_entityriskid']})",
+                                "item/ts_riskapplication": false
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "default": {
+                      "actions": {}
+                    },
+                    "expression": "@triggerOutputs()?['body/ts_entityname']",
+                    "metadata": {
+                      "operationMetadataId": "9005cc87-cf02-43a8-b5e9-a99d51df8e18"
+                    },
+                    "type": "Switch"
+                  }
+                }
+              },
+              "expression": {
+                "greater": [
+                  "@length(outputs('List_rows_-_Operation_Activity_Risk_Scores')?['body/value'])",
+                  0
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5ffacd55-3dd9-4598-b0f5-949dd9aa0585"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "List_rows_-_Operation_Activity": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b0e08a50-a785-46d1-ac44-8394e84f3693"
+          },
+          "type": "Foreach"
+        },
+        "Update_a_row_-_Entity_Risk": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "94af3367-92ea-4e3c-bf74-22da0d6a2286"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "UpdateOnlyRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_entityrisks",
+              "recordId": "@triggerOutputs()?['body/ts_entityriskid']",
+              "item/ts_runpowerautomateflow": false
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_variable_-_Current_Operation_Activity_Risk_Score": {
+          "runAfter": {
+            "Initialize_variable_-_Operation_Activity_Lookup_Query": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4fdfdf42-b943-41da-a9a6-c6dc2467fac7"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Current Operation Activity Risk Score",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

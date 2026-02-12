@@ -1,0 +1,666 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_DataverseROMTSGSRST"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_4a7e9"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "2d0a4332-6c7a-405f-b7fb-c81bc61df176"
+          },
+          "type": "Request",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ParseJSON_Content": {
+                  "type": "any",
+                  "x-ms-powerflows-param-ispartial": false
+                }
+              },
+              "required": [
+                "ParseJSON_Content"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Parse_JSON": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "bfa6be5d-f696-4ae0-a12e-1b3faa2313de"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerBody()['ParseJSON_Content']",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "QuestionnaireServiceTaskTypeID": {
+                    "type": "string"
+                  },
+                  "QuestionnaireID": {
+                    "type": "string"
+                  },
+                  "QuestionnaireResponseID": {
+                    "type": "string"
+                  },
+                  "SelectedWOGuids": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "ID": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "ID"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "QuestionnaireServiceTaskTypeID",
+                  "QuestionnaireID",
+                  "QuestionnaireResponseID",
+                  "SelectedWOGuids"
+                ]
+              }
+            }
+          }
+        },
+        "Apply_to_each_3": {
+          "foreach": "@body('Parse_JSON')",
+          "actions": {
+            "Questionnaire": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "8070be64-557b-44f5-870b-7ff79a4ac09a"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_2",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ovs_questionnaires",
+                  "recordId": "@items('Apply_to_each_3')['QuestionnaireID']"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Apply_to_each_4": {
+              "foreach": "@items('Apply_to_each_3')['SelectedWOGuids']",
+              "actions": {
+                "Get_a_row_by_ID": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "cbe4d53e-7288-4170-ba56-7f5120e2493c"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_2",
+                      "operationId": "GetItem",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorders",
+                      "recordId": "@items('Apply_to_each_4')['ID']"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  }
+                },
+                "Set_WO_Name": {
+                  "runAfter": {
+                    "List_rows": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "06a2bdbd-3c7c-448e-8dc5-465a233511b0"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "WO Name",
+                    "value": "@{replace(outputs('Get_a_row_by_ID')?['body/msdyn_name'],'300-', '200-')}"
+                  }
+                },
+                "List_rows": {
+                  "runAfter": {
+                    "Get_a_row_by_ID": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "cecad64b-1c48-4f65-922f-d39c8183af82"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_2",
+                      "operationId": "ListRecords",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorderservicetasks",
+                      "$filter": "statuscode ne 918640002 and statecode eq 0",
+                      "fetchXml": "        <fetch>\n            <entity name='msdyn_workorderservicetask'>\n<order attribute='createdon' />\n              <filter>\n              <condition attribute='msdyn_workorder' operator='eq' value='@{items('Apply_to_each_4')['ID']}'/>\n            </filter>\n            </entity>\n            </fetch>",
+                      "$top": 1
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  }
+                },
+                "Set_Number_of_WO_Service_Task": {
+                  "runAfter": {
+                    "Set_WO_Name": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "fde2e8b9-8d07-4f66-9679-d95bcb74867f"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Number of WO Service Task",
+                    "value": "@length(outputs('List_rows')?['body/value'])"
+                  }
+                },
+                "Set_variable": {
+                  "runAfter": {
+                    "Increment_variable": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "998cd09e-5e7b-48a7-9b3c-70db969b91cf"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Service Task Name",
+                    "value": "@{concat(variables('WO Name'),'-',string(variables('Number of WO Service Task')))}"
+                  }
+                },
+                "Increment_variable": {
+                  "runAfter": {
+                    "Set_Number_of_WO_Service_Task": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "737c6f25-f7c9-4673-8d33-9bc2c257ee5c"
+                  },
+                  "type": "IncrementVariable",
+                  "inputs": {
+                    "name": "Number of WO Service Task",
+                    "value": 1
+                  }
+                },
+                "Update_a_row_-_Questionnaire_Response_-_Work_Order": {
+                  "runAfter": {
+                    "Apply_to_each_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "764bca90-71d0-454c-b4d3-12b5272344bf"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_2",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_questionnaireresponses",
+                      "recordId": "@items('Apply_to_each_3')['QuestionnaireResponseID']",
+                      "item/ts_WorkOrder@odata.bind": "msdyn_workorders(@{items('Apply_to_each_4')['ID']})"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  }
+                },
+                "Apply_to_each_2": {
+                  "foreach": "@outputs('List_rows')?['body/value']",
+                  "actions": {
+                    "Try": {
+                      "actions": {
+                        "Update_a_row_-_Work_Order_Service_Task_2": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "ff566f89-2e61-4e8f-8e78-fe2c117fb686"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "UpdateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "msdyn_workorderservicetasks",
+                              "recordId": "@items('Apply_to_each_2')?['msdyn_workorderservicetaskid']",
+                              "item/msdyn_tasktype@odata.bind": "msdyn_servicetasktypes(@{outputs('Service_Task_Type')?['body/msdyn_servicetasktypeid']})",
+                              "item/ts_fromoffline": true,
+                              "item/ovs_Questionnaire@odata.bind": "ovs_questionnaires(@{outputs('Questionnaire')?['body/ovs_questionnaireid']})",
+                              "item/ovs_questionnaireresponse": "@outputs('Questionnaire_Responses')?['body/ts_questionnaireanswers']",
+                              "item/ovs_questionnaireresultjson": "@outputs('Service_Task_Type')?['body/ovs_questionnaireresultjson']",
+                              "item/ts_servicetaskstartdate": "@formatDateTime(utcNow(), 'MM-dd-yyyy')"
+                            },
+                            "authentication": {
+                              "type": "Raw",
+                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                            }
+                          }
+                        },
+                        "Find_related_WOST_Workspace": {
+                          "runAfter": {
+                            "Update_a_row_-_Work_Order_Service_Task_2": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "a3931a70-5af8-48c5-a411-a678c60062ef"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "ListRecords",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ts_workorderservicetaskworkspaces",
+                              "$filter": "_ts_workorderservicetask_value eq @{items('Apply_to_each_2')?['msdyn_workorderservicetaskid']}",
+                              "$top": 1
+                            },
+                            "authentication": {
+                              "type": "Raw",
+                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                            }
+                          }
+                        },
+                        "If_WOST_Workspace_Exists,_Update_it": {
+                          "foreach": "@outputs('Find_related_WOST_Workspace')?['body/value']",
+                          "actions": {
+                            "Update_WOST_Workspace_Record": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "53e5dd8c-0a8b-4a43-ad91-bf8cf9bac493"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps",
+                                  "operationId": "UpdateOnlyRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ts_workorderservicetaskworkspaces",
+                                  "recordId": "@items('If_WOST_Workspace_Exists,_Update_it')?['ts_workorderservicetaskworkspaceid']",
+                                  "item/ts_workorderservicetaskstartdate": "@outputs('Update_a_row_-_Work_Order_Service_Task_2')?['body/ts_servicetaskstartdate']",
+                                  "item/ts_fromoffline": true,
+                                  "item/ts_Questionnaire@odata.bind": "ovs_questionnaires(@{outputs('Questionnaire')?['body/ovs_questionnaireid']})",
+                                  "item/ts_questionnaireresponse": "@outputs('Questionnaire_Responses')?['body/ts_questionnaireanswers']",
+                                  "item/ts_TaskType@odata.bind": "msdyn_servicetasktypes(@{outputs('Service_Task_Type')?['body/msdyn_servicetasktypeid']})"
+                                },
+                                "authentication": {
+                                  "type": "Raw",
+                                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                                }
+                              }
+                            }
+                          },
+                          "runAfter": {
+                            "Find_related_WOST_Workspace": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "e6ef5a51-7680-4eea-b986-914ccb49efc4"
+                          },
+                          "type": "Foreach"
+                        }
+                      },
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "66cba34c-75b5-4750-b80d-9f3c3cb3274c"
+                      },
+                      "type": "Scope"
+                    },
+                    "Catch": {
+                      "actions": {
+                        "Set_variable_hasError": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "f8defdac-ddfc-4847-bc05-dc72a15bc941"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "hasError",
+                            "value": "@true"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Try": [
+                          "Failed",
+                          "Skipped",
+                          "TimedOut"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "e4345a72-f8ca-4616-b4d5-8e49bd48891d"
+                      },
+                      "type": "Scope"
+                    }
+                  },
+                  "runAfter": {
+                    "Set_variable": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "92d26667-4d32-4713-b3e8-9f299a96d1ba"
+                  },
+                  "type": "Foreach"
+                }
+              },
+              "runAfter": {
+                "Service_Task_Type": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "8647afa1-04c2-4b55-8d17-56020a6166b6"
+              },
+              "type": "Foreach"
+            },
+            "Service_Task_Type": {
+              "runAfter": {
+                "Questionnaire_Responses": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "2c7ff34a-9459-473e-bd40-44cee1099d90"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_2",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "msdyn_servicetasktypes",
+                  "recordId": "@items('Apply_to_each_3')['QuestionnaireServiceTaskTypeID']"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Questionnaire_Responses": {
+              "runAfter": {
+                "Questionnaire": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "4c160b8f-6489-4483-9d31-e041bf13a906"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_2",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_questionnaireresponses",
+                  "recordId": "@items('Apply_to_each_3')['QuestionnaireResponseID']"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_FlowLog": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9456d2bb-b708-4ba6-88db-167216302f80"
+          },
+          "type": "Foreach"
+        },
+        "WO_Name": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "dd491625-9787-4420-8e76-4abd1a139e68"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "WO Name",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "WO_Name": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5b673ae7-8633-486e-9289-540f08dc9f84"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Number of WO Service Task",
+                "type": "integer"
+              }
+            ]
+          }
+        },
+        "Initialize_Service_Task_Name": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fd81447a-6d21-44d3-b0d2-07b25701ecb9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Service Task Name",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_2": {
+          "runAfter": {
+            "Initialize_Service_Task_Name": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5082186b-2d14-48c2-9cad-dc9f948301da"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "WOST ID",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_hasError": {
+          "runAfter": {
+            "Initialize_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fd077183-db8e-43d9-a191-afc2c270a08d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "hasError",
+                "type": "boolean",
+                "value": "@false"
+              }
+            ]
+          }
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Join": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "229a8bae-3ee6-4d77-9219-cb625647c0c6"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "hasreturned": "@{true}",
+              "haserror": "@{variables('hasError')}",
+              "errorlog": "@body('Join')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hasreturned": {
+                  "title": "hasReturned",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "haserror": {
+                  "title": "hasError",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "errorlog": {
+                  "title": "errorLog",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_FlowLog": {
+          "runAfter": {
+            "Initialize_hasError": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c8275f44-798c-40cd-b158-a56d0fa38e99"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "FlowLog",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Join": {
+          "runAfter": {
+            "Apply_to_each_3": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1298eae4-cffc-454b-8d9d-a7af3304e48f"
+          },
+          "type": "Join",
+          "inputs": {
+            "from": "@variables('FlowLog')",
+            "joinWith": "\n"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

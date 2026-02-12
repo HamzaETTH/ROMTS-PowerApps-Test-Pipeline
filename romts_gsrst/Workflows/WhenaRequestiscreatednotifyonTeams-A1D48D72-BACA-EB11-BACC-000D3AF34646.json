@@ -1,0 +1,151 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_teams": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedteams_eb0d1"
+        },
+        "api": {
+          "name": "shared_teams"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_Request_is_created": {
+          "metadata": {
+            "operationMetadataId": "f8485bdc-b371-4345-a545-b065cb036b40"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ts_request",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Initialize_variable": {
+          "runAfter": {
+            "Get_Request_User": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ee89562e-f174-4c10-8765-dd3bf88c809b"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "URL",
+                "type": "string",
+                "value": "https://@{uriHost(outputs('Get_Request_by_ID')?['body']['@odata.id'])}/main.aspx?cmdbar=true&navbar=on&newWindow=true&pagetype=entityrecord&etn=ts_request&id=@{outputs('Get_Request_by_ID')?['body/ts_requestid']}"
+              }
+            ]
+          }
+        },
+        "Get_Request_by_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "674c9ac8-0244-4b70-9bb2-51bbb09fcef4"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_requests",
+              "recordId": "@triggerOutputs()?['body/ts_requestid']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Request_User": {
+          "runAfter": {
+            "Get_Request_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e6d30397-25b5-4943-8dda-2aaf410ba6b7"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@outputs('Get_Request_by_ID')?['body/_createdby_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Post_message_in_a_chat_or_channel": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "684fa306-8193-4de0-8788-8f63ef7ff941"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_teams",
+              "operationId": "PostMessageToConversation",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+            },
+            "parameters": {
+              "poster": "User",
+              "location": "Group chat",
+              "body/recipient": "19:74b059ee940c42d18133a9e945fd44fc@thread.v2",
+              "body/messageBody": "<h2>New Request from @{outputs('Get_Request_User')?['body/domainname']}</h2>\n<p><a href=\"@{variables('URL')}\">View Request</a></p>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
