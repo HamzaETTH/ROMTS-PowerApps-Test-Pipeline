@@ -22,43 +22,10 @@ steps:
   inputs:
     DefaultVersion: true
 
-# --- Solution Checker (MAIN) ---
-- task: PowerPlatformChecker@0
-  displayName: 'Run Solution Checker (Main)'
-  inputs:
-    authenticationType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'ROMTS-GSRST DEV'
-    SolutionName: '$(SolutionNameMain)'
-    RuleSet: '$(RuleSetId)'
-    SaveResults: true
-    OutputPath: '$(Build.ArtifactStagingDirectory)\SolutionChecker\Main'
-    ErrorLevel: 'Informational'
-    ErrorThreshold: 6000
-  condition: always()
-  continueOnError: true
-
-# --- Solution Checker (FLOWS) ---
-- task: PowerPlatformChecker@0
-  displayName: 'Run Solution Checker (Flows)'
-  inputs:
-    authenticationType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'ROMTS-GSRST DEV'
-    SolutionName: '$(SolutionNameFlows)'
-    RuleSet: '$(RuleSetId)'
-    SaveResults: true
-    OutputPath: '$(Build.ArtifactStagingDirectory)\SolutionChecker\Flows'
-    ErrorLevel: 'Informational'
-    ErrorThreshold: 6000
-  condition: always()
-  continueOnError: true
-
-- task: PublishPipelineArtifact@1
-  displayName: 'Publish Solution Checker Results'
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)\SolutionChecker'
-    artifact: 'SolutionCheckerResults'
-    publishLocation: 'pipeline'
-  condition: always()
+- powershell: |
+    New-Item -ItemType Directory -Force -Path "$(Build.ArtifactStagingDirectory)\SolutionChecker\Main" | Out-Null
+    New-Item -ItemType Directory -Force -Path "$(Build.ArtifactStagingDirectory)\SolutionChecker\Flows" | Out-Null
+  displayName: 'Create Solution Checker output folders'
 
 # --- Versioning ---
 - task: PowerPlatformSetSolutionVersion@0
@@ -112,6 +79,51 @@ steps:
     crmConnectionTimeout: '1960'
     useAsyncMode: true
     asyncWaitTimeout: '1900'
+
+# --- Sanity check: confirm the zips exist where we think they do ---
+- powershell: |
+    Write-Host "Listing exported zips in: $(Build.ArtifactStagingDirectory)"
+    Get-ChildItem "$(Build.ArtifactStagingDirectory)" -Filter *.zip | Format-Table -AutoSize
+  displayName: 'List exported solution zips'
+
+# --- Solution Checker (MAIN) - analyze the exported zip ---
+- task: PowerPlatformChecker@0
+  displayName: 'Run Solution Checker (Main)'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    FilesToAnalyze: '$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip'
+    RuleSet: '$(RuleSetId)'
+    SaveResults: true
+    OutputPath: '$(Build.ArtifactStagingDirectory)\SolutionChecker\Main'
+    ErrorLevel: 'Informational'
+    ErrorThreshold: 6000
+  condition: always()
+  continueOnError: true
+
+# --- Solution Checker (FLOWS) - analyze the exported zip ---
+- task: PowerPlatformChecker@0
+  displayName: 'Run Solution Checker (Flows)'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    FilesToAnalyze: '$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip'
+    RuleSet: '$(RuleSetId)'
+    SaveResults: true
+    OutputPath: '$(Build.ArtifactStagingDirectory)\SolutionChecker\Flows'
+    ErrorLevel: 'Informational'
+    ErrorThreshold: 6000
+  condition: always()
+  continueOnError: true
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Solution Checker Results'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)\SolutionChecker'
+    artifact: 'SolutionCheckerResults'
+    publishLocation: 'pipeline'
+  condition: always()
+
 
 # --- Publish zips for Release to consume ---
 - task: PublishPipelineArtifact@1
