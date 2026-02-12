@@ -97,10 +97,33 @@ steps:
   displayName: 'List staging contents'
   condition: always()
 
+# --- Detect whether exported zips exist (set variables for later conditions) ---
+- powershell: |
+    $main = "$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip"
+    $flows = "$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip"
+
+    if (Test-Path $main) {
+      Write-Host "Found MAIN zip: $main"
+      Write-Host "##vso[task.setvariable variable=MainZipExists]true"
+    } else {
+      Write-Host "Missing MAIN zip: $main"
+      Write-Host "##vso[task.setvariable variable=MainZipExists]false"
+    }
+
+    if (Test-Path $flows) {
+      Write-Host "Found FLOWS zip: $flows"
+      Write-Host "##vso[task.setvariable variable=FlowsZipExists]true"
+    } else {
+      Write-Host "Missing FLOWS zip: $flows"
+      Write-Host "##vso[task.setvariable variable=FlowsZipExists]false"
+    }
+  displayName: 'Detect exported zip presence'
+  condition: always()
+
 # --- Solution Checker (only if the expected zip exists) ---
 - task: PowerPlatformChecker@0
   displayName: 'Run Solution Checker (Main)'
-  condition: and(always(), exists('$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip'))
+  condition: and(always(), eq(variables['MainZipExists'], 'true'))
   continueOnError: true
   inputs:
     authenticationType: 'PowerPlatformSPN'
@@ -114,7 +137,7 @@ steps:
 
 - task: PowerPlatformChecker@0
   displayName: 'Run Solution Checker (Flows)'
-  condition: and(always(), exists('$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip'))
+  condition: and(always(), eq(variables['FlowsZipExists'], 'true'))
   continueOnError: true
   inputs:
     authenticationType: 'PowerPlatformSPN'
@@ -146,14 +169,14 @@ steps:
 # --- Unpack both (only if zip exists) ---
 - task: PowerPlatformUnpackSolution@0
   displayName: 'Unpack Unmanaged (Main)'
-  condition: and(always(), exists('$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip'))
+  condition: and(always(), eq(variables['MainZipExists'], 'true'))
   inputs:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip'
     SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionNameMain)'
 
 - task: PowerPlatformUnpackSolution@0
   displayName: 'Unpack Unmanaged (Flows)'
-  condition: and(always(), exists('$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip'))
+  condition: and(always(), eq(variables['FlowsZipExists'], 'true'))
   inputs:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip'
     SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionNameFlows)'
