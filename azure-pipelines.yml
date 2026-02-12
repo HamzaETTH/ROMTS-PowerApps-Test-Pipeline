@@ -22,14 +22,16 @@ steps:
   inputs:
     DefaultVersion: true
 
+# Ensure output folders exist so publishing results never errors on missing path
 - powershell: |
     New-Item -ItemType Directory -Force -Path "$(Build.ArtifactStagingDirectory)\SolutionChecker\Main" | Out-Null
     New-Item -ItemType Directory -Force -Path "$(Build.ArtifactStagingDirectory)\SolutionChecker\Flows" | Out-Null
   displayName: 'Create Solution Checker output folders'
 
-# --- Versioning ---
+# --- Versioning (do NOT block the rest of the pipeline if PP-BT v0 crashes) ---
 - task: PowerPlatformSetSolutionVersion@0
   displayName: 'Update Solution Version (Main)'
+  continueOnError: true
   inputs:
     authenticationType: 'PowerPlatformSPN'
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
@@ -38,6 +40,7 @@ steps:
 
 - task: PowerPlatformSetSolutionVersion@0
   displayName: 'Update Solution Version (Flows)'
+  continueOnError: true
   inputs:
     authenticationType: 'PowerPlatformSPN'
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
@@ -46,18 +49,22 @@ steps:
 
 - task: PowerPlatformPublishCustomizations@0
   displayName: 'Publish All Customizations (Dev)'
+  continueOnError: true
   inputs:
     authenticationType: 'PowerPlatformSPN'
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
 
-# --- Export (same toolchain you already use) ---
+# --- Export (force export even if versioning/publish customizations had issues) ---
 - task: MSCRMToolInstaller@12
+  displayName: 'Install MSCRM Tools'
+  condition: always()
   inputs:
     nugetFeed: 'official'
     psFeed: 'official'
 
 - task: MSCRMExportSolution@12
   displayName: 'Export Unmanaged (Main)'
+  condition: always()
   inputs:
     crmConnectionString: '$(ConnectionStringDev)'
     solutionName: '$(SolutionNameMain)'
@@ -70,6 +77,7 @@ steps:
 
 - task: MSCRMExportSolution@12
   displayName: 'Export Unmanaged (Flows)'
+  condition: always()
   inputs:
     crmConnectionString: '$(ConnectionStringDev)'
     solutionName: '$(SolutionNameFlows)'
@@ -80,15 +88,20 @@ steps:
     useAsyncMode: true
     asyncWaitTimeout: '1900'
 
-# --- Sanity check: confirm the zips exist where we think they do ---
+# --- Sanity check (always show what's in staging) ---
 - powershell: |
-    Write-Host "Listing exported zips in: $(Build.ArtifactStagingDirectory)"
-    Get-ChildItem "$(Build.ArtifactStagingDirectory)" -Filter *.zip | Format-Table -AutoSize
-  displayName: 'List exported solution zips'
+    Write-Host "Artifact staging dir: $(Build.ArtifactStagingDirectory)"
+    Get-ChildItem "$(Build.ArtifactStagingDirectory)" | Format-Table -AutoSize
+    Write-Host "ZIPs:"
+    Get-ChildItem "$(Build.ArtifactStagingDirectory)" -Filter *.zip -ErrorAction SilentlyContinue | Format-Table -AutoSize
+  displayName: 'List staging contents'
+  condition: always()
 
-# --- Solution Checker (MAIN) - analyze the exported zip ---
+# --- Solution Checker (only if the expected zip exists) ---
 - task: PowerPlatformChecker@0
   displayName: 'Run Solution Checker (Main)'
+  condition: and(always(), exists('$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip'))
+  continueOnError: true
   inputs:
     authenticationType: 'PowerPlatformSPN'
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
@@ -98,12 +111,11 @@ steps:
     OutputPath: '$(Build.ArtifactStagingDirectory)\SolutionChecker\Main'
     ErrorLevel: 'Informational'
     ErrorThreshold: 6000
-  condition: always()
-  continueOnError: true
 
-# --- Solution Checker (FLOWS) - analyze the exported zip ---
 - task: PowerPlatformChecker@0
   displayName: 'Run Solution Checker (Flows)'
+  condition: and(always(), exists('$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip'))
+  continueOnError: true
   inputs:
     authenticationType: 'PowerPlatformSPN'
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
@@ -113,48 +125,51 @@ steps:
     OutputPath: '$(Build.ArtifactStagingDirectory)\SolutionChecker\Flows'
     ErrorLevel: 'Informational'
     ErrorThreshold: 6000
-  condition: always()
-  continueOnError: true
 
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Solution Checker Results'
+  condition: always()
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)\SolutionChecker'
     artifact: 'SolutionCheckerResults'
     publishLocation: 'pipeline'
-  condition: always()
-
 
 # --- Publish zips for Release to consume ---
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Artifacts'
+  condition: always()
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: 'drop'
     publishLocation: 'pipeline'
 
-# --- Unpack both ---
+# --- Unpack both (only if zip exists) ---
 - task: PowerPlatformUnpackSolution@0
   displayName: 'Unpack Unmanaged (Main)'
+  condition: and(always(), exists('$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip'))
   inputs:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionNameMain).zip'
     SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionNameMain)'
 
 - task: PowerPlatformUnpackSolution@0
   displayName: 'Unpack Unmanaged (Flows)'
+  condition: and(always(), exists('$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip'))
   inputs:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionNameFlows).zip'
     SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionNameFlows)'
 
-# --- Commit + push (fixed) ---
+# --- Commit + push ---
 - task: PowerShell@2
   displayName: 'Commit Unpacked Solutions to Source Control'
+  condition: always()
   inputs:
     targetType: 'inline'
     script: |
       git config user.email "nepasrepondre-noreply@tc.gc.ca"
       git config user.name "tc-buildbot"
+
       git checkout main
+
       git add --all
 
       $status = git status --porcelain
